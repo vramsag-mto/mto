@@ -252,7 +252,7 @@ tr:hover td{background:#f8fafc}
   #dtb td:nth-child(2)::before{content:'Компания';}
   #dtb td:nth-child(3)::before{content:'Шифр';}
   #dtb td:nth-child(4)::before{content:'Наименование';}
-  #dtb td:nth-child(5)::before{content:'Ответственный';}
+  #dtb td:nth-child(5)::before{content:'Ответственные';}
   #dtb td:nth-child(6)::before{content:'Статус';}
   #dtb td:nth-child(7)::before{content:'Контрагент';}
   #dtb td:nth-child(8)::before{content:'Сумма';}
@@ -266,7 +266,7 @@ tr:hover td{background:#f8fafc}
   #atb td:nth-child(3)::before{content:'Дата';}
   #atb td:nth-child(4)::before{content:'Наименование';}
   #atb td:nth-child(5)::before{content:'Заявка';}
-  #atb td:nth-child(6)::before{content:'Ответственный';}
+  #atb td:nth-child(6)::before{content:'Ответственные';}
   #atb td:nth-child(7)::before{content:'Материал';}
   #atb td:nth-child(8)::before{content:'Сумма';}
   #atb td:nth-child(9)::before{content:'Контрагент';}
@@ -296,7 +296,7 @@ tr:hover td{background:#f8fafc}
   #etb td:nth-child(2)::before{content:'Компания';}
   #etb td:nth-child(3)::before{content:'Шифр';}
   #etb td:nth-child(4)::before{content:'Наименование';}
-  #etb td:nth-child(5)::before{content:'Ответственный';}
+  #etb td:nth-child(5)::before{content:'Ответственные';}
   #etb td:nth-child(6)::before{content:'Статус';}
   #etb td:nth-child(7)::before{content:'Сумма';}
   #etb td:nth-child(8)::before{content:'КП';}
@@ -893,7 +893,9 @@ tr:hover td{background:#f8fafc}
       <div class="fgr"><label class="fl2">Дата заявки</label><input class="fi" type="date" id="fdt"/></div>
       <div class="fgr f"><label class="fl2">Наименование</label><input class="fi" id="fnm" placeholder="Инструменты и расходники"/></div>
       <div class="fgr"><label class="fl2">Ответственный</label>
-        <select class="fi" id="frs"><option>Магомед С.</option><option>Эдуард</option><option>Шамиль</option><option>Вадим</option><option>Елена</option><option>Эмин</option><option>Даниэль</option></select></div>
+        <select class="fi" id="frs"><option>Не выбран</option><option>Магомед С.</option><option>Эдуард</option><option>Шамиль</option><option>Вадим</option><option>Елена</option><option>Эмин</option><option>Даниэль</option></select></div>
+      <div class="fgr"><label class="fl2">Второй ответственный</label>
+        <select class="fi" id="frs2"><option></option><option>Магомед С.</option><option>Эдуард</option><option>Шамиль</option><option>Вадим</option><option>Елена</option><option>Эмин</option><option>Даниэль</option></select></div>
       <div class="fgr"><label class="fl2">Статус заявки</label>
         <select class="fi" id="fst"><option>Идет сбор КП</option><option>На оплате</option><option>ЖДЕМ ДОСТАВКИ</option><option>Ожидаем доставку</option><option>ЧАСТИЧНО ДОСТАВЛЕНО</option><option>ДОСТАВЛЕНО</option><option>Приостановлена</option></select></div>
       <div class="fgr f"><label class="fl2">Материал поставки</label><input class="fi" id="fma" placeholder="Перечислите материалы"/></div>
@@ -1103,11 +1105,23 @@ function pmButton(resp){
   if(!login||!CU||login===CU.login)return'';
   return `<button class="pm-mini" title="Написать в личку" onclick="event.stopPropagation();openPrivateWith('${login}')">✉️</button>`;
 }
+function respText(r){
+  const a=(r&&r.resp)?r.resp:'Не выбран';
+  const b=(r&&r.resp2)?r.resp2:'';
+  return b?`${esc(a)} / ${esc(b)}`:esc(a);
+}
+function respButtons(r){
+  if(!r)return '';
+  return `${r.resp&&r.resp!=='Не выбран'?pmButton(r.resp):''}${r.resp2?pmButton(r.resp2):''}`;
+}
+function isRespResponsible(r,resp){
+  return !!(r&&resp&&(r.resp===resp||r.resp2===resp));
+}
 function esc(v){return String(v??'').replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));}
 function briefOrder(r){return `№${r?.num||'б/н'} • ${r?.company||'—'} • ${r?.name||r?.material||'—'}`;}
 function diffFields(oldR,row){
   if(!oldR)return [];
-  const names={company:'Компания',num:'№',shifer:'Шифр',date:'Дата',name:'Наименование',resp:'Ответственный',status:'Статус',material:'Материал',cost:'Сумма',contractor:'Контрагент',payment:'Оплата',delivery:'Поставка',driverPhone:'Телефон водителя',vehicleNumber:'Машина',upd:'УПД',docs:'Документы',createdAt:'Дата создания',days:'Рабочие дни',note:'Примечание'};
+  const names={company:'Компания',num:'№',shifer:'Шифр',date:'Дата',name:'Наименование',resp:'Ответственный',resp2:'Второй ответственный',status:'Статус',material:'Материал',cost:'Сумма',contractor:'Контрагент',payment:'Оплата',delivery:'Поставка',driverPhone:'Телефон водителя',vehicleNumber:'Машина',upd:'УПД',docs:'Документы',createdAt:'Дата создания',days:'Рабочие дни',note:'Примечание'};
   const out=[];
   for(const k of Object.keys(names)){
     const a=oldR[k]??''; const b=row[k]??'';
@@ -1204,7 +1218,7 @@ window.openAnalysisFor=function(key){
 };
 
 
-function canEditOrder(r){return !!(CU && (CU.isAdmin || (r&&r.resp===CU.resp)));}
+function canEditOrder(r){return !!(CU && (CU.isAdmin || isRespResponsible(r,CU.resp)));}
 function docBadges(r){
   const upOk=(r.upd==='Есть');
   const docsOk=(r.docs==='Есть');
@@ -1265,7 +1279,7 @@ window.openOrderView=function(key){
       <div style="text-align:right"><div style="font-size:.8rem;opacity:.75">Сумма</div><div style="font-size:1.25rem;font-weight:900">${mn(orderTotal(r))}</div></div>
     </div>
     <div class="info-grid">
-      <div class="info-card"><div class="info-label">Ответственный</div><div class="info-value">${esc(r.resp||'—')} ${pmButton(r.resp)}</div></div>
+      <div class="info-card"><div class="info-label">Ответственные</div><div class="info-value">${respText(r)} ${respButtons(r)}</div></div>
       <div class="info-card"><div class="info-label">Дата заявки</div><div class="info-value">${esc(r.date||'—')}</div></div>
       <div class="info-card"><div class="info-label">Дней в работе</div><div class="info-value">${daysB(r)}</div></div>
       <div class="info-card"><div class="info-label">Контрагент</div><div class="info-value">${esc(r.contractor||'—')}</div></div>
@@ -1314,7 +1328,7 @@ function rDashT(){
   tb.innerHTML=f.map(r=>`<tr>
     <td data-label="№" class="nc">${r.num||'б/н'}</td><td data-label="Компания"><span class="badge bgr">${r.company||'—'}</span></td><td data-label="Шифр">${shB(r.shifer)}</td>
     <td data-label="Заявка">${orderTitleHtml(r)}</td>
-    <td data-label="Ответственный"><span class="rl badge bgr" onclick="window.openP('${r.resp}')">${r.resp||'—'}</span>${pmButton(r.resp)}</td>
+    <td data-label="Ответственные"><span class="rl badge bgr" onclick="window.openP('${r.resp||r.resp2||''}')">${respText(r)}</span>${respButtons(r)}</td>
     <td data-label="Статус">${sB(r.status)}</td>
     <td data-label="Контрагент" style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.76rem">${r.contractor||'—'}</td>
     <td data-label="Сумма">${mn(orderTotal(r))}</td><td data-label="Поставка" style="white-space:nowrap;font-size:.76rem">${r.delivery||'—'}</td>
@@ -1377,7 +1391,7 @@ function applyAllFilters(list){
   if(quickFilter==='noDocs')d=d.filter(r=>!r.docs||r.docs==='Нет'||String(r.docs).toLowerCase().includes('нет'));
   if(quickFilter==='over7')d=d.filter(r=>workDays(r)>7);
   if(quickFilter==='bigSum')d=d.filter(r=>orderTotal(r)>100000);
-  if(advF.resp)d=d.filter(r=>r.resp===advF.resp);
+  if(advF.resp)d=d.filter(r=>isRespResponsible(r,advF.resp));
   if(advF.payment)d=d.filter(r=>r.payment===advF.payment);
   if(advF.upd)d=d.filter(r=>r.upd===advF.upd);
   if(advF.docs)d=d.filter(r=>r.docs===advF.docs);
@@ -1419,8 +1433,8 @@ function rAll(){
           ${orderTitleHtml(r)}
         </div>
         <div class="ol-resp">
-          <div class="ol-label">Ответственный</div>
-          <span class="rl badge bgr" onclick="window.openP('${r.resp}')">${r.resp||'—'}</span>${pmButton(r.resp)}
+          <div class="ol-label">Ответственные</div>
+          <span class="rl badge bgr" onclick="window.openP('${r.resp||r.resp2||''}')">${respText(r)}</span>${respButtons(r)}
         </div>
         <div class="ol-status">
           <div>${sB(r.status)}</div>
@@ -1444,7 +1458,7 @@ function rAll(){
 // MINE
 function rMine(){
   if(!CU)return;
-  const d=DATA.filter(r=>r.resp===CU.resp);
+  const d=DATA.filter(r=>isRespResponsible(r,CU.resp));
   const tb=document.getElementById('mtb');
   if(!d.length){tb.innerHTML='<tr><td colspan="10" class="erow">У вас нет заявок</td></tr>';return;}
   tb.innerHTML=d.map(r=>{
@@ -1516,7 +1530,7 @@ function rHistory(q=''){
 // EDIT
 function rEdit(q=''){
   if(!CU)return;
-  let d=CU.isAdmin?[...DATA]:DATA.filter(r=>r.resp===CU.resp);
+  let d=CU.isAdmin?[...DATA]:DATA.filter(r=>isRespResponsible(r,CU.resp));
   if(q)d=d.filter(r=>JSON.stringify(r).toLowerCase().includes(q.toLowerCase()));
   const tb=document.getElementById('etb');
   if(!d.length){tb.innerHTML='<tr><td colspan="9" class="erow">Нет заявок</td></tr>';return;}
@@ -1525,7 +1539,7 @@ function rEdit(q=''){
     <td data-label="Компания"><span class="badge bgr">${r.company}</span></td>
     <td data-label="Шифр">${shB(r.shifer)}</td>
     <td data-label="Заявка">${orderTitleHtml(r)}</td>
-    <td data-label="Ответственный">${r.resp||'—'} ${pmButton(r.resp)}</td><td data-label="Статус">${sB(r.status)}</td><td data-label="Сумма">${mn(orderTotal(r))}</td>
+    <td data-label="Ответственные">${respText(r)} ${respButtons(r)}</td><td data-label="Статус">${sB(r.status)}</td><td data-label="Сумма">${mn(orderTotal(r))}</td>
     <td data-label="КП">${kpC(r)}${anB(r)}</td>
     <td data-label="Действия"><div class="order-actions"><button class="bsm be" onclick="window.openOrderView('${r._k}')">👁️</button><button class="bsm be" onclick="window.openAnalysisFor('${r._k}')">📈</button><button class="bsm be" onclick="window.openE('${r._k}')">✏️</button>${CU.isAdmin?`<button class="bsm bd" onclick="window.delR('${r._k}')">🗑️</button>`:''}</div></td>
   </tr>`).join('');
@@ -1576,12 +1590,13 @@ window.rInvI=(i)=>{invoiceRows.splice(i,1);rInvoices();};
 window.openAdd=function(){
   editKey=null;kpRows=[];invoiceRows=[];
   document.getElementById('mzt').textContent='Новая заявка';
-  ['fco','fnu','fsh','fdt','fnm','frs','fst','fma','fco2','fct','fin','fcon','fpa','fdl','fdrp','fveh','fup','fdo','fda','fno'].forEach(id=>{
+  ['fco','fnu','fsh','fdt','fnm','frs','frs2','fst','fma','fco2','fct','fin','fcon','fpa','fdl','fdrp','fveh','fup','fdo','fda','fno'].forEach(id=>{
     const el=document.getElementById(id);if(el){if(el.tagName==='SELECT')el.selectedIndex=0;else el.value='';}
   });
   document.getElementById('fdt').value=todayInput();
   document.getElementById('fda').value=0;
-  if(!CU.isAdmin)document.getElementById('frs').value=CU.resp;
+  document.getElementById('frs').value='Не выбран';
+  document.getElementById('frs2').value='';
   rKP();rInvoices();OM('mo-z');
 };
 window.openE=function(k){
@@ -1593,7 +1608,8 @@ window.openE=function(k){
   document.getElementById('fsh').value=r.shifer||'594-151';
   document.getElementById('fdt').value=(r.createdAt||r.date)?(r.createdAt||r.date).split('.').reverse().join('-'):todayInput();
   document.getElementById('fnm').value=r.name||'';
-  document.getElementById('frs').value=r.resp||'Магомед С.';
+  document.getElementById('frs').value=r.resp||'Не выбран';
+  document.getElementById('frs2').value=r.resp2||'';
   document.getElementById('fst').value=r.status||'Идет сбор КП';
   document.getElementById('fma').value=r.material||'';
   document.getElementById('fco2').value=r.cost||'';
@@ -1622,7 +1638,7 @@ window.saveZ=async function(){
   const row={
     company:document.getElementById('fco').value,num:document.getElementById('fnu').value,
     shifer:document.getElementById('fsh').value,date:dr?dr.split('-').reverse().join('.'):todayRu(),
-    name:document.getElementById('fnm').value,resp:document.getElementById('frs').value,
+    name:document.getElementById('fnm').value,resp:document.getElementById('frs').value,resp2:document.getElementById('frs2').value,
     status:document.getElementById('fst').value,material:document.getElementById('fma').value,
     cost:invoicesTotal>0?invoicesTotal:manualCost,contractor:document.getElementById('fct').value,
     invoices:JSON.parse(JSON.stringify(cleanInvoices)),
@@ -1642,7 +1658,7 @@ window.saveZ=async function(){
     await logAction('Изменение заявки',briefOrder({...oldR,...row}),changes.slice(0,12).join('; ')||'Сохранение без заметных изменений',editKey);
   }else{
     const refNew=await db.ref('orders').push(row);
-    await logAction('Создание заявки',briefOrder(row),`Ответственный: ${row.resp||'—'}; статус: ${row.status||'—'}`,refNew.key);
+    await logAction('Создание заявки',briefOrder(row),`Ответственные: ${row.resp||'—'}${row.resp2?' / '+row.resp2:''}; статус: ${row.status||'—'}`,refNew.key);
   }
   CM('mo-z');
 };
@@ -1655,7 +1671,8 @@ window.delR=async function(k){
 
 // PERSON
 window.openP=function(name){
-  const d=DATA.filter(r=>r.resp===name);
+  if(!name||name==='Не выбран')return;
+  const d=DATA.filter(r=>isRespResponsible(r,name));
   const done=d.filter(r=>r.status==='ДОСТАВЛЕНО').length;
   const total=d.reduce((a,r)=>a+orderTotal(r),0);
   document.getElementById('ph2').innerHTML=`
@@ -1690,7 +1707,7 @@ window.openP=function(name){
 // ANALYSIS
 function fillAnSel(){
   const sel=document.getElementById('an-sel');
-  const d=CU?.isAdmin?DATA:DATA.filter(r=>r.resp===CU?.resp || r.analysis);
+  const d=CU?.isAdmin?DATA:DATA.filter(r=>isRespResponsible(r,CU?.resp) || r.analysis);
   const withKP=d.filter(r=>(r.kp&&r.kp.length>1)||r.analysis);
   sel.innerHTML='<option value="">— Выберите заявку —</option>'+withKP.map(r=>`<option value="${r._k}">${r.analysis?'📈 ':''}№${r.num||'б/н'} — ${r.name||r.material||'—'} (${(r.kp||[]).length} КП)</option>`).join('');
 }
