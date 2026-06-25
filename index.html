@@ -549,6 +549,43 @@ tr:hover td{background:#f8fafc}
   .ol-box{background:#fff;border:1px solid #e8edf4;border-radius:10px;padding:9px;}
 }
 
+
+/* INTERACTIVE TOUR */
+.tour-highlight{
+  position:relative!important;
+  z-index:1602!important;
+  box-shadow:0 0 0 4px rgba(59,130,246,.35),0 0 0 9999px rgba(15,23,42,.58)!important;
+  border-radius:14px!important;
+}
+#tour-pop{
+  position:fixed;z-index:2000;display:none;max-width:420px;
+  left:50%!important;right:auto!important;bottom:18px!important;top:auto!important;
+  transform:translateX(-50%);
+  background:#fff;border:1px solid #dbe3ef;border-radius:16px;
+  box-shadow:0 24px 60px rgba(15,23,42,.28);padding:16px;
+  color:#1e293b;font-family:'Segoe UI',Arial,sans-serif;
+}
+#tour-pop.active{display:block}
+#tour-pop .tour-step{font-size:.72rem;color:#64748b;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+#tour-pop .tour-title{font-size:1.05rem;font-weight:900;color:#1a2f4e;margin-bottom:8px}
+#tour-pop .tour-text{font-size:.88rem;line-height:1.45;color:#334155;margin-bottom:14px}
+#tour-pop .tour-actions{display:flex;gap:8px;justify-content:space-between;align-items:center}
+#tour-pop button{border:none;border-radius:10px;padding:9px 12px;font-weight:800;cursor:pointer}
+#tour-pop .tour-skip{background:#f1f5f9;color:#64748b}
+#tour-pop .tour-back{background:#f8fafc;color:#1a2f4e;border:1px solid #e2e8f0}
+#tour-pop .tour-next{background:linear-gradient(135deg,#1a2f4e,#3b82f6);color:#fff}
+.tour-help-btn{
+  position:fixed;right:18px;bottom:18px;z-index:1200;width:46px;height:46px;
+  border-radius:50%;border:none;background:linear-gradient(135deg,#1a2f4e,#3b82f6);
+  color:#fff;font-size:1.2rem;font-weight:900;box-shadow:0 10px 30px rgba(15,23,42,.28);
+  cursor:pointer;display:none;align-items:center;justify-content:center;
+}
+.app.active ~ .tour-help-btn,.tour-help-btn.show{display:flex}
+@media(max-width:768px){
+  #tour-pop{left:10px!important;right:10px!important;bottom:12px!important;top:auto!important;max-width:none}
+  .tour-help-btn{right:14px;bottom:14px}
+}
+
 </style>
 </head>
 <body>
@@ -1882,5 +1919,114 @@ window.CM=function(id){document.getElementById(id).classList.remove('active');};
 function OM(id){document.getElementById(id).classList.add('active');}
 document.querySelectorAll('.mo').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('active');}));
 </script>
+
+<div id="tour-pop">
+  <div class="tour-step" id="tour-step"></div>
+  <div class="tour-title" id="tour-title"></div>
+  <div class="tour-text" id="tour-text"></div>
+  <div class="tour-actions">
+    <button class="tour-skip" onclick="endTour(true)">Пропустить</button>
+    <div style="display:flex;gap:8px">
+      <button class="tour-back" onclick="prevTour()">Назад</button>
+      <button class="tour-next" id="tour-next" onclick="nextTour()">Далее</button>
+    </div>
+  </div>
+</div>
+<button class="tour-help-btn" id="tour-help-btn" onclick="startTour(true)" title="Пройти обучение">?</button>
+
+
+<script>
+(function(){
+  const TOUR_VER='v1';
+  function tourKey(){return 'mto_tour_completed_'+TOUR_VER+'_'+((window.CU&&CU.login)||'guest');}
+  const steps=[
+    {page:'dash',selector:'#page-dash .stats',title:'Дашборд',text:'Здесь руководитель и сотрудники видят общую картину: количество заявок, доставленные позиции, ожидание поставки и текущую работу.'},
+    {page:'dash',selector:'#dash-co-tabs',title:'Фильтр по компаниям',text:'Можно переключаться между всеми заявками, СТЕЛС и ДОРСНАБ. Показатели и список заявок обновляются автоматически.'},
+    {page:'all',selector:'#page-all .filter-panel',title:'Фильтры заявок',text:'Фильтры помогают быстро найти проблемные позиции: не доставлено, на оплате, нет УПД, нет сертификатов, просрочка, сумма и даты.'},
+    {page:'all',selector:'#atb',title:'Список заявок',text:'В карточках заявок отображаются шифр, материал, ответственный, статус, сумма, оплата, поставка, КП, счёт, договор и документы.'},
+    {page:'edit',selector:'#page-edit',title:'Создание заявки',text:'Новая заявка создаётся через раздел «Редактировать». Нажмите «Добавить заявку», заполните поля, добавьте поставщиков и сохраните.'},
+    {page:'analysis',selector:'#an-sel',title:'Конъюнктурный анализ',text:'Здесь выбирается заявка для сравнения КП. После анализа можно сохранить выбранного поставщика и обоснование в базе.'},
+    {page:'private',selector:'#page-private .pm-wrap',title:'Личные сообщения',text:'В этом разделе можно написать сотруднику лично. Непрочитанные сообщения показываются красным значком в меню.'},
+    {page:'chat',selector:'#page-chat .card',title:'Общий чат',text:'Общий чат используется для рабочих вопросов, которые относятся ко всему отделу МТО.'},
+    {page:'contacts',selector:'#page-contacts .card',title:'Контакты поставщиков',text:'Реестр поставщиков: телефоны, почта, ИНН, город и направление деятельности.'},
+    {page:'analytics',selector:'#page-analytics .stats',title:'Аналитика МТО',text:'Администраторы видят сводку по заявкам, сотрудникам, статусам, суммам и эффективности отдела.'},
+    {page:'history',selector:'#page-history .card',title:'История изменений',text:'Журнал показывает, кто и когда создавал, редактировал или удалял заявки, контакты и анализы.'}
+  ];
+  let idx=0, active=false;
+
+  function q(sel){try{return document.querySelector(sel)}catch(e){return null}}
+  function visible(el){
+    if(!el)return false;
+    const r=el.getBoundingClientRect();
+    return r.width>0&&r.height>0&&getComputedStyle(el).display!=='none'&&getComputedStyle(el).visibility!=='hidden';
+  }
+  function navEl(page){return document.querySelector(`.nav-item[onclick*="${page}"]`)}
+  function clean(){document.querySelectorAll('.tour-highlight').forEach(e=>e.classList.remove('tour-highlight'))}
+  function canUseStep(s){
+    if((s.page==='analytics'||s.page==='history') && typeof canSeeControl==='function' && !canSeeControl()) return false;
+    return !!document.getElementById('page-'+s.page);
+  }
+  function moveToUsable(dir=1){
+    let guard=0;
+    while(guard++<steps.length && !canUseStep(steps[idx])){
+      idx=(idx+dir+steps.length)%steps.length;
+    }
+  }
+  function render(){
+    moveToUsable(1);
+    const s=steps[idx];
+    if(!s){endTour(false);return;}
+    if(typeof window.SP==='function') window.SP(s.page,navEl(s.page));
+    setTimeout(()=>{
+      let el=q(s.selector);
+      if(!visible(el)) el=document.getElementById('page-'+s.page);
+      clean();
+      if(!el){nextTour();return;}
+      el.classList.add('tour-highlight');
+      el.scrollIntoView({behavior:'smooth',block:'center',inline:'center'});
+      const pop=document.getElementById('tour-pop');
+      document.getElementById('tour-step').textContent=`Шаг ${idx+1} из ${steps.length}`;
+      document.getElementById('tour-title').textContent=s.title;
+      document.getElementById('tour-text').textContent=s.text;
+      document.getElementById('tour-next').textContent=idx>=steps.length-1?'Завершить':'Далее';
+      pop.classList.add('active');
+      pop.style.top='auto';
+      pop.style.left='50%';
+      pop.style.bottom='18px';
+    },250);
+  }
+  window.startTour=function(force=false){
+    if(!force && localStorage.getItem(tourKey())==='yes') return;
+    active=true;idx=0;render();
+  };
+  window.nextTour=function(){
+    if(!active)return;
+    if(idx>=steps.length-1){endTour(true);return;}
+    idx++;render();
+  };
+  window.prevTour=function(){
+    if(!active)return;
+    idx=Math.max(0,idx-1);render();
+  };
+  window.endTour=function(save){
+    active=false;clean();
+    const pop=document.getElementById('tour-pop'); if(pop)pop.classList.remove('active');
+    if(save)localStorage.setItem(tourKey(),'yes');
+  };
+  window.resetTour=function(){localStorage.removeItem(tourKey());startTour(true);};
+
+  const ready=setInterval(()=>{
+    const app=document.getElementById('app');
+    if(app && app.classList.contains('active')){
+      clearInterval(ready);
+      const btn=document.getElementById('tour-help-btn'); if(btn)btn.classList.add('show');
+      setTimeout(()=>startTour(false),900);
+    }
+  },600);
+
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')endTour(false)});
+})();
+</script>
+
 </body>
 </html>
