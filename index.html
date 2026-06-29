@@ -524,7 +524,7 @@ tr:hover td{background:#f8fafc}
 .ol-sum{font-weight:900;color:var(--primary);white-space:nowrap;font-size:.9rem;}
 .ol-actions .compact-actions{justify-content:flex-end!important;flex-wrap:nowrap!important;gap:5px!important;}
 .ol-actions .bsm{min-width:34px!important;height:32px!important;padding:5px 8px!important;}
-.ol-details{display:grid;grid-template-columns:1fr .55fr 1fr 1.15fr .95fr 1.1fr;gap:10px;padding:12px 16px;background:#f8fafc;align-items:start;}
+.ol-details{display:grid;grid-template-columns:.9fr .45fr .8fr 1fr 1.15fr .95fr 1.1fr;gap:10px;padding:12px 16px;background:#f8fafc;align-items:start;}
 .ol-box{min-width:0;}
 .ol-box .fl,.ol-box .badge,.ol-box .doc-mini{margin:1px 2px 1px 0;}
 .ol-box .doc-stack{justify-content:flex-start!important;}
@@ -891,6 +891,7 @@ tr:hover td{background:#f8fafc}
       <div class="fgr"><label class="fl2">№ Заявки</label><input class="fi" id="fnu" placeholder="92"/></div>
       <div class="fgr"><label class="fl2">Шифр</label><select class="fi" id="fsh"><option>594-151</option><option>594-815</option><option>594-85</option></select></div>
       <div class="fgr"><label class="fl2">Дата заявки</label><input class="fi" type="date" id="fdt"/></div>
+      <div class="fgr f"><label class="fl2">Сама заявка / ссылка</label><input class="fi" id="freq" placeholder="Ссылка на заявку: Word / PDF / фото / Google Drive"/></div>
       <div class="fgr f"><label class="fl2">Наименование</label><input class="fi" id="fnm" placeholder="Инструменты и расходники"/></div>
       <div class="fgr"><label class="fl2">Ответственный</label>
         <select class="fi" id="frs"><option>Не выбран</option><option>Магомед С.</option><option>Эдуард</option><option>Шамиль</option><option>Вадим</option><option>Елена</option><option>Эмин</option><option>Даниэль</option></select></div>
@@ -1121,7 +1122,7 @@ function esc(v){return String(v??'').replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt
 function briefOrder(r){return `№${r?.num||'б/н'} • ${r?.company||'—'} • ${r?.name||r?.material||'—'}`;}
 function diffFields(oldR,row){
   if(!oldR)return [];
-  const names={company:'Компания',num:'№',shifer:'Шифр',date:'Дата',name:'Наименование',resp:'Ответственный',resp2:'Второй ответственный',status:'Статус',material:'Материал',cost:'Сумма',contractor:'Контрагент',payment:'Оплата',delivery:'Поставка',driverPhone:'Телефон водителя',vehicleNumber:'Машина',upd:'УПД',docs:'Документы',createdAt:'Дата создания',days:'Рабочие дни',note:'Примечание'};
+  const names={company:'Компания',num:'№',shifer:'Шифр',date:'Дата',requestUrl:'Ссылка на заявку',name:'Наименование',resp:'Ответственный',resp2:'Второй ответственный',status:'Статус',material:'Материал',cost:'Сумма',contractor:'Контрагент',payment:'Оплата',delivery:'Поставка',driverPhone:'Телефон водителя',vehicleNumber:'Машина',upd:'УПД',docs:'Документы',createdAt:'Дата создания',days:'Рабочие дни',note:'Примечание'};
   const out=[];
   for(const k of Object.keys(names)){
     const a=oldR[k]??''; const b=row[k]??'';
@@ -1247,6 +1248,9 @@ function orderTotal(r){
 function contractCell(r){
   return r.contract?`<span class="badge bgr compact-badge">${esc(r.contract)}</span>`:'<span class="nf">—</span>';
 }
+function requestLinkCell(r){
+  return r.requestUrl?`<a class="fl compact-link" href="${esc(r.requestUrl)}" target="_blank">📎 Открыть заявку</a>`:'<span class="nf">—</span>';
+}
 function kpCell(r){
   const k=r.kp||[];
   const s=k.find(x=>x.selected);
@@ -1260,6 +1264,7 @@ function orderActionsCompactHtml(r){
 function orderTitleHtml(r){
   const sub=[];
   if(r.material)sub.push('📦 '+esc(String(r.material)).slice(0,130));
+  if(r.requestUrl)sub.push(`<a class="fl" href="${esc(r.requestUrl)}" target="_blank">📎 Сама заявка</a>`);
   if(r.contractor)sub.push('🏢 '+esc(String(r.contractor)).slice(0,80));
   if(r.note)sub.push('📝 '+esc(String(r.note)).slice(0,90));
   return `<div class="order-title-cell"><div class="order-title-main">${esc(r.name||r.material||'Без наименования')}</div><div class="order-title-sub">${sub.join('<br>')||'—'}</div></div>`;
@@ -1281,6 +1286,7 @@ window.openOrderView=function(key){
     <div class="info-grid">
       <div class="info-card"><div class="info-label">Ответственные</div><div class="info-value">${respText(r)} ${respButtons(r)}</div></div>
       <div class="info-card"><div class="info-label">Дата заявки</div><div class="info-value">${esc(r.date||'—')}</div></div>
+      <div class="info-card"><div class="info-label">Сама заявка</div><div class="info-value">${requestLinkCell(r)}</div></div>
       <div class="info-card"><div class="info-label">Дней в работе</div><div class="info-value">${daysB(r)}</div></div>
       <div class="info-card"><div class="info-label">Контрагент</div><div class="info-value">${esc(r.contractor||'—')}</div></div>
       <div class="info-card"><div class="info-label">Оплата</div><div class="info-value">${esc(r.payment||'—')}</div></div>
@@ -1446,6 +1452,7 @@ function rAll(){
       <div class="ol-details">
         <div class="ol-box"><div class="ol-label">Поставка</div><div>${r.delivery||'—'}${r.vehicleNumber?'<br><span class="nf">🚚 '+esc(r.vehicleNumber)+'</span>':''}</div></div>
         <div class="ol-box"><div class="ol-label">Дни</div><div>${daysB(r)}</div></div>
+        <div class="ol-box"><div class="ol-label">Заявка</div><div>${requestLinkCell(r)}</div></div>
         <div class="ol-box"><div class="ol-label">КП</div><div>${kpCell(r)}${anB(r)}</div></div>
         <div class="ol-box"><div class="ol-label">Счёт</div><div>${invoiceCell(r)}</div></div>
         <div class="ol-box"><div class="ol-label">Договор</div><div>${contractCell(r)}</div></div>
@@ -1590,7 +1597,7 @@ window.rInvI=(i)=>{invoiceRows.splice(i,1);rInvoices();};
 window.openAdd=function(){
   editKey=null;kpRows=[];invoiceRows=[];
   document.getElementById('mzt').textContent='Новая заявка';
-  ['fco','fnu','fsh','fdt','fnm','frs','frs2','fst','fma','fco2','fct','fin','fcon','fpa','fdl','fdrp','fveh','fup','fdo','fda','fno'].forEach(id=>{
+  ['fco','fnu','fsh','fdt','freq','fnm','frs','frs2','fst','fma','fco2','fct','fin','fcon','fpa','fdl','fdrp','fveh','fup','fdo','fda','fno'].forEach(id=>{
     const el=document.getElementById(id);if(el){if(el.tagName==='SELECT')el.selectedIndex=0;else el.value='';}
   });
   document.getElementById('fdt').value=todayInput();
@@ -1607,6 +1614,7 @@ window.openE=function(k){
   document.getElementById('fnu').value=r.num||'';
   document.getElementById('fsh').value=r.shifer||'594-151';
   document.getElementById('fdt').value=(r.createdAt||r.date)?(r.createdAt||r.date).split('.').reverse().join('-'):todayInput();
+  document.getElementById('freq').value=r.requestUrl||'';
   document.getElementById('fnm').value=r.name||'';
   document.getElementById('frs').value=r.resp||'Не выбран';
   document.getElementById('frs2').value=r.resp2||'';
@@ -1638,6 +1646,7 @@ window.saveZ=async function(){
   const row={
     company:document.getElementById('fco').value,num:document.getElementById('fnu').value,
     shifer:document.getElementById('fsh').value,date:dr?dr.split('-').reverse().join('.'):todayRu(),
+    requestUrl:document.getElementById('freq').value,
     name:document.getElementById('fnm').value,resp:document.getElementById('frs').value,resp2:document.getElementById('frs2').value,
     status:document.getElementById('fst').value,material:document.getElementById('fma').value,
     cost:invoicesTotal>0?invoicesTotal:manualCost,contractor:document.getElementById('fct').value,
