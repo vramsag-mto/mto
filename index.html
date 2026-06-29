@@ -695,6 +695,19 @@ tr:hover td{background:#f8fafc}
   .mto-card-body,.mto-contract-card .mto-card-body{grid-template-columns:1fr}
 }
 
+
+/* FORCE CARD VIEW: DASHBOARD + ALL */
+#page-dash #dtb .force-card-row,
+#page-all #atb .force-card-row{display:block!important;width:100%!important;background:transparent!important;border:0!important;box-shadow:none!important}
+#page-dash #dtb .force-card-row>td,
+#page-all #atb .force-card-row>td{display:block!important;width:100%!important;padding:0!important;border:0!important;background:transparent!important}
+#page-dash #dtb .force-card-row:hover td,
+#page-all #atb .force-card-row:hover td{background:transparent!important}
+#page-dash .dash-card-grid,#page-all .all-card-grid{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:14px;padding:14px}
+@media(max-width:768px){
+  #page-dash .dash-card-grid,#page-all .all-card-grid{grid-template-columns:1fr;padding:10px;gap:12px}
+}
+
 </style>
 </head>
 <body>
@@ -1429,16 +1442,33 @@ function rDashT(){
   const f=dQ?d.filter(r=>JSON.stringify(r).toLowerCase().includes(dQ.toLowerCase())):d;
   const tb=document.getElementById('dtb');
   if(!f.length){tb.innerHTML='<tr><td colspan="11" class="erow">Нет данных</td></tr>';return;}
-  tb.innerHTML=f.map(r=>`<tr>
-    <td data-label="№" class="nc">${r.num||'б/н'}</td><td data-label="Компания"><span class="badge bgr">${r.company||'—'}</span></td><td data-label="Шифр">${shB(r.shifer)}</td>
-    <td data-label="Заявка">${orderTitleHtml(r)}</td>
-    <td data-label="Ответственные"><span class="rl badge bgr" onclick="window.openP('${r.resp||r.resp2||''}')">${respText(r)}</span>${respButtons(r)}</td>
-    <td data-label="Статус">${sB(r.status)}</td>
-    <td data-label="Контрагент" style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.76rem">${r.contractor||'—'}</td>
-    <td data-label="Сумма">${mn(orderTotal(r))}</td><td data-label="Поставка" style="white-space:nowrap;font-size:.76rem">${r.delivery||'—'}</td>
-    <td data-label="УПД">${uB(r.upd)}</td><td data-label="Дни">${daysB(r)}</td>
-  </tr>`).join('');
+  tb.innerHTML=`<tr class="order-card-row"><td colspan="11"><div class="mto-card-grid">`+f.map(r=>`
+    <div class="mto-order-card">
+      <div class="mto-card-top">
+        <div>
+          <div class="mto-card-no">№${esc(r.num||'б/н')}</div>
+          <div class="mto-card-date">${esc(r.createdAt||r.date||'—')}</div>
+          <div class="mto-card-title">${esc(r.name||r.title||'Без наименования')}</div>
+          <div class="mto-card-sub">${esc(r.requestText||r.material||'')}</div>
+        </div>
+        <div class="mto-card-tags">
+          <span class="badge bgr">${esc(r.company||'—')}</span>
+          ${shB(r.shifer)}
+          ${sB(r.status)}
+        </div>
+      </div>
+      <div class="mto-card-body">
+        <div class="mto-card-field"><div class="mto-card-label">Ответственные</div><div class="mto-card-value"><span class="rl badge bgr" onclick="window.openP('${esc(r.resp||r.resp2||'')}')">${respText(r)}</span>${respButtons(r)}</div></div>
+        <div class="mto-card-field"><div class="mto-card-label">Контрагент</div><div class="mto-card-value">${esc(r.contractor||'—')}</div></div>
+        <div class="mto-card-field"><div class="mto-card-label">Сумма</div><div class="mto-card-value">${mn(orderTotal(r))}</div></div>
+        <div class="mto-card-field"><div class="mto-card-label">Поставка</div><div class="mto-card-value">${esc(r.delivery||'—')}</div></div>
+        <div class="mto-card-field"><div class="mto-card-label">УПД</div><div class="mto-card-value">${uB(r.upd)}</div></div>
+        <div class="mto-card-field"><div class="mto-card-label">Дни</div><div class="mto-card-value">${daysB(r)}</div></div>
+      </div>
+      <div class="mto-card-actions">${orderActionsCompactHtml(r)}</div>
+    </div>`).join('')+`</div></td></tr>`;
 }
+
 
 
 function parseRuDate(v){
@@ -2387,6 +2417,7 @@ document.querySelectorAll('.mo').forEach(o=>o.addEventListener('click',e=>{if(e.
   document.addEventListener('keydown',e=>{if(e.key==='Escape')endTour(false)});
 })();
 </script>
+
 
 </body>
 </html>
