@@ -524,7 +524,7 @@ tr:hover td{background:#f8fafc}
 .ol-sum{font-weight:900;color:var(--primary);white-space:nowrap;font-size:.9rem;}
 .ol-actions .compact-actions{justify-content:flex-end!important;flex-wrap:nowrap!important;gap:5px!important;}
 .ol-actions .bsm{min-width:34px!important;height:32px!important;padding:5px 8px!important;}
-.ol-details{display:grid;grid-template-columns:.9fr .45fr .8fr 1fr 1.15fr .95fr 1.1fr;gap:10px;padding:12px 16px;background:#f8fafc;align-items:start;}
+.ol-details{display:grid;grid-template-columns:1fr .55fr 1fr 1.15fr .95fr 1.1fr;gap:10px;padding:12px 16px;background:#f8fafc;align-items:start;}
 .ol-box{min-width:0;}
 .ol-box .fl,.ol-box .badge,.ol-box .doc-mini{margin:1px 2px 1px 0;}
 .ol-box .doc-stack{justify-content:flex-start!important;}
@@ -633,6 +633,68 @@ tr:hover td{background:#f8fafc}
   }
 }
 
+.contract-row-title{font-weight:800;color:var(--primary);line-height:1.25}
+.contract-row-sub{font-size:.72rem;color:var(--muted);margin-top:3px;line-height:1.25}
+.contract-file-links{display:flex;gap:5px;flex-wrap:wrap}
+@media(max-width:768px){
+  #contracts-tb td:nth-child(1)::before{content:'Контрагент'}
+  #contracts-tb td:nth-child(2)::before{content:'ИНН'}
+  #contracts-tb td:nth-child(3)::before{content:'№ договора'}
+  #contracts-tb td:nth-child(4)::before{content:'Дата'}
+  #contracts-tb td:nth-child(5)::before{content:'Срок до'}
+  #contracts-tb td:nth-child(6)::before{content:'Тип'}
+  #contracts-tb td:nth-child(7)::before{content:'Сумма'}
+  #contracts-tb td:nth-child(8)::before{content:'Статус'}
+  #contracts-tb td:nth-child(9)::before{content:'Файл'}
+  #contracts-tb td:nth-child(10)::before{content:'Действия'}
+}
+
+
+/* CARD VIEW FOR DASHBOARD / MINE / CONTRACTS */
+#page-dash .tw,#page-mine .tw,#page-contracts .tw{overflow:visible!important}
+#page-dash table,#page-mine table,#page-contracts table{
+  display:block!important;width:100%!important;border-collapse:separate!important;border-spacing:0 10px!important;font-size:.82rem!important
+}
+#page-dash thead,#page-mine thead,#page-contracts thead{display:none!important}
+#page-dash tbody,#page-mine tbody,#page-contracts tbody{display:block!important;width:100%!important}
+#page-dash tr.order-card-row,#page-mine tr.order-card-row,#page-contracts tr.contract-card-row{display:block!important;width:100%!important;background:transparent!important;border:0!important;box-shadow:none!important}
+#page-dash tr.order-card-row>td,#page-mine tr.order-card-row>td,#page-contracts tr.contract-card-row>td{display:block!important;width:100%!important;padding:0!important;border:0!important;background:transparent!important}
+#page-dash tr.order-card-row:hover td,#page-mine tr.order-card-row:hover td,#page-contracts tr.contract-card-row:hover td{background:transparent!important}
+
+.mto-card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:14px;padding:14px}
+.mto-order-card,.mto-contract-card{
+  background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:0 2px 10px rgba(15,23,42,.06);
+  overflow:hidden;transition:box-shadow .18s,transform .18s
+}
+.mto-order-card:hover,.mto-contract-card:hover{box-shadow:0 8px 22px rgba(15,23,42,.10);transform:translateY(-1px)}
+.mto-card-top{padding:14px 15px;border-bottom:1px solid var(--border);background:#fff;display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.mto-card-no{font-weight:900;color:var(--primary);font-size:1.02rem;margin-bottom:4px}
+.mto-card-date{font-size:.72rem;color:var(--muted)}
+.mto-card-title{font-weight:850;color:var(--primary);font-size:.95rem;line-height:1.25;margin-top:8px}
+.mto-card-sub{font-size:.74rem;color:var(--muted);line-height:1.35;margin-top:4px}
+.mto-card-tags{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}
+.mto-card-body{padding:12px 15px;background:#f8fafc;display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.mto-card-field{background:#fff;border:1px solid #e8edf4;border-radius:10px;padding:9px;min-width:0}
+.mto-card-label{font-size:.62rem;text-transform:uppercase;letter-spacing:.35px;color:var(--muted);font-weight:850;margin-bottom:5px}
+.mto-card-value{font-size:.82rem;color:var(--text);font-weight:650;line-height:1.35;word-break:break-word}
+.mto-card-actions{padding:10px 15px;display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;border-top:1px solid var(--border)}
+.mto-card-actions .bsm{min-height:32px}
+.mto-card-wide{grid-column:1/-1}
+.mto-contract-card .mto-card-body{grid-template-columns:repeat(3,1fr)}
+.contract-status-line{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+@media(max-width:768px){
+  .mto-card-grid{grid-template-columns:1fr;padding:10px;gap:12px}
+  .mto-card-top{display:block;padding:13px}
+  .mto-card-tags{justify-content:flex-start;margin-top:8px}
+  .mto-card-body{grid-template-columns:1fr 1fr;padding:10px;gap:8px}
+  .mto-contract-card .mto-card-body{grid-template-columns:1fr 1fr}
+  .mto-card-actions{justify-content:stretch;padding:10px}
+  .mto-card-actions .bsm{flex:1;min-height:38px}
+}
+@media(max-width:430px){
+  .mto-card-body,.mto-contract-card .mto-card-body{grid-template-columns:1fr}
+}
+
 </style>
 </head>
 <body>
@@ -664,6 +726,7 @@ tr:hover td{background:#f8fafc}
       <div class="nav-item" onclick="SP('chat',this)">💬 Вопросы / Чат</div>
       <div class="nav-item" onclick="SP('private',this)">✉️ Личные сообщения <span class="nav-badge" id="pm-unread-badge"></span></div>
       <div class="nav-item" onclick="SP('contacts',this)">📞 Контакты</div>
+      <div class="nav-item" onclick="SP('contracts',this)">📄 Договоры</div>
       <div class="nav-item" onclick="SP('analytics',this)">📊 Аналитика МТО</div>
       <div class="nav-item" onclick="SP('history',this)">🕓 История изменений</div>
       <div class="nav-sec">Управление</div>
@@ -834,6 +897,30 @@ tr:hover td{background:#f8fafc}
     </div>
 
 
+    <!-- CONTRACTS -->
+    <div class="page" id="page-contracts">
+      <div class="ph"><div class="pt">Договоры</div><div class="ps">Реестр договоров, выгруженных из portable-программы юриста</div></div>
+      <div class="stats" id="contract-stats"></div>
+      <div class="card">
+        <div class="ch"><div class="ct">Реестр договоров</div>
+          <div class="cf">
+            <select class="si2" id="contract-filter" onchange="rContracts()" style="width:170px">
+              <option value="">Все статусы</option>
+              <option value="active">Действующие</option>
+              <option value="soon">Скоро заканчиваются</option>
+              <option value="expired">Истекшие</option>
+              <option value="review">Требуют проверки</option>
+            </select>
+            <input class="si2" id="contract-search" placeholder="🔍 Поиск по контрагенту, ИНН, номеру, предмету" oninput="rContracts()" style="width:270px"/>
+            <button class="btn btn-s" id="contract-clear-btn" onclick="clearCloudContracts()" style="display:none">🧹 Очистить выгрузку</button>
+          </div>
+        </div>
+        <div class="tw"><table><thead><tr>
+          <th>Контрагент</th><th>ИНН</th><th>№ договора</th><th>Дата</th><th>Срок до</th><th>Тип</th><th>Сумма</th><th>Статус</th><th>Файл</th><th>Действия</th>
+        </tr></thead><tbody id="contracts-tb"></tbody></table></div>
+      </div>
+    </div>
+
 
     <!-- ANALYTICS -->
     <div class="page" id="page-analytics">
@@ -891,7 +978,6 @@ tr:hover td{background:#f8fafc}
       <div class="fgr"><label class="fl2">№ Заявки</label><input class="fi" id="fnu" placeholder="92"/></div>
       <div class="fgr"><label class="fl2">Шифр</label><select class="fi" id="fsh"><option>594-151</option><option>594-815</option><option>594-85</option></select></div>
       <div class="fgr"><label class="fl2">Дата заявки</label><input class="fi" type="date" id="fdt"/></div>
-      <div class="fgr f"><label class="fl2">Сама заявка / ссылка</label><input class="fi" id="freq" placeholder="Ссылка на заявку: Word / PDF / фото / Google Drive"/></div>
       <div class="fgr f"><label class="fl2">Наименование</label><input class="fi" id="fnm" placeholder="Инструменты и расходники"/></div>
       <div class="fgr"><label class="fl2">Ответственный</label>
         <select class="fi" id="frs"><option>Не выбран</option><option>Магомед С.</option><option>Эдуард</option><option>Шамиль</option><option>Вадим</option><option>Елена</option><option>Эмин</option><option>Даниэль</option></select></div>
@@ -901,9 +987,10 @@ tr:hover td{background:#f8fafc}
         <select class="fi" id="fst"><option>Идет сбор КП</option><option>На оплате</option><option>ЖДЕМ ДОСТАВКИ</option><option>Ожидаем доставку</option><option>ЧАСТИЧНО ДОСТАВЛЕНО</option><option>ДОСТАВЛЕНО</option><option>Приостановлена</option></select></div>
       <div class="fgr f"><label class="fl2">Материал поставки</label><input class="fi" id="fma" placeholder="Перечислите материалы"/></div>
       <div class="fgr"><label class="fl2">Стоимость, руб.</label><input class="fi" type="number" id="fco2" placeholder="0"/></div>
-      <div class="fgr"><label class="fl2">Контрагент</label><input class="fi" id="fct" placeholder="Название компании"/></div>
+      <div class="fgr"><label class="fl2">Поставщик / контрагент</label><input class="fi" id="fct" list="contacts-list" placeholder="Выберите из контактов или впишите нового" oninput="refreshContractChoice()"/><datalist id="contacts-list"></datalist></div>
       <div class="fgr f"><label class="fl2">Основной счёт / ссылка (если один поставщик)</label><input class="fi" id="fin" placeholder="https://drive.google.com/..."/></div>
       <div class="fgr"><label class="fl2">Договор / Тип счёта</label><select class="fi" id="fcon"><option></option><option>Счет-договор</option><option>Договор поставки</option><option>Счёт</option></select></div>
+      <div class="fgr f"><label class="fl2">Договор из реестра</label><select class="fi" id="fcr" onchange="selectOrderContract()"><option value="">— Договор не выбран —</option></select><div class="nf" id="fcr-info" style="margin-top:5px">Выберите поставщика выше, чтобы быстрее найти договор.</div></div>
       <div class="fgr"><label class="fl2">Статус оплаты</label><select class="fi" id="fpa"><option></option><option>Оплачен</option><option>Оплачено</option><option>На оплате</option><option>Не оплачен</option></select></div>
       <div class="fgr"><label class="fl2">Дата поставки</label><input class="fi" id="fdl" placeholder="26.06.2026"/></div>
       <div class="fgr"><label class="fl2">Телефон водителя</label><input class="fi" id="fdrp" placeholder="8 900 000-00-00"/></div>
@@ -994,9 +1081,10 @@ const US={
   'shamil':{pass:'sh2026',name:'Шамиль',role:'Специалист МТО',isAdmin:false,resp:'Шамиль'},
   'daniel':{pass:'dn2026',name:'Даниэль',role:'Специалист МТО',isAdmin:false,resp:'Даниэль'},
   'elena':{pass:'el2026',name:'Елена',role:'Специалист МТО',isAdmin:false,resp:'Елена'},
+  'yunus':{pass:'yu2026',name:'Юнус',role:'Юрист',isAdmin:false,resp:'Юнус'},
 };
 
-let CU=null,DATA=[],CONTACTS=[],MSGS=[],HISTORY=[],PRIV=[];
+let CU=null,DATA=[],CONTACTS=[],CONTRACTS=[],MSGS=[],HISTORY=[],PRIV=[];
 let dQ='',dashC='ALL',aC='СТЕЛС',aSh='ALL',aSt='',aSr='',quickFilter='';
 let advF={resp:'',payment:'',upd:'',docs:'',sumFrom:'',sumTo:'',dateFrom:'',dateTo:'',delivFrom:'',delivTo:'',daysFrom:'',daysTo:'',contractor:''};
 let editKey=null,kpRows=[],invoiceRows=[],contactKey=null,currentPrivateLogin='';
@@ -1031,13 +1119,20 @@ db.ref('orders').on('value',s=>{
     }
   }
   if(!CU){document.getElementById('login-screen').style.display='flex';}
-  if(CU){rDash();rAll();rMine();rEdit();fillAnSel();if(canSeeControl()){rAnalytics();rHistory('');}}
+  if(CU){rDash();rAll();rMine();rEdit();fillAnSel();rContracts();if(canSeeControl()){rAnalytics();rHistory('');}}
 });
 db.ref('contacts').on('value',s=>{
   CONTACTS=[];
   if(s.exists())s.forEach(c=>{ CONTACTS.push({_k:c.key,...c.val()}); });
-  if(CU)rContacts('');
+  if(CU){rContacts('');populateOrderRefs();}
 });
+
+db.ref('contractsRegistry/contracts').on('value',s=>{
+  CONTRACTS=[];
+  if(s.exists())s.forEach(c=>{ CONTRACTS.push({_k:c.key,...c.val()}); });
+  if(CU){rContracts();populateOrderRefs();}
+});
+
 db.ref('chat').on('value',s=>{
   MSGS=[];
   if(s.exists())s.forEach(c=>{ MSGS.push({_k:c.key,...c.val()}); });
@@ -1122,7 +1217,7 @@ function esc(v){return String(v??'').replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt
 function briefOrder(r){return `№${r?.num||'б/н'} • ${r?.company||'—'} • ${r?.name||r?.material||'—'}`;}
 function diffFields(oldR,row){
   if(!oldR)return [];
-  const names={company:'Компания',num:'№',shifer:'Шифр',date:'Дата',requestUrl:'Ссылка на заявку',name:'Наименование',resp:'Ответственный',resp2:'Второй ответственный',status:'Статус',material:'Материал',cost:'Сумма',contractor:'Контрагент',payment:'Оплата',delivery:'Поставка',driverPhone:'Телефон водителя',vehicleNumber:'Машина',upd:'УПД',docs:'Документы',createdAt:'Дата создания',days:'Рабочие дни',note:'Примечание'};
+  const names={company:'Компания',num:'№',shifer:'Шифр',date:'Дата',name:'Наименование',resp:'Ответственный',resp2:'Второй ответственный',status:'Статус',material:'Материал',cost:'Сумма',contractor:'Контрагент',payment:'Оплата',delivery:'Поставка',driverPhone:'Телефон водителя',vehicleNumber:'Машина',upd:'УПД',docs:'Документы',createdAt:'Дата создания',days:'Рабочие дни',note:'Примечание'};
   const out=[];
   for(const k of Object.keys(names)){
     const a=oldR[k]??''; const b=row[k]??'';
@@ -1154,7 +1249,7 @@ function setLoggedInUser(found, saveSession=true){
   document.getElementById('edit-sub').textContent=CU.isAdmin?'Управление всеми заявками':'Только ваши заявки';
   document.getElementById('etbl-t').textContent=CU.isAdmin?'Все заявки':'Мои заявки';
   document.getElementById('mine-t').textContent='Мои заявки — '+CU.name;
-  rDash();rAll();rMine();rEdit();fillAnSel();
+  rDash();rAll();rMine();rEdit();fillAnSel();rContracts();
 }
 window.doLogin=function(){
   const u=document.getElementById('lu').value.trim().toLowerCase();
@@ -1203,6 +1298,7 @@ window.SP=function(n,el){
   document.getElementById('page-'+n).classList.add('active');
   if(el)el.classList.add('active');
   if(n==='contacts')rContacts('');
+  if(n==='contracts')rContracts();
   if(n==='chat')rChat();
   if(n==='private')rPrivateList();
   if(n==='analysis')fillAnSel();
@@ -1246,10 +1342,13 @@ function orderTotal(r){
 }
 
 function contractCell(r){
+  if(r.selectedContractUrl){
+    return `<a class="fl" href="${esc(r.selectedContractUrl)}" target="_blank">📄 ${esc(r.selectedContractNumber||r.selectedContractName||'Договор')}</a>`;
+  }
+  if(r.selectedContractName){
+    return `<span class="badge bg">${esc(r.selectedContractName)}</span>`;
+  }
   return r.contract?`<span class="badge bgr compact-badge">${esc(r.contract)}</span>`:'<span class="nf">—</span>';
-}
-function requestLinkCell(r){
-  return r.requestUrl?`<a class="fl compact-link" href="${esc(r.requestUrl)}" target="_blank">📎 Открыть заявку</a>`:'<span class="nf">—</span>';
 }
 function kpCell(r){
   const k=r.kp||[];
@@ -1264,7 +1363,6 @@ function orderActionsCompactHtml(r){
 function orderTitleHtml(r){
   const sub=[];
   if(r.material)sub.push('📦 '+esc(String(r.material)).slice(0,130));
-  if(r.requestUrl)sub.push(`<a class="fl" href="${esc(r.requestUrl)}" target="_blank">📎 Сама заявка</a>`);
   if(r.contractor)sub.push('🏢 '+esc(String(r.contractor)).slice(0,80));
   if(r.note)sub.push('📝 '+esc(String(r.note)).slice(0,90));
   return `<div class="order-title-cell"><div class="order-title-main">${esc(r.name||r.material||'Без наименования')}</div><div class="order-title-sub">${sub.join('<br>')||'—'}</div></div>`;
@@ -1286,9 +1384,9 @@ window.openOrderView=function(key){
     <div class="info-grid">
       <div class="info-card"><div class="info-label">Ответственные</div><div class="info-value">${respText(r)} ${respButtons(r)}</div></div>
       <div class="info-card"><div class="info-label">Дата заявки</div><div class="info-value">${esc(r.date||'—')}</div></div>
-      <div class="info-card"><div class="info-label">Сама заявка</div><div class="info-value">${requestLinkCell(r)}</div></div>
       <div class="info-card"><div class="info-label">Дней в работе</div><div class="info-value">${daysB(r)}</div></div>
       <div class="info-card"><div class="info-label">Контрагент</div><div class="info-value">${esc(r.contractor||'—')}</div></div>
+      <div class="info-card"><div class="info-label">Договор из реестра</div><div class="info-value">${contractCell(r)}</div></div>
       <div class="info-card"><div class="info-label">Оплата</div><div class="info-value">${esc(r.payment||'—')}</div></div>
       <div class="info-card"><div class="info-label">Поставка / логистика</div><div class="info-value">${esc(r.delivery||'—')}<br>${logisticsExtra}</div></div>
       <div class="info-card"><div class="info-label">Счета / итоговые поставщики</div><div class="info-value">${invoiceCell(r)}</div></div>
@@ -1452,7 +1550,6 @@ function rAll(){
       <div class="ol-details">
         <div class="ol-box"><div class="ol-label">Поставка</div><div>${r.delivery||'—'}${r.vehicleNumber?'<br><span class="nf">🚚 '+esc(r.vehicleNumber)+'</span>':''}</div></div>
         <div class="ol-box"><div class="ol-label">Дни</div><div>${daysB(r)}</div></div>
-        <div class="ol-box"><div class="ol-label">Заявка</div><div>${requestLinkCell(r)}</div></div>
         <div class="ol-box"><div class="ol-label">КП</div><div>${kpCell(r)}${anB(r)}</div></div>
         <div class="ol-box"><div class="ol-label">Счёт</div><div>${invoiceCell(r)}</div></div>
         <div class="ol-box"><div class="ol-label">Договор</div><div>${contractCell(r)}</div></div>
@@ -1468,19 +1565,33 @@ function rMine(){
   const d=DATA.filter(r=>isRespResponsible(r,CU.resp));
   const tb=document.getElementById('mtb');
   if(!d.length){tb.innerHTML='<tr><td colspan="10" class="erow">У вас нет заявок</td></tr>';return;}
-  tb.innerHTML=d.map(r=>{
+  tb.innerHTML=`<tr class="order-card-row"><td colspan="10"><div class="mto-card-grid">`+d.map(r=>{
     const kp=r.kp||[];const sel=kp.filter(k=>k.selected);
-    return`<tr>
-      <td data-label="№" class="nc">${r.num||'б/н'}</td><td data-label="Шифр">${shB(r.shifer)}</td>
-      <td data-label="Заявка">${orderTitleHtml(r)}</td>
-      <td data-label="Статус">${sB(r.status)}</td>
-      <td data-label="КП"><span class="badge bgr">${kp.length} КП</span></td>
-      <td data-label="Выбранный">${sel.length?`<span class="badge bgold">✓ ${sel[0].supplier}</span>`:'<span class="nf">—</span>'}</td>
-      <td data-label="Сумма">${mn(sel.reduce((a,k)=>a+(k.sum||0),0)||r.cost)}</td>
-      <td data-label="Поставка" style="white-space:nowrap;font-size:.76rem">${r.delivery||'—'}</td>
-      <td data-label="УПД">${uB(r.upd)}</td><td data-label="Дни">${daysB(r)}</td>
-    </tr>`;
-  }).join('');
+    return`
+    <div class="mto-order-card">
+      <div class="mto-card-top">
+        <div>
+          <div class="mto-card-no">№${esc(r.num||'б/н')}</div>
+          <div class="mto-card-date">${esc(r.createdAt||r.date||'—')}</div>
+          <div class="mto-card-title">${esc(r.name||r.title||'Без наименования')}</div>
+          <div class="mto-card-sub">${esc(r.requestText||r.material||'')}</div>
+        </div>
+        <div class="mto-card-tags">
+          ${shB(r.shifer)}
+          ${sB(r.status)}
+        </div>
+      </div>
+      <div class="mto-card-body">
+        <div class="mto-card-field"><div class="mto-card-label">КП</div><div class="mto-card-value"><span class="badge bgr">${kp.length} КП</span> ${kpCell(r)}</div></div>
+        <div class="mto-card-field"><div class="mto-card-label">Выбранный</div><div class="mto-card-value">${sel.length?sel.map(k=>`<span class="badge bgold">✓ ${esc(k.supplier||'Поставщик')}</span>`).join(' '):'<span class="nf">—</span>'}</div></div>
+        <div class="mto-card-field"><div class="mto-card-label">Сумма</div><div class="mto-card-value">${mn(sel.reduce((a,k)=>a+(k.sum||0),0)||orderTotal(r))}</div></div>
+        <div class="mto-card-field"><div class="mto-card-label">Поставка</div><div class="mto-card-value">${esc(r.delivery||'—')}</div></div>
+        <div class="mto-card-field"><div class="mto-card-label">УПД</div><div class="mto-card-value">${uB(r.upd)}</div></div>
+        <div class="mto-card-field"><div class="mto-card-label">Дни</div><div class="mto-card-value">${daysB(r)}</div></div>
+      </div>
+      <div class="mto-card-actions">${orderActionsCompactHtml(r)}</div>
+    </div>`;
+  }).join('')+`</div></td></tr>`;
 }
 
 
@@ -1593,18 +1704,65 @@ function rInvoices(){
 }
 window.rInvI=(i)=>{invoiceRows.splice(i,1);rInvoices();};
 
+
+function normalizeText(v){return String(v||'').toLowerCase().replace(/[«»"']/g,'').replace(/\s+/g,' ').trim();}
+function contractDisplayName(c){
+  const n=c.counterparty||c.fileName||'Без контрагента';
+  const num=c.contractNumber?`№${c.contractNumber}`:'без №';
+  const to=c.dateTo?`до ${c.dateTo}`:'без срока';
+  return `${n} — ${num} — ${to}`;
+}
+function getContractFileUrl(c){
+  if(c.fileUrl)return c.fileUrl;
+  if(c.downloadUrl)return c.downloadUrl;
+  if(Array.isArray(c.files)&&c.files.length)return c.files[0].url||c.files[0].downloadUrl||'';
+  return '';
+}
+function populateOrderRefs(){
+  const dl=document.getElementById('contacts-list');
+  if(dl){
+    const names=[...new Set(CONTACTS.map(c=>c.name).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'ru'));
+    dl.innerHTML=names.map(n=>`<option value="${esc(n)}"></option>`).join('');
+  }
+  refreshContractChoice();
+}
+function refreshContractChoice(){
+  const sel=document.getElementById('fcr'); if(!sel)return;
+  const current=sel.value;
+  const q=normalizeText(document.getElementById('fct')?.value||'');
+  let list=[...CONTRACTS];
+  if(q){
+    const exact=list.filter(c=>normalizeText(c.counterparty).includes(q)||q.includes(normalizeText(c.counterparty)));
+    const rest=list.filter(c=>!exact.includes(c));
+    list=[...exact,...rest];
+  }
+  sel.innerHTML='<option value="">— Договор не выбран —</option>'+list.map(c=>`<option value="${esc(c._k)}">${esc(contractDisplayName(c))}</option>`).join('');
+  if(current && list.some(c=>c._k===current))sel.value=current;
+  selectOrderContract();
+}
+function selectOrderContract(){
+  const info=document.getElementById('fcr-info'); if(!info)return;
+  const key=document.getElementById('fcr')?.value||'';
+  const c=CONTRACTS.find(x=>x._k===key);
+  if(!c){info.textContent='Договор не выбран';return;}
+  const url=getContractFileUrl(c);
+  info.innerHTML=`${esc(c.counterparty||'—')} • ${esc(c.contractNumber||'без №')} • ${esc(c.dateTo||'без срока')}${url?` • <a class="fl" href="${esc(url)}" target="_blank">Открыть файл</a>`:''}`;
+}
+window.refreshContractChoice=refreshContractChoice;
+window.selectOrderContract=selectOrderContract;
+
 // OPEN MODALS
 window.openAdd=function(){
   editKey=null;kpRows=[];invoiceRows=[];
   document.getElementById('mzt').textContent='Новая заявка';
-  ['fco','fnu','fsh','fdt','freq','fnm','frs','frs2','fst','fma','fco2','fct','fin','fcon','fpa','fdl','fdrp','fveh','fup','fdo','fda','fno'].forEach(id=>{
+  ['fco','fnu','fsh','fdt','fnm','frs','frs2','fst','fma','fco2','fct','fin','fcon','fcr','fpa','fdl','fdrp','fveh','fup','fdo','fda','fno'].forEach(id=>{
     const el=document.getElementById(id);if(el){if(el.tagName==='SELECT')el.selectedIndex=0;else el.value='';}
   });
   document.getElementById('fdt').value=todayInput();
   document.getElementById('fda').value=0;
   document.getElementById('frs').value='Не выбран';
   document.getElementById('frs2').value='';
-  rKP();rInvoices();OM('mo-z');
+  populateOrderRefs();selectOrderContract();rKP();rInvoices();OM('mo-z');
 };
 window.openE=function(k){
   const r=DATA.find(d=>d._k===k);if(!r)return;
@@ -1614,7 +1772,6 @@ window.openE=function(k){
   document.getElementById('fnu').value=r.num||'';
   document.getElementById('fsh').value=r.shifer||'594-151';
   document.getElementById('fdt').value=(r.createdAt||r.date)?(r.createdAt||r.date).split('.').reverse().join('-'):todayInput();
-  document.getElementById('freq').value=r.requestUrl||'';
   document.getElementById('fnm').value=r.name||'';
   document.getElementById('frs').value=r.resp||'Не выбран';
   document.getElementById('frs2').value=r.resp2||'';
@@ -1626,6 +1783,9 @@ window.openE=function(k){
   invoiceRows=JSON.parse(JSON.stringify(Array.isArray(r.invoices)?r.invoices:[]));
   if(!invoiceRows.length && r.invoice){invoiceRows=[{supplier:r.contractor||'Счёт',sum:r.cost||'',url:r.invoice,note:''}];}
   document.getElementById('fcon').value=r.contract||'';
+  populateOrderRefs();
+  document.getElementById('fcr').value=r.selectedContractKey||'';
+  selectOrderContract();
   document.getElementById('fpa').value=r.payment||'';
   document.getElementById('fdl').value=r.delivery||'';
   document.getElementById('fdrp').value=r.driverPhone||'';
@@ -1643,16 +1803,21 @@ window.saveZ=async function(){
   const cleanInvoices=invoiceRows.filter(x=>x&&(x.url||x.supplier||x.sum||x.note));
   const invoicesTotal=cleanInvoices.reduce((a,x)=>a+(Number(x.sum)||0),0);
   const manualCost=parseFloat(document.getElementById('fco2').value)||0;
+  const selectedContract=CONTRACTS.find(x=>x._k===(document.getElementById('fcr')?.value||''));
   const row={
     company:document.getElementById('fco').value,num:document.getElementById('fnu').value,
     shifer:document.getElementById('fsh').value,date:dr?dr.split('-').reverse().join('.'):todayRu(),
-    requestUrl:document.getElementById('freq').value,
     name:document.getElementById('fnm').value,resp:document.getElementById('frs').value,resp2:document.getElementById('frs2').value,
     status:document.getElementById('fst').value,material:document.getElementById('fma').value,
     cost:invoicesTotal>0?invoicesTotal:manualCost,contractor:document.getElementById('fct').value,
     invoices:JSON.parse(JSON.stringify(cleanInvoices)),
     invoice:(invoiceRows.find(x=>x&&x.url)||{}).url||document.getElementById('fin').value,
     contract:document.getElementById('fcon').value,
+    selectedContractKey:selectedContract?selectedContract._k:'',
+    selectedContractName:selectedContract?contractDisplayName(selectedContract):'',
+    selectedContractNumber:selectedContract?(selectedContract.contractNumber||''):'',
+    selectedContractUrl:selectedContract?getContractFileUrl(selectedContract):'',
+    selectedContractCounterparty:selectedContract?(selectedContract.counterparty||''):'',
     payment:document.getElementById('fpa').value,delivery:document.getElementById('fdl').value,
     driverPhone:document.getElementById('fdrp').value,vehicleNumber:document.getElementById('fveh').value,
     upd:document.getElementById('fup').value,docs:document.getElementById('fdo').value,
@@ -1920,6 +2085,127 @@ window.sendPrivateMsg=async function(){
   input.value='';
 };
 
+
+// CONTRACTS REGISTRY
+function parseContractDate(v){
+  const m=String(v||'').match(/(\d{2})\.(\d{2})\.(\d{4})/);
+  if(!m)return null;
+  const d=new Date(+m[3],+m[2]-1,+m[1]);
+  return isNaN(d.getTime())?null:d;
+}
+function canManageContracts(){return !!(CU && CU.login==='yunus');}
+async function removeCloudContract(key){
+  if(!canManageContracts()){alert('Нет прав на удаление договоров');return;}
+  const c=CONTRACTS.find(x=>x._k===key);
+  if(!c)return;
+  const name=c.counterparty||c.fileName||'договор';
+  if(!confirm(`Убрать выгрузку из МТО?\n\n${name}\n\nФайл на компьютере юриста не удаляется. Запись исчезнет из облачного реестра.`))return;
+  try{
+    await db.ref('contractsRegistry/contracts/'+key).remove();
+    if(c.fileHash) await db.ref('contractsRegistry/fileHashes/'+c.fileHash).remove().catch(()=>{});
+    await logAction('Удаление договора из облака','Договоры',`${name} / ${c.contractNumber||'без номера'}`);
+    alert('Выгрузка убрана из МТО');
+  }catch(e){alert('Не удалось удалить: '+(e.message||e));}
+}
+
+async function editCloudContract(key){
+  if(!canManageContracts()){alert('Редактировать договоры может только Юнус');return;}
+  const c=CONTRACTS.find(x=>x._k===key); if(!c)return;
+  const counterparty=prompt('Контрагент', c.counterparty||''); if(counterparty===null)return;
+  const contractNumber=prompt('Номер договора', c.contractNumber||''); if(contractNumber===null)return;
+  const dateTo=prompt('Срок до (дд.мм.гггг)', c.dateTo||''); if(dateTo===null)return;
+  const subject=prompt('Суть / предмет договора', c.subject||''); if(subject===null)return;
+  try{
+    await db.ref('contractsRegistry/contracts/'+key).update({counterparty,contractNumber,dateTo,subject,updatedAt:new Date().toISOString(),updatedBy:CU.name});
+    await logAction('Редактирование договора','Договоры',`${counterparty} / ${contractNumber||'без номера'}`);
+    alert('Договор обновлен');
+  }catch(e){alert('Не удалось сохранить: '+(e.message||e));}
+}
+async function clearCloudContracts(){
+  if(!canManageContracts()){alert('Нет прав на очистку договоров');return;}
+  if(!CONTRACTS.length){alert('В облачном реестре договоров пусто');return;}
+  const txt=prompt(`Будут убраны все ${CONTRACTS.length} договоров из раздела МТО.\nФайлы на компьютере юриста не удаляются.\n\nДля подтверждения напишите: УДАЛИТЬ`);
+  if(txt!=='УДАЛИТЬ')return;
+  try{
+    await db.ref('contractsRegistry/contracts').remove();
+    await db.ref('contractsRegistry/fileHashes').remove().catch(()=>{});
+    await logAction('Очистка облачного реестра договоров','Договоры',`Удалено записей: ${CONTRACTS.length}`);
+    alert('Облачный реестр договоров очищен');
+  }catch(e){alert('Не удалось очистить: '+(e.message||e));}
+}
+function contractLife(c){
+  if(c.reviewNeeded)return {key:'review',label:'Проверить',cls:'by'};
+  const d=parseContractDate(c.dateTo);
+  if(!d)return {key:'active',label:'Без срока',cls:'bg'};
+  const today=new Date();today.setHours(0,0,0,0);d.setHours(0,0,0,0);
+  const days=Math.round((d-today)/86400000);
+  if(days<0)return {key:'expired',label:'Истек',cls:'br'};
+  if(days<=30)return {key:'soon',label:`Заканчивается через ${days} дн.`,cls:'bo'};
+  if(days<=90)return {key:'soon',label:`До окончания ${days} дн.`,cls:'by'};
+  return {key:'active',label:'Действует',cls:'bg'};
+}
+function rContracts(){
+  const clearBtn=document.getElementById('contract-clear-btn');
+  if(clearBtn)clearBtn.style.display=canManageContracts()?'inline-flex':'none';
+  const q=(document.getElementById('contract-search')?.value||'').toLowerCase().trim();
+  const f=document.getElementById('contract-filter')?.value||'';
+  let d=[...CONTRACTS].sort((a,b)=>(b.uploadedAt||'').localeCompare(a.uploadedAt||''));
+  d=d.filter(c=>{
+    const life=contractLife(c);
+    const hay=[c.counterparty,c.inn,c.kpp,c.contractNumber,c.contractDate,c.dateTo,c.type,c.amount,c.subject,c.fileName,c.activeStatus,c.textPreview].join(' ').toLowerCase();
+    if(q&&!hay.includes(q))return false;
+    if(f&&life.key!==f)return false;
+    return true;
+  });
+  const visible=[...CONTRACTS];
+  const statEl=document.getElementById('contract-stats');
+  if(statEl){
+    const active=visible.filter(c=>contractLife(c).key==='active').length;
+    const soon=visible.filter(c=>contractLife(c).key==='soon').length;
+    const expired=visible.filter(c=>contractLife(c).key==='expired').length;
+    const review=visible.filter(c=>contractLife(c).key==='review').length;
+    statEl.innerHTML=`
+      <div class="sc"><div class="si b">📄</div><div><div class="sv">${visible.length}</div><div class="sl">Всего договоров</div></div></div>
+      <div class="sc"><div class="si g">✅</div><div><div class="sv">${active}</div><div class="sl">Действуют</div></div></div>
+      <div class="sc"><div class="si y">⚠️</div><div><div class="sv">${soon}</div><div class="sl">Скоро заканчиваются</div></div></div>
+      <div class="sc"><div class="si r">⛔</div><div><div class="sv">${expired+review}</div><div class="sl">Истекли / проверить</div></div></div>`;
+  }
+  const tb=document.getElementById('contracts-tb');
+  if(!tb)return;
+  if(!d.length){tb.innerHTML='<tr><td colspan="10" class="erow">Договоры пока не выгружены из программы юриста</td></tr>';return;}
+  tb.innerHTML=`<tr class="contract-card-row"><td colspan="10"><div class="mto-card-grid">`+d.map(c=>{
+    const life=contractLife(c);
+    const files=[];
+    if(c.fileUrl)files.push(`<a class="fl" href="${esc(c.fileUrl)}" target="_blank">📄 Договор</a>`);
+    (c.attachments||[]).forEach((a,i)=>{if(a.fileUrl)files.push(`<a class="fl" href="${esc(a.fileUrl)}" target="_blank">📎 ${esc(a.name||('Файл '+(i+1)))}</a>`);});
+    return `
+    <div class="mto-contract-card">
+      <div class="mto-card-top">
+        <div>
+          <div class="mto-card-no">${esc(c.counterparty||'—')}</div>
+          <div class="mto-card-date">ИНН: ${esc(c.inn||'—')}${c.kpp?' / КПП: '+esc(c.kpp):''}</div>
+          <div class="mto-card-title">Договор № ${esc(c.contractNumber||'—')}</div>
+          <div class="mto-card-sub">${esc(c.subject||'')}</div>
+        </div>
+        <div class="mto-card-tags">
+          <span class="badge ${life.cls}">${life.label}</span>
+        </div>
+      </div>
+      <div class="mto-card-body">
+        <div class="mto-card-field"><div class="mto-card-label">Дата договора</div><div class="mto-card-value">${esc(c.contractDate||'—')}</div></div>
+        <div class="mto-card-field"><div class="mto-card-label">Срок до</div><div class="mto-card-value">${esc(c.dateTo||'—')}</div></div>
+        <div class="mto-card-field"><div class="mto-card-label">Тип</div><div class="mto-card-value">${esc(c.type||'—')}</div></div>
+        <div class="mto-card-field"><div class="mto-card-label">Сумма</div><div class="mto-card-value">${esc(c.amount||'—')}</div></div>
+        <div class="mto-card-field"><div class="mto-card-label">Статус</div><div class="mto-card-value"><span class="badge ${life.cls}">${life.label}</span>${c.confidence?`<div class="nf">Уверенность: ${esc(c.confidence)}%</div>`:''}</div></div>
+        <div class="mto-card-field"><div class="mto-card-label">Файлы</div><div class="mto-card-value"><div class="contract-file-links">${files.length?files.join(''):'<span class="nf">Файл не загружен</span>'}</div>${c.fileUploadError?`<div class="nf">${esc(c.fileUploadError).slice(0,120)}</div>`:''}</div></div>
+      </div>
+      <div class="mto-card-actions">
+        ${canManageContracts()?`<button class="bsm be" onclick="editCloudContract('${esc(c._k)}')">Редактировать</button><button class="bsm bd" onclick="removeCloudContract('${esc(c._k)}')">Убрать</button>`:'<span class="nf">—</span>'}
+      </div>
+    </div>`;
+  }).join('')+`</div></td></tr>`;
+}
+
 // CONTACTS
 const DEFAULT_CONTACTS=[
   {name:'ООО "ВОЛОГОДСКАЯ КОММЕРЧЕСКАЯ КОМПАНИЯ"',activity:'Стр.материалы, промышленные товары',phone:'8 (911) 441 76 82 Владимир Бойко',email:'vladimir.boyko@lider35.ru',region:'Вологда и обл',spec:'Да',inn:'3525194376',city:'г. Вологда'},
@@ -2022,6 +2308,7 @@ document.querySelectorAll('.mo').forEach(o=>o.addEventListener('click',e=>{if(e.
     {page:'private',selector:'#page-private .pm-wrap',title:'Личные сообщения',text:'В этом разделе можно написать сотруднику лично. Непрочитанные сообщения показываются красным значком в меню.'},
     {page:'chat',selector:'#page-chat .card',title:'Общий чат',text:'Общий чат используется для рабочих вопросов, которые относятся ко всему отделу МТО.'},
     {page:'contacts',selector:'#page-contacts .card',title:'Контакты поставщиков',text:'Реестр поставщиков: телефоны, почта, ИНН, город и направление деятельности.'},
+    {page:'contracts',selector:'#page-contracts .card',title:'Договоры',text:'Здесь отображаются договоры, которые юрист выгрузил из portable-программы в облако.'},
     {page:'analytics',selector:'#page-analytics .stats',title:'Аналитика МТО',text:'Администраторы видят сводку по заявкам, сотрудникам, статусам, суммам и эффективности отдела.'},
     {page:'history',selector:'#page-history .card',title:'История изменений',text:'Журнал показывает, кто и когда создавал, редактировал или удалял заявки, контакты и анализы.'}
   ];
