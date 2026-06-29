@@ -708,6 +708,17 @@ tr:hover td{background:#f8fafc}
   #page-dash .dash-card-grid,#page-all .all-card-grid{grid-template-columns:1fr;padding:10px;gap:12px}
 }
 
+
+/* KP COMPLETENESS */
+.kpm{flex:3;min-width:180px}
+.kp-missing-note{font-size:.68rem;color:#64748b;margin-top:3px;line-height:1.25}
+.comp-ok{background:#dcfce7;color:#15803d}
+.comp-part{background:#fef9c3;color:#a16207}
+.comp-bad{background:#fee2e2;color:#b91c1c}
+.analysis-reco{border:1px solid #dbeafe;background:#eff6ff;border-radius:12px;padding:12px;margin:12px 0;font-size:.86rem;line-height:1.45}
+.analysis-reco strong{color:var(--primary)}
+@media(max-width:768px){.kpm{min-width:0}}
+
 </style>
 </head>
 <body>
@@ -1695,7 +1706,7 @@ function rEdit(q=''){
 window.rEdit=rEdit;
 
 // KP
-window.addKP=function(kp){if(kpRows.length>=10)return;kpRows.push(kp||{supplier:'',sum:'',url:'',selected:false});rKP();};
+window.addKP=function(kp){if(kpRows.length>=10)return;kpRows.push(kp||{supplier:'',sum:'',url:'',missing:'',selected:false});rKP();};
 function rKP(){
   document.getElementById('akpb').style.display=kpRows.length>=10?'none':'flex';
   document.getElementById('kpl').innerHTML=kpRows.map((k,i)=>`
@@ -1703,10 +1714,12 @@ function rKP(){
       <input type="checkbox" ${k.selected?'checked':''} onchange="window.tKP(${i},this.checked)"/>
       ${k.selected?'<span class="kpsb">✓ Выбран</span>':''}
       <div class="kpf">
-        <input class="kpn" placeholder="Поставщик" value="${k.supplier||''}" oninput="kpRows[${i}].supplier=this.value"/>
+        <input class="kpn" placeholder="Поставщик" value="${esc(k.supplier||'')}" oninput="kpRows[${i}].supplier=this.value"/>
         <input class="kps" placeholder="Сумма ₽" type="number" value="${k.sum||''}" oninput="kpRows[${i}].sum=Number(this.value)"/>
-        <input class="kpu" placeholder="Ссылка Google Drive" value="${k.url||''}" oninput="kpRows[${i}].url=this.value"/>
+        <input class="kpu" placeholder="Ссылка Google Drive" value="${esc(k.url||'')}" oninput="kpRows[${i}].url=this.value"/>
+        <input class="kpm" placeholder="Что отсутствует (если КП неполное)" value="${esc(k.missing||'')}" oninput="kpRows[${i}].missing=this.value"/>
       </div>
+      <div class="kp-missing-note">Если поставщик закрывает заявку полностью — оставьте поле «Что отсутствует» пустым.</div>
       <button class="kpd" onclick="window.rKPi(${i})">✕</button>
     </div>`).join('');
 }
@@ -1915,21 +1928,72 @@ function fillAnSel(){
   const withKP=d.filter(r=>(r.kp&&r.kp.length>1)||r.analysis);
   sel.innerHTML='<option value="">— Выберите заявку —</option>'+withKP.map(r=>`<option value="${r._k}">${r.analysis?'📈 ':''}№${r.num||'б/н'} — ${r.name||r.material||'—'} (${(r.kp||[]).length} КП)</option>`).join('');
 }
+function splitMissing(v){
+  return String(v||'').split(/[,;\n]+/).map(x=>x.trim().toLowerCase()).filter(Boolean);
+}
+function displayMissing(v){
+  const a=splitMissing(v); return a.length?a.join(', '):'';
+}
+function findBestCombo(valid){
+  const partial=valid.filter(k=>!k.complete);
+  if(partial.length<2)return null;
+  let best=null;
+  const max=Math.min(3,partial.length);
+  function testCombo(combo){
+    const missLists=combo.map(k=>k.missingItems||[]);
+    if(!missLists.length)return;
+    let common=[...new Set(missLists[0])];
+    for(let i=1;i<missLists.length;i++) common=common.filter(x=>missLists[i].includes(x));
+    if(common.length===0){
+      const sum=combo.reduce((a,k)=>a+(Number(k.sum)||0),0);
+      if(!best||sum<best.sum)best={items:combo,sum};
+    }
+  }
+  for(let i=0;i<partial.length;i++){
+    for(let j=i+1;j<partial.length;j++) testCombo([partial[i],partial[j]]);
+  }
+  if(!best && max>=3){
+    for(let i=0;i<partial.length;i++)for(let j=i+1;j<partial.length;j++)for(let z=j+1;z<partial.length;z++) testCombo([partial[i],partial[j],partial[z]]);
+  }
+  return best;
+}
 function makeAnalysis(r){
-  const kp=(r.kp||[]).map(k=>({
-    supplier:k.supplier||'',
-    sum:Number(k.sum)||0,
-    url:k.url||'',
-    selected:!!k.selected
-  }));
+  const kp=(r.kp||[]).map(k=>{
+    const missing=String(k.missing||'').trim();
+    const missingItems=splitMissing(missing);
+    return {
+      supplier:k.supplier||'',
+      sum:Number(k.sum)||0,
+      url:k.url||'',
+      missing,
+      missingItems,
+      complete:missingItems.length===0,
+      selected:!!k.selected
+    };
+  });
   const valid=kp.filter(k=>k.sum>0);
-  const minVal=valid.length?Math.min(...valid.map(k=>k.sum)):0;
+  const complete=valid.filter(k=>k.complete);
+  const base=complete.length?complete:valid;
+  const minVal=base.length?Math.min(...base.map(k=>k.sum)):0;
   const maxVal=valid.length?Math.max(...valid.map(k=>k.sum)):0;
-  const minSupplier=(kp.find(k=>k.sum===minVal&&k.sum>0)||{}).supplier||'';
-  const selected=(kp.find(k=>k.selected)||{});
+  const minSupplier=(base.find(k=>k.sum===minVal&&k.sum>0)||{}).supplier||'';
+  const selected=kp.find(k=>k.selected)||{};
   const selectedSupplier=selected.supplier||'';
   const selectedSum=Number(selected.sum)||0;
-  const isSelectedMin=!!selectedSupplier && selectedSum>0 && selectedSum===minVal;
+  const selectedComplete=selectedSupplier?!!selected.complete:false;
+  const isSelectedMin=selectedSupplier&&selectedSum===minVal&&(!complete.length||selected.complete);
+  const combo=findBestCombo(valid);
+  let recommendation='';
+  if(complete.length){
+    recommendation=`Рекомендуется ${minSupplier||'—'} — ${Number(minVal).toLocaleString('ru-RU')}₽. Причина: полная комплектность и минимальная цена среди полных КП.`;
+    if(combo&&combo.sum<minVal){
+      recommendation+=` Альтернатива несколькими поставщиками: ${combo.items.map(x=>x.supplier).join(' + ')} — ориентировочно ${Number(combo.sum).toLocaleString('ru-RU')}₽.`;
+    }
+  }else if(combo){
+    recommendation=`Полных КП нет. Возможная связка: ${combo.items.map(x=>x.supplier).join(' + ')} — ориентировочно ${Number(combo.sum).toLocaleString('ru-RU')}₽. Проверьте, что отсутствующие позиции действительно закрываются друг другом.`;
+  }else{
+    recommendation='Полных КП нет. Частичные КП не закрывают отсутствующие позиции друг друга — нужно запросить недостающие товары или новое КП.';
+  }
   return {
     createdAt:Date.now(),
     createdBy:CU?CU.name:'',
@@ -1938,17 +2002,22 @@ function makeAnalysis(r){
     company:r.company||'',
     name:r.name||r.material||'',
     resp:r.resp||'',
-    kp:kp.map(k=>({...k,isMin:k.sum===minVal&&k.sum>0})),
+    kp:kp.map(k=>({...k,isMin:k.sum===minVal&&k.sum>0&&(!complete.length||k.complete)})),
+    completeCount:complete.length,
     minVal,
     maxVal,
     spread:maxVal&&minVal?maxVal-minVal:0,
     minSupplier,
     selectedSupplier,
     selectedSum,
+    selectedComplete,
     isSelectedMin,
+    combo:combo?{suppliers:combo.items.map(x=>x.supplier),sum:combo.sum}:null,
+    recommendation,
     conclusion:selectedSupplier
-      ? (isSelectedMin?'Выбран поставщик с минимальной ценой.':'Выбран не самый дешёвый поставщик — нужно проверить основание выбора.')
-      : 'Итоговый поставщик ещё не выбран.'
+      ? (!selectedComplete?'Выбран поставщик с неполной комплектностью — нужно проверить недостающие позиции.'
+        : (isSelectedMin?'Выбран поставщик с полной комплектностью и минимальной ценой.':'Выбран полный поставщик, но не с минимальной ценой среди полных КП — нужно проверить основание выбора.'))
+      : recommendation
   };
 }
 function analysisHtml(r,an,preview=false){
@@ -1957,29 +2026,34 @@ function analysisHtml(r,an,preview=false){
     <td>${k.supplier||'—'}</td>
     <td>${k.sum?Number(k.sum).toLocaleString('ru-RU')+'₽':'—'}</td>
     <td>${k.url?`<a class="fl" href="${k.url}" target="_blank">📄 КП</a>`:'<span class="nf">—</span>'}</td>
-    <td>${k.selected?'<span class="badge bgold">✓ Выбран МТО</span>':k.isMin?'<span class="badge bg">Мин. цена</span>':''}</td>
+    <td>${k.complete?'<span class="badge comp-ok">Полная</span>':`<span class="badge comp-part">Частичная</span><div class="nf">Нет: ${esc(displayMissing(k.missing)||'не указано')}</div>`}</td>
+    <td>${k.selected?'<span class="badge bgold">✓ Выбран МТО</span>':k.isMin?'<span class="badge bg">Лучшее полное КП</span>':''}</td>
   </tr>`).join('');
   const saved=an.createdAt?new Date(an.createdAt).toLocaleString('ru-RU'):'не сохранён';
+  const combo=an.combo?`<div style="margin-top:8px"><strong>Вариант несколькими поставщиками:</strong> ${esc((an.combo.suppliers||[]).join(' + '))} — ${Number(an.combo.sum||0).toLocaleString('ru-RU')}₽</div>`:'';
   return `<div class="card">
     <div class="ch"><div class="ct">📈 ${preview?'Предварительный':'Сохранённый'} конъюнктурный анализ — Заявка №${r.num||'б/н'}</div></div>
     <div style="padding:16px">
       <div style="margin-bottom:12px;font-size:.85rem;color:var(--muted)">📦 ${r.name||r.material||'—'} | Ответственный: ${r.resp||'—'} | ${preview?'ещё не сохранён':'сохранён: '+saved+' • '+(an.createdBy||'—')}</div>
+      <div class="analysis-reco"><strong>Рекомендация:</strong> ${esc(an.recommendation||an.conclusion||'—')}${combo}</div>
       <table class="an-table">
-        <thead><tr><th>№</th><th>Поставщик</th><th>Сумма, руб.</th><th>КП</th><th>Статус</th></tr></thead>
+        <thead><tr><th>№</th><th>Поставщик</th><th>Сумма, руб.</th><th>КП</th><th>Комплектность</th><th>Статус</th></tr></thead>
         <tbody>${rows}</tbody>
       </table>
       <div class="an-total">
         <div style="display:flex;gap:20px;flex-wrap:wrap">
-          <div><span style="color:var(--muted)">Минимальная цена:</span> <strong>${an.minVal?Number(an.minVal).toLocaleString('ru-RU')+'₽':'—'}</strong></div>
-          <div><span style="color:var(--muted)">Поставщик с мин. ценой:</span> <strong>${an.minSupplier||'—'}</strong></div>
+          <div><span style="color:var(--muted)">Полных КП:</span> <strong>${an.completeCount||0}</strong></div>
+          <div><span style="color:var(--muted)">Лучшая полная цена:</span> <strong>${an.minVal?Number(an.minVal).toLocaleString('ru-RU')+'₽':'—'}</strong></div>
+          <div><span style="color:var(--muted)">Лучший поставщик:</span> <strong>${an.minSupplier||'—'}</strong></div>
           <div><span style="color:var(--muted)">Выбран МТО:</span> <strong>${an.selectedSupplier||'—'}</strong></div>
           <div><span style="color:var(--muted)">Разница мин/макс:</span> <strong>${an.spread?Number(an.spread).toLocaleString('ru-RU')+'₽':'—'}</strong></div>
         </div>
-        <div style="margin-top:10px"><strong>Вывод:</strong> ${an.conclusion}</div>
+        <div style="margin-top:10px"><strong>Вывод:</strong> ${esc(an.conclusion||'—')}</div>
       </div>
       <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
         <button class="btn btn-p" onclick="saveAnalysis('${r._k}')">💾 ${preview?'Сохранить анализ в базе':'Обновить анализ'}</button>
-        ${an.createdAt?'<span class="badge bg" style="align-self:center">Видно всем пользователям</span>':''}
+        <button class="btn btn-s" style="color:#b91c1c;border-color:#fecaca" onclick="deleteAnalysis('${r._k}')">🗑 Удалить анализ</button>
+        ${an.createdAt?`<span class="badge bg" style="align-self:center">Видно всем пользователям</span>`:''}
       </div>
     </div>
   </div>`;
@@ -1997,9 +2071,42 @@ window.saveAnalysis=async function(key){
   if(!r||!r.kp||r.kp.length<2){alert('Для анализа нужно минимум 2 КП');return;}
   const an=makeAnalysis(r);
   await db.ref(`orders/${key}/analysis`).set(an);
-  await logAction('Сохранение анализа',briefOrder(r),`Выбран: ${an.selectedSupplier||'—'}; минимум: ${an.minSupplier||'—'}; разница мин/макс: ${an.spread?Number(an.spread).toLocaleString('ru-RU')+'₽':'—'}`,key);
+  await logAction('Сохранение анализа',briefOrder(r),`Выбран: ${an.selectedSupplier||'—'}; лучшее полное КП: ${an.minSupplier||'—'}; полных КП: ${an.completeCount||0}; разница мин/макс: ${an.spread?Number(an.spread).toLocaleString('ru-RU')+'₽':'—'}`,key);
   alert('Конъюнктурный анализ сохранён в базе');
 };
+window.deleteAnalysis=async function(key){
+  const r=DATA.find(d=>d._k===key);
+  if(!key){alert('Заявка не выбрана');return;}
+  if(!confirm('Удалить конъюнктурный анализ по этой заявке из Firebase?'))return;
+
+  try{
+    await db.ref(`orders/${key}/analysis`).remove();
+    if(r) delete r.analysis;
+
+    try{
+      if(r) await logAction('Удаление анализа',briefOrder(r),'Удалён сохранённый конъюнктурный анализ',key);
+    }catch(e){}
+
+    const box=document.getElementById('an-result');
+    if(box){
+      box.innerHTML='<div style="color:var(--muted);padding:20px">Сохранённый конъюнктурный анализ удалён. Чтобы сделать новый расчёт, нажмите кнопку анализа/выберите заявку заново.</div>';
+    }
+
+    fillAnSel();
+    const sel=document.getElementById('an-sel');
+    if(sel)sel.value=key;
+
+    if(typeof rAll==='function')rAll();
+    if(typeof rMine==='function')rMine();
+    if(typeof rDash==='function')rDash();
+
+    alert('Конъюнктурный анализ удалён из Firebase');
+  }catch(e){
+    console.error(e);
+    alert('Не удалось удалить анализ. Проверьте подключение к Firebase.');
+  }
+};
+
 
 // CHAT
 window.sendMsg=async function(){
