@@ -860,6 +860,82 @@ body.mto-dark{--bg:#0f172a;--text:#e2e8f0;--muted:#94a3b8;--border:#334155}body.
 @media(max-width:768px){.profile-tabs{margin:0 10px 10px;overflow-x:auto;flex-wrap:nowrap}.profile-tab{white-space:nowrap;flex:0 0 auto}.profile-kpi-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:430px){.profile-kpi-grid{grid-template-columns:1fr}}
 
+
+
+/* NOTIFICATIONS + FAVORITES */
+.mto-top-actions{position:fixed;top:14px;right:22px;z-index:900;display:flex;gap:8px;align-items:center}
+.top-action-btn{position:relative;border:1px solid var(--border);background:#fff;color:var(--primary);border-radius:12px;min-width:44px;height:40px;padding:0 12px;font-weight:900;cursor:pointer;box-shadow:0 6px 18px rgba(15,23,42,.10);display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.top-action-btn:hover{background:#f8fafc}
+.top-count{position:absolute;top:-7px;right:-7px;background:#ef4444;color:#fff;border-radius:999px;min-width:19px;height:19px;padding:0 5px;display:none;align-items:center;justify-content:center;font-size:.66rem;font-weight:900;line-height:19px}
+.top-count.show{display:inline-flex}
+.center-list{padding:14px;display:grid;gap:10px}
+.center-item{border:1px solid var(--border);background:#fff;border-radius:12px;padding:12px;display:flex;gap:10px;align-items:flex-start;justify-content:space-between}
+.center-item.unread{border-color:#bfdbfe;background:#eff6ff}
+.center-main{min-width:0;flex:1}
+.center-title{font-weight:900;color:var(--primary);font-size:.9rem;margin-bottom:4px}
+.center-text{font-size:.8rem;color:#475569;line-height:1.35}
+.center-meta{font-size:.7rem;color:var(--muted);margin-top:5px}
+.fav-btn{border:1px solid #fed7aa;background:#fff7ed;color:#c2410c;border-radius:9px;padding:5px 8px;font-weight:900;cursor:pointer;line-height:1}
+.fav-btn.active{background:#f59e0b;color:#fff;border-color:#f59e0b}
+.favorite-card{border:1px solid var(--border);border-radius:12px;background:#fff;padding:12px;display:flex;gap:10px;align-items:flex-start;justify-content:space-between}
+.favorite-type{font-size:.66rem;text-transform:uppercase;color:var(--muted);font-weight:900;letter-spacing:.35px;margin-bottom:4px}
+@media(max-width:768px){.mto-top-actions{top:12px;right:10px}.top-action-btn{height:36px;min-width:38px;padding:0 9px}.top-action-text{display:none}.center-item,.favorite-card{display:block}.center-item .bsm,.favorite-card .bsm{margin-top:8px;width:100%}}
+
+
+/* DELIVERY CALENDAR */
+.calendar-toolbar{overflow:visible}
+.delivery-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:14px 18px;background:#f8fafc;border-top:1px solid var(--border)}
+.delivery-stat{background:#fff;border:1px solid var(--border);border-radius:12px;padding:12px}
+.delivery-stat .n{font-size:1.25rem;font-weight:900;color:var(--primary)}
+.delivery-stat .t{font-size:.68rem;color:var(--muted);text-transform:uppercase;font-weight:800;letter-spacing:.35px;margin-top:3px}
+.delivery-calendar-layout{display:grid;grid-template-columns:1fr 340px;gap:16px}
+.delivery-calendar-card{padding:14px;overflow:visible}
+.delivery-week-head{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:8px}
+.delivery-week-head div{text-align:center;font-size:.72rem;color:var(--muted);font-weight:900;text-transform:uppercase;letter-spacing:.35px}
+.delivery-calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.delivery-day{min-height:128px;background:#fff;border:1px solid var(--border);border-radius:12px;padding:8px;display:flex;flex-direction:column;gap:6px;overflow:hidden}
+.delivery-day.muted{background:#f8fafc;color:#94a3b8}
+.delivery-day.today{border-color:var(--accent);box-shadow:0 0 0 2px rgba(59,130,246,.12)}
+.delivery-day.has-items{background:#fff}
+.delivery-day-num{display:flex;align-items:center;justify-content:space-between;font-size:.76rem;font-weight:900;color:var(--primary)}
+.delivery-day-count{font-size:.62rem;border-radius:999px;padding:1px 6px;background:#eff6ff;color:#1d4ed8}
+.delivery-mini-order{border:1px solid #e8edf4;background:#f8fafc;border-radius:9px;padding:6px;cursor:pointer;font-size:.68rem;line-height:1.25}
+.delivery-mini-order:hover{border-color:var(--accent);background:#eff6ff}
+.delivery-mini-order.done{background:#dcfce7;border-color:#bbf7d0}
+.delivery-mini-order.overdue{background:#fee2e2;border-color:#fecaca}
+.delivery-mini-title{font-weight:900;color:var(--primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.delivery-mini-sub{color:#64748b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
+.delivery-more{font-size:.66rem;color:var(--accent);font-weight:800;padding:2px 4px}
+.delivery-side-card{overflow:hidden}
+.delivery-list{padding:12px;display:flex;flex-direction:column;gap:8px;max-height:690px;overflow:auto}
+.delivery-list-item{border:1px solid var(--border);border-radius:12px;background:#fff;padding:10px;cursor:pointer}
+.delivery-list-item:hover{background:#eff6ff;border-color:var(--accent)}
+.delivery-list-item.overdue{border-color:#fecaca;background:#fff7f7}
+.delivery-list-item.done{border-color:#bbf7d0;background:#f0fdf4}
+.delivery-li-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:5px}
+.delivery-li-date{font-size:.72rem;font-weight:900;color:var(--primary)}
+.delivery-li-title{font-size:.82rem;font-weight:900;color:var(--primary);line-height:1.25}
+.delivery-li-sub{font-size:.72rem;color:var(--muted);line-height:1.35;margin-top:4px}
+@media(max-width:1000px){
+  .delivery-calendar-layout{grid-template-columns:1fr}
+  .delivery-side-card{order:-1}
+}
+@media(max-width:768px){
+  .delivery-stats{grid-template-columns:1fr 1fr;padding:10px}
+  .delivery-calendar-card{padding:10px}
+  .delivery-week-head{gap:4px}
+  .delivery-calendar-grid{gap:4px}
+  .delivery-day{min-height:96px;border-radius:10px;padding:5px}
+  .delivery-mini-order{font-size:.62rem;padding:5px}
+  .delivery-list{max-height:none}
+}
+@media(max-width:520px){
+  .delivery-calendar-grid{display:block}
+  .delivery-week-head{display:none}
+  .delivery-day{min-height:0;margin-bottom:8px}
+  .delivery-day.muted:not(.has-items){display:none}
+}
+
 </style>
 </head>
 <body>
@@ -886,6 +962,9 @@ body.mto-dark{--bg:#0f172a;--text:#e2e8f0;--muted:#94a3b8;--border:#334155}body.
       <div class="nav-item active" onclick="SP('dash',this)">📊 Дашборд</div>
       <div class="nav-item" onclick="SP('all',this)">📋 Все заявки</div>
       <div class="nav-item" onclick="SP('mine',this)">👤 Мои заявки</div>
+      <div class="nav-item" onclick="SP('notifications',this)">🔔 Уведомления <span class="nav-badge" id="nav-notify-badge"></span></div>
+      <div class="nav-item" onclick="SP('favorites',this)">⭐ Избранное</div>
+      <div class="nav-item" onclick="SP('delivery-calendar',this)">📅 Календарь поставок</div>
       <div class="nav-sec">Инструменты</div>
       <div class="nav-item" onclick="SP('analysis',this)">📈 Конъюнктурный анализ</div>
       <div class="nav-item" onclick="SP('chat',this)">💬 Вопросы / Чат</div>
@@ -907,6 +986,72 @@ body.mto-dark{--bg:#0f172a;--text:#e2e8f0;--muted:#94a3b8;--border:#334155}body.
     </div>
   </div>
   <div class="main">
+    <div class="mto-top-actions">
+      <button class="top-action-btn" onclick="SP('notifications',document.querySelector('.nav-item[onclick*=notifications]'))">🔔 <span class="top-action-text">Уведомления</span><span class="top-count" id="top-notify-count"></span></button>
+      <button class="top-action-btn" onclick="SP('favorites',document.querySelector('.nav-item[onclick*=favorites]'))">⭐ <span class="top-action-text">Избранное</span><span class="top-count" id="top-fav-count"></span></button>
+    </div>
+
+
+
+
+    <!-- NOTIFICATIONS -->
+    <div class="page" id="page-notifications">
+      <div class="ph"><div class="pt">Уведомления</div><div class="ps">События, которые требуют внимания</div></div>
+      <div class="card">
+        <div class="ch"><div class="ct">🔔 Центр уведомлений <span class="filter-count" id="notifications-count"></span></div><div class="cf"><button class="btn btn-s" onclick="markAllNotificationsRead()">Отметить все прочитанными</button></div></div>
+        <div class="center-list" id="notifications-list"></div>
+      </div>
+    </div>
+
+    <!-- FAVORITES -->
+    <div class="page" id="page-favorites">
+      <div class="ph"><div class="pt">Избранное</div><div class="ps">Быстрый доступ к заявкам, контактам и договорам</div></div>
+      <div class="card">
+        <div class="ch"><div class="ct">⭐ Избранное <span class="filter-count" id="favorites-count"></span></div></div>
+        <div class="center-list" id="favorites-list"></div>
+      </div>
+    </div>
+
+
+    <!-- DELIVERY CALENDAR -->
+    <div class="page" id="page-delivery-calendar">
+      <div class="ph"><div class="pt">Календарь поставок</div><div class="ps">Поставки по дням с быстрым открытием заявок</div></div>
+      <div class="calendar-toolbar card">
+        <div class="ch">
+          <div class="ct">📅 <span id="delivery-cal-title">Календарь</span></div>
+          <div class="cf">
+            <button class="btn btn-s" onclick="deliveryCalPrev()">←</button>
+            <button class="btn btn-s" onclick="deliveryCalToday()">Сегодня</button>
+            <button class="btn btn-s" onclick="deliveryCalNext()">→</button>
+            <select class="si2" id="delivery-cal-company" onchange="rDeliveryCalendar()" style="width:150px">
+              <option value="ALL">Все компании</option>
+              <option value="СТЕЛС">СТЕЛС</option>
+              <option value="ДОРСНАБ">ДОРСНАБ</option>
+            </select>
+            <select class="si2" id="delivery-cal-status" onchange="rDeliveryCalendar()" style="width:170px">
+              <option value="ALL">Все статусы</option>
+              <option value="open">Не доставлено</option>
+              <option value="done">Доставлено</option>
+              <option value="overdue">Просрочено</option>
+            </select>
+            <input class="si2" id="delivery-cal-search" placeholder="🔍 Поиск..." oninput="rDeliveryCalendar()" style="width:190px">
+          </div>
+        </div>
+        <div class="delivery-stats" id="delivery-cal-stats"></div>
+      </div>
+      <div class="delivery-calendar-layout">
+        <div class="card delivery-calendar-card">
+          <div class="delivery-week-head">
+            <div>Пн</div><div>Вт</div><div>Ср</div><div>Чт</div><div>Пт</div><div>Сб</div><div>Вс</div>
+          </div>
+          <div class="delivery-calendar-grid" id="delivery-calendar-grid"></div>
+        </div>
+        <div class="card delivery-side-card">
+          <div class="ch"><div class="ct">🚚 Ближайшие поставки</div></div>
+          <div class="delivery-list" id="delivery-upcoming-list"></div>
+        </div>
+      </div>
+    </div>
 
     <!-- DASHBOARD -->
     <div class="page active" id="page-dash">
@@ -1582,18 +1727,18 @@ db.ref('orders').on('value',s=>{
     }
   }
   if(!CU){document.getElementById('login-screen').style.display='flex';}
-  if(CU){setupViewToggles();rDash();rAll();rMine();rEdit();fillAnSel();rContracts();rProfile();if(canSeeControl()){rAnalytics();rHistory('');}}
+  if(CU){setupViewToggles();rDash();rAll();rMine();rEdit();fillAnSel();rContracts();rProfile();renderTopCenter();rNotifications();rFavorites();rDeliveryCalendar();renderTopCenter();rNotifications();rFavorites();if(canSeeControl()){rAnalytics();rHistory('');}}
 });
 db.ref('contacts').on('value',s=>{
   CONTACTS=[];
   if(s.exists())s.forEach(c=>{ CONTACTS.push({_k:c.key,...c.val()}); });
-  if(CU){setupViewToggles();rContacts('');populateOrderRefs();rProfile();}
+  if(CU){setupViewToggles();rContacts('');populateOrderRefs();rProfile();renderTopCenter();rFavorites();}
 });
 
 db.ref('contractsRegistry/contracts').on('value',s=>{
   CONTRACTS=[];
   if(s.exists())s.forEach(c=>{ CONTRACTS.push({_k:c.key,...c.val()}); });
-  if(CU){setupViewToggles();rContracts();populateOrderRefs();}
+  if(CU){setupViewToggles();rContracts();populateOrderRefs();renderTopCenter();rNotifications();rFavorites();}
 });
 
 db.ref('chat').on('value',s=>{
@@ -1607,7 +1752,7 @@ db.ref('privateMessages').on('value',s=>{
   if(s.exists())s.forEach(room=>{
     room.forEach(c=>{ PRIV.push({_room:room.key,_k:c.key,...c.val()}); });
   });
-  if(CU){updatePrivateUnread();rPrivateList();if(currentPrivateLogin)rPrivateDialog(currentPrivateLogin);}
+  if(CU){updatePrivateUnread();rPrivateList();if(currentPrivateLogin)rPrivateDialog(currentPrivateLogin);renderTopCenter();rNotifications();}
 });
 
 db.ref('history').limitToLast(300).on('value',s=>{
@@ -1620,7 +1765,7 @@ db.ref('history').limitToLast(300).on('value',s=>{
 db.ref('userProfiles').on('value',s=>{
   PROFILES={};
   if(s.exists())s.forEach(c=>{PROFILES[c.key]=c.val()||{};});
-  if(CU){updateSidebarUser();updateChatAuthorNote();rProfile();rPrivateList();if(currentPrivateLogin)rPrivateDialog(currentPrivateLogin);rChat();rDash();rAll();rMine();}
+  if(CU){updateSidebarUser();updateChatAuthorNote();rProfile();rPrivateList();if(currentPrivateLogin)rPrivateDialog(currentPrivateLogin);rChat();rDash();rAll();rMine();rContracts();rContacts();renderTopCenter();rNotifications();rFavorites();}
 });
 
 // HELPERS
@@ -1704,6 +1849,91 @@ async function logAction(action,obj,details='',orderKey=''){
   try{await db.ref('history').push({ts:Date.now(),user:CU.name,action,obj,details,orderKey});}catch(e){console.warn('history log error',e);}
 }
 
+
+
+// NOTIFICATIONS + FAVORITES
+function favKey(type,id){return String(type||'item')+'_'+String(id||'').replace(/[^a-zA-Z0-9А-Яа-я_-]/g,'_');}
+function userFavs(){return (getProfile(CU?.login||'').favorites)||{};}
+function userReadNotifications(){return (getProfile(CU?.login||'').notificationRead)||{};}
+function isFavorite(type,id){return !!userFavs()[favKey(type,id)];}
+function favoriteTitle(type,id){
+  if(type==='order'){const r=DATA.find(x=>x._k===id);return r?`Заявка №${r.num||'б/н'} — ${r.name||r.material||'без названия'}`:'Заявка';}
+  if(type==='contact'){const c=CONTACTS.find(x=>x._k===id);return c?c.name||'Контакт':'Контакт';}
+  if(type==='contract'){const c=CONTRACTS.find(x=>x._k===id);return c?`${c.counterparty||'Договор'} №${c.contractNumber||'б/н'}`:'Договор';}
+  return 'Избранное';
+}
+function favoriteIcon(type){return type==='order'?'📋':type==='contact'?'📞':type==='contract'?'📄':'⭐';}
+function favoriteButton(type,id,title){
+  if(!CU||!id)return '';
+  const active=isFavorite(type,id);
+  const safeId=String(id).replace(/'/g,"\'");
+  return `<button class="fav-btn ${active?'active':''}" title="${active?'Убрать из избранного':'В избранное'}" onclick="event.stopPropagation();toggleFavorite('${type}','${safeId}')">${active?'★':'☆'}</button>`;
+}
+window.toggleFavorite=async function(type,id,title){
+  if(!CU||!id)return;
+  const key=favKey(type,id);
+  const path='userProfiles/'+CU.login+'/favorites/'+key;
+  if(isFavorite(type,id)){await db.ref(path).remove(); if(PROFILES[CU.login]?.favorites)delete PROFILES[CU.login].favorites[key];}
+  else{const row={type,id,title:title||favoriteTitle(type,id),ts:Date.now()}; await db.ref(path).set(row); PROFILES[CU.login]={...(PROFILES[CU.login]||{}),favorites:{...(PROFILES[CU.login]?.favorites||{}),[key]:row}};}
+  refreshFavoriteDependentViews();
+};
+function refreshFavoriteDependentViews(){
+  renderTopCenter(); rFavorites(); rDash(); rAll(); rMine(); rContracts(); rContacts();
+}
+function orderDueDate(r){return parseRuDate(r?.delivery);}
+function notificationItems(){
+  if(!CU)return [];
+  const items=[]; const now=new Date(); const today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  DATA.forEach(r=>{
+    const d=orderDueDate(r);
+    if(d && d<today && !isDeliveredStatus(r.status)){items.push({key:'order_overdue_'+r._k,type:'order',id:r._k,level:'bad',title:'Просрочена поставка',text:`Заявка №${r.num||'б/н'}: ${r.name||r.material||'без названия'} · план: ${r.delivery}`,ts:d.getTime()});}
+    if(isDeliveredStatus(r.status) && (!r.upd || String(r.upd).toLowerCase().includes('нет'))){items.push({key:'order_no_upd_'+r._k,type:'order',id:r._k,level:'warn',title:'Нет УПД/ТТН',text:`Заявка №${r.num||'б/н'} доставлена, но документы не закрыты`,ts:Date.now()-86400000});}
+  });
+  CONTRACTS.forEach(c=>{
+    const d=parseContractDate(c.dateTo); if(!d)return; const diff=Math.ceil((d-today)/86400000);
+    if(diff<0)items.push({key:'contract_expired_'+c._k,type:'contract',id:c._k,level:'bad',title:'Договор истек',text:`${c.counterparty||'Контрагент'} · №${c.contractNumber||'б/н'} · срок до ${c.dateTo}`,ts:d.getTime()});
+    else if(diff<=14)items.push({key:'contract_soon_'+c._k,type:'contract',id:c._k,level:'warn',title:'Договор скоро заканчивается',text:`${c.counterparty||'Контрагент'} · осталось ${diff} дн. · срок до ${c.dateTo}`,ts:d.getTime()});
+  });
+  const unread=totalPrivateUnread();
+  if(unread)items.push({key:'private_unread_'+CU.login,type:'private',id:'',level:'info',title:'Новые личные сообщения',text:`Непрочитанных сообщений: ${unread}`,ts:Date.now()});
+  const read=userReadNotifications();
+  return items.map(x=>({...x,read:!!read[x.key]})).sort((a,b)=>(a.read-b.read)||((b.ts||0)-(a.ts||0)));
+}
+function notificationOpen(n){
+  if(!n)return;
+  markNotificationRead(n.key);
+  if(n.type==='order')window.openOrderView(n.id);
+  else if(n.type==='contract'){SP('contracts',document.querySelector('.nav-item[onclick*=contracts]')); const inp=document.getElementById('contract-search'); if(inp){inp.value=favoriteTitle('contract',n.id).replace(/^.*?— /,''); rContracts();}}
+  else if(n.type==='private')SP('private',document.querySelector('.nav-item[onclick*=private]'));
+}
+async function markNotificationRead(key){if(!CU||!key)return; await db.ref('userProfiles/'+CU.login+'/notificationRead/'+key).set(true); PROFILES[CU.login]={...(PROFILES[CU.login]||{}),notificationRead:{...(PROFILES[CU.login]?.notificationRead||{}),[key]:true}}; renderTopCenter(); rNotifications();}
+window.markAllNotificationsRead=async function(){if(!CU)return; const updates={}; notificationItems().forEach(n=>updates[n.key]=true); await db.ref('userProfiles/'+CU.login+'/notificationRead').update(updates); PROFILES[CU.login]={...(PROFILES[CU.login]||{}),notificationRead:{...(PROFILES[CU.login]?.notificationRead||{}),...updates}}; renderTopCenter(); rNotifications();};
+function rNotifications(){
+  const box=document.getElementById('notifications-list'); if(!box)return;
+  const list=notificationItems(); const unread=list.filter(x=>!x.read).length;
+  const cnt=document.getElementById('notifications-count'); if(cnt)cnt.textContent=`— ${unread} новых / ${list.length} всего`;
+  if(!list.length){box.innerHTML='<div class="erow">Новых уведомлений нет</div>';return;}
+  box.innerHTML=list.map(n=>`<div class="center-item ${n.read?'':'unread'}"><div class="center-main"><div class="center-title">${n.level==='bad'?'🔴':n.level==='warn'?'🟡':'🔵'} ${esc(n.title)}</div><div class="center-text">${esc(n.text)}</div><div class="center-meta">${n.read?'Прочитано':'Новое'}</div></div><div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end"><button class="bsm be" onclick='notificationOpen(${JSON.stringify(n).replace(/'/g,"&#39;")})'>Открыть</button>${n.read?'':`<button class="bsm" onclick="markNotificationRead('${n.key}')">✓</button>`}</div></div>`).join('');
+}
+function rFavorites(){
+  const box=document.getElementById('favorites-list'); if(!box)return;
+  const favs=Object.values(userFavs()).sort((a,b)=>(b.ts||0)-(a.ts||0));
+  const cnt=document.getElementById('favorites-count'); if(cnt)cnt.textContent=`— ${favs.length}`;
+  if(!favs.length){box.innerHTML='<div class="erow">Избранного пока нет</div>';return;}
+  box.innerHTML=favs.map(f=>`<div class="favorite-card"><div><div class="favorite-type">${favoriteIcon(f.type)} ${esc(f.type==='order'?'Заявка':f.type==='contact'?'Контакт':f.type==='contract'?'Договор':'Элемент')}</div><div class="center-title">${esc(f.title||favoriteTitle(f.type,f.id))}</div><div class="center-meta">Добавлено: ${f.ts?new Date(f.ts).toLocaleString('ru-RU'):'—'}</div></div><div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end"><button class="bsm be" onclick="openFavoriteItem('${f.type}','${f.id}')">Открыть</button><button class="bsm bd" onclick="toggleFavorite('${f.type}','${f.id}')">Убрать</button></div></div>`).join('');
+}
+window.openFavoriteItem=function(type,id){
+  if(type==='order')window.openOrderView(id);
+  else if(type==='contact'){SP('contacts',document.querySelector('.nav-item[onclick*=contacts]')); const c=CONTACTS.find(x=>x._k===id); const inp=document.getElementById('contact-search'); if(inp&&c){inp.value=c.name||c.inn||''; rContacts();}}
+  else if(type==='contract'){SP('contracts',document.querySelector('.nav-item[onclick*=contracts]')); const c=CONTRACTS.find(x=>x._k===id); const inp=document.getElementById('contract-search'); if(inp&&c){inp.value=c.counterparty||c.contractNumber||''; rContracts();}}
+};
+function renderTopCenter(){
+  if(!CU)return;
+  const unread=notificationItems().filter(x=>!x.read).length;
+  ['top-notify-count','nav-notify-badge'].forEach(id=>{const el=document.getElementById(id); if(el){el.textContent=unread>99?'99+':String(unread); el.classList.toggle('show',unread>0);}});
+  const favs=Object.keys(userFavs()).length; const f=document.getElementById('top-fav-count'); if(f){f.textContent=favs>99?'99+':String(favs); f.classList.toggle('show',favs>0);}
+}
+
 // LOGIN
 function setLoggedInUser(found, saveSession=true){
   CU=found;
@@ -1718,7 +1948,7 @@ function setLoggedInUser(found, saveSession=true){
   document.getElementById('edit-sub').textContent=CU.isAdmin?'Управление всеми заявками':'Только ваши заявки';
   document.getElementById('etbl-t').textContent=CU.isAdmin?'Все заявки':'Мои заявки';
   document.getElementById('mine-t').textContent='Мои заявки — '+CU.name;
-  rDash();rAll();rMine();rEdit();fillAnSel();rContracts();rProfile();
+  rDash();rAll();rMine();rEdit();fillAnSel();rContracts();rProfile();renderTopCenter();rNotifications();rFavorites();
 }
 window.doLogin=async function(){
   const u=document.getElementById('lu').value.trim().toLowerCase();
@@ -2049,6 +2279,10 @@ window.SP=function(n,el){
   if(n==='analytics')rAnalytics();
   if(n==='history')rHistory('');
   if(n==='profile')rProfile();
+  if(n==='notifications')rNotifications();
+  if(n==='favorites')rFavorites();
+  if(n==='delivery-calendar')rDeliveryCalendar();
+  renderTopCenter();
 };
 
 window.openAnalysisFor=function(key){
@@ -2103,7 +2337,7 @@ function kpCell(r){
 }
 function orderActionsCompactHtml(r){
   const edit=canEditOrder(r)?`<button class="bsm be" title="Редактировать" onclick="window.openE('${r._k}')">✏️</button>`:'';
-  return `<div class="order-actions compact-actions"><button class="bsm be" title="Открыть" onclick="window.openOrderView('${r._k}')">👁️</button><button class="bsm be" title="Анализ" onclick="window.openAnalysisFor('${r._k}')">📈</button>${edit}</div>`;
+  return `<div class="order-actions compact-actions">${favoriteButton('order',r._k,favoriteTitle('order',r._k))}<button class="bsm be" title="Открыть" onclick="window.openOrderView('${r._k}')">👁️</button><button class="bsm be" title="Анализ" onclick="window.openAnalysisFor('${r._k}')">📈</button>${edit}</div>`;
 }
 function orderTitleHtml(r){
   const sub=[];
@@ -2114,7 +2348,7 @@ function orderTitleHtml(r){
 }
 function orderActionsHtml(r){
   const edit=canEditOrder(r)?`<button class="bsm be" onclick="window.openE('${r._k}')">✏️ Ред.</button>`:'';
-  return `<div class="order-actions"><button class="bsm be" onclick="window.openOrderView('${r._k}')">👁️ Открыть</button><button class="bsm be" onclick="window.openAnalysisFor('${r._k}')">📈 Анализ</button>${edit}</div>`;
+  return `<div class="order-actions">${favoriteButton('order',r._k,favoriteTitle('order',r._k))}<button class="bsm be" onclick="window.openOrderView('${r._k}')">👁️ Открыть</button><button class="bsm be" onclick="window.openAnalysisFor('${r._k}')">📈 Анализ</button>${edit}</div>`;
 }
 window.openOrderView=function(key){
   const r=DATA.find(x=>x._k===key); if(!r)return;
@@ -2176,13 +2410,13 @@ function orderCardHtml(r,type){
 }
 function contractListRowHtml(c){
   const life=contractLife(c); const files=c.fileUrl?`<a class="fl" href="${esc(c.fileUrl)}" target="_blank">📄</a>`:'<span class="nf">—</span>';
-  return `<tr><td><strong>${esc(c.counterparty||'—')}</strong></td><td>${esc(c.inn||'—')}</td><td>${esc(c.contractNumber||'—')}</td><td>${esc(c.contractDate||'—')}</td><td>${esc(c.dateTo||'—')}</td><td>${esc(c.type||'—')}</td><td>${esc(c.amount||'—')}</td><td><span class="badge ${life.cls}">${life.label}</span></td><td>${files}</td><td>${canManageContracts()?`<button class="bsm be" onclick="editContract('${c._k}')">✏️</button> <button class="bsm bd" onclick="delContract('${c._k}')">🗑</button>`:''}</td></tr>`;
+  return `<tr><td><strong>${esc(c.counterparty||'—')}</strong></td><td>${esc(c.inn||'—')}</td><td>${esc(c.contractNumber||'—')}</td><td>${esc(c.contractDate||'—')}</td><td>${esc(c.dateTo||'—')}</td><td>${esc(c.type||'—')}</td><td>${esc(c.amount||'—')}</td><td><span class="badge ${life.cls}">${life.label}</span></td><td>${files}</td><td>${favoriteButton('contract',c._k,favoriteTitle('contract',c._k))} ${canManageContracts()?`<button class="bsm be" onclick="editContract('${c._k}')">✏️</button> <button class="bsm bd" onclick="delContract('${c._k}')">🗑</button>`:''}</td></tr>`;
 }
 function contractCardHtml(c){
   const life=contractLife(c); const files=[];
   if(c.fileUrl)files.push(`<a class="fl" href="${esc(c.fileUrl)}" target="_blank">📄 Договор</a>`);
   (c.attachments||[]).forEach((a,i)=>{if(a.fileUrl)files.push(`<a class="fl" href="${esc(a.fileUrl)}" target="_blank">📎 ${esc(a.name||('Файл '+(i+1)))}</a>`);});
-  return `<div class="mto-contract-card"><div class="mto-card-top"><div><div class="mto-card-no">${esc(c.counterparty||'—')}</div><div class="mto-card-date">ИНН: ${esc(c.inn||'—')}${c.kpp?' / КПП: '+esc(c.kpp):''}</div><div class="mto-card-title">Договор № ${esc(c.contractNumber||'—')}</div><div class="mto-card-sub">${esc(c.subject||'')}</div></div><div class="mto-card-tags"><span class="badge ${life.cls}">${life.label}</span></div></div><div class="mto-card-body"><div class="mto-card-field"><div class="mto-card-label">Дата договора</div><div class="mto-card-value">${esc(c.contractDate||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">Срок до</div><div class="mto-card-value">${esc(c.dateTo||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">Тип</div><div class="mto-card-value">${esc(c.type||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">Сумма</div><div class="mto-card-value">${esc(c.amount||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">Статус</div><div class="mto-card-value"><span class="badge ${life.cls}">${life.label}</span>${c.confidence?`<div class="nf">Уверенность: ${esc(c.confidence)}%</div>`:''}</div></div><div class="mto-card-field"><div class="mto-card-label">Файлы</div><div class="mto-card-value"><div class="contract-file-links">${files.length?files.join(''):'<span class="nf">Файл не загружен</span>'}</div>${c.fileUploadError?`<div class="nf">${esc(c.fileUploadError)}</div>`:''}</div></div><div class="mto-card-field mto-card-wide"><div class="mto-card-label">Предмет / текст</div><div class="mto-card-value">${esc(c.textPreview||c.subject||'—')}</div></div></div><div class="mto-card-actions">${canManageContracts()?`<button class="bsm be" onclick="editContract('${c._k}')">✏️</button><button class="bsm bd" onclick="delContract('${c._k}')">🗑️</button>`:''}</div></div>`;
+  return `<div class="mto-contract-card"><div class="mto-card-top"><div><div class="mto-card-no">${esc(c.counterparty||'—')}</div><div class="mto-card-date">ИНН: ${esc(c.inn||'—')}${c.kpp?' / КПП: '+esc(c.kpp):''}</div><div class="mto-card-title">Договор № ${esc(c.contractNumber||'—')}</div><div class="mto-card-sub">${esc(c.subject||'')}</div></div><div class="mto-card-tags"><span class="badge ${life.cls}">${life.label}</span></div></div><div class="mto-card-body"><div class="mto-card-field"><div class="mto-card-label">Дата договора</div><div class="mto-card-value">${esc(c.contractDate||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">Срок до</div><div class="mto-card-value">${esc(c.dateTo||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">Тип</div><div class="mto-card-value">${esc(c.type||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">Сумма</div><div class="mto-card-value">${esc(c.amount||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">Статус</div><div class="mto-card-value"><span class="badge ${life.cls}">${life.label}</span>${c.confidence?`<div class="nf">Уверенность: ${esc(c.confidence)}%</div>`:''}</div></div><div class="mto-card-field"><div class="mto-card-label">Файлы</div><div class="mto-card-value"><div class="contract-file-links">${files.length?files.join(''):'<span class="nf">Файл не загружен</span>'}</div>${c.fileUploadError?`<div class="nf">${esc(c.fileUploadError)}</div>`:''}</div></div><div class="mto-card-field mto-card-wide"><div class="mto-card-label">Предмет / текст</div><div class="mto-card-value">${esc(c.textPreview||c.subject||'—')}</div></div></div><div class="mto-card-actions">${favoriteButton('contract',c._k,favoriteTitle('contract',c._k))}${canManageContracts()?`<button class="bsm be" onclick="editContract('${c._k}')">✏️</button><button class="bsm bd" onclick="delContract('${c._k}')">🗑️</button>`:''}</div></div>`;
 }
 
 // DASHBOARD
@@ -2291,6 +2525,7 @@ window.sSh=function(v,el){aSh=v;document.querySelectorAll('[onclick^="sSh"]').fo
 function allOrderActionsHtml(r){
   const id = r._k || r.key || r.id || '';
   const btns = [];
+  btns.push(favoriteButton('order',id,favoriteTitle('order',id)));
   btns.push(`<button class="bsm be" onclick="window.openOrderView('${id}')">👁 Открыть</button>`);
   if(canEditOrder(r)) btns.push(`<button class="bsm be" onclick="window.openE('${id}')">✏️ Редактировать</button>`);
   if(typeof openChat==='function') btns.push(`<button class="bsm be" onclick="openChat('${id}')">💬 Чат</button>`);
@@ -3451,12 +3686,12 @@ function rContacts(q){
   setPageViewClass('contacts'); updateViewButtons('contacts');
   if(!d.length){grid.innerHTML='<div style="grid-column:1/-1;text-align:center;color:var(--muted);padding:40px">Нет контактов по выбранным фильтрам</div>';return;}
   if(getViewMode('contacts')==='list'){
-    grid.innerHTML=`<table class="contact-list-table"><thead><tr><th>Название</th><th>ИНН</th><th>Деятельность</th><th>Телефон</th><th>Email</th><th>Аккредитация</th><th>Заявки</th><th>Сумма</th><th>Действия</th></tr></thead><tbody>`+d.map(c=>{const st=supplierWorkStats(c);return `<tr><td><strong>${esc(c.name||'—')}</strong><div>${supplierCategoryBadge(c)}</div></td><td>${esc(c.inn||'—')}</td><td>${esc(c.activity||'—')}</td><td>${esc(c.phone||'—')}</td><td>${c.email?`<a href="mailto:${esc(c.email)}" style="color:var(--accent)">${esc(c.email)}</a>`:'—'}</td><td>${supplierRatingBadge(c.supplierScore)||'<span class="nf">—</span>'}</td><td>${st.orders}</td><td>${moneyShort(st.total)}</td><td><button class="bsm be" onclick="window.editContact('${c._k}')">✏️</button>${CU?.isAdmin?` <button class="bsm bd" onclick="window.delContact('${c._k}')">🗑️</button>`:''}</td></tr>`;}).join('')+`</tbody></table>`;
+    grid.innerHTML=`<table class="contact-list-table"><thead><tr><th>Название</th><th>ИНН</th><th>Деятельность</th><th>Телефон</th><th>Email</th><th>Аккредитация</th><th>Заявки</th><th>Сумма</th><th>Действия</th></tr></thead><tbody>`+d.map(c=>{const st=supplierWorkStats(c);return `<tr><td><strong>${esc(c.name||'—')}</strong><div>${supplierCategoryBadge(c)}</div></td><td>${esc(c.inn||'—')}</td><td>${esc(c.activity||'—')}</td><td>${esc(c.phone||'—')}</td><td>${c.email?`<a href="mailto:${esc(c.email)}" style="color:var(--accent)">${esc(c.email)}</a>`:'—'}</td><td>${supplierRatingBadge(c.supplierScore)||'<span class="nf">—</span>'}</td><td>${st.orders}</td><td>${moneyShort(st.total)}</td><td>${favoriteButton('contact',c._k,favoriteTitle('contact',c._k))} <button class="bsm be" onclick="window.editContact('${c._k}')">✏️</button>${CU?.isAdmin?` <button class="bsm bd" onclick="window.delContact('${c._k}')">🗑️</button>`:''}</td></tr>`;}).join('')+`</tbody></table>`;
     return;
   }
   grid.innerHTML=d.map(c=>{
     const st=supplierWorkStats(c);
-    return `<div class="con-card"><div class="con-name">${c.name||'—'} ${supplierRatingBadge(c.supplierScore)}</div><div class="con-type">${c.activity||'—'} ${supplierCategoryBadge(c)} ${c.spec==='Да'?'<span class="badge bg">Спецсчёт</span>':''} ${c.supplierWarning?'<span class="badge by">С предупреждением</span>':''}</div><div class="supplier-stat-grid"><div class="supplier-stat"><div class="n">${st.orders}</div><div class="t">заявок</div></div><div class="supplier-stat"><div class="n">${st.contracts}</div><div class="t">договоров</div></div><div class="supplier-stat"><div class="n">${st.delayed}</div><div class="t">подтв. просрочек</div></div><div class="supplier-stat"><div class="n">${st.delivered}</div><div class="t">поставок</div></div><div class="supplier-stat" style="grid-column:span 2"><div class="n">${moneyShort(st.total)}</div><div class="t">сумма</div></div></div>${c.phone?`<div class="con-row"><span class="con-label">📞</span><span>${esc(c.phone)}</span></div>`:''}${c.email?`<div class="con-row"><span class="con-label">✉️</span><a href="mailto:${esc(c.email)}" style="color:var(--accent)">${esc(c.email)}</a></div>`:''}${c.city?`<div class="con-row"><span class="con-label">📍</span><span>${esc(c.city)}</span></div>`:''}${c.inn?`<div class="con-row"><span class="con-label">ИНН</span><span style="font-size:.75rem;color:var(--muted)">${esc(c.inn)}</span></div>`:''}${c.supplierCheck?`<div class="con-row"><span class="con-label">🛡</span><span style="font-size:.75rem;color:var(--muted)">Аккредитация: ${esc(c.supplierRating||supplierRatingLabel(c.supplierScore))} · ${c.supplierCheck.checkedAt?new Date(c.supplierCheck.checkedAt).toLocaleDateString('ru-RU'):''}</span></div>`:''}${c.ogrn?`<div class="con-row"><span class="con-label">ОГРН</span><span style="font-size:.75rem;color:var(--muted)">${esc(c.ogrn)}</span></div>`:''}${c.dadataStatus?`<div class="con-row"><span class="con-label">Статус</span><span style="font-size:.75rem;color:var(--muted)">${esc(c.dadataStatus)}</span></div>`:''}<div style="display:flex;gap:5px;margin-top:10px"><button class="bsm be" onclick="window.editContact('${c._k}')">✏️</button>${CU?.isAdmin?`<button class="bsm bd" onclick="window.delContact('${c._k}')">🗑️</button>`:''}</div>${supplierTimelineHtml(c,st)}</div>`;
+    return `<div class="con-card"><div class="con-name">${c.name||'—'} ${supplierRatingBadge(c.supplierScore)}</div><div class="con-type">${c.activity||'—'} ${supplierCategoryBadge(c)} ${c.spec==='Да'?'<span class="badge bg">Спецсчёт</span>':''} ${c.supplierWarning?'<span class="badge by">С предупреждением</span>':''}</div><div class="supplier-stat-grid"><div class="supplier-stat"><div class="n">${st.orders}</div><div class="t">заявок</div></div><div class="supplier-stat"><div class="n">${st.contracts}</div><div class="t">договоров</div></div><div class="supplier-stat"><div class="n">${st.delayed}</div><div class="t">подтв. просрочек</div></div><div class="supplier-stat"><div class="n">${st.delivered}</div><div class="t">поставок</div></div><div class="supplier-stat" style="grid-column:span 2"><div class="n">${moneyShort(st.total)}</div><div class="t">сумма</div></div></div>${c.phone?`<div class="con-row"><span class="con-label">📞</span><span>${esc(c.phone)}</span></div>`:''}${c.email?`<div class="con-row"><span class="con-label">✉️</span><a href="mailto:${esc(c.email)}" style="color:var(--accent)">${esc(c.email)}</a></div>`:''}${c.city?`<div class="con-row"><span class="con-label">📍</span><span>${esc(c.city)}</span></div>`:''}${c.inn?`<div class="con-row"><span class="con-label">ИНН</span><span style="font-size:.75rem;color:var(--muted)">${esc(c.inn)}</span></div>`:''}${c.supplierCheck?`<div class="con-row"><span class="con-label">🛡</span><span style="font-size:.75rem;color:var(--muted)">Аккредитация: ${esc(c.supplierRating||supplierRatingLabel(c.supplierScore))} · ${c.supplierCheck.checkedAt?new Date(c.supplierCheck.checkedAt).toLocaleDateString('ru-RU'):''}</span></div>`:''}${c.ogrn?`<div class="con-row"><span class="con-label">ОГРН</span><span style="font-size:.75rem;color:var(--muted)">${esc(c.ogrn)}</span></div>`:''}${c.dadataStatus?`<div class="con-row"><span class="con-label">Статус</span><span style="font-size:.75rem;color:var(--muted)">${esc(c.dadataStatus)}</span></div>`:''}<div style="display:flex;gap:5px;margin-top:10px;flex-wrap:wrap">${favoriteButton('contact',c._k,favoriteTitle('contact',c._k))}<button class="bsm be" onclick="window.editContact('${c._k}')">✏️</button>${CU?.isAdmin?`<button class="bsm bd" onclick="window.delContact('${c._k}')">🗑️</button>`:''}</div>${supplierTimelineHtml(c,st)}</div>`;
   }).join('');
 }
 
@@ -3594,6 +3829,122 @@ document.querySelectorAll('.mo').forEach(o=>o.addEventListener('click',e=>{if(e.
 
   document.addEventListener('keydown',e=>{if(e.key==='Escape')endTour(false)});
 })();
+
+// DELIVERY CALENDAR
+let deliveryCalDate=new Date();
+function deliveryDateOfOrder(r){
+  return parseRuDate(r?.delivery||r?.deliveryDate||r?.plannedDeliveryDate||r?.planDelivery||r?.deliveryPlan||'');
+}
+function deliveryIso(d){
+  if(!d)return '';
+  const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,'0'),day=String(d.getDate()).padStart(2,'0');
+  return `${y}-${m}-${day}`;
+}
+function deliveryHuman(d){
+  if(!d)return '—';
+  return d.toLocaleDateString('ru-RU',{day:'2-digit',month:'2-digit',year:'numeric'});
+}
+function deliveryMonthTitle(d){
+  return d.toLocaleDateString('ru-RU',{month:'long',year:'numeric'}).replace(/^./,c=>c.toUpperCase());
+}
+function deliveryCalendarOrders(){
+  const company=(document.getElementById('delivery-cal-company')||{}).value||'ALL';
+  const status=(document.getElementById('delivery-cal-status')||{}).value||'ALL';
+  const q=((document.getElementById('delivery-cal-search')||{}).value||'').toLowerCase().trim();
+  const today=new Date(); today.setHours(0,0,0,0);
+  return DATA.map(r=>({...r,_deliveryDate:deliveryDateOfOrder(r)})).filter(r=>{
+    if(!r._deliveryDate)return false;
+    if(company!=='ALL'&&r.company!==company)return false;
+    if(q && !JSON.stringify(r).toLowerCase().includes(q))return false;
+    const done=isDeliveredStatus(r.status);
+    const overdue=r._deliveryDate<today && !done;
+    if(status==='open'&&done)return false;
+    if(status==='done'&&!done)return false;
+    if(status==='overdue'&&!overdue)return false;
+    return true;
+  });
+}
+function deliveryOrderClass(r){
+  const today=new Date(); today.setHours(0,0,0,0);
+  if(isDeliveredStatus(r.status))return 'done';
+  if(r._deliveryDate && r._deliveryDate<today)return 'overdue';
+  return '';
+}
+function deliveryOrderStatusBadge(r){
+  const cls=deliveryOrderClass(r);
+  if(cls==='done')return '<span class="badge bg">Доставлено</span>';
+  if(cls==='overdue')return '<span class="badge br">Просрочено</span>';
+  return '<span class="badge by">Ожидается</span>';
+}
+function rDeliveryCalendar(){
+  const page=document.getElementById('page-delivery-calendar');
+  if(!page)return;
+  const title=document.getElementById('delivery-cal-title');
+  if(title)title.textContent=deliveryMonthTitle(deliveryCalDate);
+
+  const grid=document.getElementById('delivery-calendar-grid');
+  const stats=document.getElementById('delivery-cal-stats');
+  const list=document.getElementById('delivery-upcoming-list');
+  if(!grid||!stats||!list)return;
+
+  const orders=deliveryCalendarOrders();
+  const today=new Date(); today.setHours(0,0,0,0);
+  const monthStart=new Date(deliveryCalDate.getFullYear(),deliveryCalDate.getMonth(),1);
+  const monthEnd=new Date(deliveryCalDate.getFullYear(),deliveryCalDate.getMonth()+1,0);
+  const start=new Date(monthStart);
+  const startShift=(start.getDay()+6)%7;
+  start.setDate(start.getDate()-startShift);
+  const end=new Date(monthEnd);
+  const endShift=6-((end.getDay()+6)%7);
+  end.setDate(end.getDate()+endShift);
+
+  const monthOrders=orders.filter(r=>r._deliveryDate>=monthStart&&r._deliveryDate<=monthEnd);
+  const todayOrders=orders.filter(r=>deliveryIso(r._deliveryDate)===deliveryIso(today));
+  const overdue=orders.filter(r=>r._deliveryDate<today&&!isDeliveredStatus(r.status));
+  const doneMonth=monthOrders.filter(r=>isDeliveredStatus(r.status));
+  stats.innerHTML=`
+    <div class="delivery-stat"><div class="n">${monthOrders.length}</div><div class="t">Поставок в месяце</div></div>
+    <div class="delivery-stat"><div class="n">${todayOrders.length}</div><div class="t">Сегодня</div></div>
+    <div class="delivery-stat"><div class="n">${overdue.length}</div><div class="t">Просрочено</div></div>
+    <div class="delivery-stat"><div class="n">${doneMonth.length}</div><div class="t">Закрыто в месяце</div></div>`;
+
+  const byDay={};
+  orders.forEach(r=>{
+    const iso=deliveryIso(r._deliveryDate);
+    (byDay[iso]||(byDay[iso]=[])).push(r);
+  });
+
+  let html='';
+  const d=new Date(start);
+  while(d<=end){
+    const iso=deliveryIso(d);
+    const items=(byDay[iso]||[]).sort((a,b)=>(Number(a.num)||0)-(Number(b.num)||0));
+    const isMuted=d.getMonth()!==deliveryCalDate.getMonth();
+    const isToday=iso===deliveryIso(today);
+    html+=`<div class="delivery-day ${isMuted?'muted':''} ${isToday?'today':''} ${items.length?'has-items':''}">
+      <div class="delivery-day-num"><span>${d.getDate()}</span>${items.length?`<span class="delivery-day-count">${items.length}</span>`:''}</div>
+      ${items.slice(0,3).map(r=>`<div class="delivery-mini-order ${deliveryOrderClass(r)}" onclick="window.openOrderView('${r._k}')">
+        <div class="delivery-mini-title">№${esc(r.num||'б/н')} · ${esc(r.name||r.material||'Без наименования')}</div>
+        <div class="delivery-mini-sub">${esc(r.company||'—')} · ${esc(r.contractor||'—')}</div>
+      </div>`).join('')}
+      ${items.length>3?`<div class="delivery-more">+${items.length-3} еще</div>`:''}
+    </div>`;
+    d.setDate(d.getDate()+1);
+  }
+  grid.innerHTML=html;
+
+  const upcoming=orders.filter(r=>!isDeliveredStatus(r.status)).sort((a,b)=>a._deliveryDate-b._deliveryDate).slice(0,40);
+  if(!upcoming.length){list.innerHTML='<div class="erow">Нет ближайших поставок</div>';return;}
+  list.innerHTML=upcoming.map(r=>`<div class="delivery-list-item ${deliveryOrderClass(r)}" onclick="window.openOrderView('${r._k}')">
+    <div class="delivery-li-top"><div class="delivery-li-date">${deliveryHuman(r._deliveryDate)}</div>${deliveryOrderStatusBadge(r)}</div>
+    <div class="delivery-li-title">№${esc(r.num||'б/н')} · ${esc(r.name||r.material||'Без наименования')}</div>
+    <div class="delivery-li-sub">${esc(r.company||'—')} · ${esc(r.shifer||'—')}<br>${esc(r.contractor||'Контрагент не указан')}<br>${userChipsForOrder(r)}</div>
+  </div>`).join('');
+}
+function deliveryCalPrev(){deliveryCalDate=new Date(deliveryCalDate.getFullYear(),deliveryCalDate.getMonth()-1,1);rDeliveryCalendar();}
+function deliveryCalNext(){deliveryCalDate=new Date(deliveryCalDate.getFullYear(),deliveryCalDate.getMonth()+1,1);rDeliveryCalendar();}
+function deliveryCalToday(){deliveryCalDate=new Date();rDeliveryCalendar();}
+
 </script>
 
 
