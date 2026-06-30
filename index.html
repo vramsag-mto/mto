@@ -936,6 +936,80 @@ body.mto-dark{--bg:#0f172a;--text:#e2e8f0;--muted:#94a3b8;--border:#334155}body.
   .delivery-day.muted:not(.has-items){display:none}
 }
 
+
+/* OBJECT CENTER — FINAL */
+.object-center-hero{background:linear-gradient(135deg,var(--primary),#2e4d7a);color:#fff;border-radius:16px;padding:18px;margin-bottom:16px;display:flex;align-items:flex-start;justify-content:space-between;gap:14px;box-shadow:0 8px 24px rgba(15,23,42,.12)}
+.object-center-title{font-size:1.35rem;font-weight:900;margin-bottom:5px}
+.object-center-sub{font-size:.82rem;opacity:.82;line-height:1.35}
+.object-center-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.object-tabs{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0 14px}
+.object-tab{padding:8px 14px;border:1px solid var(--border);border-radius:999px;background:#fff;color:var(--muted);font-size:.8rem;font-weight:800;cursor:pointer}
+.object-tab.active{background:var(--primary);border-color:var(--primary);color:#fff}
+.object-stats{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:14px}
+.object-stat{background:#fff;border:1px solid var(--border);border-radius:13px;padding:13px;box-shadow:0 2px 8px rgba(15,23,42,.04)}
+.object-stat .n{font-size:1.25rem;font-weight:900;color:var(--primary);line-height:1.1}
+.object-stat .t{font-size:.64rem;color:var(--muted);text-transform:uppercase;font-weight:850;letter-spacing:.3px;margin-top:5px;line-height:1.2}
+.object-layout{display:grid;grid-template-columns:1.25fr .75fr;gap:14px;align-items:start}
+.object-list{display:flex;flex-direction:column;gap:10px;padding:14px}
+.object-row{border:1px solid var(--border);border-radius:13px;background:#fff;padding:12px;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}
+.object-row:hover{box-shadow:0 5px 16px rgba(15,23,42,.08)}
+.object-row-title{font-weight:900;color:var(--primary);font-size:.9rem;line-height:1.25}
+.object-row-sub{font-size:.73rem;color:var(--muted);line-height:1.35;margin-top:4px}
+.object-row-meta{display:flex;gap:5px;flex-wrap:wrap;margin-top:7px}
+.object-row-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.object-side-list{padding:12px;display:flex;flex-direction:column;gap:8px}
+.object-empty{padding:28px;text-align:center;color:var(--muted);font-size:.88rem}
+.object-doc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;padding:14px}
+.object-doc-card{border:1px solid var(--border);background:#fff;border-radius:13px;padding:12px}
+.object-doc-title{font-weight:900;color:var(--primary);font-size:.86rem;margin-bottom:6px}
+.object-doc-missing{font-size:.74rem;color:#b91c1c;line-height:1.35;margin-top:6px}
+@media(max-width:1100px){.object-stats{grid-template-columns:repeat(3,1fr)}.object-layout{grid-template-columns:1fr}}
+@media(max-width:768px){
+  .object-center-hero{display:block;padding:14px}.object-center-actions{justify-content:stretch;margin-top:10px}.object-center-actions .si2,.object-center-actions .btn{width:100%!important}
+  .object-stats{grid-template-columns:repeat(2,1fr);gap:8px}
+  .object-tabs{overflow-x:auto;flex-wrap:nowrap;padding-bottom:3px}.object-tab{white-space:nowrap;flex:0 0 auto}
+  .object-row{grid-template-columns:1fr}.object-row-actions{justify-content:stretch}.object-row-actions .bsm{flex:1;min-height:36px}
+  .object-doc-grid{grid-template-columns:1fr;padding:10px}
+}
+
+
+/* DOCUMENT FLOW */
+.docflow-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:14px}
+.docflow-stat{background:#fff;border:1px solid var(--border);border-radius:13px;padding:13px;box-shadow:0 2px 8px rgba(15,23,42,.04)}
+.docflow-stat .n{font-size:1.25rem;font-weight:900;color:var(--primary);line-height:1.1}
+.docflow-stat .t{font-size:.64rem;color:var(--muted);text-transform:uppercase;font-weight:850;letter-spacing:.3px;margin-top:5px;line-height:1.2}
+.docflow-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px;padding:14px}
+.docflow-card{background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:0 2px 10px rgba(15,23,42,.06);overflow:hidden}
+.docflow-card-head{padding:13px 14px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.docflow-title{font-weight:900;color:var(--primary);font-size:.94rem;line-height:1.25}
+.docflow-sub{font-size:.72rem;color:var(--muted);line-height:1.35;margin-top:4px}
+.docflow-body{padding:12px 14px;background:#f8fafc}
+.docflow-docs{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.docflow-doc{background:#fff;border:1px solid #e8edf4;border-radius:10px;padding:9px;min-height:68px}
+.docflow-doc.ok{border-color:#bbf7d0;background:#f0fdf4}
+.docflow-doc.no{border-color:#fecaca;background:#fff7f7}
+.docflow-doc-title{font-size:.64rem;color:var(--muted);text-transform:uppercase;font-weight:900;letter-spacing:.35px;margin-bottom:5px}
+.docflow-doc-val{font-size:.8rem;font-weight:800;color:var(--primary);line-height:1.3}
+.docflow-doc-link{display:inline-flex;margin-top:5px;font-size:.72rem;font-weight:800;color:var(--accent);text-decoration:none}
+.docflow-missing{margin-top:10px;font-size:.76rem;line-height:1.35;color:#b91c1c;font-weight:700}
+.docflow-actions{padding:10px 14px;border-top:1px solid var(--border);display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.docflow-actions .bsm{min-height:32px}
+.docflow-table-wrap{padding:14px;overflow:auto}
+.docflow-table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;font-size:.8rem}
+.docflow-table th{background:#f8fafc;color:var(--muted);font-size:.68rem;text-transform:uppercase;letter-spacing:.35px;padding:9px;text-align:left}
+.docflow-table td{padding:9px;border-top:1px solid var(--border);vertical-align:middle}
+.docflow-filter-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+@media(max-width:900px){.docflow-stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){
+  .docflow-grid{grid-template-columns:1fr;padding:10px;gap:12px}
+  .docflow-docs{grid-template-columns:1fr 1fr}
+  .docflow-actions{justify-content:stretch}
+  .docflow-actions .bsm{flex:1;min-height:38px}
+  .docflow-filter-row{display:grid;grid-template-columns:1fr}
+  .docflow-table{font-size:.72rem}
+}
+@media(max-width:430px){.docflow-docs{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -965,6 +1039,7 @@ body.mto-dark{--bg:#0f172a;--text:#e2e8f0;--muted:#94a3b8;--border:#334155}body.
       <div class="nav-item" onclick="SP('notifications',this)">🔔 Уведомления <span class="nav-badge" id="nav-notify-badge"></span></div>
       <div class="nav-item" onclick="SP('favorites',this)">⭐ Избранное</div>
       <div class="nav-item" onclick="SP('delivery-calendar',this)">📅 Календарь поставок</div>
+      <div class="nav-item" onclick="SP('object-center',this)">🏗 Центр объекта</div>
       <div class="nav-sec">Инструменты</div>
       <div class="nav-item" onclick="SP('analysis',this)">📈 Конъюнктурный анализ</div>
       <div class="nav-item" onclick="SP('chat',this)">💬 Вопросы / Чат</div>
@@ -972,6 +1047,7 @@ body.mto-dark{--bg:#0f172a;--text:#e2e8f0;--muted:#94a3b8;--border:#334155}body.
       <div class="nav-item" onclick="SP('contacts',this)">📞 Контакты</div>
       <div class="nav-item" onclick="SP('supplier-check',this)">✅ Аккредитация поставщика</div>
       <div class="nav-item" onclick="SP('contracts',this)">📄 Договоры</div>
+      <div class="nav-item" onclick="SP('docflow',this)">📁 Документооборот</div>
       <div class="nav-item" onclick="SP('analytics',this)">📊 Аналитика МТО</div>
       <div class="nav-item" onclick="SP('history',this)">🕓 История изменений</div>
       <div class="nav-sec">Пользователь</div>
@@ -1050,6 +1126,80 @@ body.mto-dark{--bg:#0f172a;--text:#e2e8f0;--muted:#94a3b8;--border:#334155}body.
           <div class="ch"><div class="ct">🚚 Ближайшие поставки</div></div>
           <div class="delivery-list" id="delivery-upcoming-list"></div>
         </div>
+      </div>
+    </div>
+
+
+    <!-- OBJECT CENTER -->
+    <div class="page" id="page-object-center">
+      <div class="object-center-hero">
+        <div>
+          <div class="object-center-title">Центр объекта</div>
+          <div class="object-center-sub" id="object-center-sub">Единая картина по заявкам, поставщикам, договорам, поставкам и документам выбранного шифра</div>
+        </div>
+        <div class="object-center-actions">
+          <select class="si2" id="object-center-select" onchange="rObjectCenter(true)" style="width:260px">
+            <option value="594-151">594-151</option>
+            <option value="594-815">594-815</option>
+            <option value="594-85">594-85</option>
+          </select>
+          <button class="btn btn-s" onclick="SP('all',document.querySelector('.nav-item[onclick*=all]'))">Все заявки</button>
+          <button class="btn btn-s" onclick="SP('delivery-calendar',document.querySelector('.nav-item[onclick*=delivery-calendar]'))">Календарь</button>
+        </div>
+      </div>
+      <div class="object-stats" id="object-center-stats"></div>
+      <div class="object-tabs">
+        <button class="object-tab active" onclick="setObjectCenterTab('orders',this)">Заявки</button>
+        <button class="object-tab" onclick="setObjectCenterTab('suppliers',this)">Поставщики</button>
+        <button class="object-tab" onclick="setObjectCenterTab('contracts',this)">Договоры</button>
+        <button class="object-tab" onclick="setObjectCenterTab('deliveries',this)">Поставки</button>
+        <button class="object-tab" onclick="setObjectCenterTab('docs',this)">Документы</button>
+      </div>
+      <div id="object-center-body"></div>
+    </div>
+
+
+    <!-- DOCUMENT FLOW -->
+    <div class="page" id="page-docflow">
+      <div class="ph">
+        <div class="pt">Документооборот</div>
+        <div class="ps">Реестр счетов, КП, договоров, УПД/ТТН и сертификатов по заявкам</div>
+      </div>
+      <div class="filter-panel">
+        <div class="filter-head">
+          <div><div class="filter-title">🔎 Фильтры документов</div><div class="filter-count" id="docflow-count">Показаны все заявки</div></div>
+        </div>
+        <div class="docflow-filter-row">
+          <select class="si2" id="docflow-shifr" onchange="rDocFlow()" style="width:150px">
+            <option value="ALL">Все шифры</option>
+            <option value="594-151">594-151</option>
+            <option value="594-815">594-815</option>
+            <option value="594-85">594-85</option>
+          </select>
+          <select class="si2" id="docflow-type" onchange="rDocFlow()" style="width:190px">
+            <option value="ALL">Все документы</option>
+            <option value="invoice">Счет</option>
+            <option value="kp">КП</option>
+            <option value="contract">Договор</option>
+            <option value="upd">УПД/ТТН</option>
+            <option value="cert">Сертификаты</option>
+          </select>
+          <select class="si2" id="docflow-status" onchange="rDocFlow()" style="width:170px">
+            <option value="ALL">Все статусы</option>
+            <option value="missing">Не хватает</option>
+            <option value="complete">Закрыто</option>
+          </select>
+          <input class="si2" id="docflow-search" placeholder="🔍 Поиск..." oninput="rDocFlow()" style="width:220px">
+          <div class="view-toggle">
+            <button id="docflow-view-cards" class="active" onclick="setDocFlowView('cards')">Карточки</button>
+            <button id="docflow-view-list" onclick="setDocFlowView('list')">Список</button>
+          </div>
+        </div>
+      </div>
+      <div class="docflow-stats" id="docflow-stats"></div>
+      <div class="card">
+        <div class="ch"><div class="ct">📁 Реестр документов</div></div>
+        <div id="docflow-body"></div>
       </div>
     </div>
 
@@ -2282,6 +2432,8 @@ window.SP=function(n,el){
   if(n==='notifications')rNotifications();
   if(n==='favorites')rFavorites();
   if(n==='delivery-calendar')rDeliveryCalendar();
+  if(n==='docflow')rDocFlow();
+  if(n==='object-center')rObjectCenter();
   renderTopCenter();
 };
 
@@ -3948,5 +4100,300 @@ function deliveryCalToday(){deliveryCalDate=new Date();rDeliveryCalendar();}
 </script>
 
 
+<script>
+
+// OBJECT CENTER — FINAL
+let objectCenterTab='orders';
+function objectNormalizeShifr(v){
+  const s=String(v||'').trim();
+  if(!s)return '';
+  const m=s.match(/594\s*[-–—]?\s*(151|815|85)/i);
+  if(m)return '594-'+m[1];
+  return s;
+}
+function objectOrderShifr(r){
+  return objectNormalizeShifr(r?.shifer || r?.shifr || r?.cipher || r?.objectCode || r?.object || r?.code || '');
+}
+function objectCenterOptions(){
+  const fixed=['594-151','594-815','594-85'];
+  const map={};
+  fixed.forEach(x=>map[x]=x);
+  (DATA||[]).forEach(r=>{
+    const sh=objectOrderShifr(r);
+    if(sh)map[sh]=sh;
+  });
+  return Object.keys(map).sort((a,b)=>{
+    const ai=fixed.indexOf(a),bi=fixed.indexOf(b);
+    if(ai>-1||bi>-1){if(ai===-1)return 1;if(bi===-1)return -1;return ai-bi;}
+    return a.localeCompare(b,'ru');
+  });
+}
+function ensureObjectCenterSelect(){
+  const sel=document.getElementById('object-center-select');
+  if(!sel)return '';
+  const old=sel.value;
+  const opts=objectCenterOptions();
+  sel.innerHTML=opts.map(sh=>`<option value="${esc(sh)}">${esc(sh)}</option>`).join('');
+  if(old && opts.includes(old))sel.value=old;
+  else if(opts.length)sel.value=opts[0];
+  return sel.value;
+}
+function objectCenterOrders(){
+  const sel=document.getElementById('object-center-select');
+  const sh=objectNormalizeShifr(sel?.value || ensureObjectCenterSelect());
+  if(!sh)return [];
+  return (DATA||[]).filter(r=>objectOrderShifr(r)===sh);
+}
+function objectCenterSupplierName(r){
+  const kp=(r.kp||[]).find(x=>x&&x.selected) || {};
+  return String(kp.supplier || r.contractor || r.supplier || r.vendor || '').trim();
+}
+function objectCenterSuppliers(orders){
+  const map={};
+  orders.forEach(r=>{
+    const name=objectCenterSupplierName(r);
+    if(!name)return;
+    if(!map[name])map[name]={name,orders:0,sum:0,last:'',inn:''};
+    map[name].orders++;
+    map[name].sum+=Number(orderTotal(r)||0);
+    const d=String(r.delivery||r.date||'');
+    if(d && d>map[name].last)map[name].last=d;
+    const kp=(r.kp||[]).find(x=>x&&x.selected) || {};
+    if(kp.inn && !map[name].inn)map[name].inn=kp.inn;
+  });
+  return Object.values(map).sort((a,b)=>b.sum-a.sum);
+}
+function objectCenterContracts(suppliers){
+  const names=suppliers.map(s=>String(s.name||'').toLowerCase());
+  const inns=suppliers.map(s=>String(s.inn||'')).filter(Boolean);
+  return (typeof CONTRACTS!=='undefined'?CONTRACTS:[]).filter(c=>{
+    const txt=JSON.stringify(c||{}).toLowerCase();
+    return names.some(n=>n&&txt.includes(n)) || inns.some(i=>i&&txt.includes(i));
+  });
+}
+function objectMissingDocs(r){
+  const arr=[];
+  if(!r.invoiceUrl && !r.invoice && !(r.invoices||[]).some(x=>x&&(x.fileUrl||x.url)))arr.push('Счет');
+  if(!(r.kp||[]).some(x=>x&&(x.url||x.fileUrl)))arr.push('КП');
+  if(!r.contractUrl && !r.contractId)arr.push('Договор');
+  if(String(r.upd||'').toLowerCase().indexOf('есть')===-1)arr.push('УПД/ТТН');
+  if(String(r.docs||'').toLowerCase().indexOf('есть')===-1)arr.push('Сертификаты');
+  return arr;
+}
+function setObjectCenterTab(tab,el){
+  objectCenterTab=tab;
+  document.querySelectorAll('.object-tab').forEach(x=>x.classList.remove('active'));
+  if(el)el.classList.add('active');
+  rObjectCenter(true);
+}
+function renderObjectCenterStats(orders,suppliers,contracts){
+  const total=orders.length;
+  const done=orders.filter(r=>isDeliveredStatus(r.status)).length;
+  const active=total-done;
+  const sum=orders.reduce((s,r)=>s+Number(orderTotal(r)||0),0);
+  const openDocs=orders.reduce((s,r)=>s+objectMissingDocs(r).length,0);
+  const next=orders.filter(r=>r.delivery&&!isDeliveredStatus(r.status)).sort((a,b)=>String(a.delivery).localeCompare(String(b.delivery)))[0];
+  const el=document.getElementById('object-center-stats'); if(!el)return;
+  el.innerHTML=`
+    <div class="object-stat"><div class="n">${total}</div><div class="t">Заявок</div></div>
+    <div class="object-stat"><div class="n">${active}</div><div class="t">В работе</div></div>
+    <div class="object-stat"><div class="n">${done}</div><div class="t">Доставлено</div></div>
+    <div class="object-stat"><div class="n">${suppliers.length}</div><div class="t">Поставщиков</div></div>
+    <div class="object-stat"><div class="n">${mn(sum)}</div><div class="t">Сумма закупок</div></div>
+    <div class="object-stat"><div class="n">${openDocs}</div><div class="t">Не хватает документов</div></div>`;
+  const sub=document.getElementById('object-center-sub');
+  const sh=document.getElementById('object-center-select')?.value||'';
+  if(sub)sub.innerHTML=`Шифр <b>${esc(sh)}</b> · ближайшая поставка: <b>${next?esc(next.delivery):'—'}</b> · договоров: <b>${contracts.length}</b>`;
+}
+function renderObjectCenterDeliveriesList(orders,limit){
+  const rows=orders.filter(r=>r.delivery).sort((a,b)=>String(a.delivery).localeCompare(String(b.delivery))).slice(0,limit||999);
+  return rows.length?rows.map(r=>`<div class="delivery-list-item ${isDeliveredStatus(r.status)?'done':''}" onclick="openOrderView('${r._k}')">
+    <div class="delivery-list-date">${esc(r.delivery||'—')}</div>
+    <div class="delivery-list-title">№${esc(r.num||r.number||r._k)} — ${esc(r.name||r.title||r.material||'Без названия')}</div>
+    <div class="delivery-list-sub">${esc(objectCenterSupplierName(r)||'—')} · ${mn(orderTotal(r)||0)}</div>
+  </div>`).join(''):'<div class="object-empty">Нет поставок</div>';
+}
+function renderObjectCenterOrders(orders){
+  return `<div class="object-layout"><div class="card"><div class="ch"><div class="ct">📋 Заявки по шифру</div></div><div class="object-list">`+
+    (orders.length?orders.map(r=>`<div class="object-row"><div>
+      <div class="object-row-title">№${esc(r.num||r.number||r._k)} — ${esc(r.name||r.title||'Без названия')}</div>
+      <div class="object-row-sub">${esc(r.material||r.note||'')} ${objectCenterSupplierName(r)?' · '+esc(objectCenterSupplierName(r)):''}</div>
+      <div class="object-row-meta">${sB(r.status)} ${shB(r.shifer||r.shifr)} <span class="badge bgr">${esc(r.company||'—')}</span> <span class="badge bgr">${esc(r.resp||'—')}</span> <span class="badge bgr">${mn(orderTotal(r)||0)}</span></div>
+    </div><div class="object-row-actions">${favoriteButton('order',r._k,favoriteTitle('order',r._k))}<button class="bsm be" onclick="openOrderView('${r._k}')">Открыть</button></div></div>`).join(''):'<div class="object-empty">Нет заявок</div>')+
+    `</div></div><div class="card"><div class="ch"><div class="ct">🚚 Ближайшие поставки</div></div><div class="object-side-list">`+
+    renderObjectCenterDeliveriesList(orders,6)+`</div></div></div>`;
+}
+function renderObjectCenterSuppliers(suppliers){
+  return `<div class="card"><div class="ch"><div class="ct">🏢 Поставщики по шифру</div></div><div class="object-list">`+
+    (suppliers.length?suppliers.map(s=>`<div class="object-row"><div><div class="object-row-title">${esc(s.name)}</div><div class="object-row-sub">Заявок: ${s.orders} · сумма: ${mn(s.sum)} · последняя поставка: ${esc(s.last||'—')}</div></div><div class="object-row-actions"><button class="bsm be" onclick="SP('contacts',document.querySelector('.nav-item[onclick*=contacts]'))">Контакты</button></div></div>`).join(''):'<div class="object-empty">Нет поставщиков</div>')+
+    `</div></div>`;
+}
+function renderObjectCenterContracts(contracts){
+  return `<div class="card"><div class="ch"><div class="ct">📄 Договоры по шифру</div></div><div class="object-list">`+
+    (contracts.length?contracts.map(c=>`<div class="object-row"><div><div class="object-row-title">${esc(c.number||c.num||c.title||c.name||'Договор')}</div><div class="object-row-sub">${esc(c.contractor||c.supplier||c.contactName||'')} · ${esc(c.date||'')} · ${mn(c.sum||c.amount||0)}</div></div><div class="object-row-actions">${c.fileUrl||c.url?`<a class="bsm be" href="${esc(c.fileUrl||c.url)}" target="_blank">Файл</a>`:''}</div></div>`).join(''):'<div class="object-empty">Нет связанных договоров</div>')+
+    `</div></div>`;
+}
+function renderObjectCenterDocs(orders){
+  return `<div class="card"><div class="ch"><div class="ct">📁 Документы по шифру</div></div><div class="object-doc-grid">`+
+    (orders.length?orders.map(r=>{const miss=objectMissingDocs(r);return `<div class="object-doc-card"><div class="object-doc-title">№${esc(r.num||r.number||r._k)} — ${esc(r.name||r.title||'')}</div><div>${invoiceCell(r)} ${kpCell(r)} ${contractCell(r)}</div>${miss.length?`<div class="object-doc-missing">Не хватает: ${esc(miss.join(', '))}</div>`:'<div class="badge bg" style="margin-top:8px">Документы закрыты</div>'}<div style="margin-top:8px"><button class="bsm be" onclick="openOrderView('${r._k}')">Открыть</button></div></div>`}).join(''):'<div class="object-empty">Нет заявок</div>')+
+    `</div></div>`;
+}
+function rObjectCenter(keepSelected){
+  const page=document.getElementById('page-object-center');
+  if(!page||!CU)return;
+  if(!keepSelected)ensureObjectCenterSelect();
+  const orders=objectCenterOrders();
+  const suppliers=objectCenterSuppliers(orders);
+  const contracts=objectCenterContracts(suppliers);
+  renderObjectCenterStats(orders,suppliers,contracts);
+  const body=document.getElementById('object-center-body'); if(!body)return;
+  if(objectCenterTab==='suppliers')body.innerHTML=renderObjectCenterSuppliers(suppliers);
+  else if(objectCenterTab==='contracts')body.innerHTML=renderObjectCenterContracts(contracts);
+  else if(objectCenterTab==='deliveries')body.innerHTML=`<div class="card"><div class="ch"><div class="ct">🚚 Поставки по шифру</div></div><div class="delivery-list">${renderObjectCenterDeliveriesList(orders,999)}</div></div>`;
+  else if(objectCenterTab==='docs')body.innerHTML=renderObjectCenterDocs(orders);
+  else body.innerHTML=renderObjectCenterOrders(orders);
+}
+window.rObjectCenter=rObjectCenter;
+window.setObjectCenterTab=setObjectCenterTab;
+
+</script>
+<script>
+
+// DOCUMENT FLOW
+let docFlowView='cards';
+function setDocFlowView(v){
+  docFlowView=v||'cards';
+  const a=document.getElementById('docflow-view-cards'), b=document.getElementById('docflow-view-list');
+  if(a)a.classList.toggle('active',docFlowView==='cards');
+  if(b)b.classList.toggle('active',docFlowView==='list');
+  rDocFlow();
+}
+function docFlowHasInvoice(r){
+  return !!(r.invoiceUrl || r.invoice || (r.invoices||[]).some(x=>x&&(x.fileUrl||x.url||x.supplier||x.sum)));
+}
+function docFlowHasKp(r){
+  return !!((r.kp||[]).some(x=>x&&(x.url||x.fileUrl||x.supplier||x.sum)));
+}
+function docFlowHasContract(r){
+  return !!(r.contractUrl || r.contractId || r.contractNumber || r.contract || r.dogovor);
+}
+function docFlowHasUpd(r){
+  return String(r.upd||'').toLowerCase().includes('есть') || !!(r.updUrl||r.updFile);
+}
+function docFlowHasCert(r){
+  return String(r.docs||'').toLowerCase().includes('есть') || !!(r.certUrl||r.certificateUrl);
+}
+function docFlowStatus(r){
+  return {
+    invoice:docFlowHasInvoice(r),
+    kp:docFlowHasKp(r),
+    contract:docFlowHasContract(r),
+    upd:docFlowHasUpd(r),
+    cert:docFlowHasCert(r)
+  };
+}
+function docFlowMissing(r){
+  const s=docFlowStatus(r), m=[];
+  if(!s.invoice)m.push('Счет');
+  if(!s.kp)m.push('КП');
+  if(!s.contract)m.push('Договор');
+  if(!s.upd)m.push('УПД/ТТН');
+  if(!s.cert)m.push('Сертификаты');
+  return m;
+}
+function docFlowShifr(r){return String(r.shifer||r.shifr||r.cipher||'').trim();}
+function docFlowRows(){
+  let d=[...(DATA||[])];
+  const sh=document.getElementById('docflow-shifr')?.value||'ALL';
+  const type=document.getElementById('docflow-type')?.value||'ALL';
+  const st=document.getElementById('docflow-status')?.value||'ALL';
+  const q=String(document.getElementById('docflow-search')?.value||'').toLowerCase().trim();
+  if(sh!=='ALL')d=d.filter(r=>docFlowShifr(r)===sh);
+  if(type!=='ALL')d=d.filter(r=>!docFlowStatus(r)[type]);
+  if(st==='missing')d=d.filter(r=>docFlowMissing(r).length>0);
+  if(st==='complete')d=d.filter(r=>docFlowMissing(r).length===0);
+  if(q)d=d.filter(r=>JSON.stringify(r).toLowerCase().includes(q));
+  return d;
+}
+function docFlowLink(label, ok, html){
+  return `<div class="docflow-doc ${ok?'ok':'no'}"><div class="docflow-doc-title">${label}</div><div class="docflow-doc-val">${ok?'✅ Есть':'❌ Нет'}</div>${ok?(html||''):''}</div>`;
+}
+function docFlowInvoiceLink(r){
+  const arr=invoiceList(r);
+  if(arr.length && arr[0].url)return `<a class="docflow-doc-link" href="${esc(arr[0].url)}" target="_blank">Открыть</a>`;
+  if(r.invoiceUrl||r.invoice)return `<a class="docflow-doc-link" href="${esc(r.invoiceUrl||r.invoice)}" target="_blank">Открыть</a>`;
+  return '';
+}
+function docFlowKpLink(r){
+  const k=(r.kp||[]).find(x=>x&&(x.url||x.fileUrl));
+  return k?`<a class="docflow-doc-link" href="${esc(k.url||k.fileUrl)}" target="_blank">Открыть</a>`:'';
+}
+function docFlowContractLink(r){
+  const url=r.contractUrl||r.contractFile||'';
+  return url?`<a class="docflow-doc-link" href="${esc(url)}" target="_blank">Открыть</a>`:'';
+}
+function docFlowCard(r){
+  const s=docFlowStatus(r), miss=docFlowMissing(r);
+  return `<div class="docflow-card">
+    <div class="docflow-card-head">
+      <div><div class="docflow-title">№${esc(r.num||r.number||r._k)} — ${esc(r.name||r.title||'Без названия')}</div>
+      <div class="docflow-sub">${esc(docFlowShifr(r)||'—')} · ${esc(r.company||'—')} · ${esc(r.contractor||supplierTextForOrder(r)||'—')}</div></div>
+      <div>${miss.length?'<span class="badge br">Не хватает</span>':'<span class="badge bg">Закрыто</span>'}</div>
+    </div>
+    <div class="docflow-body"><div class="docflow-docs">
+      ${docFlowLink('Счет',s.invoice,docFlowInvoiceLink(r))}
+      ${docFlowLink('КП',s.kp,docFlowKpLink(r))}
+      ${docFlowLink('Договор',s.contract,docFlowContractLink(r))}
+      ${docFlowLink('УПД/ТТН',s.upd,'')}
+      ${docFlowLink('Сертификаты',s.cert,'')}
+    </div>${miss.length?`<div class="docflow-missing">Не хватает: ${esc(miss.join(', '))}</div>`:''}</div>
+    <div class="docflow-actions"><button class="bsm be" onclick="openOrderView('${r._k}')">Открыть заявку</button>${typeof editOrder==='function'?`<button class="bsm be" onclick="editOrder('${r._k}')">Редактировать</button>`:''}</div>
+  </div>`;
+}
+function docFlowListRow(r){
+  const s=docFlowStatus(r), miss=docFlowMissing(r);
+  const mark=v=>v?'<span class="badge bg">Есть</span>':'<span class="badge br">Нет</span>';
+  return `<tr>
+    <td>${esc(r.num||r.number||r._k)}</td>
+    <td>${esc(docFlowShifr(r)||'—')}</td>
+    <td>${esc(r.company||'—')}</td>
+    <td>${esc(r.name||r.title||'Без названия')}</td>
+    <td>${mark(s.invoice)}</td><td>${mark(s.kp)}</td><td>${mark(s.contract)}</td><td>${mark(s.upd)}</td><td>${mark(s.cert)}</td>
+    <td>${miss.length?esc(miss.join(', ')):'—'}</td>
+    <td><button class="bsm be" onclick="openOrderView('${r._k}')">Открыть</button></td>
+  </tr>`;
+}
+function rDocFlow(){
+  const body=document.getElementById('docflow-body'); if(!body||!CU)return;
+  const d=docFlowRows();
+  const total=d.length;
+  const missing=d.filter(r=>docFlowMissing(r).length>0).length;
+  const complete=total-missing;
+  const missInvoice=d.filter(r=>!docFlowHasInvoice(r)).length;
+  const missKp=d.filter(r=>!docFlowHasKp(r)).length;
+  const missContract=d.filter(r=>!docFlowHasContract(r)).length;
+  const st=document.getElementById('docflow-stats');
+  if(st)st.innerHTML=`
+    <div class="docflow-stat"><div class="n">${total}</div><div class="t">Заявок</div></div>
+    <div class="docflow-stat"><div class="n">${complete}</div><div class="t">Документы закрыты</div></div>
+    <div class="docflow-stat"><div class="n">${missing}</div><div class="t">Есть недостача</div></div>
+    <div class="docflow-stat"><div class="n">${missInvoice}</div><div class="t">Нет счетов</div></div>
+    <div class="docflow-stat"><div class="n">${missContract}</div><div class="t">Нет договоров</div></div>`;
+  const cnt=document.getElementById('docflow-count');
+  if(cnt)cnt.textContent=`Показано: ${total}, с недостающими документами: ${missing}`;
+  const a=document.getElementById('docflow-view-cards'), b=document.getElementById('docflow-view-list');
+  if(a)a.classList.toggle('active',docFlowView==='cards');
+  if(b)b.classList.toggle('active',docFlowView==='list');
+  if(!d.length){body.innerHTML='<div class="erow">Нет данных</div>';return;}
+  if(docFlowView==='list'){
+    body.innerHTML=`<div class="docflow-table-wrap"><table class="docflow-table"><thead><tr><th>№</th><th>Шифр</th><th>Компания</th><th>Заявка</th><th>Счет</th><th>КП</th><th>Договор</th><th>УПД/ТТН</th><th>Сертификаты</th><th>Не хватает</th><th></th></tr></thead><tbody>${d.map(docFlowListRow).join('')}</tbody></table></div>`;
+  }else{
+    body.innerHTML=`<div class="docflow-grid">${d.map(docFlowCard).join('')}</div>`;
+  }
+}
+window.rDocFlow=rDocFlow;
+window.setDocFlowView=setDocFlowView;
+
+</script>
 </body>
 </html>
