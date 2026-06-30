@@ -1010,7 +1010,64 @@ body.mto-dark{--bg:#0f172a;--text:#e2e8f0;--muted:#94a3b8;--border:#334155}body.
 }
 @media(max-width:430px){.docflow-docs{grid-template-columns:1fr}}
 
+
+/* AI HELPER */
+.ai-layout{display:grid;grid-template-columns:1fr 360px;gap:16px;align-items:start}
+.ai-chat-card{overflow:hidden}
+.ai-messages{height:560px;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:12px;background:#f8fafc}
+.ai-msg{max-width:86%;display:flex;flex-direction:column;gap:4px}
+.ai-msg.user{align-self:flex-end;align-items:flex-end}
+.ai-msg.bot{align-self:flex-start}
+.ai-bubble{padding:11px 14px;border-radius:14px;font-size:.88rem;line-height:1.45;white-space:pre-wrap}
+.ai-msg.user .ai-bubble{background:var(--accent);color:#fff;border-bottom-right-radius:4px}
+.ai-msg.bot .ai-bubble{background:#fff;border:1px solid var(--border);border-bottom-left-radius:4px;color:var(--text)}
+.ai-meta{font-size:.68rem;color:var(--muted)}
+.ai-input-row{display:flex;gap:8px;padding:12px;border-top:1px solid var(--border);background:#fff}
+.ai-input{flex:1;padding:11px 13px;border:1.5px solid var(--border);border-radius:10px;font-size:.9rem;outline:none;font-family:inherit}
+.ai-input:focus{border-color:var(--accent)}
+.ai-side{display:flex;flex-direction:column;gap:14px}
+.ai-quick{display:grid;grid-template-columns:1fr;gap:8px;padding:14px}
+.ai-q{padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:#fff;text-align:left;cursor:pointer;font-weight:750;color:var(--primary);font-size:.82rem}
+.ai-q:hover{background:#eff6ff;border-color:var(--accent)}
+.ai-answer-table{width:100%;border-collapse:collapse;margin-top:8px;font-size:.78rem;background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.ai-answer-table th{background:#f1f5f9;color:var(--muted);font-size:.66rem;text-transform:uppercase;padding:7px;text-align:left}
+.ai-answer-table td{padding:7px;border-top:1px solid var(--border)}
+.ai-chip-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.ai-chip{border-radius:999px;padding:3px 8px;background:#eff6ff;color:#1d4ed8;font-size:.68rem;font-weight:800}
+.ai-kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding:14px}
+.ai-kpi{background:#fff;border:1px solid var(--border);border-radius:12px;padding:11px}
+.ai-kpi .n{font-size:1.15rem;font-weight:900;color:var(--primary)}
+.ai-kpi .t{font-size:.62rem;color:var(--muted);font-weight:850;text-transform:uppercase;letter-spacing:.3px;margin-top:3px}
+@media(max-width:1050px){.ai-layout{grid-template-columns:1fr}.ai-messages{height:480px}}
+@media(max-width:768px){
+  .ai-messages{height:calc(100vh - 300px);padding:10px}
+  .ai-msg{max-width:94%}
+  .ai-input-row{display:grid;grid-template-columns:1fr;gap:8px}
+  .ai-input-row .btn{width:100%}
+  .ai-kpis{grid-template-columns:1fr 1fr}
+}
+
+
+/* PWA INSTALL */
+.pwa-install-btn{
+  position:fixed;right:18px;bottom:74px;z-index:1200;
+  border:none;border-radius:999px;padding:11px 16px;
+  background:linear-gradient(135deg,#1a2f4e,#3b82f6);color:#fff;
+  font-weight:900;box-shadow:0 10px 30px rgba(15,23,42,.28);
+  cursor:pointer;display:none;align-items:center;gap:8px;
+}
+.pwa-install-btn.show{display:flex}
+@media(max-width:768px){.pwa-install-btn{right:14px;bottom:74px}}
+
 </style>
+
+<meta name="theme-color" content="#1a2f4e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="МТО">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+
 </head>
 <body>
 <div id="loading"><div class="spinner"></div><div style="color:var(--muted);font-size:.9rem">Подключение...</div></div>
@@ -1048,6 +1105,7 @@ body.mto-dark{--bg:#0f172a;--text:#e2e8f0;--muted:#94a3b8;--border:#334155}body.
       <div class="nav-item" onclick="SP('supplier-check',this)">✅ Аккредитация поставщика</div>
       <div class="nav-item" onclick="SP('contracts',this)">📄 Договоры</div>
       <div class="nav-item" onclick="SP('docflow',this)">📁 Документооборот</div>
+      <div class="nav-item" onclick="SP('ai-helper',this)">🤖 AI-помощник</div>
       <div class="nav-item" onclick="SP('analytics',this)">📊 Аналитика МТО</div>
       <div class="nav-item" onclick="SP('history',this)">🕓 История изменений</div>
       <div class="nav-sec">Пользователь</div>
@@ -1200,6 +1258,46 @@ body.mto-dark{--bg:#0f172a;--text:#e2e8f0;--muted:#94a3b8;--border:#334155}body.
       <div class="card">
         <div class="ch"><div class="ct">📁 Реестр документов</div></div>
         <div id="docflow-body"></div>
+      </div>
+    </div>
+
+
+    <!-- AI HELPER -->
+    <div class="page" id="page-ai-helper">
+      <div class="ph">
+        <div class="pt">AI-помощник</div>
+        <div class="ps">Быстрые ответы по заявкам, поставкам, документам, поставщикам и шифрам</div>
+      </div>
+      <div class="ai-layout">
+        <div class="card ai-chat-card">
+          <div class="ch">
+            <div class="ct">🤖 Помощник МТО</div>
+            <button class="btn btn-s" onclick="aiClearChat()">Очистить</button>
+          </div>
+          <div class="ai-messages" id="ai-messages"></div>
+          <div class="ai-input-row">
+            <input class="ai-input" id="ai-input" placeholder="Например: покажи просрочки по 594-151" onkeydown="if(event.key==='Enter')aiAsk()">
+            <button class="btn btn-p" onclick="aiAsk()">Спросить</button>
+          </div>
+        </div>
+        <div class="ai-side">
+          <div class="card">
+            <div class="ch"><div class="ct">⚡ Быстрые запросы</div></div>
+            <div class="ai-quick">
+              <button class="ai-q" onclick="aiQuick('Покажи просроченные поставки')">Просроченные поставки</button>
+              <button class="ai-q" onclick="aiQuick('Какие документы не хватает')">Каких документов не хватает</button>
+              <button class="ai-q" onclick="aiQuick('Покажи заявки на оплате')">Заявки на оплате</button>
+              <button class="ai-q" onclick="aiQuick('Поставки на сегодня')">Поставки на сегодня</button>
+              <button class="ai-q" onclick="aiQuick('Поставки на неделю')">Поставки на неделю</button>
+              <button class="ai-q" onclick="aiQuick('Топ поставщиков')">Топ поставщиков</button>
+              <button class="ai-q" onclick="aiQuick('Сводка по шифрам')">Сводка по шифрам</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="ch"><div class="ct">📊 Сводка</div></div>
+            <div class="ai-kpis" id="ai-kpis"></div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -2433,6 +2531,7 @@ window.SP=function(n,el){
   if(n==='favorites')rFavorites();
   if(n==='delivery-calendar')rDeliveryCalendar();
   if(n==='docflow')rDocFlow();
+  if(n==='ai-helper')rAiHelper();
   if(n==='object-center')rObjectCenter();
   renderTopCenter();
 };
@@ -3886,6 +3985,7 @@ document.querySelectorAll('.mo').forEach(o=>o.addEventListener('click',e=>{if(e.
     </div>
   </div>
 </div>
+<button class="pwa-install-btn" id="pwa-install-btn" onclick="installPwaApp()">📲 Установить МТО</button>
 <button class="tour-help-btn" id="tour-help-btn" onclick="startTour(true)" title="Пройти обучение">?</button>
 
 
@@ -4395,5 +4495,223 @@ window.rDocFlow=rDocFlow;
 window.setDocFlowView=setDocFlowView;
 
 </script>
+<script>
+
+// AI HELPER — local rule-based assistant
+let aiChatStarted=false;
+function aiTodayStr(){
+  const d=new Date();
+  return d.toISOString().slice(0,10);
+}
+function aiAddMsg(role,text,htmlExtra){
+  const box=document.getElementById('ai-messages'); if(!box)return;
+  const div=document.createElement('div');
+  div.className='ai-msg '+(role==='user'?'user':'bot');
+  div.innerHTML=`<div class="ai-bubble">${esc(text||'')}${htmlExtra||''}</div><div class="ai-meta">${role==='user'?'Вы':'AI-помощник'} · ${new Date().toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'})}</div>`;
+  box.appendChild(div);
+  box.scrollTop=box.scrollHeight;
+}
+function aiClearChat(){
+  const box=document.getElementById('ai-messages'); if(box)box.innerHTML='';
+  aiChatStarted=false;
+  rAiHelper();
+}
+function aiQuick(q){
+  const inp=document.getElementById('ai-input');
+  if(inp)inp.value=q;
+  aiAsk();
+}
+function aiOrderShifr(r){return String(r.shifer||r.shifr||r.cipher||'').trim();}
+function aiIsDone(r){return isDeliveredStatus(r.status);}
+function aiDeliveryDate(r){return String(r.delivery||r.deliveryDate||'').slice(0,10);}
+function aiIsOverdue(r){
+  const d=aiDeliveryDate(r);
+  return !!(d && d<aiTodayStr() && !aiIsDone(r));
+}
+function aiOrderSum(r){return Number(orderTotal(r)||0);}
+function aiSupplier(r){return String(supplierTextForOrder(r)||r.contractor||r.supplier||r.vendor||'').trim();}
+function aiDocMissing(r){
+  const miss=[];
+  if(typeof docFlowMissing==='function')return docFlowMissing(r);
+  if(!r.invoiceUrl && !r.invoice && !(r.invoices||[]).some(x=>x&&(x.fileUrl||x.url||x.supplier||x.sum)))miss.push('Счет');
+  if(!(r.kp||[]).some(x=>x&&(x.url||x.fileUrl||x.supplier||x.sum)))miss.push('КП');
+  if(!r.contractUrl && !r.contractId && !r.contractNumber && !r.contract && !r.dogovor)miss.push('Договор');
+  if(String(r.upd||'').toLowerCase().indexOf('есть')===-1)miss.push('УПД/ТТН');
+  if(String(r.docs||'').toLowerCase().indexOf('есть')===-1)miss.push('Сертификаты');
+  return miss;
+}
+function aiTable(rows,cols){
+  if(!rows.length)return '<div class="ai-chip-row"><span class="ai-chip">Нет данных</span></div>';
+  return `<table class="ai-answer-table"><thead><tr>${cols.map(c=>`<th>${esc(c.t)}</th>`).join('')}</tr></thead><tbody>`+
+    rows.slice(0,12).map(r=>`<tr>${cols.map(c=>`<td>${c.f(r)}</td>`).join('')}</tr>`).join('')+
+    `</tbody></table>${rows.length>12?`<div class="ai-chip-row"><span class="ai-chip">Показано 12 из ${rows.length}</span></div>`:''}`;
+}
+function aiOrderCols(){
+  return [
+    {t:'№',f:r=>esc(r.num||r.number||r._k)},
+    {t:'Шифр',f:r=>esc(aiOrderShifr(r)||'—')},
+    {t:'Заявка',f:r=>esc(r.name||r.title||r.material||'—')},
+    {t:'Поставщик',f:r=>esc(aiSupplier(r)||'—')},
+    {t:'Поставка',f:r=>esc(aiDeliveryDate(r)||'—')},
+    {t:'Сумма',f:r=>mn(aiOrderSum(r))},
+    {t:'',f:r=>`<button class="bsm be" onclick="openOrderView('${r._k}')">Открыть</button>`}
+  ];
+}
+function aiFilterByQuery(list,q){
+  const m=q.match(/594\s*[-–—]?\s*(151|815|85)/i);
+  if(m){
+    const sh='594-'+m[1];
+    list=list.filter(r=>aiOrderShifr(r)===sh);
+  }
+  if(q.includes('стелс'))list=list.filter(r=>String(r.company||'').toLowerCase()==='стелс');
+  if(q.includes('дорснаб'))list=list.filter(r=>String(r.company||'').toLowerCase()==='дорснаб');
+  return list;
+}
+function aiAnswer(qRaw){
+  const q=String(qRaw||'').toLowerCase().trim();
+  let list=aiFilterByQuery([...(DATA||[])],q);
+
+  if(q.includes('просроч')){
+    const rows=list.filter(aiIsOverdue).sort((a,b)=>aiDeliveryDate(a).localeCompare(aiDeliveryDate(b)));
+    return {text:`Просроченных поставок: ${rows.length}`,html:aiTable(rows,aiOrderCols())};
+  }
+
+  if(q.includes('сегодня')){
+    const t=aiTodayStr();
+    const rows=list.filter(r=>aiDeliveryDate(r)===t).sort((a,b)=>String(a.num||'').localeCompare(String(b.num||'')));
+    return {text:`Поставок на сегодня: ${rows.length}`,html:aiTable(rows,aiOrderCols())};
+  }
+
+  if(q.includes('недел')){
+    const now=new Date(aiTodayStr());
+    const end=new Date(now); end.setDate(end.getDate()+7);
+    const e=end.toISOString().slice(0,10);
+    const rows=list.filter(r=>{const d=aiDeliveryDate(r); return d && d>=aiTodayStr() && d<=e;}).sort((a,b)=>aiDeliveryDate(a).localeCompare(aiDeliveryDate(b)));
+    return {text:`Поставок на ближайшие 7 дней: ${rows.length}`,html:aiTable(rows,aiOrderCols())};
+  }
+
+  if(q.includes('документ') || q.includes('док') || q.includes('упд') || q.includes('сертификат') || q.includes('договор')){
+    const rows=list.filter(r=>aiDocMissing(r).length>0).sort((a,b)=>aiDocMissing(b).length-aiDocMissing(a).length);
+    const cols=[
+      {t:'№',f:r=>esc(r.num||r.number||r._k)},
+      {t:'Шифр',f:r=>esc(aiOrderShifr(r)||'—')},
+      {t:'Заявка',f:r=>esc(r.name||r.title||'—')},
+      {t:'Не хватает',f:r=>esc(aiDocMissing(r).join(', '))},
+      {t:'',f:r=>`<button class="bsm be" onclick="openOrderView('${r._k}')">Открыть</button>`}
+    ];
+    return {text:`Заявок с недостающими документами: ${rows.length}`,html:aiTable(rows,cols)};
+  }
+
+  if(q.includes('оплат')){
+    const rows=list.filter(r=>String(r.payment||r.status||'').toLowerCase().includes('оплат') && !String(r.payment||r.status||'').toLowerCase().includes('оплачено')).sort((a,b)=>String(a.delivery||'').localeCompare(String(b.delivery||'')));
+    return {text:`Заявок на оплате: ${rows.length}`,html:aiTable(rows,aiOrderCols())};
+  }
+
+  if(q.includes('топ') && (q.includes('постав') || q.includes('контраг'))){
+    const map={};
+    list.forEach(r=>{
+      const s=aiSupplier(r)||'Без поставщика';
+      if(!map[s])map[s]={name:s,count:0,sum:0};
+      map[s].count++; map[s].sum+=aiOrderSum(r);
+    });
+    const rows=Object.values(map).sort((a,b)=>b.sum-a.sum).slice(0,10);
+    const cols=[{t:'Поставщик',f:r=>esc(r.name)},{t:'Заявок',f:r=>r.count},{t:'Сумма',f:r=>mn(r.sum)}];
+    return {text:'Топ поставщиков по сумме закупок:',html:aiTable(rows,cols)};
+  }
+
+  if(q.includes('шифр') || q.includes('объект')){
+    const map={};
+    list.forEach(r=>{
+      const sh=aiOrderShifr(r)||'Без шифра';
+      if(!map[sh])map[sh]={sh,count:0,sum:0,active:0,done:0,missing:0};
+      map[sh].count++; map[sh].sum+=aiOrderSum(r);
+      if(aiIsDone(r))map[sh].done++; else map[sh].active++;
+      if(aiDocMissing(r).length)map[sh].missing++;
+    });
+    const rows=Object.values(map).sort((a,b)=>a.sh.localeCompare(b.sh,'ru'));
+    const cols=[{t:'Шифр',f:r=>esc(r.sh)},{t:'Заявок',f:r=>r.count},{t:'В работе',f:r=>r.active},{t:'Доставлено',f:r=>r.done},{t:'Нет док.',f:r=>r.missing},{t:'Сумма',f:r=>mn(r.sum)}];
+    return {text:'Сводка по шифрам:',html:aiTable(rows,cols)};
+  }
+
+  if(q.includes('поиск') || q.includes('найди') || q.includes('покажи')){
+    const words=q.split(/\s+/).filter(w=>w.length>2 && !['покажи','найди','поиск','заявки','заявку'].includes(w));
+    const rows=list.filter(r=>words.every(w=>JSON.stringify(r).toLowerCase().includes(w))).slice(0,30);
+    return {text:`Найдено заявок: ${rows.length}`,html:aiTable(rows,aiOrderCols())};
+  }
+
+  const total=list.length;
+  const active=list.filter(r=>!aiIsDone(r)).length;
+  const overdue=list.filter(aiIsOverdue).length;
+  const missing=list.filter(r=>aiDocMissing(r).length>0).length;
+  return {text:`Сводка МТО:
+Заявок: ${total}
+В работе: ${active}
+Просрочено поставок: ${overdue}
+С недостающими документами: ${missing}
+
+Можно спросить: "покажи просрочки", "документы по 594-151", "топ поставщиков", "поставки на неделю".`,html:''};
+}
+function aiAsk(){
+  const inp=document.getElementById('ai-input'); if(!inp)return;
+  const q=inp.value.trim(); if(!q)return;
+  inp.value='';
+  aiAddMsg('user',q);
+  const res=aiAnswer(q);
+  aiAddMsg('bot',res.text,res.html);
+}
+function aiKpiBox(n,t){return `<div class="ai-kpi"><div class="n">${n}</div><div class="t">${t}</div></div>`;}
+function rAiHelper(){
+  const box=document.getElementById('ai-messages'); if(!box||!CU)return;
+  const total=(DATA||[]).length;
+  const active=(DATA||[]).filter(r=>!aiIsDone(r)).length;
+  const overdue=(DATA||[]).filter(aiIsOverdue).length;
+  const missing=(DATA||[]).filter(r=>aiDocMissing(r).length>0).length;
+  const k=document.getElementById('ai-kpis');
+  if(k)k.innerHTML=[aiKpiBox(total,'всего заявок'),aiKpiBox(active,'в работе'),aiKpiBox(overdue,'просрочек'),aiKpiBox(missing,'нет документов')].join('');
+  if(!aiChatStarted){
+    aiChatStarted=true;
+    aiAddMsg('bot','Готов. Задай вопрос по МТО или выбери быстрый запрос справа.');
+  }
+}
+window.rAiHelper=rAiHelper;
+window.aiAsk=aiAsk;
+window.aiQuick=aiQuick;
+window.aiClearChat=aiClearChat;
+
+</script>
+
+<script>
+/* PWA */
+let mtoDeferredPrompt=null;
+window.addEventListener('beforeinstallprompt',function(e){
+  e.preventDefault();
+  mtoDeferredPrompt=e;
+  const btn=document.getElementById('pwa-install-btn');
+  if(btn)btn.classList.add('show');
+});
+window.installPwaApp=async function(){
+  const btn=document.getElementById('pwa-install-btn');
+  if(!mtoDeferredPrompt){
+    alert('Если кнопка установки недоступна, откройте меню браузера и выберите «Установить приложение» или «Добавить на главный экран».');
+    return;
+  }
+  mtoDeferredPrompt.prompt();
+  await mtoDeferredPrompt.userChoice;
+  mtoDeferredPrompt=null;
+  if(btn)btn.classList.remove('show');
+};
+window.addEventListener('appinstalled',function(){
+  const btn=document.getElementById('pwa-install-btn');
+  if(btn)btn.classList.remove('show');
+});
+if('serviceWorker' in navigator){
+  window.addEventListener('load',function(){
+    navigator.serviceWorker.register('./service-worker.js').catch(function(err){
+      console.warn('Service Worker не зарегистрирован:',err);
+    });
+  });
+}
+</script>
+
 </body>
 </html>
