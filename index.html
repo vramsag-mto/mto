@@ -803,6 +803,63 @@ tr:hover td{background:#f8fafc}
 .contact-list-table td{padding:9px;border-top:1px solid var(--border);vertical-align:middle}
 @media(max-width:768px){.view-toggle{width:100%;justify-content:center}.view-toggle button{flex:1}.page.view-list table{font-size:.72rem!important}.page.view-list th,.page.view-list td{padding:7px 8px!important}.contact-list-table{font-size:.72rem}}
 
+
+/* USER PROFILE */
+.profile-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:16px;padding:16px}
+.profile-box{border:1px solid var(--border);border-radius:14px;background:#fff;padding:18px}
+.profile-head{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.profile-avatar{width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.35rem;font-weight:900;flex-shrink:0;background-size:cover;background-position:center;overflow:hidden}
+.profile-avatar.big{width:86px;height:86px;font-size:2rem;margin-bottom:10px}
+.profile-name{font-weight:900;color:var(--primary);font-size:1.05rem}
+.profile-role{font-size:.8rem;color:var(--muted);margin-top:2px}
+.profile-row{display:grid;grid-template-columns:130px 1fr;gap:10px;padding:9px 0;border-bottom:1px solid #eef2f7;font-size:.86rem}
+.profile-row b{color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.35px}
+.profile-msg{margin-top:10px;font-size:.84rem;font-weight:700}
+.profile-msg.ok{color:#15803d}.profile-msg.err{color:#b91c1c}
+.profile-avatar-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.uav.has-img{background-size:cover!important;background-position:center!important;color:transparent!important}
+.profile-box .ct{font-weight:900;color:var(--primary)}
+@media(max-width:768px){.profile-wrap{grid-template-columns:1fr;padding:10px}.profile-row{grid-template-columns:1fr}.profile-avatar-actions .btn{width:100%}}
+
+
+
+/* USER AVATARS IN ORDERS / CHAT */
+.user-chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--border);background:#f8fafc;color:var(--primary);border-radius:999px;padding:3px 8px;font-size:.76rem;font-weight:800;cursor:pointer;margin:2px 4px 2px 0}
+.user-chip:hover{background:#eff6ff;border-color:#bfdbfe}
+.user-mini-avatar{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:900;background-size:cover;background-position:center;flex-shrink:0}
+.user-mini-avatar.has-img{color:transparent!important}
+.user-mini-avatar.lg{width:38px;height:38px;font-size:1rem}
+.msg-row{display:flex;align-items:flex-end;gap:8px;max-width:86%}
+.msg-row.me{align-self:flex-end;flex-direction:row-reverse}
+.msg-row.other{align-self:flex-start}
+.msg-row .msg{max-width:100%}
+.pm-head-user{display:flex;align-items:center;gap:8px}
+.pav.has-img{background-size:cover!important;background-position:center!important;color:transparent!important}
+.chat-author-note{font-size:.72rem;color:var(--muted);align-self:center;white-space:nowrap}
+@media(max-width:768px){.msg-row{max-width:96%}.chat-author-note{display:none}.user-chip{font-size:.72rem}}
+
+
+/* CABINET TABS */
+.profile-tabs{display:flex;gap:7px;flex-wrap:wrap;margin:0 16px 12px}
+.profile-tab{padding:8px 13px;border:1px solid var(--border);border-radius:10px;background:#fff;color:var(--muted);font-size:.82rem;font-weight:850;cursor:pointer}
+.profile-tab.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.profile-section{display:none}
+.profile-section.active{display:block}
+.profile-kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.profile-kpi{border:1px solid var(--border);background:#f8fafc;border-radius:13px;padding:12px}
+.profile-kpi .n{font-size:1.35rem;font-weight:950;color:var(--primary)}
+.profile-kpi .t{font-size:.64rem;color:var(--muted);text-transform:uppercase;font-weight:850;letter-spacing:.35px;margin-top:3px}
+.profile-setting{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid var(--border);border-radius:12px;background:#f8fafc;padding:11px;margin-bottom:8px;font-size:.86rem}
+.profile-setting b{color:var(--primary)}
+.profile-setting span{font-size:.75rem;color:var(--muted);display:block;margin-top:2px}
+.profile-setting input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shrink:0}
+.profile-mini-table{width:100%;border-collapse:collapse;font-size:.82rem;margin-top:8px}
+.profile-mini-table th{background:#f8fafc;color:var(--muted);font-size:.66rem;text-transform:uppercase;letter-spacing:.35px}
+.profile-mini-table th,.profile-mini-table td{padding:8px;border-top:1px solid var(--border);text-align:left}
+body.mto-dark{--bg:#0f172a;--text:#e2e8f0;--muted:#94a3b8;--border:#334155}body.mto-dark .card,body.mto-dark .profile-box,body.mto-dark .con-card,body.mto-dark .mto-order-card,body.mto-dark .mto-contract-card{background:#111827;color:var(--text)}body.mto-dark .profile-kpi,body.mto-dark .profile-setting,body.mto-dark .mto-card-body,body.mto-dark .mto-card-field{background:#1e293b;border-color:#334155}
+@media(max-width:768px){.profile-tabs{margin:0 10px 10px;overflow-x:auto;flex-wrap:nowrap}.profile-tab{white-space:nowrap;flex:0 0 auto}.profile-kpi-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:430px){.profile-kpi-grid{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -838,6 +895,8 @@ tr:hover td{background:#f8fafc}
       <div class="nav-item" onclick="SP('contracts',this)">📄 Договоры</div>
       <div class="nav-item" onclick="SP('analytics',this)">📊 Аналитика МТО</div>
       <div class="nav-item" onclick="SP('history',this)">🕓 История изменений</div>
+      <div class="nav-sec">Пользователь</div>
+      <div class="nav-item" onclick="SP('profile',this)">👤 Профиль</div>
       <div class="nav-sec">Управление</div>
       <div class="nav-item" onclick="SP('edit',this)">✏️ Редактировать</div>
     </nav>
@@ -960,12 +1019,12 @@ tr:hover td{background:#f8fafc}
 
     <!-- CHAT -->
     <div class="page" id="page-chat">
-      <div class="ph"><div class="pt">Вопросы / Чат МТО</div><div class="ps">Общий чат для всех специалистов МТО. Перед отправкой можно указать имя.</div></div>
+      <div class="ph"><div class="pt">Вопросы / Чат МТО</div><div class="ps">Общий чат для всех специалистов МТО. Автор определяется автоматически по учетной записи.</div></div>
       <div class="card" style="max-width:700px">
         <div class="ch"><div class="ct">💬 Чат</div></div>
         <div class="chat-wrap" id="chat-msgs"></div>
         <div class="chat-input-wrap">
-          <input class="chat-input" id="chat-name" placeholder="Ваше имя" style="max-width:170px;flex:0 0 170px"/>
+          <div class="chat-author-note" id="chat-author-note">Отправка от вашего имени</div>
           <input class="chat-input" id="chat-in" placeholder="Написать сообщение..." onkeydown="if(event.key==='Enter')sendMsg()"/>
           <button class="chat-send" onclick="sendMsg()">➤</button>
         </div>
@@ -1184,6 +1243,142 @@ tr:hover td{background:#f8fafc}
       </div>
     </div>
 
+
+    <!-- PROFILE -->
+    <div class="page" id="page-profile">
+      <div class="ph"><div class="pt">Мой кабинет</div><div class="ps">Профиль, безопасность, настройки, статистика и уведомления</div></div>
+      <div class="profile-tabs">
+        <button class="profile-tab active" data-profile-tab="main" onclick="profileTab('main')">👤 Профиль</button>
+        <button class="profile-tab" data-profile-tab="security" onclick="profileTab('security')">🔒 Безопасность</button>
+        <button class="profile-tab" data-profile-tab="settings" onclick="profileTab('settings')">🎨 Настройки</button>
+        <button class="profile-tab" data-profile-tab="stats" onclick="profileTab('stats')">📊 Моя статистика</button>
+        <button class="profile-tab" data-profile-tab="efficiency" onclick="profileTab('efficiency')">📈 Эффективность</button>
+        <button class="profile-tab" data-profile-tab="notifications" onclick="profileTab('notifications')">🔔 Уведомления</button>
+      </div>
+
+      <div class="profile-section active" id="profile-section-main">
+        <div class="profile-wrap">
+          <div class="profile-box">
+            <div class="profile-head">
+              <div class="profile-avatar" id="profile-avatar">—</div>
+              <div><div class="profile-name" id="profile-name">—</div><div class="profile-role" id="profile-role">—</div></div>
+            </div>
+            <div class="profile-row"><b>Логин</b><span id="profile-login">—</span></div>
+            <div class="profile-row"><b>Имя</b><span id="profile-fullname">—</span></div>
+            <div class="profile-row"><b>Должность</b><span id="profile-role2">—</span></div>
+            <div class="profile-row"><b>Телефон</b><span id="profile-phone-view">—</span></div>
+            <div class="profile-row"><b>Права</b><span id="profile-rights">—</span></div>
+          </div>
+          <div class="profile-box">
+            <div class="ct" style="margin-bottom:12px">Личные данные</div>
+            <div style="display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;margin-bottom:12px">
+              <div class="profile-avatar big" id="profile-avatar-big">—</div>
+              <div>
+                <input type="file" id="profile-avatar-file" accept="image/*" style="display:none" onchange="uploadProfileAvatar(this)">
+                <div class="profile-avatar-actions">
+                  <button class="btn btn-s" onclick="document.getElementById('profile-avatar-file').click()">🖼 Загрузить аватар</button>
+                  <button class="btn btn-s" onclick="removeProfileAvatar()">Удалить</button>
+                </div>
+                <div class="check-note">Картинка сжимается и сохраняется в профиле пользователя.</div>
+              </div>
+            </div>
+            <div class="fg">
+              <div class="fgr"><label class="fl2">Имя</label><input class="fi" id="profile-edit-name" placeholder="Имя"></div>
+              <div class="fgr"><label class="fl2">Должность</label><input class="fi" id="profile-edit-role" placeholder="Должность"></div>
+              <div class="fgr"><label class="fl2">Телефон</label><input class="fi" id="profile-edit-phone" placeholder="+7..."></div>
+              <div class="fgr"><label class="fl2">Отдел</label><input class="fi" id="profile-edit-department" placeholder="МТО"></div>
+            </div>
+            <div class="check-actions"><button class="btn btn-p" onclick="saveMyProfile()">💾 Сохранить профиль</button></div>
+            <div class="profile-msg" id="profile-data-msg"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-section" id="profile-section-security">
+        <div class="profile-wrap">
+          <div class="profile-box">
+            <div class="ct" style="margin-bottom:12px">Безопасность</div>
+            <div class="profile-row"><b>Логин</b><span id="profile-sec-login">—</span></div>
+            <div class="profile-row"><b>Последняя смена</b><span id="profile-pass-changed">—</span></div>
+            <div class="profile-row"><b>Роль</b><span id="profile-sec-role">—</span></div>
+            <div class="check-note">Пароль хранится в профиле пользователя МТО. После смены вход будет по новому паролю.</div>
+          </div>
+          <div class="profile-box">
+            <div class="ct" style="margin-bottom:12px">Смена пароля</div>
+            <div class="fg">
+              <div class="fgr f"><label class="fl2">Текущий пароль</label><input class="fi" id="profile-old-pass" type="password" autocomplete="current-password"></div>
+              <div class="fgr"><label class="fl2">Новый пароль</label><input class="fi" id="profile-new-pass" type="password" autocomplete="new-password"></div>
+              <div class="fgr"><label class="fl2">Повторите новый пароль</label><input class="fi" id="profile-new-pass2" type="password" autocomplete="new-password"></div>
+            </div>
+            <div class="check-note">Минимум 6 символов.</div>
+            <div class="check-actions"><button class="btn btn-p" onclick="changeMyPassword()">🔐 Сменить пароль</button></div>
+            <div class="profile-msg" id="profile-msg"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-section" id="profile-section-settings">
+        <div class="profile-wrap">
+          <div class="profile-box">
+            <div class="ct" style="margin-bottom:12px">Настройки интерфейса</div>
+            <label class="profile-setting"><div><b>Темная тема</b><span>Меняет оформление только для вашей учетной записи.</span></div><input type="checkbox" id="set-dark"></label>
+            <div class="fgr" style="margin-top:10px"><label class="fl2">Вид по умолчанию</label><select class="fi" id="set-default-view"><option value="cards">Карточки</option><option value="list">Список</option></select></div>
+            <label class="profile-setting" style="margin-top:10px"><div><b>Компактные карточки</b><span>Меньше отступы в карточках заявок и контактов.</span></div><input type="checkbox" id="set-compact"></label>
+            <div class="check-actions"><button class="btn btn-p" onclick="saveProfileSettings()">💾 Сохранить настройки</button></div>
+            <div class="profile-msg" id="profile-settings-msg"></div>
+          </div>
+          <div class="profile-box">
+            <div class="ct" style="margin-bottom:12px">Быстрые действия</div>
+            <div class="check-actions" style="margin-top:0"><button class="btn btn-s" onclick="applyDefaultViewToAll('cards')">▦ Везде карточки</button><button class="btn btn-s" onclick="applyDefaultViewToAll('list')">☰ Везде список</button></div>
+            <div class="check-note">Выбор вида сохраняется в браузере и не влияет на других пользователей.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-section" id="profile-section-stats">
+        <div class="profile-wrap">
+          <div class="profile-box" style="grid-column:1/-1">
+            <div class="ct" style="margin-bottom:12px">Моя статистика</div>
+            <div class="profile-kpi-grid" id="profile-stats-grid"></div>
+          </div>
+          <div class="profile-box" style="grid-column:1/-1">
+            <div class="ct" style="margin-bottom:12px">Последние мои заявки</div>
+            <div id="profile-my-orders"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-section" id="profile-section-efficiency">
+        <div class="profile-wrap">
+          <div class="profile-box" style="grid-column:1/-1">
+            <div class="ct" style="margin-bottom:12px">Моя эффективность</div>
+            <div class="profile-kpi-grid" id="profile-eff-grid"></div>
+            <div class="check-note">Показатели считаются по заявкам, где вы указаны ответственным или вторым ответственным.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-section" id="profile-section-notifications">
+        <div class="profile-wrap">
+          <div class="profile-box">
+            <div class="ct" style="margin-bottom:12px">Уведомления</div>
+            <label class="profile-setting"><div><b>Личные сообщения</b><span>Показывать счетчик новых личных сообщений.</span></div><input type="checkbox" id="notif-private"></label>
+            <label class="profile-setting"><div><b>Изменения моих заявок</b><span>Уведомлять, если изменились заявки, где вы ответственный.</span></div><input type="checkbox" id="notif-orders"></label>
+            <label class="profile-setting"><div><b>Упоминания в чате</b><span>Отслеживать сообщения с вашим именем.</span></div><input type="checkbox" id="notif-mentions"></label>
+            <label class="profile-setting"><div><b>Звук уведомлений</b><span>Включить звуковой сигнал в будущих уведомлениях.</span></div><input type="checkbox" id="notif-sound"></label>
+            <div class="check-actions"><button class="btn btn-p" onclick="saveNotificationSettings()">💾 Сохранить уведомления</button></div>
+            <div class="profile-msg" id="profile-notif-msg"></div>
+          </div>
+          <div class="profile-box">
+            <div class="ct" style="margin-bottom:12px">Сейчас</div>
+            <div class="profile-row"><b>Новых личных</b><span id="profile-unread-pm">0</span></div>
+            <div class="profile-row"><b>Мои активные</b><span id="profile-active-orders">0</span></div>
+            <div class="profile-row"><b>Упоминания</b><span id="profile-mentions">0</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- EDIT -->
     <div class="page" id="page-edit">
       <div class="ph"><div class="pt">Редактировать</div><div class="ps" id="edit-sub">Управление заявками</div></div>
@@ -1317,7 +1512,7 @@ const US={
   'yunus':{pass:'yu2026',name:'Юнус',role:'Юрист',isAdmin:false,resp:'Юнус'},
 };
 
-let CU=null,DATA=[],CONTACTS=[],CONTRACTS=[],MSGS=[],HISTORY=[],PRIV=[];
+let CU=null,DATA=[],CONTACTS=[],CONTRACTS=[],MSGS=[],HISTORY=[],PRIV=[],PROFILES={};
 let dQ='',dashC='ALL',aC='СТЕЛС',aSh='ALL',aSt='',aSr='',quickFilter='';
 let advF={resp:'',payment:'',upd:'',docs:'',sumFrom:'',sumTo:'',dateFrom:'',dateTo:'',delivFrom:'',delivTo:'',daysFrom:'',daysTo:'',contractor:''};
 let editKey=null,kpRows=[],invoiceRows=[],contactKey=null,currentPrivateLogin='';
@@ -1387,12 +1582,12 @@ db.ref('orders').on('value',s=>{
     }
   }
   if(!CU){document.getElementById('login-screen').style.display='flex';}
-  if(CU){setupViewToggles();rDash();rAll();rMine();rEdit();fillAnSel();rContracts();if(canSeeControl()){rAnalytics();rHistory('');}}
+  if(CU){setupViewToggles();rDash();rAll();rMine();rEdit();fillAnSel();rContracts();rProfile();if(canSeeControl()){rAnalytics();rHistory('');}}
 });
 db.ref('contacts').on('value',s=>{
   CONTACTS=[];
   if(s.exists())s.forEach(c=>{ CONTACTS.push({_k:c.key,...c.val()}); });
-  if(CU){setupViewToggles();rContacts('');populateOrderRefs();}
+  if(CU){setupViewToggles();rContacts('');populateOrderRefs();rProfile();}
 });
 
 db.ref('contractsRegistry/contracts').on('value',s=>{
@@ -1404,7 +1599,7 @@ db.ref('contractsRegistry/contracts').on('value',s=>{
 db.ref('chat').on('value',s=>{
   MSGS=[];
   if(s.exists())s.forEach(c=>{ MSGS.push({_k:c.key,...c.val()}); });
-  if(CU)rChat();
+  if(CU){rChat();rProfile();}
 });
 
 db.ref('privateMessages').on('value',s=>{
@@ -1419,6 +1614,13 @@ db.ref('history').limitToLast(300).on('value',s=>{
   HISTORY=[];
   if(s.exists())s.forEach(c=>{ HISTORY.push({_k:c.key,...c.val()}); });
   if(CU&&canSeeControl())rHistory('');
+});
+
+
+db.ref('userProfiles').on('value',s=>{
+  PROFILES={};
+  if(s.exists())s.forEach(c=>{PROFILES[c.key]=c.val()||{};});
+  if(CU){updateSidebarUser();updateChatAuthorNote();rProfile();rPrivateList();if(currentPrivateLogin)rPrivateDialog(currentPrivateLogin);rChat();rDash();rAll();rMine();}
 });
 
 // HELPERS
@@ -1459,7 +1661,9 @@ function kpC(r){const k=r.kp||[];const s=k.filter(x=>x.selected);return k.length
 function anB(r){return r.analysis?` <span class="badge bg">📈 анализ</span>`:'';}
 
 function loginByResp(resp){
-  const found=Object.entries(US).find(([login,u])=>u.resp===resp||u.name===resp);
+  const val=String(resp||'').trim();
+  if(!val)return '';
+  const found=Object.entries(US).find(([login,u])=>u.resp===val||u.name===val||displayNameFor(login)===val);
   return found?found[0]:'';
 }
 function userByLogin(login){return US[login]?{...US[login],login}:null;}
@@ -1506,28 +1710,34 @@ function setLoggedInUser(found, saveSession=true){
   if(saveSession) localStorage.setItem('mto_current_login', found.login);
   document.getElementById('login-screen').style.display='none';
   document.getElementById('app').classList.add('active');
-  document.getElementById('uav').textContent=CU.name[0];
-  document.getElementById('uname').textContent=CU.name;
-  document.getElementById('urole').textContent=CU.role;
+  updateSidebarUser();
   updateControlVisibility();
-  const chatNameInput=document.getElementById('chat-name');
-  if(chatNameInput&&!chatNameInput.value)chatNameInput.value=CU.name;
+  updateChatAuthorNote();
   updatePrivateUnread();
   rPrivateList();
   document.getElementById('edit-sub').textContent=CU.isAdmin?'Управление всеми заявками':'Только ваши заявки';
   document.getElementById('etbl-t').textContent=CU.isAdmin?'Все заявки':'Мои заявки';
   document.getElementById('mine-t').textContent='Мои заявки — '+CU.name;
-  rDash();rAll();rMine();rEdit();fillAnSel();rContracts();
+  rDash();rAll();rMine();rEdit();fillAnSel();rContracts();rProfile();
 }
-window.doLogin=function(){
+window.doLogin=async function(){
   const u=document.getElementById('lu').value.trim().toLowerCase();
   const p=document.getElementById('lp').value.trim();
   let found=null;
-  for(const [k,v] of Object.entries(US)){if(k===u&&v.pass===p){found={...v,login:k};break;}}
+  if(US[u]){
+    let profilePass='';
+    try{
+      const snap=await db.ref('userProfiles/'+u).once('value');
+      profilePass=snap.exists()&&snap.val()&&snap.val().pass?String(snap.val().pass):'';
+      if(profilePass){PROFILES[u]={...(PROFILES[u]||{}),pass:profilePass};}
+    }catch(e){console.warn('profile password read error',e);}
+    const realPass=profilePass||String(US[u].pass||'');
+    if(realPass===p)found={...US[u],login:u};
+  }
   if(found){
     setLoggedInUser(found, true);
   }else{document.getElementById('lerr').textContent='Неверный логин или пароль';}
-};
+}
 document.getElementById('lp').addEventListener('keydown',e=>{if(e.key==='Enter')window.doLogin()});
 window.doLogout=function(){
   localStorage.removeItem('mto_current_login');
@@ -1538,6 +1748,272 @@ window.doLogout=function(){
   document.getElementById('login-screen').style.display='flex';
   document.getElementById('app').classList.remove('active');
 };
+
+
+// PROFILE
+function getProfile(login){return (PROFILES&&PROFILES[login])?PROFILES[login]:{};}
+function displayNameFor(login){const p=getProfile(login);return p.name||US[login]?.name||login||'—';}
+function roleFor(login){const p=getProfile(login);return p.role||US[login]?.role||'—';}
+function phoneFor(login){const p=getProfile(login);return p.phone||'';}
+function avatarFor(login){const p=getProfile(login);return p.avatarData||p.avatarUrl||'';}
+function getUserPassword(login){return (PROFILES&&PROFILES[login]&&PROFILES[login].pass)?String(PROFILES[login].pass):String(US[login]?.pass||'');}
+function setAvatar(el,login,name){
+  if(!el)return;
+  const av=avatarFor(login);
+  const initial=(name||displayNameFor(login)||login||'П').trim()[0]||'П';
+  if(av){el.style.backgroundImage=`url("${av}")`;el.textContent='';el.classList.add('has-img');}
+  else{el.style.backgroundImage='';el.textContent=initial;el.classList.remove('has-img');}
+}
+
+function avatarMiniHtml(login,name='',cls=''){
+  const nm=name||displayNameFor(login)||login||'П';
+  const av=login?avatarFor(login):'';
+  const initial=(nm||'П').trim()[0]||'П';
+  const style=av?` style="background-image:url('${esc(av)}')"`:'';
+  return `<span class="user-mini-avatar ${cls} ${av?'has-img':''}"${style}>${av?'':esc(initial)}</span>`;
+}
+function userChipByLogin(login,label){
+  if(!login)return `<span class="nf">—</span>`;
+  const name=label||displayNameFor(login);
+  return `<span class="user-chip" onclick="event.stopPropagation();window.openP('${esc(name)}')">${avatarMiniHtml(login,name)}<span>${esc(name)}</span></span>`;
+}
+function userChipByResp(resp){
+  const login=loginByResp(resp);
+  const name=login?displayNameFor(login):(resp||'Не выбран');
+  if(!resp||resp==='Не выбран')return '<span class="nf">Не выбран</span>';
+  if(login)return userChipByLogin(login,name);
+  return `<span class="user-chip" onclick="event.stopPropagation();window.openP('${esc(name)}')"><span class="user-mini-avatar">${esc(String(name).trim()[0]||'П')}</span><span>${esc(name)}</span></span>`;
+}
+function userChipsForOrder(r){
+  const a=[]; if(r&&r.resp&&r.resp!=='Не выбран')a.push(userChipByResp(r.resp)); if(r&&r.resp2)a.push(userChipByResp(r.resp2));
+  return a.length?a.join(' '):'<span class="nf">Не выбран</span>';
+}
+function updateChatAuthorNote(){
+  const el=document.getElementById('chat-author-note');
+  if(el&&CU)el.innerHTML=`${avatarMiniHtml(CU.login,displayNameFor(CU.login))}<span>Отправка от имени: <b>${esc(displayNameFor(CU.login))}</b></span>`;
+}
+function updateSidebarUser(){
+  if(!CU)return;
+  const name=displayNameFor(CU.login);
+  const role=roleFor(CU.login);
+  CU.name=name; CU.role=role; CU.resp=name;
+  setAvatar(document.getElementById('uav'),CU.login,name);
+  const un=document.getElementById('uname'); if(un)un.textContent=name;
+  const ur=document.getElementById('urole'); if(ur)ur.textContent=role;
+}
+function rProfile(){
+  if(!CU)return;
+  const p=getProfile(CU.login);
+  const name=displayNameFor(CU.login);
+  const role=roleFor(CU.login);
+  const phone=phoneFor(CU.login);
+  updateSidebarUser();updateChatAuthorNote();
+  const setTxt=(id,v)=>{const el=document.getElementById(id); if(el)el.textContent=v||'—';};
+  setAvatar(document.getElementById('profile-avatar'),CU.login,name);
+  setAvatar(document.getElementById('profile-avatar-big'),CU.login,name);
+  setTxt('profile-name',name);
+  setTxt('profile-role',role);
+  setTxt('profile-login',CU.login||'—');
+  setTxt('profile-fullname',name);
+  setTxt('profile-role2',role);
+  setTxt('profile-phone-view',phone||'—');
+  setTxt('profile-rights',CU.isAdmin?'Администратор':'Пользователь');
+  const en=document.getElementById('profile-edit-name'); if(en)en.value=name;
+  const er=document.getElementById('profile-edit-role'); if(er)er.value=role;
+  const ep=document.getElementById('profile-edit-phone'); if(ep)ep.value=phone;
+  const ed=document.getElementById('profile-edit-department'); if(ed)ed.value=p.department||'';
+  renderCabinetSections();
+  applyProfileSettings();
+}
+function showProfileDataMsg(t,ok=true){const msg=document.getElementById('profile-data-msg'); if(msg){msg.textContent=t;msg.className='profile-msg '+(ok?'ok':'err');}}
+window.saveMyProfile=async function(){
+  if(!CU)return;
+  const row={
+    name:(document.getElementById('profile-edit-name')?.value||'').trim()||US[CU.login]?.name||CU.login,
+    role:(document.getElementById('profile-edit-role')?.value||'').trim()||US[CU.login]?.role||'',
+    phone:(document.getElementById('profile-edit-phone')?.value||'').trim(),
+    department:(document.getElementById('profile-edit-department')?.value||'').trim(),
+    updatedAt:Date.now(),updatedBy:CU.login
+  };
+  try{
+    await db.ref('userProfiles/'+CU.login).update(row);
+    PROFILES[CU.login]={...(PROFILES[CU.login]||{}),...row};
+    updateSidebarUser(); rProfile();
+    showProfileDataMsg('Профиль сохранен.',true);
+    await logAction('Изменение профиля','Профиль',row.name);
+  }catch(e){console.error(e);showProfileDataMsg('Не удалось сохранить профиль. Проверь Firebase Rules.',false);}
+};
+function resizeImageToDataUrl(file,maxSize=360,quality=.78){
+  return new Promise((resolve,reject)=>{
+    const img=new Image(); const reader=new FileReader();
+    reader.onload=e=>{img.onload=()=>{
+      const canvas=document.createElement('canvas');
+      const size=Math.min(img.width,img.height);
+      const sx=(img.width-size)/2, sy=(img.height-size)/2;
+      canvas.width=maxSize; canvas.height=maxSize;
+      const ctx=canvas.getContext('2d');
+      ctx.drawImage(img,sx,sy,size,size,0,0,maxSize,maxSize);
+      resolve(canvas.toDataURL('image/jpeg',quality));
+    }; img.onerror=reject; img.src=e.target.result;};
+    reader.onerror=reject; reader.readAsDataURL(file);
+  });
+}
+window.uploadProfileAvatar=async function(input){
+  if(!CU||!input.files||!input.files[0])return;
+  const file=input.files[0];
+  if(!file.type.startsWith('image/')){showProfileDataMsg('Нужно выбрать изображение.',false);return;}
+  if(file.size>6*1024*1024){showProfileDataMsg('Файл слишком большой. Максимум 6 МБ.',false);return;}
+  try{
+    showProfileDataMsg('Сжимаю и сохраняю аватар...',true);
+    const avatarData=await resizeImageToDataUrl(file);
+    await db.ref('userProfiles/'+CU.login).update({avatarData,avatarUpdatedAt:Date.now(),updatedBy:CU.login});
+    PROFILES[CU.login]={...(PROFILES[CU.login]||{}),avatarData,avatarUpdatedAt:Date.now()};
+    input.value=''; updateSidebarUser(); rProfile();
+    showProfileDataMsg('Аватар сохранен.',true);
+    await logAction('Изменение аватара','Профиль',CU.login);
+  }catch(e){console.error(e);showProfileDataMsg('Не удалось сохранить аватар.',false);}
+};
+window.removeProfileAvatar=async function(){
+  if(!CU)return;
+  try{
+    await db.ref('userProfiles/'+CU.login).update({avatarData:null,avatarUrl:null,avatarRemovedAt:Date.now(),updatedBy:CU.login});
+    if(!PROFILES[CU.login])PROFILES[CU.login]={};
+    delete PROFILES[CU.login].avatarData; delete PROFILES[CU.login].avatarUrl;
+    updateSidebarUser(); rProfile();
+    showProfileDataMsg('Аватар удален.',true);
+  }catch(e){console.error(e);showProfileDataMsg('Не удалось удалить аватар.',false);}
+};
+window.changeMyPassword=async function(){
+  if(!CU)return;
+  const msg=document.getElementById('profile-msg');
+  const oldP=(document.getElementById('profile-old-pass')?.value||'').trim();
+  const newP=(document.getElementById('profile-new-pass')?.value||'').trim();
+  const newP2=(document.getElementById('profile-new-pass2')?.value||'').trim();
+  function show(t,ok){if(msg){msg.textContent=t;msg.className='profile-msg '+(ok?'ok':'err');}}
+  if(oldP!==getUserPassword(CU.login)){show('Текущий пароль указан неверно.',false);return;}
+  if(newP.length<6){show('Новый пароль должен быть минимум 6 символов.',false);return;}
+  if(newP!==newP2){show('Новые пароли не совпадают.',false);return;}
+  if(newP===oldP){show('Новый пароль совпадает с текущим.',false);return;}
+  try{
+    await db.ref('userProfiles/'+CU.login).update({pass:newP,passChangedAt:Date.now(),passChangedBy:CU.login});
+    if(!PROFILES[CU.login])PROFILES[CU.login]={};
+    PROFILES[CU.login].pass=newP;
+    ['profile-old-pass','profile-new-pass','profile-new-pass2'].forEach(id=>{const el=document.getElementById(id); if(el)el.value='';});
+    show('Пароль изменен.',true);
+    await logAction('Смена пароля','Профиль',CU.login);
+  }catch(e){console.error(e);show('Не удалось сохранить пароль. Проверь Firebase Rules.',false);}
+};
+
+
+
+// CABINET: tabs / settings / stats
+let currentProfileTab='main';
+function profileTab(tab){
+  currentProfileTab=tab||'main';
+  document.querySelectorAll('.profile-tab').forEach(b=>b.classList.toggle('active',b.dataset.profileTab===currentProfileTab));
+  document.querySelectorAll('.profile-section').forEach(sec=>sec.classList.remove('active'));
+  const el=document.getElementById('profile-section-'+currentProfileTab); if(el)el.classList.add('active');
+  renderCabinetSections();
+}
+window.profileTab=profileTab;
+function profileSettings(){return (getProfile(CU?.login||'').settings)||{};}
+function profileNotifications(){return (getProfile(CU?.login||'').notifications)||{};}
+function setProfileMsg(id,t,ok=true){const el=document.getElementById(id); if(el){el.textContent=t;el.className='profile-msg '+(ok?'ok':'err');}}
+function applyProfileSettings(){
+  if(!CU)return;
+  const st=profileSettings();
+  document.body.classList.toggle('mto-dark',!!st.darkMode);
+  const dark=document.getElementById('set-dark'); if(dark)dark.checked=!!st.darkMode;
+  const def=document.getElementById('set-default-view'); if(def)def.value=st.defaultView||'cards';
+  const compact=document.getElementById('set-compact'); if(compact)compact.checked=!!st.compactCards;
+  document.body.classList.toggle('mto-compact',!!st.compactCards);
+}
+window.saveProfileSettings=async function(){
+  if(!CU)return;
+  const settings={
+    darkMode:!!document.getElementById('set-dark')?.checked,
+    defaultView:document.getElementById('set-default-view')?.value||'cards',
+    compactCards:!!document.getElementById('set-compact')?.checked
+  };
+  try{
+    await db.ref('userProfiles/'+CU.login+'/settings').update(settings);
+    PROFILES[CU.login]={...(PROFILES[CU.login]||{}),settings:{...(PROFILES[CU.login]?.settings||{}),...settings}};
+    applyProfileSettings();
+    setProfileMsg('profile-settings-msg','Настройки сохранены.',true);
+  }catch(e){console.error(e);setProfileMsg('profile-settings-msg','Не удалось сохранить настройки.',false);}
+};
+window.applyDefaultViewToAll=function(mode){
+  ['dash','all','mine','contracts','contacts'].forEach(p=>{viewModes[p]=mode;setPageViewClass(p);updateViewButtons(p);});
+  localStorage.setItem('mto_view_modes',JSON.stringify(viewModes));
+  rDash();rAll();rMine();rContracts();rContacts();
+};
+window.saveNotificationSettings=async function(){
+  if(!CU)return;
+  const notifications={
+    privateMessages:!!document.getElementById('notif-private')?.checked,
+    orderChanges:!!document.getElementById('notif-orders')?.checked,
+    mentions:!!document.getElementById('notif-mentions')?.checked,
+    sound:!!document.getElementById('notif-sound')?.checked
+  };
+  try{
+    await db.ref('userProfiles/'+CU.login+'/notifications').update(notifications);
+    PROFILES[CU.login]={...(PROFILES[CU.login]||{}),notifications:{...(PROFILES[CU.login]?.notifications||{}),...notifications}};
+    setProfileMsg('profile-notif-msg','Настройки уведомлений сохранены.',true);
+  }catch(e){console.error(e);setProfileMsg('profile-notif-msg','Не удалось сохранить уведомления.',false);}
+};
+function myOrders(){
+  if(!CU)return[];
+  const names=[CU.resp,CU.name,displayNameFor(CU.login),US[CU.login]?.name].filter(Boolean).map(x=>String(x).trim());
+  return (DATA||[]).filter(r=>names.includes(String(r.resp||'').trim())||names.includes(String(r.resp2||'').trim()));
+}
+function myCreatedOrders(){
+  if(!CU)return[];
+  const names=[CU.login,CU.name,displayNameFor(CU.login),US[CU.login]?.name].filter(Boolean).map(x=>String(x).trim().toLowerCase());
+  return (DATA||[]).filter(r=>names.includes(String(r.createdBy||'').trim().toLowerCase())||names.includes(String(r.author||'').trim().toLowerCase()));
+}
+function profileStats(){
+  const mine=myOrders();
+  const created=myCreatedOrders();
+  const closed=mine.filter(r=>isClosedOrder(r)||isDeliveredStatus(r.status));
+  const active=mine.filter(r=>!(isClosedOrder(r)||isDeliveredStatus(r.status)));
+  const total=mine.reduce((a,r)=>a+(Number(orderTotal(r))||0),0);
+  const avgDays=closed.length?Math.round(closed.reduce((a,r)=>a+(Number(workDays(r))||0),0)/closed.length):0;
+  const delays=mine.filter(r=>typeof isConfirmedSupplierDelay==='function'&&isConfirmedSupplierDelay(r)).length;
+  const comments=(MSGS||[]).filter(m=>m.login===CU.login||String(m.user||'')===displayNameFor(CU.login)).length;
+  const contacts=(CONTACTS||[]).filter(c=>String(c.createdBy||'')===displayNameFor(CU.login)||String(c.createdByLogin||'')===CU.login).length;
+  const mentions=(MSGS||[]).filter(m=>String(m.text||'').toLowerCase().includes(String(displayNameFor(CU.login)).toLowerCase())).length;
+  return {mine,created,closed,active,total,avgDays,delays,comments,contacts,mentions};
+}
+function kpi(n,t){return `<div class="profile-kpi"><div class="n">${n}</div><div class="t">${t}</div></div>`;}
+function renderCabinetSections(){
+  if(!CU)return;
+  const p=getProfile(CU.login), st=profileStats(), notif=profileNotifications();
+  const setTxt=(id,v)=>{const el=document.getElementById(id); if(el)el.textContent=v;};
+  setTxt('profile-sec-login',CU.login||'—');
+  setTxt('profile-sec-role',CU.isAdmin?'Администратор':'Пользователь');
+  setTxt('profile-pass-changed',p.passChangedAt?new Date(p.passChangedAt).toLocaleString('ru-RU'):'—');
+  const sg=document.getElementById('profile-stats-grid');
+  if(sg)sg.innerHTML=[
+    kpi(st.mine.length,'заявок в работе'),kpi(st.created.length,'создано заявок'),kpi(st.closed.length,'закрыто'),kpi(st.active.length,'активно'),
+    kpi(moneyShort(st.total),'сумма заявок'),kpi(st.comments,'сообщений в чате'),kpi(st.contacts,'контактов добавлено'),kpi(st.delays,'подтв. просрочек')
+  ].join('');
+  const eg=document.getElementById('profile-eff-grid');
+  const closeRate=st.mine.length?Math.round(st.closed.length/st.mine.length*100):0;
+  const noDelayRate=st.mine.length?Math.max(0,Math.round((st.mine.length-st.delays)/st.mine.length*100)):100;
+  if(eg)eg.innerHTML=[kpi(closeRate+'%','закрываемость'),kpi(st.avgDays||'—','средн. дней'),kpi(noDelayRate+'%','без просрочек'),kpi(st.active.length,'текущая нагрузка')].join('');
+  const list=document.getElementById('profile-my-orders');
+  if(list){
+    const rows=[...st.mine].sort((a,b)=>(new Date(b.createdAt||b.date||0))-(new Date(a.createdAt||a.date||0))).slice(0,8);
+    list.innerHTML=rows.length?`<table class="profile-mini-table"><thead><tr><th>№</th><th>Заявка</th><th>Статус</th><th>Сумма</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${esc(r.num||'—')}</td><td>${esc(r.name||r.material||'—')}</td><td>${sB(r.status)}</td><td>${mn(orderTotal(r))}</td></tr>`).join('')}</tbody></table>`:'<div class="erow">Заявок пока нет</div>';
+  }
+  const np=document.getElementById('notif-private'); if(np)np.checked=notif.privateMessages!==false;
+  const no=document.getElementById('notif-orders'); if(no)no.checked=notif.orderChanges!==false;
+  const nm=document.getElementById('notif-mentions'); if(nm)nm.checked=!!notif.mentions;
+  const ns=document.getElementById('notif-sound'); if(ns)ns.checked=!!notif.sound;
+  setTxt('profile-unread-pm',String(totalPrivateUnread()));
+  setTxt('profile-active-orders',String(st.active.length));
+  setTxt('profile-mentions',String(st.mentions));
+}
 
 // MOBILE MENU
 window.toggleMobileMenu=function(){
@@ -1572,6 +2048,7 @@ window.SP=function(n,el){
   if(n==='analysis')fillAnSel();
   if(n==='analytics')rAnalytics();
   if(n==='history')rHistory('');
+  if(n==='profile')rProfile();
 };
 
 window.openAnalysisFor=function(key){
@@ -1650,7 +2127,7 @@ window.openOrderView=function(key){
       <div style="text-align:right"><div style="font-size:.8rem;opacity:.75">Сумма</div><div style="font-size:1.25rem;font-weight:900">${mn(orderTotal(r))}</div></div>
     </div>
     <div class="info-grid">
-      <div class="info-card"><div class="info-label">Ответственные</div><div class="info-value">${respText(r)} ${respButtons(r)}</div></div>
+      <div class="info-card"><div class="info-label">Ответственные</div><div class="info-value">${userChipsForOrder(r)} ${respButtons(r)}</div></div>
       <div class="info-card"><div class="info-label">Дата заявки</div><div class="info-value">${esc(r.date||'—')}</div></div>
       <div class="info-card"><div class="info-label">Дней в работе</div><div class="info-value">${daysB(r)}</div></div>
       <div class="info-card"><div class="info-label">Контрагент</div><div class="info-value">${esc(r.contractor||'—')}</div></div>
@@ -1681,21 +2158,21 @@ function supplierTextForOrder(r){
 function orderListRowHtml(r,type){
   const id=r._k||r.key||r.id||'';
   if(type==='dash')return `<tr>
-    <td>${esc(r.num||'—')}</td><td>${esc(r.company||'—')}</td><td>${shB(r.shifer)}</td><td><strong>${esc(r.name||r.title||'—')}</strong><div class="nf">${esc(r.material||r.requestText||'')}</div></td><td><span class="rl badge bgr" onclick="window.openP('${esc(r.resp||r.resp2||'')}')">${respText(r)}</span></td><td>${sB(r.status)}</td><td>${esc(r.contractor||'—')}</td><td>${mn(orderTotal(r))}</td><td>${esc(r.delivery||'—')}</td><td>${uB(r.upd)}</td><td>${daysB(r)}</td>
+    <td>${esc(r.num||'—')}</td><td>${esc(r.company||'—')}</td><td>${shB(r.shifer)}</td><td><strong>${esc(r.name||r.title||'—')}</strong><div class="nf">${esc(r.material||r.requestText||'')}</div></td><td>${userChipsForOrder(r)}</td><td>${sB(r.status)}</td><td>${esc(r.contractor||'—')}</td><td>${mn(orderTotal(r))}</td><td>${esc(r.delivery||'—')}</td><td>${uB(r.upd)}</td><td>${daysB(r)}</td>
   </tr>`;
   if(type==='mine'){const kp=r.kp||[];const sel=kp.filter(k=>k.selected);return `<tr>
     <td>${esc(r.num||'—')}</td><td>${shB(r.shifer)}</td><td><strong>${esc(r.name||r.title||'—')}</strong><div class="nf">${esc(r.material||r.requestText||'')}</div></td><td>${sB(r.status)}</td><td>${kp.length} КП ${kpCell(r)}</td><td>${sel.length?sel.map(k=>`<span class="badge bgold">✓ ${esc(k.supplier||'Поставщик')}</span>`).join(' '):'<span class="nf">—</span>'}</td><td>${mn(sel.reduce((a,k)=>a+(Number(k.sum)||0),0)||orderTotal(r))}</td><td>${esc(r.delivery||'—')}</td><td>${uB(r.upd)}</td><td>${daysB(r)}</td>
   </tr>`;}
   return `<tr>
-    <td>${esc(r.num||'—')}</td><td>${esc(r.createdAt||r.date||'—')}</td><td>${esc(r.company||'—')}</td><td>${shB(r.shifer)}</td><td><strong>${esc(r.name||r.title||'—')}</strong><div class="nf">${esc(r.material||r.requestText||r.note||'')}</div></td><td><span class="rl badge bgr" onclick="window.openP('${esc(r.resp||r.resp2||'')}')">${respText(r)}</span></td><td>${sB(r.status)}</td><td>${mn(orderTotal(r))}</td><td><span class="badge ${r.payment==='Оплачен'||r.payment==='Оплачено'?'bg':'by'}">${esc(r.payment||'—')}</span></td><td>${esc(r.delivery||'—')}</td><td>${kpCell(r)}${anB(r)}</td><td>${invoiceCell(r)}</td><td>${contractCell(r)}</td><td>${docBadges(r)}</td><td><div class="order-actions compact-actions">${allOrderActionsHtml(r)}</div></td>
+    <td>${esc(r.num||'—')}</td><td>${esc(r.createdAt||r.date||'—')}</td><td>${esc(r.company||'—')}</td><td>${shB(r.shifer)}</td><td><strong>${esc(r.name||r.title||'—')}</strong><div class="nf">${esc(r.material||r.requestText||r.note||'')}</div></td><td>${userChipsForOrder(r)}</td><td>${sB(r.status)}</td><td>${mn(orderTotal(r))}</td><td><span class="badge ${r.payment==='Оплачен'||r.payment==='Оплачено'?'bg':'by'}">${esc(r.payment||'—')}</span></td><td>${esc(r.delivery||'—')}</td><td>${kpCell(r)}${anB(r)}</td><td>${invoiceCell(r)}</td><td>${contractCell(r)}</td><td>${docBadges(r)}</td><td><div class="order-actions compact-actions">${allOrderActionsHtml(r)}</div></td>
   </tr>`;
 }
 function orderCardHtml(r,type){
   const kp=r.kp||[]; const inv=invoiceList(r)||[]; const selectedKp=kp.filter(k=>k.selected); const sel=selectedKp;
   const supplierText=supplierTextForOrder(r);
   if(type==='mine')return `<div class="mto-order-card"><div class="mto-card-top"><div><div class="mto-card-no">№${esc(r.num||'б/н')}</div><div class="mto-card-date">${esc(r.createdAt||r.date||'—')}</div><div class="mto-card-title">${esc(r.name||r.title||'Без наименования')}</div><div class="mto-card-sub">${esc(r.requestText||r.material||'')}</div></div><div class="mto-card-tags">${shB(r.shifer)}${sB(r.status)}</div></div><div class="mto-card-body"><div class="mto-card-field"><div class="mto-card-label">КП</div><div class="mto-card-value"><span class="badge bgr">${kp.length} КП</span> ${kpCell(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Выбранный</div><div class="mto-card-value">${sel.length?sel.map(k=>`<span class="badge bgold">✓ ${esc(k.supplier||'Поставщик')}</span>`).join(' '):'<span class="nf">—</span>'}</div></div><div class="mto-card-field"><div class="mto-card-label">Сумма</div><div class="mto-card-value">${mn(sel.reduce((a,k)=>a+(Number(k.sum)||0),0)||orderTotal(r))}</div></div><div class="mto-card-field"><div class="mto-card-label">Поставка</div><div class="mto-card-value">${esc(r.delivery||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">УПД</div><div class="mto-card-value">${uB(r.upd)}</div></div><div class="mto-card-field"><div class="mto-card-label">Дни</div><div class="mto-card-value">${daysB(r)}</div></div></div><div class="mto-card-actions">${orderActionsCompactHtml(r)}</div></div>`;
-  if(type==='dash')return `<div class="mto-order-card"><div class="mto-card-top"><div><div class="mto-card-no">№${esc(r.num||'б/н')}</div><div class="mto-card-date">${esc(r.createdAt||r.date||'—')}</div><div class="mto-card-title">${esc(r.name||r.title||'Без наименования')}</div><div class="mto-card-sub">${esc(r.requestText||r.material||'')}</div></div><div class="mto-card-tags"><span class="badge bgr">${esc(r.company||'—')}</span>${shB(r.shifer)}${sB(r.status)}</div></div><div class="mto-card-body"><div class="mto-card-field"><div class="mto-card-label">Ответственные</div><div class="mto-card-value"><span class="rl badge bgr" onclick="window.openP('${esc(r.resp||r.resp2||'')}')">${respText(r)}</span>${respButtons(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Контрагент</div><div class="mto-card-value">${esc(r.contractor||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">Сумма</div><div class="mto-card-value">${mn(orderTotal(r))}</div></div><div class="mto-card-field"><div class="mto-card-label">Поставка</div><div class="mto-card-value">${esc(r.delivery||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">УПД</div><div class="mto-card-value">${uB(r.upd)}</div></div><div class="mto-card-field"><div class="mto-card-label">Дни</div><div class="mto-card-value">${daysB(r)}</div></div></div><div class="mto-card-actions">${orderActionsCompactHtml(r)}</div></div>`;
-  return `<div class="mto-order-card all-order-card"><div class="mto-card-top"><div><div class="mto-card-no">№${esc(r.num||'б/н')}</div><div class="mto-card-date">${esc(r.createdAt||r.date||'—')}</div><div class="mto-card-title">${esc(r.name||r.title||'Без наименования')}</div><div class="mto-card-sub">${esc(r.requestText||r.material||r.note||'')}</div></div><div class="mto-card-tags"><span class="badge bgr">${esc(r.company||'—')}</span>${shB(r.shifer)}${sB(r.status)}</div></div><div class="mto-card-body"><div class="mto-card-field"><div class="mto-card-label">Ответственные</div><div class="mto-card-value"><span class="rl badge bgr" onclick="window.openP('${esc(r.resp||r.resp2||'')}')">${respText(r)}</span>${respButtons(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Поставщик</div><div class="mto-card-value">${esc(supplierText)}</div></div><div class="mto-card-field"><div class="mto-card-label">Сумма</div><div class="mto-card-value">${mn(orderTotal(r))}</div></div><div class="mto-card-field"><div class="mto-card-label">Оплата</div><div class="mto-card-value"><span class="badge ${r.payment==='Оплачен'||r.payment==='Оплачено'?'bg':'by'}">${esc(r.payment||'—')}</span></div></div><div class="mto-card-field"><div class="mto-card-label">Поставка</div><div class="mto-card-value">${esc(r.delivery||'—')}${r.vehicleNumber?'<br><span class="nf">🚚 '+esc(r.vehicleNumber)+'</span>':''}</div></div><div class="mto-card-field"><div class="mto-card-label">Дни</div><div class="mto-card-value">${daysB(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">КП</div><div class="mto-card-value">${kpCell(r)}${anB(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Счёт</div><div class="mto-card-value">${invoiceCell(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Договор</div><div class="mto-card-value">${contractCell(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Документы</div><div class="mto-card-value">${docBadges(r)}</div></div><div class="mto-card-field mto-card-wide"><div class="mto-card-label">Примечание</div><div class="mto-card-value">${esc(r.note||'—')}</div></div></div><div class="mto-card-actions">${allOrderActionsHtml(r)}</div></div>`;
+  if(type==='dash')return `<div class="mto-order-card"><div class="mto-card-top"><div><div class="mto-card-no">№${esc(r.num||'б/н')}</div><div class="mto-card-date">${esc(r.createdAt||r.date||'—')}</div><div class="mto-card-title">${esc(r.name||r.title||'Без наименования')}</div><div class="mto-card-sub">${esc(r.requestText||r.material||'')}</div></div><div class="mto-card-tags"><span class="badge bgr">${esc(r.company||'—')}</span>${shB(r.shifer)}${sB(r.status)}</div></div><div class="mto-card-body"><div class="mto-card-field"><div class="mto-card-label">Ответственные</div><div class="mto-card-value">${userChipsForOrder(r)}${respButtons(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Контрагент</div><div class="mto-card-value">${esc(r.contractor||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">Сумма</div><div class="mto-card-value">${mn(orderTotal(r))}</div></div><div class="mto-card-field"><div class="mto-card-label">Поставка</div><div class="mto-card-value">${esc(r.delivery||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">УПД</div><div class="mto-card-value">${uB(r.upd)}</div></div><div class="mto-card-field"><div class="mto-card-label">Дни</div><div class="mto-card-value">${daysB(r)}</div></div></div><div class="mto-card-actions">${orderActionsCompactHtml(r)}</div></div>`;
+  return `<div class="mto-order-card all-order-card"><div class="mto-card-top"><div><div class="mto-card-no">№${esc(r.num||'б/н')}</div><div class="mto-card-date">${esc(r.createdAt||r.date||'—')}</div><div class="mto-card-title">${esc(r.name||r.title||'Без наименования')}</div><div class="mto-card-sub">${esc(r.requestText||r.material||r.note||'')}</div></div><div class="mto-card-tags"><span class="badge bgr">${esc(r.company||'—')}</span>${shB(r.shifer)}${sB(r.status)}</div></div><div class="mto-card-body"><div class="mto-card-field"><div class="mto-card-label">Ответственные</div><div class="mto-card-value">${userChipsForOrder(r)}${respButtons(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Поставщик</div><div class="mto-card-value">${esc(supplierText)}</div></div><div class="mto-card-field"><div class="mto-card-label">Сумма</div><div class="mto-card-value">${mn(orderTotal(r))}</div></div><div class="mto-card-field"><div class="mto-card-label">Оплата</div><div class="mto-card-value"><span class="badge ${r.payment==='Оплачен'||r.payment==='Оплачено'?'bg':'by'}">${esc(r.payment||'—')}</span></div></div><div class="mto-card-field"><div class="mto-card-label">Поставка</div><div class="mto-card-value">${esc(r.delivery||'—')}${r.vehicleNumber?'<br><span class="nf">🚚 '+esc(r.vehicleNumber)+'</span>':''}</div></div><div class="mto-card-field"><div class="mto-card-label">Дни</div><div class="mto-card-value">${daysB(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">КП</div><div class="mto-card-value">${kpCell(r)}${anB(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Счёт</div><div class="mto-card-value">${invoiceCell(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Договор</div><div class="mto-card-value">${contractCell(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Документы</div><div class="mto-card-value">${docBadges(r)}</div></div><div class="mto-card-field mto-card-wide"><div class="mto-card-label">Примечание</div><div class="mto-card-value">${esc(r.note||'—')}</div></div></div><div class="mto-card-actions">${allOrderActionsHtml(r)}</div></div>`;
 }
 function contractListRowHtml(c){
   const life=contractLife(c); const files=c.fileUrl?`<a class="fl" href="${esc(c.fileUrl)}" target="_blank">📄</a>`:'<span class="nf">—</span>';
@@ -1812,12 +2289,12 @@ function applyAllFilters(list){
 window.sC=function(v,el){aC=v;document.querySelectorAll('.co').forEach(t=>t.classList.remove('active'));el.classList.add('active');rAll();};
 window.sSh=function(v,el){aSh=v;document.querySelectorAll('[onclick^="sSh"]').forEach(t=>t.classList.remove('active'));el.classList.add('active');rAll();};
 function allOrderActionsHtml(r){
-  const id = r.key || r.id || '';
+  const id = r._k || r.key || r.id || '';
   const btns = [];
-  btns.push(`<button class="bsm be" onclick="viewOrder('${id}')">👁 Открыть</button>`);
-  btns.push(`<button class="bsm be" onclick="editOrder('${id}')">✏️ Редактировать</button>`);
-  btns.push(`<button class="bsm be" onclick="openChat('${id}')">💬 Чат</button>`);
-  if(typeof openAnalysisForOrder==='function') btns.push(`<button class="bsm be" onclick="openAnalysisForOrder('${id}')">📈 Анализ</button>`);
+  btns.push(`<button class="bsm be" onclick="window.openOrderView('${id}')">👁 Открыть</button>`);
+  if(canEditOrder(r)) btns.push(`<button class="bsm be" onclick="window.openE('${id}')">✏️ Редактировать</button>`);
+  if(typeof openChat==='function') btns.push(`<button class="bsm be" onclick="openChat('${id}')">💬 Чат</button>`);
+  if(typeof window.openAnalysisFor==='function') btns.push(`<button class="bsm be" onclick="window.openAnalysisFor('${id}')">📈 Анализ</button>`);
   if(typeof delOrder==='function') btns.push(`<button class="bsm bd" onclick="delOrder('${id}')">🗑 Удалить</button>`);
   return btns.join('');
 }
@@ -1912,7 +2389,7 @@ function rEdit(q=''){
     <td data-label="Компания"><span class="badge bgr">${r.company}</span></td>
     <td data-label="Шифр">${shB(r.shifer)}</td>
     <td data-label="Заявка">${orderTitleHtml(r)}</td>
-    <td data-label="Ответственные">${respText(r)} ${respButtons(r)}</td><td data-label="Статус">${sB(r.status)}</td><td data-label="Сумма">${mn(orderTotal(r))}</td>
+    <td data-label="Ответственные">${userChipsForOrder(r)} ${respButtons(r)}</td><td data-label="Статус">${sB(r.status)}</td><td data-label="Сумма">${mn(orderTotal(r))}</td>
     <td data-label="КП">${kpC(r)}${anB(r)}</td>
     <td data-label="Действия"><div class="order-actions"><button class="bsm be" onclick="window.openOrderView('${r._k}')">👁️</button><button class="bsm be" onclick="window.openAnalysisFor('${r._k}')">📈</button><button class="bsm be" onclick="window.openE('${r._k}')">✏️</button>${CU.isAdmin?`<button class="bsm bd" onclick="window.delR('${r._k}')">🗑️</button>`:''}</div></td>
   </tr>`).join('');
@@ -2188,12 +2665,15 @@ window.delR=async function(k){
 // PERSON
 window.openP=function(name){
   if(!name||name==='Не выбран')return;
-  const d=DATA.filter(r=>isRespResponsible(r,name));
+  const login=loginByResp(name);
+  const realName=login?displayNameFor(login):name;
+  const role=login?roleFor(login):'Специалист МТО';
+  const d=DATA.filter(r=>isRespResponsible(r,name)||isRespResponsible(r,realName));
   const done=d.filter(r=>r.status==='ДОСТАВЛЕНО').length;
   const total=d.reduce((a,r)=>a+orderTotal(r),0);
   document.getElementById('ph2').innerHTML=`
-    <div class="pav">${name[0]}</div>
-    <div><div style="font-size:1.2rem;font-weight:700">${name}</div><div style="font-size:.8rem;opacity:.7">Специалист МТО</div><div style="margin-top:6px">${pmButton(name)}</div></div>
+    <div class="pav ${login&&avatarFor(login)?'has-img':''}" ${login&&avatarFor(login)?`style="background-image:url('${esc(avatarFor(login))}')"`:''}>${login&&avatarFor(login)?'':esc((realName||'П')[0])}</div>
+    <div><div style="font-size:1.2rem;font-weight:700">${esc(realName)}</div><div style="font-size:.8rem;opacity:.7">${esc(role)}</div><div style="margin-top:6px">${pmButton(realName)}</div></div>
     <div class="pst">
       <div><div class="psv">${d.length}</div><div class="psl">Заявок</div></div>
       <div><div class="psv">${done}</div><div class="psl">Доставлено</div></div>
@@ -2410,22 +2890,29 @@ window.deleteAnalysis=async function(key){
 // CHAT
 window.sendMsg=async function(){
   const txt=document.getElementById('chat-in').value.trim();
-  const nameEl=document.getElementById('chat-name');
-  const author=(nameEl&&nameEl.value.trim())?nameEl.value.trim():(CU?CU.name:'Без имени');
   if(!txt||!CU)return;
-  await db.ref('chat').push({text:txt,user:author,login:CU.login||'',ts:Date.now()});
+  const login=CU.login||'';
+  const author=displayNameFor(login);
+  await db.ref('chat').push({text:txt,user:author,login,ts:Date.now()});
   document.getElementById('chat-in').value='';
 };
 function rChat(){
   const wrap=document.getElementById('chat-msgs');
+  if(!wrap)return;
+  updateChatAuthorNote();
   if(!MSGS.length){wrap.innerHTML='<div style="text-align:center;color:var(--muted);padding:40px">Сообщений пока нет</div>';return;}
   const sorted=[...MSGS].sort((a,b)=>a.ts-b.ts);
   wrap.innerHTML=sorted.map(m=>{
-    const isMe=CU&&((m.login&&m.login===CU.login)||m.user===CU.name);
+    const login=m.login||loginByResp(m.user)||'';
+    const author=login?displayNameFor(login):(m.user||'Без имени');
+    const isMe=CU&&((login&&login===CU.login)||m.user===displayNameFor(CU.login)||m.user===CU.name);
     const time=m.ts?new Date(m.ts).toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'}):'';
-    return`<div class="msg ${isMe?'me':'other'}">
-      <div class="msg-bubble">${m.text}</div>
-      <div class="msg-meta">${m.user||'Без имени'} • ${time}</div>
+    return`<div class="msg-row ${isMe?'me':'other'}">
+      ${avatarMiniHtml(login,author,'lg')}
+      <div class="msg ${isMe?'me':'other'}">
+        <div class="msg-bubble">${esc(m.text)}</div>
+        <div class="msg-meta">${isMe?'Вы':esc(author)} • ${time}</div>
+      </div>
     </div>`;
   }).join('');
   wrap.scrollTop=wrap.scrollHeight;
@@ -2472,9 +2959,10 @@ function rPrivateList(){
     const msgs=privateMessagesFor(login);
     const last=msgs[msgs.length-1];
     const unread=privateUnreadFrom(login);
+    const nm=displayNameFor(login);
     return `<div class="pm-user ${currentPrivateLogin===login?'active':''}" onclick="openPrivateWith('${login}')">
-      <div class="pm-avatar">${u.name[0]}</div>
-      <div style="min-width:0"><div class="pm-name">${u.name}</div><div class="pm-last">${last?esc(last.text):'Нет сообщений'}</div></div>
+      ${avatarMiniHtml(login,nm,'lg')}
+      <div style="min-width:0"><div class="pm-name">${esc(nm)}</div><div class="pm-last">${last?esc(last.text):'Нет сообщений'}</div></div>
       ${unread?`<div class="pm-unread">${unread}</div>`:''}
     </div>`;
   }).join('');
@@ -2486,15 +2974,21 @@ function rPrivateDialog(login){
   if(!head||!wrap||!CU)return;
   const u=userByLogin(login);
   if(!u){head.textContent='Выберите сотрудника';wrap.innerHTML='<div class="pm-empty">Выберите пользователя слева, чтобы открыть личный чат</div>';return;}
-  head.textContent='Чат с '+u.name;
+  const dialogName=displayNameFor(login);
+  head.innerHTML=`<div class="pm-head-user">${avatarMiniHtml(login,dialogName)}<span>Чат с ${esc(dialogName)}</span></div>`;
   const msgs=privateMessagesFor(login);
   if(!msgs.length){wrap.innerHTML='<div class="pm-empty">Сообщений пока нет. Напишите первым.</div>';return;}
   wrap.innerHTML=msgs.map(m=>{
     const isMe=m.fromLogin===CU.login;
+    const fromLogin=m.fromLogin||loginByResp(m.fromName)||'';
+    const fromName=fromLogin?displayNameFor(fromLogin):(m.fromName||'—');
     const time=m.ts?new Date(m.ts).toLocaleString('ru-RU',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}):'';
-    return `<div class="msg ${isMe?'me':'other'}">
-      <div class="msg-bubble">${esc(m.text)}</div>
-      <div class="msg-meta">${isMe?'Вы':esc(m.fromName||'—')} • ${time}</div>
+    return `<div class="msg-row ${isMe?'me':'other'}">
+      ${avatarMiniHtml(fromLogin,fromName,'lg')}
+      <div class="msg ${isMe?'me':'other'}">
+        <div class="msg-bubble">${esc(m.text)}</div>
+        <div class="msg-meta">${isMe?'Вы':esc(fromName)} • ${time}</div>
+      </div>
     </div>`;
   }).join('');
   wrap.scrollTop=wrap.scrollHeight;
@@ -2516,7 +3010,7 @@ window.sendPrivateMsg=async function(){
   if(!to)return;
   const room=privateRoom(CU.login,currentPrivateLogin);
   await db.ref(`privateMessages/${room}`).push({
-    fromLogin:CU.login,fromName:CU.name,toLogin:currentPrivateLogin,toName:to.name,text:txt,ts:Date.now(),readBy:{[CU.login]:true}
+    fromLogin:CU.login,fromName:displayNameFor(CU.login),toLogin:currentPrivateLogin,toName:displayNameFor(currentPrivateLogin),text:txt,ts:Date.now(),readBy:{[CU.login]:true}
   });
   input.value='';
 };
