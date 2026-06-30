@@ -723,6 +723,7 @@ tr:hover td{background:#f8fafc}
 /* SUPPLIER CHECK */
 .check-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:16px;padding:16px}
 .check-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.check-manual-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px}
 .check-list{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px}
 .check-item{display:flex;gap:8px;align-items:flex-start;padding:9px;border:1px solid var(--border);border-radius:10px;background:#f8fafc;font-size:.82rem;line-height:1.25}
 .check-item input{margin-top:2px;accent-color:var(--accent)}
@@ -741,7 +742,7 @@ tr:hover td{background:#f8fafc}
 .check-note{font-size:.78rem;color:var(--muted);line-height:1.4;margin-top:10px}
 @media(max-width:768px){
   .check-layout{grid-template-columns:1fr;padding:10px}
-  .check-grid,.check-list{grid-template-columns:1fr}
+  .check-grid,.check-list,.check-manual-grid{grid-template-columns:1fr}
   .check-score-card{position:static}
   .check-actions .btn{width:100%}
 }
@@ -754,6 +755,53 @@ tr:hover td{background:#f8fafc}
 .api-kv{display:grid;grid-template-columns:120px 1fr;gap:6px;border-top:1px solid rgba(59,130,246,.18);padding-top:6px;margin-top:6px}
 .api-kv b{color:#64748b;font-size:.72rem;text-transform:uppercase}
 @media(max-width:768px){.api-kv{grid-template-columns:1fr}}
+
+
+/* SUPPLIER DOSSIER / ACCREDITATION POLISH */
+.acc-status-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.acc-status-mini{border:1px solid var(--border);border-radius:12px;background:#f8fafc;padding:10px}
+.acc-status-mini .l{font-size:.62rem;color:var(--muted);font-weight:850;text-transform:uppercase;letter-spacing:.35px;margin-bottom:4px}
+.acc-status-mini .v{font-size:.82rem;font-weight:800;color:var(--primary);line-height:1.25}
+.supplier-dossier{margin-top:12px;border-top:1px solid var(--border);padding-top:10px}
+.supplier-stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:8px 0}
+.supplier-stat{border:1px solid #e8edf4;border-radius:10px;background:#f8fafc;padding:8px}
+.supplier-stat .n{font-size:.9rem;font-weight:900;color:var(--primary)}
+.supplier-stat .t{font-size:.58rem;color:var(--muted);text-transform:uppercase;font-weight:800;letter-spacing:.25px;margin-top:2px}
+.supplier-timeline{margin-top:8px;border-left:2px solid #dbeafe;padding-left:10px}
+.supplier-timeitem{font-size:.72rem;color:#475569;margin:6px 0;line-height:1.3}
+.supplier-timeitem b{color:var(--primary)}
+.supplier-fav{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:2px 8px;font-size:.68rem;font-weight:800;background:#fff7ed;color:#c2410c;border:1px solid #fed7aa;margin-left:4px}
+@media(max-width:768px){.acc-status-row,.supplier-stat-grid{grid-template-columns:1fr 1fr}}
+
+
+
+/* ALL ORDERS CARD VIEW FIX */
+#page-all #atb .force-card-row{display:block!important;width:100%!important;background:transparent!important;border:0!important;box-shadow:none!important;margin:0!important}
+#page-all #atb .force-card-row>td{display:block!important;width:100%!important;padding:0!important;border:0!important;background:transparent!important}
+#page-all .all-card-grid{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:14px;padding:14px}
+#page-all .all-order-card .mto-card-actions .bsm{min-height:34px}
+#page-all .all-order-card .mto-card-actions{justify-content:flex-end}
+@media(max-width:768px){#page-all .all-card-grid{grid-template-columns:1fr;padding:10px;gap:12px}#page-all .all-order-card .mto-card-actions{justify-content:stretch}#page-all .all-order-card .mto-card-actions .bsm{flex:1;min-height:38px}}
+
+
+
+/* VIEW TOGGLE: cards / list */
+.view-toggle{display:inline-flex;gap:4px;border:1px solid var(--border);border-radius:10px;background:#f8fafc;padding:3px}
+.view-toggle button{border:none;background:transparent;color:var(--muted);padding:6px 10px;border-radius:8px;font-size:.76rem;font-weight:800;cursor:pointer}
+.view-toggle button.active{background:var(--primary);color:#fff}
+.page.view-list .tw{overflow-x:auto!important}
+.page.view-list table{display:table!important;width:100%!important;border-collapse:collapse!important;border-spacing:0!important;table-layout:auto!important;font-size:.78rem!important}
+.page.view-list thead{display:table-header-group!important}
+.page.view-list tbody{display:table-row-group!important}
+.page.view-list tr{display:table-row!important;background:transparent!important;border:0!important;box-shadow:none!important;margin:0!important;border-radius:0!important}
+.page.view-list th,.page.view-list td{display:table-cell!important;width:auto!important;padding:8px 10px!important;border-top:1px solid var(--border)!important;text-align:left!important;vertical-align:middle!important;min-height:0!important;max-width:none!important;white-space:normal!important}
+.page.view-list td::before,.page.view-list th::before{content:none!important;display:none!important}
+.page.view-list td:first-child{background:transparent!important;font-weight:600;color:var(--text)!important}
+#page-contacts.view-list .con-grid{display:block!important;padding:16px!important}
+.contact-list-table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;font-size:.82rem}
+.contact-list-table th{background:#f8fafc;color:var(--muted);font-size:.68rem;text-transform:uppercase;letter-spacing:.35px;padding:9px;text-align:left}
+.contact-list-table td{padding:9px;border-top:1px solid var(--border);vertical-align:middle}
+@media(max-width:768px){.view-toggle{width:100%;justify-content:center}.view-toggle button{flex:1}.page.view-list table{font-size:.72rem!important}.page.view-list th,.page.view-list td{padding:7px 8px!important}.contact-list-table{font-size:.72rem}}
 
 </style>
 </head>
@@ -786,7 +834,7 @@ tr:hover td{background:#f8fafc}
       <div class="nav-item" onclick="SP('chat',this)">💬 Вопросы / Чат</div>
       <div class="nav-item" onclick="SP('private',this)">✉️ Личные сообщения <span class="nav-badge" id="pm-unread-badge"></span></div>
       <div class="nav-item" onclick="SP('contacts',this)">📞 Контакты</div>
-      <div class="nav-item" onclick="SP('supplier-check',this)">🛡 Проверка поставщика</div>
+      <div class="nav-item" onclick="SP('supplier-check',this)">✅ Аккредитация поставщика</div>
       <div class="nav-item" onclick="SP('contracts',this)">📄 Договоры</div>
       <div class="nav-item" onclick="SP('analytics',this)">📊 Аналитика МТО</div>
       <div class="nav-item" onclick="SP('history',this)">🕓 История изменений</div>
@@ -947,10 +995,44 @@ tr:hover td{background:#f8fafc}
     <div class="page" id="page-contacts">
       <div class="ph"><div class="pt">Контакты поставщиков</div><div class="ps">Реестр поставщиков</div></div>
       <div class="card">
-        <div class="ch"><div class="ct">Поставщики</div>
+        <div class="ch"><div class="ct">Поставщики <span class="filter-count" id="contacts-count"></span></div>
           <div class="cf">
-            <input class="si2" placeholder="🔍 Поиск..." oninput="rContacts(this.value)" style="width:190px"/>
+            <input class="si2" id="contact-search" placeholder="🔍 Поиск..." oninput="rContacts()" style="width:220px"/>
             <button class="btn btn-p" onclick="openAddContact()">➕ Добавить</button>
+          </div>
+        </div>
+        <div class="filter-panel" style="margin:14px 16px 0">
+          <div class="filter-head">
+            <div class="filter-title">Фильтр контактов</div>
+            <button class="btn btn-s" onclick="clearContactFilters()" style="padding:7px 12px">Сбросить</button>
+          </div>
+          <div class="filter-grid">
+            <div class="fgr">
+              <label class="fl2">Аккредитация</label>
+              <select class="si2" id="contact-filter-status" onchange="rContacts()">
+                <option value="all">Все</option>
+                <option value="accredited">Аккредитованные</option>
+                <option value="conditional">На согласовании / условные</option>
+                <option value="blocked">Не аккредитованные / риск</option>
+                <option value="none">Без аккредитации</option>
+              </select>
+            </div>
+            <div class="fgr">
+              <label class="fl2">Дополнительно</label>
+              <select class="si2" id="contact-filter-extra" onchange="rContacts()">
+                <option value="all">Все</option>
+                <option value="preferred">Рекомендуемые</option>
+                <option value="withInn">С ИНН</option>
+                <option value="withoutInn">Без ИНН</option>
+                <option value="spec">Со спецсчётом</option>
+                <option value="withOrders">Есть заявки</option>
+                <option value="withDelays">Есть подтверждённые просрочки</option>
+              </select>
+            </div>
+            <div class="fgr f">
+              <label class="fl2">Деятельность / направление</label>
+              <input class="si2" id="contact-filter-activity" placeholder="Например: бетон, электрика, аренда техники" oninput="rContacts()"/>
+            </div>
           </div>
         </div>
         <div class="con-grid" id="con-grid"></div>
@@ -959,62 +1041,88 @@ tr:hover td{background:#f8fafc}
 
 
 
-    <!-- SUPPLIER CHECK -->
+    <!-- SUPPLIER ACCREDITATION -->
     <div class="page" id="page-supplier-check">
-      <div class="ph"><div class="pt">Проверка поставщика</div><div class="ps">Ручной скоринг поставщика по ИНН перед добавлением в контакты</div></div>
+      <div class="ph"><div class="pt">Аккредитация поставщика</div><div class="ps">Оформление нового поставщика перед добавлением в контакты</div></div>
       <div class="card">
         <div class="ch">
-          <div class="ct">🛡 Карточка проверки</div>
+          <div class="ct">✅ Карточка аккредитации</div>
           <div class="cf">
             <button class="btn btn-s" onclick="resetSupplierCheck()">Очистить</button>
           </div>
         </div>
         <div class="check-layout">
           <div>
+            <div class="order-section-title">1. Основные сведения</div>
             <div class="check-grid">
-              <div class="fgr"><label class="fl2">ИНН</label><input class="fi" id="sc-inn" placeholder="Введите ИНН" oninput="supplierCheckChanged()"><button class="btn btn-s" style="margin-top:7px;width:100%" onclick="checkSupplierByApi()">🔎 Проверить по API</button><div class="check-api-status" id="sc-api-status">Введите ИНН и нажмите проверку.</div></div>
+              <div class="fgr">
+                <label class="fl2">ИНН</label>
+                <input class="fi" id="sc-inn" placeholder="Введите ИНН" oninput="supplierCheckChanged()">
+                <button class="btn btn-s" style="margin-top:7px;width:100%" onclick="checkSupplierByApi()">↙ Подтянуть реквизиты по ИНН</button>
+                <div class="check-api-status" id="sc-api-status">Введите ИНН и подтяните реквизиты через DaData.</div>
+              </div>
               <div class="fgr"><label class="fl2">Название организации</label><input class="fi" id="sc-name" placeholder="ООО Поставщик" oninput="supplierCheckChanged()"></div>
-              <div class="fgr"><label class="fl2">Телефон</label><input class="fi" id="sc-phone" placeholder="8 (___) ___-__-__"></div>
-              <div class="fgr"><label class="fl2">Email</label><input class="fi" id="sc-email" placeholder="info@company.ru"></div>
-              <div class="fgr"><label class="fl2">Сайт</label><input class="fi" id="sc-site" placeholder="https://"></div>
-              <div class="fgr"><label class="fl2">Контактное лицо</label><input class="fi" id="sc-person" placeholder="Имя, должность"></div>
-              <div class="fgr"><label class="fl2">Вид деятельности</label><input class="fi" id="sc-activity" placeholder="Стройматериалы"></div>
-              <div class="fgr"><label class="fl2">Город / регион</label><input class="fi" id="sc-city" placeholder="Москва / регион"></div>
+              <div class="fgr"><label class="fl2">Телефон</label><input class="fi" id="sc-phone" placeholder="8 (___) ___-__-__" oninput="supplierCheckChanged()"></div>
+              <div class="fgr"><label class="fl2">Email</label><input class="fi" id="sc-email" placeholder="info@company.ru" oninput="supplierCheckChanged()"></div>
+              <div class="fgr"><label class="fl2">Сайт</label><input class="fi" id="sc-site" placeholder="https://" oninput="supplierCheckChanged()"></div>
+              <div class="fgr"><label class="fl2">Контактное лицо</label><input class="fi" id="sc-person" placeholder="Имя, должность" oninput="supplierCheckChanged()"></div>
+              <div class="fgr"><label class="fl2">Вид деятельности</label><input class="fi" id="sc-activity" placeholder="Стройматериалы" oninput="supplierCheckChanged()"></div>
+              <div class="fgr"><label class="fl2">Город / регион</label><input class="fi" id="sc-city" placeholder="Москва / регион" oninput="supplierCheckChanged()"></div>
             </div>
             <div class="check-api-result" id="sc-api-result"></div>
 
-            <div class="order-section-title">✅ Чек-лист проверки</div>
-            <div class="check-list" id="supplier-check-list">
-              <label class="check-item"><input type="checkbox" data-score="12" onchange="calcSupplierScore()"> Компания действующая</label>
-              <label class="check-item"><input type="checkbox" data-score="10" onchange="calcSupplierScore()"> Не ликвидируется</label>
-              <label class="check-item"><input type="checkbox" data-score="10" onchange="calcSupplierScore()"> Не банкрот</label>
-              <label class="check-item"><input type="checkbox" data-score="10" onchange="calcSupplierScore()"> Нет исполнительных производств</label>
-              <label class="check-item"><input type="checkbox" data-score="8" onchange="calcSupplierScore()"> Не массовый директор</label>
-              <label class="check-item"><input type="checkbox" data-score="8" onchange="calcSupplierScore()"> Не массовый адрес</label>
-              <label class="check-item"><input type="checkbox" data-score="10" onchange="calcSupplierScore()"> Работает более 3 лет</label>
-              <label class="check-item"><input type="checkbox" data-score="8" onchange="calcSupplierScore()"> Есть положительная репутация</label>
-              <label class="check-item"><input type="checkbox" data-score="8" onchange="calcSupplierScore()"> Есть офис / склад / точка выдачи</label>
-              <label class="check-item"><input type="checkbox" data-score="8" onchange="calcSupplierScore()"> Есть сертификаты / документы качества</label>
-              <label class="check-item"><input type="checkbox" data-score="4" onchange="calcSupplierScore()"> Есть сайт / публичные контакты</label>
-              <label class="check-item"><input type="checkbox" data-score="4" onchange="calcSupplierScore()"> Есть рекомендации / работали ранее</label>
+            <div class="order-section-title">2. Документы поставщика</div>
+            <div class="check-manual-grid" id="supplier-doc-fields">
+              <div class="fgr"><label class="fl2">Карточка предприятия</label><input class="fi acc-doc-field" id="sc-doc-card" placeholder="Ссылка на файл / номер документа" oninput="calcSupplierScore()"></div>
+              <div class="fgr"><label class="fl2">Банковские реквизиты</label><input class="fi acc-doc-field" id="sc-doc-bank" placeholder="Ссылка на файл / реквизиты" oninput="calcSupplierScore()"></div>
+              <div class="fgr"><label class="fl2">Выписка ЕГРЮЛ</label><input class="fi acc-doc-field" id="sc-doc-egrul" placeholder="Ссылка на выписку" oninput="calcSupplierScore()"></div>
+              <div class="fgr"><label class="fl2">Коммерческое предложение</label><input class="fi acc-doc-field" id="sc-doc-kp" placeholder="Ссылка на КП" oninput="calcSupplierScore()"></div>
+              <div class="fgr"><label class="fl2">Сертификаты</label><input class="fi acc-doc-field" id="sc-doc-cert" placeholder="Если требуются" oninput="calcSupplierScore()"></div>
+              <div class="fgr"><label class="fl2">Лицензии</label><input class="fi acc-doc-field" id="sc-doc-license" placeholder="Если требуются" oninput="calcSupplierScore()"></div>
+              <div class="fgr"><label class="fl2">Доверенность</label><input class="fi acc-doc-field" id="sc-doc-proxy" placeholder="Если подписывает представитель" oninput="calcSupplierScore()"></div>
+              <div class="fgr"><label class="fl2">Прочие документы</label><input class="fi acc-doc-field" id="sc-doc-other" placeholder="Ссылка / комментарий" oninput="calcSupplierScore()"></div>
             </div>
 
-            <div class="fgr f" style="margin-top:12px"><label class="fl2">Комментарий проверки</label><textarea class="fi" id="sc-comment" rows="3" placeholder="Например: работали ранее, просрочек не было / нужна проверка юриста"></textarea></div>
+            <div class="order-section-title">3. Проверка снабженцем</div>
+            <div class="check-list" id="supplier-checklist">
+              <label class="check-item"><input type="checkbox" id="sc-c-phone" onchange="calcSupplierScore()"> Телефон подтвержден</label>
+              <label class="check-item"><input type="checkbox" id="sc-c-email" onchange="calcSupplierScore()"> Email подтвержден</label>
+              <label class="check-item"><input type="checkbox" id="sc-c-person" onchange="calcSupplierScore()"> Контактное лицо подтверждено</label>
+              <label class="check-item"><input type="checkbox" id="sc-c-bank" onchange="calcSupplierScore()"> Банковские реквизиты сверены</label>
+              <label class="check-item"><input type="checkbox" id="sc-c-docs" onchange="calcSupplierScore()"> Документы проверены</label>
+              <label class="check-item"><input type="checkbox" id="sc-c-kp" onchange="calcSupplierScore()"> Коммерческое предложение получено</label>
+              <label class="check-item"><input type="checkbox" id="sc-c-contract" onchange="calcSupplierScore()"> Можно готовить договор/спецификацию</label>
+              <label class="check-item"><input type="checkbox" id="sc-c-site" onchange="calcSupplierScore()"> Сайт / публичные контакты проверены</label>
+              <label class="check-item"><input type="checkbox" id="sc-c-no-advance" onchange="calcSupplierScore()"> Первый заказ только без аванса / с защитой</label>
+              <label class="check-item"><input type="checkbox" id="sc-c-legal" onchange="calcSupplierScore()"> Нет явных стоп-факторов по данным DaData</label>
+            </div>
+
+            <div class="fgr f" style="margin-top:12px"><label class="fl2">Комментарий аккредитации</label><textarea class="fi" id="sc-comment" rows="3" placeholder="Например: документы получены, реквизиты сверены, первый заказ только после договора" oninput="supplierCheckChanged()"></textarea></div>
           </div>
 
           <div class="check-score-card">
             <div class="check-score" id="sc-score">0</div>
             <div class="check-score-sub">баллов из 100</div>
             <div id="sc-risk" class="check-risk-box bad">
-              🔴 Рискованный поставщик<br>Добавление в контакты запрещено без администратора.
+              🔴 Недостаточно данных<br>Заполните карточку аккредитации.
             </div>
-            <div class="check-note" id="sc-reco">Заполните данные и отметьте пункты проверки.</div>
+            <div class="check-note" id="sc-reco">Подтяните реквизиты, добавьте документы и отметьте внутреннюю проверку.</div>
             <div class="check-actions">
-              <button class="btn btn-p" id="sc-add-btn" onclick="addCheckedSupplierToContacts()">Добавить в контакты</button>
+              <button class="btn btn-p" id="sc-add-btn" onclick="addCheckedSupplierToContacts()">Аккредитовать и добавить</button>
+              <button class="btn btn-s" id="sc-request-btn" onclick="sendSupplierToManager()">Передать руководителю</button>
               <button class="btn btn-s" onclick="prefillContactFromCheck()">Заполнить форму контакта</button>
             </div>
             <div class="check-note">
-              Сейчас проверка ручная. Позже сюда можно подключить API ФНС/Контур/СПАРК, и эти пункты будут заполняться автоматически по ИНН.
+              Решение: 80+ — аккредитован, 55–79 — условно/руководитель, ниже 55 — не аккредитован.
+            </div>
+            <div class="supplier-dossier">
+              <div class="order-section-title" style="margin-top:0">Паспорт поставщика</div>
+              <div class="acc-status-row">
+                <label class="check-item"><input type="checkbox" id="sc-preferred" onchange="calcSupplierScore()"> Рекомендуемый</label>
+                <div class="fgr"><label class="fl2">Категория</label><select class="fi" id="sc-category" onchange="calcSupplierScore()"><option value="Новый">Новый</option><option value="Проверенный">Проверенный</option><option value="Ключевой">Ключевой</option><option value="Резервный">Резервный</option></select></div>
+                <div class="fgr"><label class="fl2">Следующая проверка</label><input class="fi" type="date" id="sc-next-review" onchange="calcSupplierScore()"></div>
+                <div class="fgr"><label class="fl2">Кто проверил</label><input class="fi" id="sc-reviewed-by" placeholder="ФИО" oninput="supplierCheckChanged()"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -1112,7 +1220,7 @@ tr:hover td{background:#f8fafc}
         <select class="fi" id="fst"><option>Идет сбор КП</option><option>На оплате</option><option>ЖДЕМ ДОСТАВКИ</option><option>Ожидаем доставку</option><option>ЧАСТИЧНО ДОСТАВЛЕНО</option><option>ДОСТАВЛЕНО</option><option>Приостановлена</option></select></div>
       <div class="fgr f"><label class="fl2">Материал поставки</label><input class="fi" id="fma" placeholder="Перечислите материалы"/></div>
       <div class="fgr"><label class="fl2">Стоимость, руб.</label><input class="fi" type="number" id="fco2" placeholder="0"/></div>
-      <div class="fgr"><label class="fl2">Поставщик / контрагент</label><input class="fi" id="fct" list="contacts-list" placeholder="Выберите из контактов или впишите нового" oninput="refreshContractChoice()"/><datalist id="contacts-list"></datalist></div>
+      <div class="fgr"><label class="fl2">Поставщик / контрагент</label><input class="fi" id="fct" list="contacts-list" placeholder="Выберите из контактов или впишите нового" oninput="refreshContractChoice()" onchange="refreshContractChoice()"/><datalist id="contacts-list"></datalist></div>
       <div class="fgr f"><label class="fl2">Основной счёт / ссылка (если один поставщик)</label><input class="fi" id="fin" placeholder="https://drive.google.com/..."/></div>
       <div class="fgr"><label class="fl2">Договор / Тип счёта</label><select class="fi" id="fcon"><option></option><option>Счет-договор</option><option>Договор поставки</option><option>Счёт</option></select></div>
       <div class="fgr f"><label class="fl2">Договор из реестра</label><select class="fi" id="fcr" onchange="selectOrderContract()"><option value="">— Договор не выбран —</option></select><div class="nf" id="fcr-info" style="margin-top:5px">Выберите поставщика выше, чтобы быстрее найти договор.</div></div>
@@ -1213,6 +1321,41 @@ let CU=null,DATA=[],CONTACTS=[],CONTRACTS=[],MSGS=[],HISTORY=[],PRIV=[];
 let dQ='',dashC='ALL',aC='СТЕЛС',aSh='ALL',aSt='',aSr='',quickFilter='';
 let advF={resp:'',payment:'',upd:'',docs:'',sumFrom:'',sumTo:'',dateFrom:'',dateTo:'',delivFrom:'',delivTo:'',daysFrom:'',daysTo:'',contractor:''};
 let editKey=null,kpRows=[],invoiceRows=[],contactKey=null,currentPrivateLogin='';
+
+// VIEW MODE SWITCHER
+let viewModes={};
+try{viewModes=JSON.parse(localStorage.getItem('mto_view_modes')||'{}')||{};}catch(e){viewModes={};}
+const VIEW_PAGES=['dash','all','mine','contracts','contacts'];
+function getViewMode(page){return viewModes[page]||'cards';}
+function setPageViewClass(page){const el=document.getElementById('page-'+page); if(el){el.classList.toggle('view-list',getViewMode(page)==='list');}}
+function updateViewButtons(page){
+  document.querySelectorAll(`[data-view-page="${page}"]`).forEach(b=>b.classList.toggle('active',b.dataset.viewMode===getViewMode(page)));
+}
+function setViewMode(page,mode){
+  viewModes[page]=mode;
+  localStorage.setItem('mto_view_modes',JSON.stringify(viewModes));
+  setPageViewClass(page); updateViewButtons(page);
+  if(page==='dash')rDash();
+  if(page==='all')rAll();
+  if(page==='mine')rMine();
+  if(page==='contracts')rContracts();
+  if(page==='contacts')rContacts();
+}
+function viewToggleHtml(page){
+  return `<div class="view-toggle"><button type="button" data-view-page="${page}" data-view-mode="cards" onclick="setViewMode('${page}','cards')">▦ Карточки</button><button type="button" data-view-page="${page}" data-view-mode="list" onclick="setViewMode('${page}','list')">☰ Список</button></div>`;
+}
+function setupViewToggles(){
+  const map={dash:'#page-dash .ch',all:'#page-all .card .ch',mine:'#page-mine .ch',contracts:'#page-contracts .ch',contacts:'#page-contacts .ch'};
+  Object.entries(map).forEach(([page,sel])=>{
+    const ch=document.querySelector(sel); if(!ch || ch.querySelector(`[data-view-page="${page}"]`))return;
+    let cf=ch.querySelector('.cf');
+    if(!cf){cf=document.createElement('div');cf.className='cf';ch.appendChild(cf);}
+    cf.insertAdjacentHTML('afterbegin',viewToggleHtml(page));
+    setPageViewClass(page); updateViewButtons(page);
+  });
+}
+window.setViewMode=setViewMode;
+
 let autoLoginTried=false;
 const CONTROL_USERS=['magomed','emin','vadim'];
 function canSeeControl(){return CU && CONTROL_USERS.includes(CU.login);}
@@ -1244,18 +1387,18 @@ db.ref('orders').on('value',s=>{
     }
   }
   if(!CU){document.getElementById('login-screen').style.display='flex';}
-  if(CU){rDash();rAll();rMine();rEdit();fillAnSel();rContracts();if(canSeeControl()){rAnalytics();rHistory('');}}
+  if(CU){setupViewToggles();rDash();rAll();rMine();rEdit();fillAnSel();rContracts();if(canSeeControl()){rAnalytics();rHistory('');}}
 });
 db.ref('contacts').on('value',s=>{
   CONTACTS=[];
   if(s.exists())s.forEach(c=>{ CONTACTS.push({_k:c.key,...c.val()}); });
-  if(CU){rContacts('');populateOrderRefs();}
+  if(CU){setupViewToggles();rContacts('');populateOrderRefs();}
 });
 
 db.ref('contractsRegistry/contracts').on('value',s=>{
   CONTRACTS=[];
   if(s.exists())s.forEach(c=>{ CONTRACTS.push({_k:c.key,...c.val()}); });
-  if(CU){rContracts();populateOrderRefs();}
+  if(CU){setupViewToggles();rContracts();populateOrderRefs();}
 });
 
 db.ref('chat').on('value',s=>{
@@ -1529,6 +1672,42 @@ window.openOrderView=function(key){
   OM('mo-order');
 };
 
+
+function supplierTextForOrder(r){
+  const kp=r.kp||[]; const inv=invoiceList(r)||[]; const selectedKp=kp.filter(k=>k.selected);
+  const suppliers=[...selectedKp.map(k=>k.supplier).filter(Boolean),...inv.map(x=>x.supplier).filter(Boolean),r.contractor].filter(Boolean);
+  return suppliers.length?[...new Set(suppliers)].join(', '):'—';
+}
+function orderListRowHtml(r,type){
+  const id=r._k||r.key||r.id||'';
+  if(type==='dash')return `<tr>
+    <td>${esc(r.num||'—')}</td><td>${esc(r.company||'—')}</td><td>${shB(r.shifer)}</td><td><strong>${esc(r.name||r.title||'—')}</strong><div class="nf">${esc(r.material||r.requestText||'')}</div></td><td><span class="rl badge bgr" onclick="window.openP('${esc(r.resp||r.resp2||'')}')">${respText(r)}</span></td><td>${sB(r.status)}</td><td>${esc(r.contractor||'—')}</td><td>${mn(orderTotal(r))}</td><td>${esc(r.delivery||'—')}</td><td>${uB(r.upd)}</td><td>${daysB(r)}</td>
+  </tr>`;
+  if(type==='mine'){const kp=r.kp||[];const sel=kp.filter(k=>k.selected);return `<tr>
+    <td>${esc(r.num||'—')}</td><td>${shB(r.shifer)}</td><td><strong>${esc(r.name||r.title||'—')}</strong><div class="nf">${esc(r.material||r.requestText||'')}</div></td><td>${sB(r.status)}</td><td>${kp.length} КП ${kpCell(r)}</td><td>${sel.length?sel.map(k=>`<span class="badge bgold">✓ ${esc(k.supplier||'Поставщик')}</span>`).join(' '):'<span class="nf">—</span>'}</td><td>${mn(sel.reduce((a,k)=>a+(Number(k.sum)||0),0)||orderTotal(r))}</td><td>${esc(r.delivery||'—')}</td><td>${uB(r.upd)}</td><td>${daysB(r)}</td>
+  </tr>`;}
+  return `<tr>
+    <td>${esc(r.num||'—')}</td><td>${esc(r.createdAt||r.date||'—')}</td><td>${esc(r.company||'—')}</td><td>${shB(r.shifer)}</td><td><strong>${esc(r.name||r.title||'—')}</strong><div class="nf">${esc(r.material||r.requestText||r.note||'')}</div></td><td><span class="rl badge bgr" onclick="window.openP('${esc(r.resp||r.resp2||'')}')">${respText(r)}</span></td><td>${sB(r.status)}</td><td>${mn(orderTotal(r))}</td><td><span class="badge ${r.payment==='Оплачен'||r.payment==='Оплачено'?'bg':'by'}">${esc(r.payment||'—')}</span></td><td>${esc(r.delivery||'—')}</td><td>${kpCell(r)}${anB(r)}</td><td>${invoiceCell(r)}</td><td>${contractCell(r)}</td><td>${docBadges(r)}</td><td><div class="order-actions compact-actions">${allOrderActionsHtml(r)}</div></td>
+  </tr>`;
+}
+function orderCardHtml(r,type){
+  const kp=r.kp||[]; const inv=invoiceList(r)||[]; const selectedKp=kp.filter(k=>k.selected); const sel=selectedKp;
+  const supplierText=supplierTextForOrder(r);
+  if(type==='mine')return `<div class="mto-order-card"><div class="mto-card-top"><div><div class="mto-card-no">№${esc(r.num||'б/н')}</div><div class="mto-card-date">${esc(r.createdAt||r.date||'—')}</div><div class="mto-card-title">${esc(r.name||r.title||'Без наименования')}</div><div class="mto-card-sub">${esc(r.requestText||r.material||'')}</div></div><div class="mto-card-tags">${shB(r.shifer)}${sB(r.status)}</div></div><div class="mto-card-body"><div class="mto-card-field"><div class="mto-card-label">КП</div><div class="mto-card-value"><span class="badge bgr">${kp.length} КП</span> ${kpCell(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Выбранный</div><div class="mto-card-value">${sel.length?sel.map(k=>`<span class="badge bgold">✓ ${esc(k.supplier||'Поставщик')}</span>`).join(' '):'<span class="nf">—</span>'}</div></div><div class="mto-card-field"><div class="mto-card-label">Сумма</div><div class="mto-card-value">${mn(sel.reduce((a,k)=>a+(Number(k.sum)||0),0)||orderTotal(r))}</div></div><div class="mto-card-field"><div class="mto-card-label">Поставка</div><div class="mto-card-value">${esc(r.delivery||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">УПД</div><div class="mto-card-value">${uB(r.upd)}</div></div><div class="mto-card-field"><div class="mto-card-label">Дни</div><div class="mto-card-value">${daysB(r)}</div></div></div><div class="mto-card-actions">${orderActionsCompactHtml(r)}</div></div>`;
+  if(type==='dash')return `<div class="mto-order-card"><div class="mto-card-top"><div><div class="mto-card-no">№${esc(r.num||'б/н')}</div><div class="mto-card-date">${esc(r.createdAt||r.date||'—')}</div><div class="mto-card-title">${esc(r.name||r.title||'Без наименования')}</div><div class="mto-card-sub">${esc(r.requestText||r.material||'')}</div></div><div class="mto-card-tags"><span class="badge bgr">${esc(r.company||'—')}</span>${shB(r.shifer)}${sB(r.status)}</div></div><div class="mto-card-body"><div class="mto-card-field"><div class="mto-card-label">Ответственные</div><div class="mto-card-value"><span class="rl badge bgr" onclick="window.openP('${esc(r.resp||r.resp2||'')}')">${respText(r)}</span>${respButtons(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Контрагент</div><div class="mto-card-value">${esc(r.contractor||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">Сумма</div><div class="mto-card-value">${mn(orderTotal(r))}</div></div><div class="mto-card-field"><div class="mto-card-label">Поставка</div><div class="mto-card-value">${esc(r.delivery||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">УПД</div><div class="mto-card-value">${uB(r.upd)}</div></div><div class="mto-card-field"><div class="mto-card-label">Дни</div><div class="mto-card-value">${daysB(r)}</div></div></div><div class="mto-card-actions">${orderActionsCompactHtml(r)}</div></div>`;
+  return `<div class="mto-order-card all-order-card"><div class="mto-card-top"><div><div class="mto-card-no">№${esc(r.num||'б/н')}</div><div class="mto-card-date">${esc(r.createdAt||r.date||'—')}</div><div class="mto-card-title">${esc(r.name||r.title||'Без наименования')}</div><div class="mto-card-sub">${esc(r.requestText||r.material||r.note||'')}</div></div><div class="mto-card-tags"><span class="badge bgr">${esc(r.company||'—')}</span>${shB(r.shifer)}${sB(r.status)}</div></div><div class="mto-card-body"><div class="mto-card-field"><div class="mto-card-label">Ответственные</div><div class="mto-card-value"><span class="rl badge bgr" onclick="window.openP('${esc(r.resp||r.resp2||'')}')">${respText(r)}</span>${respButtons(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Поставщик</div><div class="mto-card-value">${esc(supplierText)}</div></div><div class="mto-card-field"><div class="mto-card-label">Сумма</div><div class="mto-card-value">${mn(orderTotal(r))}</div></div><div class="mto-card-field"><div class="mto-card-label">Оплата</div><div class="mto-card-value"><span class="badge ${r.payment==='Оплачен'||r.payment==='Оплачено'?'bg':'by'}">${esc(r.payment||'—')}</span></div></div><div class="mto-card-field"><div class="mto-card-label">Поставка</div><div class="mto-card-value">${esc(r.delivery||'—')}${r.vehicleNumber?'<br><span class="nf">🚚 '+esc(r.vehicleNumber)+'</span>':''}</div></div><div class="mto-card-field"><div class="mto-card-label">Дни</div><div class="mto-card-value">${daysB(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">КП</div><div class="mto-card-value">${kpCell(r)}${anB(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Счёт</div><div class="mto-card-value">${invoiceCell(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Договор</div><div class="mto-card-value">${contractCell(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Документы</div><div class="mto-card-value">${docBadges(r)}</div></div><div class="mto-card-field mto-card-wide"><div class="mto-card-label">Примечание</div><div class="mto-card-value">${esc(r.note||'—')}</div></div></div><div class="mto-card-actions">${allOrderActionsHtml(r)}</div></div>`;
+}
+function contractListRowHtml(c){
+  const life=contractLife(c); const files=c.fileUrl?`<a class="fl" href="${esc(c.fileUrl)}" target="_blank">📄</a>`:'<span class="nf">—</span>';
+  return `<tr><td><strong>${esc(c.counterparty||'—')}</strong></td><td>${esc(c.inn||'—')}</td><td>${esc(c.contractNumber||'—')}</td><td>${esc(c.contractDate||'—')}</td><td>${esc(c.dateTo||'—')}</td><td>${esc(c.type||'—')}</td><td>${esc(c.amount||'—')}</td><td><span class="badge ${life.cls}">${life.label}</span></td><td>${files}</td><td>${canManageContracts()?`<button class="bsm be" onclick="editContract('${c._k}')">✏️</button> <button class="bsm bd" onclick="delContract('${c._k}')">🗑</button>`:''}</td></tr>`;
+}
+function contractCardHtml(c){
+  const life=contractLife(c); const files=[];
+  if(c.fileUrl)files.push(`<a class="fl" href="${esc(c.fileUrl)}" target="_blank">📄 Договор</a>`);
+  (c.attachments||[]).forEach((a,i)=>{if(a.fileUrl)files.push(`<a class="fl" href="${esc(a.fileUrl)}" target="_blank">📎 ${esc(a.name||('Файл '+(i+1)))}</a>`);});
+  return `<div class="mto-contract-card"><div class="mto-card-top"><div><div class="mto-card-no">${esc(c.counterparty||'—')}</div><div class="mto-card-date">ИНН: ${esc(c.inn||'—')}${c.kpp?' / КПП: '+esc(c.kpp):''}</div><div class="mto-card-title">Договор № ${esc(c.contractNumber||'—')}</div><div class="mto-card-sub">${esc(c.subject||'')}</div></div><div class="mto-card-tags"><span class="badge ${life.cls}">${life.label}</span></div></div><div class="mto-card-body"><div class="mto-card-field"><div class="mto-card-label">Дата договора</div><div class="mto-card-value">${esc(c.contractDate||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">Срок до</div><div class="mto-card-value">${esc(c.dateTo||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">Тип</div><div class="mto-card-value">${esc(c.type||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">Сумма</div><div class="mto-card-value">${esc(c.amount||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">Статус</div><div class="mto-card-value"><span class="badge ${life.cls}">${life.label}</span>${c.confidence?`<div class="nf">Уверенность: ${esc(c.confidence)}%</div>`:''}</div></div><div class="mto-card-field"><div class="mto-card-label">Файлы</div><div class="mto-card-value"><div class="contract-file-links">${files.length?files.join(''):'<span class="nf">Файл не загружен</span>'}</div>${c.fileUploadError?`<div class="nf">${esc(c.fileUploadError)}</div>`:''}</div></div><div class="mto-card-field mto-card-wide"><div class="mto-card-label">Предмет / текст</div><div class="mto-card-value">${esc(c.textPreview||c.subject||'—')}</div></div></div><div class="mto-card-actions">${canManageContracts()?`<button class="bsm be" onclick="editContract('${c._k}')">✏️</button><button class="bsm bd" onclick="delContract('${c._k}')">🗑️</button>`:''}</div></div>`;
+}
+
 // DASHBOARD
 window.sDashC=function(v,el){dashC=v;document.querySelectorAll('.dashco').forEach(t=>t.classList.remove('active'));el.classList.add('active');rDash();};
 function getDashData(){
@@ -1553,34 +1732,11 @@ function rDashT(){
   const d=getDashData();
   const f=dQ?d.filter(r=>JSON.stringify(r).toLowerCase().includes(dQ.toLowerCase())):d;
   const tb=document.getElementById('dtb');
+  setPageViewClass('dash'); updateViewButtons('dash');
   if(!f.length){tb.innerHTML='<tr><td colspan="11" class="erow">Нет данных</td></tr>';return;}
-  tb.innerHTML=`<tr class="order-card-row"><td colspan="11"><div class="mto-card-grid">`+f.map(r=>`
-    <div class="mto-order-card">
-      <div class="mto-card-top">
-        <div>
-          <div class="mto-card-no">№${esc(r.num||'б/н')}</div>
-          <div class="mto-card-date">${esc(r.createdAt||r.date||'—')}</div>
-          <div class="mto-card-title">${esc(r.name||r.title||'Без наименования')}</div>
-          <div class="mto-card-sub">${esc(r.requestText||r.material||'')}</div>
-        </div>
-        <div class="mto-card-tags">
-          <span class="badge bgr">${esc(r.company||'—')}</span>
-          ${shB(r.shifer)}
-          ${sB(r.status)}
-        </div>
-      </div>
-      <div class="mto-card-body">
-        <div class="mto-card-field"><div class="mto-card-label">Ответственные</div><div class="mto-card-value"><span class="rl badge bgr" onclick="window.openP('${esc(r.resp||r.resp2||'')}')">${respText(r)}</span>${respButtons(r)}</div></div>
-        <div class="mto-card-field"><div class="mto-card-label">Контрагент</div><div class="mto-card-value">${esc(r.contractor||'—')}</div></div>
-        <div class="mto-card-field"><div class="mto-card-label">Сумма</div><div class="mto-card-value">${mn(orderTotal(r))}</div></div>
-        <div class="mto-card-field"><div class="mto-card-label">Поставка</div><div class="mto-card-value">${esc(r.delivery||'—')}</div></div>
-        <div class="mto-card-field"><div class="mto-card-label">УПД</div><div class="mto-card-value">${uB(r.upd)}</div></div>
-        <div class="mto-card-field"><div class="mto-card-label">Дни</div><div class="mto-card-value">${daysB(r)}</div></div>
-      </div>
-      <div class="mto-card-actions">${orderActionsCompactHtml(r)}</div>
-    </div>`).join('')+`</div></td></tr>`;
+  if(getViewMode('dash')==='list'){tb.innerHTML=f.map(r=>orderListRowHtml(r,'dash')).join('');return;}
+  tb.innerHTML=`<tr class="order-card-row"><td colspan="11"><div class="mto-card-grid">`+f.map(r=>orderCardHtml(r,'dash')).join('')+`</div></td></tr>`;
 }
-
 
 
 function parseRuDate(v){
@@ -1655,6 +1811,17 @@ function applyAllFilters(list){
 // ALL
 window.sC=function(v,el){aC=v;document.querySelectorAll('.co').forEach(t=>t.classList.remove('active'));el.classList.add('active');rAll();};
 window.sSh=function(v,el){aSh=v;document.querySelectorAll('[onclick^="sSh"]').forEach(t=>t.classList.remove('active'));el.classList.add('active');rAll();};
+function allOrderActionsHtml(r){
+  const id = r.key || r.id || '';
+  const btns = [];
+  btns.push(`<button class="bsm be" onclick="viewOrder('${id}')">👁 Открыть</button>`);
+  btns.push(`<button class="bsm be" onclick="editOrder('${id}')">✏️ Редактировать</button>`);
+  btns.push(`<button class="bsm be" onclick="openChat('${id}')">💬 Чат</button>`);
+  if(typeof openAnalysisForOrder==='function') btns.push(`<button class="bsm be" onclick="openAnalysisForOrder('${id}')">📈 Анализ</button>`);
+  if(typeof delOrder==='function') btns.push(`<button class="bsm bd" onclick="delOrder('${id}')">🗑 Удалить</button>`);
+  return btns.join('');
+}
+
 function rAll(){
   let d=[...DATA];
   if(aC!=='ALL')d=d.filter(r=>r.company===aC);
@@ -1663,77 +1830,23 @@ function rAll(){
   if(aSr)d=d.filter(r=>JSON.stringify(r).toLowerCase().includes(aSr.toLowerCase()));
   d=applyAllFilters(d);
   const tb=document.getElementById('atb');
+  if(!tb)return;
+  setPageViewClass('all'); updateViewButtons('all');
   if(!d.length){tb.innerHTML='<tr><td colspan="15" class="erow">Нет данных</td></tr>';return;}
-  tb.innerHTML=d.map(r=>`<tr class="order-card-row"><td colspan="15">
-    <div class="order-list-card">
-      <div class="ol-main">
-        <div class="ol-id">
-          <div class="ol-num">№${r.num||'б/н'}</div>
-          <div class="ol-date">${esc(r.createdAt||r.date||'—')}</div>
-        </div>
-        <div class="ol-tags">
-          <span class="badge bgr">${r.company||'—'}</span>
-          ${shB(r.shifer)}
-        </div>
-        <div class="ol-title">
-          ${orderTitleHtml(r)}
-        </div>
-        <div class="ol-resp">
-          <div class="ol-label">Ответственные</div>
-          <span class="rl badge bgr" onclick="window.openP('${r.resp||r.resp2||''}')">${respText(r)}</span>${respButtons(r)}
-        </div>
-        <div class="ol-status">
-          <div>${sB(r.status)}</div>
-          <div style="margin-top:5px"><span class="badge ${r.payment==='Оплачен'||r.payment==='Оплачено'?'bg':'by'}">${r.payment||'—'}</span></div>
-        </div>
-        <div class="ol-sum">${mn(orderTotal(r))}</div>
-        <div class="ol-actions">${orderActionsCompactHtml(r)}</div>
-      </div>
-      <div class="ol-details">
-        <div class="ol-box"><div class="ol-label">Поставка</div><div>${r.delivery||'—'}${r.vehicleNumber?'<br><span class="nf">🚚 '+esc(r.vehicleNumber)+'</span>':''}</div></div>
-        <div class="ol-box"><div class="ol-label">Дни</div><div>${daysB(r)}</div></div>
-        <div class="ol-box"><div class="ol-label">КП</div><div>${kpCell(r)}${anB(r)}</div></div>
-        <div class="ol-box"><div class="ol-label">Счёт</div><div>${invoiceCell(r)}</div></div>
-        <div class="ol-box"><div class="ol-label">Договор</div><div>${contractCell(r)}</div></div>
-        <div class="ol-box"><div class="ol-label">Документы</div><div>${docBadges(r)}</div></div>
-      </div>
-    </div>
-  </td></tr>`).join('');
+  if(getViewMode('all')==='list'){tb.innerHTML=d.map(r=>orderListRowHtml(r,'all')).join('');return;}
+  tb.innerHTML=`<tr class="force-card-row"><td colspan="15"><div class="all-card-grid">`+d.map(r=>orderCardHtml(r,'all')).join('')+`</div></td></tr>`;
 }
+
 
 // MINE
 function rMine(){
   if(!CU)return;
   const d=DATA.filter(r=>isRespResponsible(r,CU.resp));
   const tb=document.getElementById('mtb');
+  setPageViewClass('mine'); updateViewButtons('mine');
   if(!d.length){tb.innerHTML='<tr><td colspan="10" class="erow">У вас нет заявок</td></tr>';return;}
-  tb.innerHTML=`<tr class="order-card-row"><td colspan="10"><div class="mto-card-grid">`+d.map(r=>{
-    const kp=r.kp||[];const sel=kp.filter(k=>k.selected);
-    return`
-    <div class="mto-order-card">
-      <div class="mto-card-top">
-        <div>
-          <div class="mto-card-no">№${esc(r.num||'б/н')}</div>
-          <div class="mto-card-date">${esc(r.createdAt||r.date||'—')}</div>
-          <div class="mto-card-title">${esc(r.name||r.title||'Без наименования')}</div>
-          <div class="mto-card-sub">${esc(r.requestText||r.material||'')}</div>
-        </div>
-        <div class="mto-card-tags">
-          ${shB(r.shifer)}
-          ${sB(r.status)}
-        </div>
-      </div>
-      <div class="mto-card-body">
-        <div class="mto-card-field"><div class="mto-card-label">КП</div><div class="mto-card-value"><span class="badge bgr">${kp.length} КП</span> ${kpCell(r)}</div></div>
-        <div class="mto-card-field"><div class="mto-card-label">Выбранный</div><div class="mto-card-value">${sel.length?sel.map(k=>`<span class="badge bgold">✓ ${esc(k.supplier||'Поставщик')}</span>`).join(' '):'<span class="nf">—</span>'}</div></div>
-        <div class="mto-card-field"><div class="mto-card-label">Сумма</div><div class="mto-card-value">${mn(sel.reduce((a,k)=>a+(k.sum||0),0)||orderTotal(r))}</div></div>
-        <div class="mto-card-field"><div class="mto-card-label">Поставка</div><div class="mto-card-value">${esc(r.delivery||'—')}</div></div>
-        <div class="mto-card-field"><div class="mto-card-label">УПД</div><div class="mto-card-value">${uB(r.upd)}</div></div>
-        <div class="mto-card-field"><div class="mto-card-label">Дни</div><div class="mto-card-value">${daysB(r)}</div></div>
-      </div>
-      <div class="mto-card-actions">${orderActionsCompactHtml(r)}</div>
-    </div>`;
-  }).join('')+`</div></td></tr>`;
+  if(getViewMode('mine')==='list'){tb.innerHTML=d.map(r=>orderListRowHtml(r,'mine')).join('');return;}
+  tb.innerHTML=`<tr class="order-card-row"><td colspan="10"><div class="mto-card-grid">`+d.map(r=>orderCardHtml(r,'mine')).join('')+`</div></td></tr>`;
 }
 
 
@@ -1815,12 +1928,12 @@ function rKP(){
       <input type="checkbox" ${k.selected?'checked':''} onchange="window.tKP(${i},this.checked)"/>
       ${k.selected?'<span class="kpsb">✓ Выбран</span>':''}
       <div class="kpf">
-        <input class="kpn" placeholder="Поставщик" value="${esc(k.supplier||'')}" oninput="kpRows[${i}].supplier=this.value"/>
+        <input class="kpn" list="contacts-list" placeholder="Поставщик из контактов или вручную" value="${esc(k.supplier||'')}" oninput="kpRows[${i}].supplier=this.value" onblur="kpRows[${i}].supplier=this.value;applySupplierMetaToRow(kpRows[${i}]);rKP()" onchange="kpRows[${i}].supplier=this.value;applySupplierMetaToRow(kpRows[${i}]);rKP()"/>
         <input class="kps" placeholder="Сумма ₽" type="number" value="${k.sum||''}" oninput="kpRows[${i}].sum=Number(this.value)"/>
         <input class="kpu" placeholder="Ссылка Google Drive" value="${esc(k.url||'')}" oninput="kpRows[${i}].url=this.value"/>
         <input class="kpm" placeholder="Что отсутствует (если КП неполное)" value="${esc(k.missing||'')}" oninput="kpRows[${i}].missing=this.value"/>
       </div>
-      <div class="kp-missing-note">Если поставщик закрывает заявку полностью — оставьте поле «Что отсутствует» пустым.</div>
+      <div class="kp-missing-note">Если поставщик закрывает заявку полностью — оставьте поле «Что отсутствует» пустым.${k.contactKey||k.inn?`<br>🔗 Связан с контактом${k.inn?`: ИНН ${esc(k.inn)}`:''}`:''}</div>
       <button class="kpd" onclick="window.rKPi(${i})">✕</button>
     </div>`).join('');
 }
@@ -1838,12 +1951,12 @@ function rInvoices(){
   box.innerHTML=invoiceRows.map((x,i)=>`
     <div class="kpi">
       <div class="kpf">
-        <input class="kpn" placeholder="Поставщик" value="${esc(x.supplier||'')}" oninput="invoiceRows[${i}].supplier=this.value"/>
+        <input class="kpn" list="contacts-list" placeholder="Поставщик из контактов или вручную" value="${esc(x.supplier||'')}" oninput="invoiceRows[${i}].supplier=this.value" onblur="invoiceRows[${i}].supplier=this.value;applySupplierMetaToRow(invoiceRows[${i}]);rInvoices()" onchange="invoiceRows[${i}].supplier=this.value;applySupplierMetaToRow(invoiceRows[${i}]);rInvoices()"/>
         <input class="kps" placeholder="Сумма ₽" type="number" value="${x.sum||''}" oninput="invoiceRows[${i}].sum=Number(this.value)"/>
         <input class="kpu" placeholder="Ссылка на счёт / КП Google Drive" value="${esc(x.url||'')}" oninput="invoiceRows[${i}].url=this.value"/>
         <input class="kpn" placeholder="Примечание" value="${esc(x.note||'')}" oninput="invoiceRows[${i}].note=this.value"/>
       </div>
-      <button class="kpd" onclick="window.rInvI(${i})">✕</button>
+      ${x.contactKey||x.inn?`<div class="kp-missing-note">🔗 Связан с контактом${x.inn?`: ИНН ${esc(x.inn)}`:''}</div>`:''}<button class="kpd" onclick="window.rInvI(${i})">✕</button>
     </div>`).join('');
 }
 window.rInvI=(i)=>{invoiceRows.splice(i,1);rInvoices();};
@@ -1862,11 +1975,90 @@ function getContractFileUrl(c){
   if(Array.isArray(c.files)&&c.files.length)return c.files[0].url||c.files[0].downloadUrl||'';
   return '';
 }
+
+function normalizeInn(v){return String(v||'').replace(/\D/g,'');}
+function contactDisplay(c){return [c?.name||'', c?.inn?('ИНН '+c.inn):'', c?.activity||''].filter(Boolean).join(' • ');}
+function uniqueContacts(list=CONTACTS){
+  const map={};
+  (list||[]).forEach(c=>{
+    if(!c||!c.name)return;
+    const inn=normalizeInn(c.inn);
+    const key=inn || normalizeText(c.name||'');
+    if(!key)return;
+    const prev=map[key];
+    if(!prev){ map[key]=c; return; }
+    const prevScore=(prev.supplierScore||0)+(prev.accreditedAt?1:0)+(prev.phone?1:0)+(prev.email?1:0);
+    const curScore=(c.supplierScore||0)+(c.accreditedAt?1:0)+(c.phone?1:0)+(c.email?1:0);
+    if(curScore>=prevScore)map[key]=c;
+  });
+  return Object.values(map);
+}
+function findContactForSupplierName(name){
+  const q=normalizeText(name||'');
+  if(!q)return null;
+  const qInn=normalizeInn(name);
+  if(qInn){
+    const byInn=uniqueContacts().find(c=>normalizeInn(c.inn)===qInn);
+    if(byInn)return byInn;
+  }
+  return uniqueContacts().find(c=>{
+    const n=normalizeText(c.name||'');
+    return n && (n===q || n.includes(q) || q.includes(n));
+  })||null;
+}
+function applySupplierMetaToRow(row){
+  if(!row)return row;
+  const c=findContactForSupplierName(row.supplier||row.name||'');
+  if(c){
+    row.contactKey=c._k||row.contactKey||'';
+    row.contactId=c._k||row.contactId||'';
+    row.inn=c.inn||row.inn||'';
+    row.supplier=c.name||row.supplier||'';
+    row.contactName=c.name||row.supplier||'';
+    row.accreditationStatus=c.supplierRating||supplierRatingLabel(c.supplierScore)||'';
+    row.supplierScore=c.supplierScore||0;
+  }else{
+    row.contactKey='';
+    row.contactId='';
+    row.inn='';
+    row.contactName='';
+    row.accreditationStatus='';
+    row.supplierScore=0;
+  }
+  return row;
+}
+function supplierLinksFromOrderRows(contractor,kpRowsArg,invoiceRowsArg){
+  const map={};
+  const add=(name,src,row={})=>{
+    if(!name && !row.inn)return;
+    const enriched=applySupplierMetaToRow({supplier:name, ...row});
+    const key=enriched.inn || enriched.contactKey || normalizeText(enriched.supplier||name);
+    if(!key)return;
+    if(!map[key])map[key]={
+      supplier:enriched.supplier||name||enriched.contactName||'',
+      contactName:enriched.contactName||'',
+      contactKey:enriched.contactKey||'',
+      contactId:enriched.contactId||'',
+      inn:enriched.inn||'',
+      sources:[],
+      sum:0,
+      selected:false
+    };
+    if(src && !map[key].sources.includes(src))map[key].sources.push(src);
+    map[key].sum += Number(enriched.sum||0)||0;
+    if(enriched.selected)map[key].selected=true;
+  };
+  add(contractor,'основной поставщик',{});
+  (kpRowsArg||[]).forEach(x=>add(x.supplier,'КП',x));
+  (invoiceRowsArg||[]).forEach(x=>add(x.supplier,'счёт',x));
+  return Object.values(map);
+}
+
 function populateOrderRefs(){
   const dl=document.getElementById('contacts-list');
   if(dl){
-    const names=[...new Set(CONTACTS.map(c=>c.name).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'ru'));
-    dl.innerHTML=names.map(n=>`<option value="${esc(n)}"></option>`).join('');
+    const list=uniqueContacts(CONTACTS).filter(c=>c.name).sort((a,b)=>String(a.name||'').localeCompare(String(b.name||''),'ru'));
+    dl.innerHTML=list.map(c=>`<option value="${esc(c.name||'')}">${esc(contactDisplay(c))}</option>`).join('');
   }
   refreshContractChoice();
 }
@@ -1939,12 +2131,15 @@ window.openE=function(k){
   document.getElementById('fda').value=workDays(r);
   document.getElementById('fno').value=r.note||'';
   kpRows=JSON.parse(JSON.stringify(r.kp||[]));
+  kpRows.forEach(x=>applySupplierMetaToRow(x));invoiceRows.forEach(x=>applySupplierMetaToRow(x));
   rKP();rInvoices();OM('mo-z');
 };
 window.saveZ=async function(){
   const dr=document.getElementById('fdt').value || todayInput();
   const oldR=editKey?DATA.find(d=>d._k===editKey):null;
-  const cleanInvoices=invoiceRows.filter(x=>x&&(x.url||x.supplier||x.sum||x.note));
+  kpRows.forEach(x=>applySupplierMetaToRow(x));
+  invoiceRows.forEach(x=>applySupplierMetaToRow(x));
+  const cleanInvoices=invoiceRows.filter(x=>x&&(x.url||x.supplier||x.sum||x.note)).map(x=>applySupplierMetaToRow(x));
   const invoicesTotal=cleanInvoices.reduce((a,x)=>a+(Number(x.sum)||0),0);
   const manualCost=parseFloat(document.getElementById('fco2').value)||0;
   const selectedContract=CONTRACTS.find(x=>x._k===(document.getElementById('fcr')?.value||''));
@@ -1954,6 +2149,9 @@ window.saveZ=async function(){
     name:document.getElementById('fnm').value,resp:document.getElementById('frs').value,resp2:document.getElementById('frs2').value,
     status:document.getElementById('fst').value,material:document.getElementById('fma').value,
     cost:invoicesTotal>0?invoicesTotal:manualCost,contractor:document.getElementById('fct').value,
+    contractorContactKey:(findContactForSupplierName(document.getElementById('fct').value)||{})._k||'',
+    contractorInn:(findContactForSupplierName(document.getElementById('fct').value)||{}).inn||'',
+    supplierLinks:supplierLinksFromOrderRows(document.getElementById('fct').value,kpRows,cleanInvoices),
     invoices:JSON.parse(JSON.stringify(cleanInvoices)),
     invoice:(invoiceRows.find(x=>x&&x.url)||{}).url||document.getElementById('fin').value,
     contract:document.getElementById('fcon').value,
@@ -1968,7 +2166,7 @@ window.saveZ=async function(){
     createdAt:(oldR&&oldR.createdAt)?oldR.createdAt:(dr?dr.split('-').reverse().join('.'):todayRu()),
     closedAt:(isDeliveredStatus(document.getElementById('fst').value)&&isPaidStatus(document.getElementById('fpa').value))?((oldR&&oldR.closedAt)?oldR.closedAt:todayRu()):null,
     days:businessDaysBetween(parseRuDate((oldR&&oldR.createdAt)?oldR.createdAt:(dr?dr.split('-').reverse().join('.'):todayRu())),(isDeliveredStatus(document.getElementById('fst').value)&&isPaidStatus(document.getElementById('fpa').value))?parseRuDate(((oldR&&oldR.closedAt)?oldR.closedAt:todayRu())):new Date()),note:document.getElementById('fno').value,
-    kp:JSON.parse(JSON.stringify(kpRows)),
+    kp:JSON.parse(JSON.stringify(kpRows.map(x=>applySupplierMetaToRow(x)))),
   };
   if(editKey){
     await db.ref(`orders/${editKey}`).update(row);
@@ -2337,7 +2535,11 @@ async function removeCloudContract(key){
   const c=CONTRACTS.find(x=>x._k===key);
   if(!c)return;
   const name=c.counterparty||c.fileName||'договор';
-  if(!confirm(`Убрать выгрузку из МТО?\n\n${name}\n\nФайл на компьютере юриста не удаляется. Запись исчезнет из облачного реестра.`))return;
+  if(!confirm(`Убрать выгрузку из МТО?
+
+${name}
+
+Файл на компьютере юриста не удаляется. Запись исчезнет из облачного реестра.`))return;
   try{
     await db.ref('contractsRegistry/contracts/'+key).remove();
     if(c.fileHash) await db.ref('contractsRegistry/fileHashes/'+c.fileHash).remove().catch(()=>{});
@@ -2362,7 +2564,10 @@ async function editCloudContract(key){
 async function clearCloudContracts(){
   if(!canManageContracts()){alert('Нет прав на очистку договоров');return;}
   if(!CONTRACTS.length){alert('В облачном реестре договоров пусто');return;}
-  const txt=prompt(`Будут убраны все ${CONTRACTS.length} договоров из раздела МТО.\nФайлы на компьютере юриста не удаляются.\n\nДля подтверждения напишите: УДАЛИТЬ`);
+  const txt=prompt(`Будут убраны все ${CONTRACTS.length} договоров из раздела МТО.
+Файлы на компьютере юриста не удаляются.
+
+Для подтверждения напишите: УДАЛИТЬ`);
   if(txt!=='УДАЛИТЬ')return;
   try{
     await db.ref('contractsRegistry/contracts').remove();
@@ -2402,328 +2607,365 @@ function rContracts(){
     const soon=visible.filter(c=>contractLife(c).key==='soon').length;
     const expired=visible.filter(c=>contractLife(c).key==='expired').length;
     const review=visible.filter(c=>contractLife(c).key==='review').length;
-    statEl.innerHTML=`
-      <div class="sc"><div class="si b">📄</div><div><div class="sv">${visible.length}</div><div class="sl">Всего договоров</div></div></div>
-      <div class="sc"><div class="si g">✅</div><div><div class="sv">${active}</div><div class="sl">Действуют</div></div></div>
-      <div class="sc"><div class="si y">⚠️</div><div><div class="sv">${soon}</div><div class="sl">Скоро заканчиваются</div></div></div>
-      <div class="sc"><div class="si r">⛔</div><div><div class="sv">${expired+review}</div><div class="sl">Истекли / проверить</div></div></div>`;
+    statEl.innerHTML=`<div class="sc"><div class="si b">📄</div><div><div class="sv">${visible.length}</div><div class="sl">Всего договоров</div></div></div><div class="sc"><div class="si g">✅</div><div><div class="sv">${active}</div><div class="sl">Действуют</div></div></div><div class="sc"><div class="si y">⚠️</div><div><div class="sv">${soon}</div><div class="sl">Скоро заканчиваются</div></div></div><div class="sc"><div class="si r">⛔</div><div><div class="sv">${expired+review}</div><div class="sl">Истекли / проверить</div></div></div>`;
   }
   const tb=document.getElementById('contracts-tb');
   if(!tb)return;
+  setPageViewClass('contracts'); updateViewButtons('contracts');
   if(!d.length){tb.innerHTML='<tr><td colspan="10" class="erow">Договоры пока не выгружены из программы юриста</td></tr>';return;}
-  tb.innerHTML=`<tr class="contract-card-row"><td colspan="10"><div class="mto-card-grid">`+d.map(c=>{
-    const life=contractLife(c);
-    const files=[];
-    if(c.fileUrl)files.push(`<a class="fl" href="${esc(c.fileUrl)}" target="_blank">📄 Договор</a>`);
-    (c.attachments||[]).forEach((a,i)=>{if(a.fileUrl)files.push(`<a class="fl" href="${esc(a.fileUrl)}" target="_blank">📎 ${esc(a.name||('Файл '+(i+1)))}</a>`);});
-    return `
-    <div class="mto-contract-card">
-      <div class="mto-card-top">
-        <div>
-          <div class="mto-card-no">${esc(c.counterparty||'—')}</div>
-          <div class="mto-card-date">ИНН: ${esc(c.inn||'—')}${c.kpp?' / КПП: '+esc(c.kpp):''}</div>
-          <div class="mto-card-title">Договор № ${esc(c.contractNumber||'—')}</div>
-          <div class="mto-card-sub">${esc(c.subject||'')}</div>
-        </div>
-        <div class="mto-card-tags">
-          <span class="badge ${life.cls}">${life.label}</span>
-        </div>
-      </div>
-      <div class="mto-card-body">
-        <div class="mto-card-field"><div class="mto-card-label">Дата договора</div><div class="mto-card-value">${esc(c.contractDate||'—')}</div></div>
-        <div class="mto-card-field"><div class="mto-card-label">Срок до</div><div class="mto-card-value">${esc(c.dateTo||'—')}</div></div>
-        <div class="mto-card-field"><div class="mto-card-label">Тип</div><div class="mto-card-value">${esc(c.type||'—')}</div></div>
-        <div class="mto-card-field"><div class="mto-card-label">Сумма</div><div class="mto-card-value">${esc(c.amount||'—')}</div></div>
-        <div class="mto-card-field"><div class="mto-card-label">Статус</div><div class="mto-card-value"><span class="badge ${life.cls}">${life.label}</span>${c.confidence?`<div class="nf">Уверенность: ${esc(c.confidence)}%</div>`:''}</div></div>
-        <div class="mto-card-field"><div class="mto-card-label">Файлы</div><div class="mto-card-value"><div class="contract-file-links">${files.length?files.join(''):'<span class="nf">Файл не загружен</span>'}</div>${c.fileUploadError?`<div class="nf">${esc(c.fileUploadError).slice(0,120)}</div>`:''}</div></div>
-      </div>
-      <div class="mto-card-actions">
-        ${canManageContracts()?`<button class="bsm be" onclick="editCloudContract('${esc(c._k)}')">Редактировать</button><button class="bsm bd" onclick="removeCloudContract('${esc(c._k)}')">Убрать</button>`:'<span class="nf">—</span>'}
-      </div>
-    </div>`;
-  }).join('')+`</div></td></tr>`;
-}
-
-// CONTACTS
-const DEFAULT_CONTACTS=[
-  {name:'ООО "ВОЛОГОДСКАЯ КОММЕРЧЕСКАЯ КОМПАНИЯ"',activity:'Стр.материалы, промышленные товары',phone:'8 (911) 441 76 82 Владимир Бойко',email:'vladimir.boyko@lider35.ru',region:'Вологда и обл',spec:'Да',inn:'3525194376',city:'г. Вологда'},
-  {name:'ООО "РЕММАЗ"',activity:'Стр.материалы, промышленные товары',phone:'8 (911) 448 28 83 Евгений',email:'Remmaz-rev@mail.ru',region:'Вологда и обл',spec:'Да',inn:'7718134701',city:'г. Вологда'},
-  {name:'ООО "СТРОЙЭЛЕКТРОТРЕЙД"',activity:'Электрика, кабель',phone:'8 (931) 503 17 43 Барболин Михаил',email:'oooset35@mail.ru',region:'Вологда и обл',spec:'Да',inn:'7802348846',city:'г. Вологда'},
-  {name:'ООО "РУССКИЙ ЛЕС 35"',activity:'Пиломатериалы',phone:'8 (911) 045 07 07 Сергей Маслов',email:'market@rusles-35.ru',region:'Вологда и обл',spec:'Да',inn:'3525477529',city:'г. Вологда'},
-  {name:'ООО "ТД СТРОИТЕЛЬ"',activity:'Стр.материалы, промышленные товары',phone:'8 (926) 246 53 85 Александр',email:'trubnikov@stroiteltd.ru',region:'Московская обл. Вологодская обл.',spec:'Да',inn:'7718294039',city:'г. Москва'},
-  {name:'ООО "СТК СОЮЗ"',activity:'Бытовки',phone:'8 (921) 716 15 20 Елена',email:'701520@bk.ru',region:'Вологодская обл.',spec:'Нет',inn:'3528235662',city:'г. Череповец'},
-  {name:'ООО "СЕВЕРНОЕ КОЛЬЦО"',activity:'ЖБИ',phone:'8 (8202) 51 44 44 Наталья',email:'sk602132@mail.ru',region:'Вологда и обл',spec:'Нет',inn:'352803100',city:'г. Вологда'},
-  {name:'ООО "МЕТАЛЛСЕРВИС"',activity:'Металл, арматура',phone:'8 (921) 050-06-62 Егорова Инна',email:'eiy@orion35.ru',region:'Московская обл. Вологодская обл.',spec:'Да',inn:'7728319846',city:'г. Москва, г. Череповец'},
-  {name:'ООО "АЛЬФА-СТАЛЬ"',activity:'Металл, арматура',phone:'8 (8172) 33 00 46 Игорь',email:'alpha-steel@mail.ru',region:'Вологодская обл.',spec:'Нет',inn:'3525346156',city:'г. Вологда'},
-  {name:'ООО "СтройОлимп"',activity:'Стр.материалы, промышленные товары',phone:'8 (921) 067 12 32 Валентина',email:'info@tdsm.ru',region:'Вологодская обл.',spec:'Нет',inn:'3525475546',city:'г. Вологда'},
-  {name:'ООО "ШПС"',activity:'Песок, Бетон',phone:'8 (921) 549 17 00 Роман',email:'soyz-real-buh@mail.ru',region:'Вологодская область',spec:'Да',inn:'3500009504',city:'пос. Шексна'},
-  {name:'ООО "РУССКИЙ СВЕТ"',activity:'Кабель, Свет, Электрика, Щиты',phone:'8 (911) 510 38 76 Вячеслав',email:'direct@vologda.russvet.ru',region:'Вологодская область',spec:'Да',inn:'',city:'г. Вологда'},
-  {name:'РекордСпецодежда',activity:'Спецодежда',phone:'8 (911) 527 31 01',email:'rekord35@mail.ru',region:'Вологодская область',spec:'Нет',inn:'3500002900',city:'г. Вологда'},
-  {name:'АВТОСТРОЙ',activity:'Песок крупный мытый',phone:'8 951 743 65 71 Владимир',email:'rychkov_v_v@mail.ru',region:'Вологодская область',spec:'Нет',inn:'3528323598',city:'г. Череповец'},
-];
-
-async function initContacts(){
-  // Загружаем дефолтные контакты если база пустая
-  if(CONTACTS.length===0){
-    for(const c of DEFAULT_CONTACTS){
-      await db.ref('contacts').push(c);
-    }
-  }
+  if(getViewMode('contracts')==='list'){tb.innerHTML=d.map(contractListRowHtml).join('');return;}
+  tb.innerHTML=`<tr class="contract-card-row"><td colspan="10"><div class="mto-card-grid">`+d.map(contractCardHtml).join('')+`</div></td></tr>`;
 }
 
 
-
-let scApiData=null;
-const SUPPLIER_API_URL='https://m-sag.ru/api/checkSupplier.php';
-
-function setSupplierApiStatus(text,type){
+function setSupplierApiStatus(msg,type='info'){
   const el=document.getElementById('sc-api-status');
   if(!el)return;
-  el.textContent=text;
-  el.style.color=type==='bad'?'#b91c1c':(type==='good'?'#15803d':'#64748b');
+  const color=type==='good'?'#15803d':type==='bad'?'#b91c1c':'#64748b';
+  el.style.color=color;el.textContent=msg;
 }
-function setSupplierCheckByText(text,checked){
-  const labels=[...document.querySelectorAll('#supplier-check-list label')];
-  const label=labels.find(l=>l.textContent.trim().toLowerCase().includes(text.toLowerCase()));
-  if(label){
-    const input=label.querySelector('input');
-    if(input)input.checked=!!checked;
-  }
+function ruDateToDate(v){
+  if(!v)return null;
+  if(/^\d{4}-\d{2}-\d{2}/.test(v))return new Date(v);
+  const m=String(v).match(/(\d{2})\.(\d{2})\.(\d{4})/);
+  if(m)return new Date(+m[3],+m[2]-1,+m[1]);
+  const d=new Date(v);return isNaN(d)?null:d;
 }
-function ruDateToDate(s){
-  if(!s)return null;
-  const m=String(s).match(/^(\d{2})\.(\d{2})\.(\d{4})$/);
-  if(!m)return null;
-  return new Date(Number(m[3]),Number(m[2])-1,Number(m[1]));
-}
-function showSupplierApiResult(d){
-  const box=document.getElementById('sc-api-result');
-  if(!box)return;
+function showSupplierApiResult(data){
+  const box=document.getElementById('sc-api-result');if(!box)return;
   box.classList.add('active');
-  box.innerHTML=`
-    <div class="api-title">Данные DaData</div>
-    <div class="api-kv"><b>Название</b><span>${esc(d.shortName||d.name||'—')}</span></div>
-    <div class="api-kv"><b>ИНН / КПП</b><span>${esc(d.inn||'—')} / ${esc(d.kpp||'—')}</span></div>
-    <div class="api-kv"><b>ОГРН</b><span>${esc(d.ogrn||'—')}</span></div>
-    <div class="api-kv"><b>Статус</b><span>${esc(d.status||'—')}</span></div>
-    <div class="api-kv"><b>Регистрация</b><span>${esc(d.registrationDate||'—')}</span></div>
-    <div class="api-kv"><b>Руководитель</b><span>${esc(d.director||'—')} ${d.directorPost?`(${esc(d.directorPost)})`:''}</span></div>
-    <div class="api-kv"><b>Адрес</b><span>${esc(d.address||'—')}</span></div>
-    <div class="api-kv"><b>ОКВЭД</b><span>${esc(d.okved||'—')}</span></div>
-  `;
+  box.innerHTML=`<div class="api-title">Данные DaData</div>
+    <div class="api-kv"><b>Название</b><span>${data.name||'—'}</span></div>
+    <div class="api-kv"><b>ИНН / КПП</b><span>${data.inn||'—'} / ${data.kpp||'—'}</span></div>
+    <div class="api-kv"><b>ОГРН</b><span>${data.ogrn||'—'}</span></div>
+    <div class="api-kv"><b>Статус</b><span>${data.status||'—'}</span></div>
+    <div class="api-kv"><b>Регистрация</b><span>${data.registrationDate||'—'}</span></div>
+    <div class="api-kv"><b>Руководитель</b><span>${data.director||'—'}</span></div>
+    <div class="api-kv"><b>Адрес</b><span>${data.address||'—'}</span></div>
+    <div class="api-kv"><b>ОКВЭД</b><span>${data.okved||'—'}</span></div>`;
 }
 window.checkSupplierByApi=async function(){
-  const inn=(document.getElementById('sc-inn')?.value||'').replace(/\D/g,'');
+  const inn=getVal('sc-inn').replace(/\D+/g,'');
   if(!inn){alert('Введите ИНН');return;}
-  setSupplierApiStatus('Проверяю поставщика через DaData...', 'info');
   const btns=[...document.querySelectorAll('button')].filter(b=>String(b.getAttribute('onclick')||'').includes('checkSupplierByApi'));
-  btns.forEach(b=>{b.disabled=true;b.style.opacity='.65';});
+  btns.forEach(b=>{b.disabled=true;b.style.opacity='.6';});
+  setSupplierApiStatus('Запрашиваю реквизиты...', 'info');
   try{
-    const res=await fetch(SUPPLIER_API_URL,{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({inn})
-    });
-    const data=await res.json();
-    if(!data.success)throw new Error(data.error||'Компания не найдена');
+    const res=await fetch(SUPPLIER_API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({inn})});
+    const json=await res.json();
+    if(!json.success)throw new Error(json.error||'Ошибка API');
+    const data=json.data||json;
     scApiData=data;
-
-    document.getElementById('sc-name').value=data.shortName||data.name||data.fullName||'';
-    document.getElementById('sc-inn').value=data.inn||inn;
+    if(data.name)document.getElementById('sc-name').value=data.name;
+    if(data.inn)document.getElementById('sc-inn').value=data.inn;
     if(data.address)document.getElementById('sc-city').value=data.address;
     if(data.director)document.getElementById('sc-person').value=data.director;
     if(data.okved)document.getElementById('sc-activity').value='ОКВЭД: '+data.okved;
-
     const status=String(data.status||'').toUpperCase();
-    const isActive=status==='ACTIVE';
-    setSupplierCheckByText('Компания действующая',isActive);
-    setSupplierCheckByText('Не ликвидируется',status!=='LIQUIDATING' && status!=='LIQUIDATED');
-    setSupplierCheckByText('Не банкрот',status!=='BANKRUPT');
-
-    const reg=ruDateToDate(data.registrationDate);
-    if(reg){
-      const years=(Date.now()-reg.getTime())/(365.25*24*60*60*1000);
-      setSupplierCheckByText('Работает более 3 лет',years>=3);
-    }
-
+    const legal=document.getElementById('sc-c-legal');
+    if(legal)legal.checked=(status==='ACTIVE'||String(data.status||'').toLowerCase().includes('действ'));
     showSupplierApiResult(data);
     calcSupplierScore();
-    setSupplierApiStatus('Данные получены. Проверьте оставшиеся пункты чек-листа вручную.', 'good');
+    setSupplierApiStatus('Реквизиты подтянуты. Заполните документы и проверку снабженцем.', 'good');
   }catch(e){
-    console.error(e);
-    setSupplierApiStatus('Ошибка проверки: '+(e.message||e), 'bad');
-    alert('Не удалось проверить поставщика: '+(e.message||e));
-  }finally{
-    btns.forEach(b=>{b.disabled=false;b.style.opacity='1';});
-  }
+    console.error(e);setSupplierApiStatus('Ошибка: '+(e.message||e), 'bad');alert('Не удалось подтянуть реквизиты: '+(e.message||e));
+  }finally{btns.forEach(b=>{b.disabled=false;b.style.opacity='1';});}
 };
-
-function supplierRatingClass(score){
-  score=Number(score)||0;
-  if(score>=80)return 'good';
-  if(score>=50)return 'warn';
-  return 'bad';
-}
-function supplierRatingLabel(score){
-  score=Number(score)||0;
-  if(score>=80)return '🟢 Надёжный';
-  if(score>=50)return '🟡 Требует проверки';
-  return '🔴 Рискованный';
-}
+function accreditationClass(score){score=Number(score)||0;if(score>=80)return 'good';if(score>=55)return 'warn';return 'bad';}
+function supplierRatingClass(score){return accreditationClass(score);}
+function accreditationLabel(score){score=Number(score)||0;if(score>=80)return '🟢 Аккредитован';if(score>=55)return '🟡 Условно / руководитель';return '🔴 Не аккредитован';}
+function supplierRatingLabel(score){return accreditationLabel(score);}
 function supplierRatingBadge(score){
   if(score===undefined||score===null||score==='')return '';
-  const cls=supplierRatingClass(score);
-  return `<span class="supplier-rating ${cls}">${supplierRatingLabel(score)} · ${Number(score)||0}</span>`;
+  const cls=accreditationClass(score);
+  return `<span class="supplier-rating ${cls}">${accreditationLabel(score)} · ${Number(score)||0}</span>`;
+}
+function getAccreditationData(){
+  const docs=[
+    ['sc-doc-card','Карточка предприятия',true,8],
+    ['sc-doc-bank','Банковские реквизиты',true,8],
+    ['sc-doc-egrul','Выписка ЕГРЮЛ',false,6],
+    ['sc-doc-kp','Коммерческое предложение',true,7],
+    ['sc-doc-cert','Сертификаты',false,4],
+    ['sc-doc-license','Лицензии',false,4],
+    ['sc-doc-proxy','Доверенность',false,4],
+    ['sc-doc-other','Прочие документы',false,2]
+  ].map(d=>({id:d[0],label:d[1],required:d[2],points:d[3],value:getVal(d[0]),done:!!getVal(d[0])}));
+  const checks=[
+    ['sc-c-phone','Телефон подтвержден',4],['sc-c-email','Email подтвержден',4],['sc-c-person','Контактное лицо подтверждено',4],
+    ['sc-c-bank','Банковские реквизиты сверены',8],['sc-c-docs','Документы проверены',8],['sc-c-kp','КП получено',4],
+    ['sc-c-contract','Можно готовить договор/спецификацию',4],['sc-c-site','Сайт/контакты проверены',3],
+    ['sc-c-no-advance','Первый заказ с защитой',3],['sc-c-legal','Нет явных стоп-факторов DaData',8]
+  ].map(c=>({id:c[0],label:c[1],points:c[2],checked:!!document.getElementById(c[0])?.checked}));
+  return {docs,checks};
 }
 window.calcSupplierScore=function(){
-  const checks=[...document.querySelectorAll('#supplier-check-list input[type="checkbox"]')];
-  let score=checks.reduce((a,x)=>a+(x.checked?(Number(x.dataset.score)||0):0),0);
+  const acc=getAccreditationData();
+  let score=0;
+  if(getVal('sc-inn'))score+=6;
+  if(getVal('sc-name'))score+=6;
+  if(scApiData?.ogrn)score+=6;
+  if(scApiData?.kpp)score+=4;
+  if(scApiData?.address)score+=4;
+  if(scApiData?.director)score+=4;
+  score+=acc.docs.reduce((a,d)=>a+(d.done?d.points:0),0);
+  score+=acc.checks.reduce((a,c)=>a+(c.checked?c.points:0),0);
+  if(getVal('sc-phone'))score+=2;
+  if(getVal('sc-email'))score+=2;
+  if(getVal('sc-site'))score+=1;
   score=Math.max(0,Math.min(100,score));
+  const missingRequired=acc.docs.filter(d=>d.required&&!d.done).map(d=>d.label);
+  const legalBad=scApiData && scApiData.status && !String(scApiData.status).toUpperCase().includes('ACTIVE') && !String(scApiData.status).toLowerCase().includes('действ');
+  let decision='manager';
+  if(score>=80 && !missingRequired.length && !legalBad)decision='allow';
+  if(score<55 || legalBad)decision='block';
+  scAccData={...acc,score,missingRequired,legalBad,decision};
   const scoreEl=document.getElementById('sc-score');
   const riskEl=document.getElementById('sc-risk');
   const recoEl=document.getElementById('sc-reco');
   const btn=document.getElementById('sc-add-btn');
+  const reqBtn=document.getElementById('sc-request-btn');
   if(scoreEl)scoreEl.textContent=score;
   if(riskEl){
-    riskEl.className='check-risk-box '+supplierRatingClass(score);
-    if(score>=80)riskEl.innerHTML='🟢 Надёжный поставщик<br>Можно добавить в контакты и использовать в заявках.';
-    else if(score>=50)riskEl.innerHTML='🟡 Требует проверки<br>Можно добавить с предупреждением. Желательно согласовать с руководителем.';
-    else riskEl.innerHTML='🔴 Рискованный поставщик<br>Добавление в контакты запрещено без администратора.';
+    riskEl.className='check-risk-box '+accreditationClass(score);
+    if(decision==='allow')riskEl.innerHTML='🟢 Поставщик аккредитован<br>Можно добавить в контакты и использовать в заявках.';
+    else if(decision==='manager')riskEl.innerHTML='🟡 Требуется решение руководителя<br>'+(missingRequired.length?'Не хватает: '+missingRequired.join(', '):'Недостаточно баллов для полной аккредитации.');
+    else riskEl.innerHTML='🔴 Не аккредитован<br>'+(legalBad?'Статус компании требует проверки руководителем.':'Недостаточно данных для безопасной работы.');
   }
   if(recoEl){
-    if(score>=80)recoEl.textContent='Рекомендация: можно работать в обычном порядке.';
-    else if(score>=50)recoEl.textContent='Рекомендация: работать осторожно, ограничить аванс, запросить доп. документы.';
-    else recoEl.textContent='Рекомендация: не добавлять в базу без решения администратора/руководителя.';
+    if(decision==='allow')recoEl.textContent='Рекомендация: можно сохранить поставщика в контакты.';
+    else if(decision==='manager')recoEl.textContent='Рекомендация: передать руководителю. До решения не выбирать поставщика в заявках.';
+    else recoEl.textContent='Рекомендация: не работать без отдельного письменного решения руководителя.';
   }
   if(btn){
-    const locked=score<50 && !(CU&&CU.isAdmin);
-    btn.disabled=locked;
-    btn.style.opacity=locked?'.55':'1';
-    btn.style.cursor=locked?'not-allowed':'pointer';
-    btn.textContent=score>=80?'Добавить в контакты':(score>=50?'Добавить с предупреждением':'Добавить только администратору');
+    const locked=decision!=='allow' && !(CU&&CU.isAdmin);
+    btn.disabled=locked;btn.style.opacity=locked?'.55':'1';btn.style.cursor=locked?'not-allowed':'pointer';
+    btn.textContent=decision==='allow'?'Аккредитовать и добавить':(CU&&CU.isAdmin?'Добавить как администратор':'Требуется руководитель');
   }
+  if(reqBtn){reqBtn.disabled=decision==='allow';reqBtn.style.opacity=decision==='allow'?'.55':'1';}
   return score;
 };
 window.supplierCheckChanged=function(){
-  const inn=(document.getElementById('sc-inn')?.value||'').trim();
+  const inn=getVal('sc-inn');
   if(inn){
-    const found=CONTACTS.find(c=>String(c.inn||'').trim()===inn);
-    if(found){
-      const note=document.getElementById('sc-reco');
-      if(note)note.textContent=`Поставщик с таким ИНН уже есть в контактах: ${found.name||'без названия'}. Можно обновить проверку или открыть контакты.`;
-    }
+    const found=uniqueContacts(CONTACTS).find(c=>normalizeInn(c.inn)===normalizeInn(inn));
+    if(found){const note=document.getElementById('sc-reco');if(note)note.textContent=`Поставщик с таким ИНН уже есть в контактах: ${found.name||'без названия'}.`;}
   }
   calcSupplierScore();
 };
 function supplierCheckPayload(){
-  const checks=[...document.querySelectorAll('#supplier-check-list label')].map(l=>({
-    text:l.textContent.trim(),
-    checked:!!l.querySelector('input')?.checked,
-    score:Number(l.querySelector('input')?.dataset.score)||0
-  }));
   const score=calcSupplierScore();
+  const acc=scAccData||getAccreditationData();
   return {
     checkedAt:Date.now(),
-    checkedBy:CU?CU.name:'',
+    checkedBy:getVal('sc-reviewed-by')||(CU?CU.name:''),
     score,
-    rating:supplierRatingLabel(score),
-    checks,
+    rating:accreditationLabel(score),
+    decision:acc.decision||'manager',
+    category:getVal('sc-category')||'Новый',
+    preferred:!!document.getElementById('sc-preferred')?.checked,
+    nextReview:getVal('sc-next-review'),
+    accreditation:acc,
     apiData:scApiData||null,
-    comment:document.getElementById('sc-comment')?.value||''
+    comment:getVal('sc-comment')
   };
 }
 window.resetSupplierCheck=function(){
-  scApiData=null;
-  ['sc-inn','sc-name','sc-phone','sc-email','sc-site','sc-person','sc-activity','sc-city','sc-comment'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
-  document.querySelectorAll('#supplier-check-list input[type="checkbox"]').forEach(x=>x.checked=false);
+  scApiData=null;scAccData=null;
+  ['sc-inn','sc-name','sc-phone','sc-email','sc-site','sc-person','sc-activity','sc-city','sc-comment','sc-doc-card','sc-doc-bank','sc-doc-egrul','sc-doc-kp','sc-doc-cert','sc-doc-license','sc-doc-proxy','sc-doc-other','sc-next-review','sc-reviewed-by'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  const cat=document.getElementById('sc-category'); if(cat)cat.value='Новый';
+  const pref=document.getElementById('sc-preferred'); if(pref)pref.checked=false;
+  document.querySelectorAll('#supplier-checklist input[type="checkbox"]').forEach(x=>x.checked=false);
   const box=document.getElementById('sc-api-result');if(box){box.classList.remove('active');box.innerHTML='';}
-  setSupplierApiStatus('Введите ИНН и нажмите проверку.','info');
+  setSupplierApiStatus('Введите ИНН и подтяните реквизиты через DaData.','info');
   calcSupplierScore();
 };
 window.prefillContactFromCheck=function(){
-  contactKey=null;
-  document.getElementById('mct').textContent='Добавить контакт из проверки';
-  document.getElementById('ccn').value=document.getElementById('sc-name').value||'';
-  document.getElementById('cca').value=document.getElementById('sc-activity').value||'';
-  document.getElementById('ccp').value=document.getElementById('sc-phone').value||'';
-  document.getElementById('cce').value=document.getElementById('sc-email').value||'';
-  document.getElementById('ccr').value=document.getElementById('sc-city').value||'';
-  document.getElementById('cci').value=document.getElementById('sc-inn').value||'';
-  document.getElementById('ccg').value=document.getElementById('sc-city').value||'';
-  document.getElementById('ccs').value='Нет';
-  OM('mo-c');
+  contactKey=null;document.getElementById('mct').textContent='Добавить контакт из аккредитации';
+  document.getElementById('ccn').value=getVal('sc-name');
+  document.getElementById('cca').value=getVal('sc-activity');
+  document.getElementById('ccp').value=getVal('sc-phone');
+  document.getElementById('cce').value=getVal('sc-email');
+  document.getElementById('ccr').value=getVal('sc-city');
+  document.getElementById('cci').value=getVal('sc-inn');
+  document.getElementById('ccg').value=getVal('sc-city');
+  document.getElementById('ccs').value='Нет';OM('mo-c');
+};
+window.sendSupplierToManager=async function(){
+  const name=getVal('sc-name'), inn=getVal('sc-inn');
+  if(!name||!inn){alert('Укажите ИНН и название организации');return;}
+  const check=supplierCheckPayload();
+  const row={name,inn,phone:getVal('sc-phone'),email:getVal('sc-email'),site:getVal('sc-site'),contactPerson:getVal('sc-person'),activity:getVal('sc-activity'),city:getVal('sc-city'),supplierScore:check.score,supplierRating:check.rating,supplierCategory:check.category,supplierPreferred:check.preferred,supplierCheck:check,status:'На решении руководителя',createdAt:Date.now(),createdBy:CU?CU.name:''};
+  await db.ref('supplierApprovalRequests').push(row);
+  await logAction('Аккредитация поставщика',name,`Передан руководителю: ${check.rating} (${check.score}/100)`,'supplierApprovalRequests');
+  alert('Поставщик передан руководителю на решение');
 };
 window.addCheckedSupplierToContacts=async function(){
   const score=calcSupplierScore();
-  if(score<50 && !(CU&&CU.isAdmin)){
-    alert('Поставщик рискованный. Добавление запрещено без администратора.');
-    return;
+  const check=supplierCheckPayload();
+  if(check.decision!=='allow' && !(CU&&CU.isAdmin)){
+    alert('По этой аккредитации решение должен принять руководитель. Нажмите «Передать руководителю».');return;
   }
-  const name=(document.getElementById('sc-name').value||'').trim();
-  const inn=(document.getElementById('sc-inn').value||'').trim();
+  const name=getVal('sc-name'), inn=getVal('sc-inn');
   if(!name){alert('Укажите название организации');return;}
   if(!inn){alert('Укажите ИНН');return;}
-  const check=supplierCheckPayload();
-  const row={
-    name,
-    activity:document.getElementById('sc-activity').value||'',
-    phone:document.getElementById('sc-phone').value||'',
-    email:document.getElementById('sc-email').value||'',
-    region:document.getElementById('sc-city').value||'',
-    city:document.getElementById('sc-city').value||'',
-    inn,
-    kpp:scApiData?.kpp||'',
-    ogrn:scApiData?.ogrn||'',
-    address:scApiData?.address||'',
-    director:scApiData?.director||'',
-    registrationDate:scApiData?.registrationDate||'',
-    okved:scApiData?.okved||'',
-    dadataStatus:scApiData?.status||'',
-    site:document.getElementById('sc-site').value||'',
-    contactPerson:document.getElementById('sc-person').value||'',
-    spec:'Нет',
-    supplierScore:score,
-    supplierRating:check.rating,
-    supplierCheck:check,
-    supplierApproved:score>=50 || (CU&&CU.isAdmin),
-    supplierWarning:score<80
-  };
-  const existing=CONTACTS.find(c=>String(c.inn||'').trim()===inn);
+  const row={name,activity:getVal('sc-activity'),phone:getVal('sc-phone'),email:getVal('sc-email'),region:getVal('sc-city'),city:getVal('sc-city'),inn,kpp:scApiData?.kpp||'',ogrn:scApiData?.ogrn||'',address:scApiData?.address||'',director:scApiData?.director||'',registrationDate:scApiData?.registrationDate||'',okved:scApiData?.okved||'',dadataStatus:scApiData?.status||'',site:getVal('sc-site'),contactPerson:getVal('sc-person'),spec:'Нет',supplierScore:score,supplierRating:check.rating,supplierCategory:check.category,supplierPreferred:check.preferred,supplierCheck:check,supplierApproved:check.decision==='allow'||(CU&&CU.isAdmin),supplierWarning:check.decision!=='allow',accreditedAt:Date.now(),accreditedBy:CU?CU.name:''};
+  const existing=uniqueContacts(CONTACTS).find(c=>normalizeInn(c.inn)===normalizeInn(inn));
   if(existing){
-    if(!confirm('Поставщик с таким ИНН уже есть в контактах. Обновить его данные и проверку?'))return;
+    if(!confirm('Поставщик с таким ИНН уже есть в контактах. Обновить его данные и аккредитацию?'))return;
     await db.ref(`contacts/${existing._k}`).update(row);
-    await logAction('Проверка поставщика',name,`Обновлена проверка: ${check.rating} (${score}/100)`,existing._k);
+    await logAction('Аккредитация поставщика',name,`Обновлена аккредитация: ${check.rating} (${score}/100)`,existing._k);
   }else{
     const refNew=await db.ref('contacts').push(row);
-    await logAction('Проверка поставщика',name,`Добавлен в контакты после проверки: ${check.rating} (${score}/100)`,refNew.key);
+    await logAction('Аккредитация поставщика',name,`Добавлен в контакты после аккредитации: ${check.rating} (${score}/100)`,refNew.key);
   }
   alert('Поставщик добавлен/обновлён в контактах');
   resetSupplierCheck();
   SP('contacts',document.querySelector('.nav-item[onclick*="contacts"]'));
 };
 
-function rContacts(q){
-  let d=[...CONTACTS];
-  if(q)d=d.filter(c=>JSON.stringify(c).toLowerCase().includes(q.toLowerCase()));
-  const grid=document.getElementById('con-grid');
-  if(!d.length){grid.innerHTML='<div style="grid-column:1/-1;text-align:center;color:var(--muted);padding:40px">Нет контактов</div>';return;}
-  grid.innerHTML=d.map(c=>`
-    <div class="con-card">
-      <div class="con-name">${c.name||'—'} ${supplierRatingBadge(c.supplierScore)}</div>
-      <div class="con-type">${c.activity||'—'} ${c.spec==='Да'?'<span class="badge bg">Спецсчёт</span>':''} ${c.supplierWarning?'<span class="badge by">С предупреждением</span>':''}</div>
-      ${c.phone?`<div class="con-row"><span class="con-label">📞</span><span>${c.phone}</span></div>`:''}
-      ${c.email?`<div class="con-row"><span class="con-label">✉️</span><a href="mailto:${c.email}" style="color:var(--accent)">${c.email}</a></div>`:''}
-      ${c.city?`<div class="con-row"><span class="con-label">📍</span><span>${c.city}</span></div>`:''}
-      ${c.inn?`<div class="con-row"><span class="con-label">ИНН</span><span style="font-size:.75rem;color:var(--muted)">${c.inn}</span></div>`:''}
-      ${c.supplierCheck?`<div class="con-row"><span class="con-label">🛡</span><span style="font-size:.75rem;color:var(--muted)">Проверка: ${c.supplierRating||supplierRatingLabel(c.supplierScore)} · ${c.supplierCheck.checkedAt?new Date(c.supplierCheck.checkedAt).toLocaleDateString('ru-RU'):''}</span></div>`:''}
-      ${c.ogrn?`<div class="con-row"><span class="con-label">ОГРН</span><span style="font-size:.75rem;color:var(--muted)">${c.ogrn}</span></div>`:''}
-      ${c.dadataStatus?`<div class="con-row"><span class="con-label">Статус</span><span style="font-size:.75rem;color:var(--muted)">${c.dadataStatus}</span></div>`:''}
-      <div style="display:flex;gap:5px;margin-top:10px">
-        <button class="bsm be" onclick="window.editContact('${c._k}')">✏️</button>
-        ${CU?.isAdmin?`<button class="bsm bd" onclick="window.delContact('${c._k}')">🗑️</button>`:''}
-      </div>
-    </div>`).join('');
+
+function normSupplierText(v){return String(v||'').toLowerCase().replace(/[«»"']/g,'').replace(/\s+/g,' ').trim();}
+function moneyFromAny(v){
+  if(typeof v==='number')return v;
+  if(!v)return 0;
+  const n=String(v).replace(/\s/g,'').replace(',', '.').replace(/[^0-9.\-]/g,'');
+  return parseFloat(n)||0;
 }
+function contactMatchesEntity(c,obj){
+  const inn=String(c?.inn||'').replace(/\D/g,'');
+  const key=String(c?._k||'');
+  const name=normSupplierText(c?.name||'');
+  if(obj){
+    if(key && (obj.contractorContactKey===key || obj.contactKey===key || obj.contactId===key))return true;
+    if(inn && String(obj.contractorInn||obj.inn||'').replace(/\D/g,'')===inn)return true;
+    if(Array.isArray(obj.supplierLinks) && obj.supplierLinks.some(s=>(key&&(s.contactKey===key||s.contactId===key)) || (inn&&String(s.inn||'').replace(/\D/g,'')===inn)))return true;
+    if(Array.isArray(obj.invoices) && obj.invoices.some(s=>(key&&(s.contactKey===key||s.contactId===key)) || (inn&&String(s.inn||'').replace(/\D/g,'')===inn)))return true;
+    if(Array.isArray(obj.kp) && obj.kp.some(s=>(key&&(s.contactKey===key||s.contactId===key)) || (inn&&String(s.inn||'').replace(/\D/g,'')===inn)))return true;
+  }
+  const hay=normSupplierText(JSON.stringify(obj||{}));
+  if(inn && hay.includes(inn))return true;
+  if(name && name.length>4 && hay.includes(name))return true;
+  return false;
+}
+function isConfirmedSupplierDelay(r){
+  if(!r)return false;
+
+  // Ручные флаги на будущее. Старые заявки без этих полей не считаем просроченными.
+  if(r.supplierDelayConfirmed===true || r.delayConfirmed===true || r.isSupplierDelay===true)return true;
+  if(r.supplierDelayConfirmed===false || r.delayConfirmed===false || r.noSupplierDelay===true)return false;
+
+  const deliveryText=String(r.delivery||r.deliveryStatus||'').toLowerCase();
+  const statusText=String(r.status||'').toLowerCase();
+
+  // Если явно написали, что поставщик опоздал.
+  if(deliveryText.includes('просроч') || deliveryText.includes('опоздал') || deliveryText.includes('задерж'))return true;
+
+  // Если явно написали, что всё в срок — не просрочка.
+  if(deliveryText.includes('в срок') || deliveryText.includes('без проср'))return false;
+
+  // Автоматически считаем просрочку только когда есть обе даты: план и факт.
+  // Просто поле days/рабочие дни больше НЕ используется для рейтинга поставщика,
+  // потому что оно зависит от ведения заявки со стороны МТО.
+  const planned=parseRuDate(r.planDeliveryDate||r.deliveryPlanDate||r.deliveryDeadline||r.requiredDate||r.needDate||r.planDelivery||r.deliveryDue);
+  const actual=parseRuDate(r.actualDeliveryDate||r.factDeliveryDate||r.deliveryFactDate||r.closedAt||r.deliveredAt);
+
+  const closed=isDeliveredStatus(r.status) || statusText.includes('закры') || deliveryText.includes('достав') || deliveryText.includes('получ');
+  if(!closed || !planned || !actual)return false;
+
+  const p=new Date(planned.getFullYear(),planned.getMonth(),planned.getDate()).getTime();
+  const a=new Date(actual.getFullYear(),actual.getMonth(),actual.getDate()).getTime();
+  return a>p;
+}
+function supplierWorkStats(c){
+  const orders=(DATA||[]).filter(r=>contactMatchesEntity(c,r));
+  const contracts=(CONTRACTS||[]).filter(r=>contactMatchesEntity(c,r));
+  const delivered=orders.filter(r=>String(r.status||'').toUpperCase().includes('ДОСТ')).length;
+  const delayed=orders.filter(r=>isConfirmedSupplierDelay(r)).length;
+  let total=0;
+  orders.forEach(r=>{ 
+    if(r.cost) total+=moneyFromAny(r.cost);
+    else if(Array.isArray(r.invoices)&&r.invoices.length) total+=r.invoices.reduce((a,x)=>a+moneyFromAny(x.sum),0);
+    else try{ total+= (r.kpRows||r.kp||[]).filter(k=>k.selected).reduce((a,k)=>a+moneyFromAny(k.sum),0);}catch(e){}
+  });
+  contracts.forEach(r=>{ total+= moneyFromAny(r.amount||0); });
+  const lastTs=Math.max(0,...orders.map(r=>new Date(r.closedAt||r.deliveredAt||r.actualDeliveryDate||r.deliveryDate||r.date||r.createdAt||0).getTime()).filter(Boolean));
+  return {orders:orders.length,contracts:contracts.length,delivered,delayed,total,lastTs};
+}
+function moneyShort(n){
+  n=Number(n)||0;
+  if(n>=1000000)return (n/1000000).toFixed(n>=10000000?0:1).replace('.',',')+' млн ₽';
+  if(n>=1000)return Math.round(n/1000)+' тыс ₽';
+  return n?Math.round(n).toLocaleString('ru-RU')+' ₽':'0 ₽';
+}
+function supplierCategoryBadge(c){
+  const cat=c.supplierCategory||'';
+  const fav=c.supplierPreferred;
+  let html='';
+  if(cat)html+=`<span class="badge bgr">${esc(cat)}</span>`;
+  if(fav)html+=`<span class="supplier-fav">★ Рекомендуемый</span>`;
+  return html;
+}
+function supplierTimelineHtml(c,stats){
+  const items=[];
+  if(c.accreditedAt)items.push(`<div class="supplier-timeitem"><b>${new Date(c.accreditedAt).toLocaleDateString('ru-RU')}</b> — аккредитация: ${esc(c.supplierRating||supplierRatingLabel(c.supplierScore))}</div>`);
+  if(c.supplierCheck?.nextReview)items.push(`<div class="supplier-timeitem"><b>${new Date(c.supplierCheck.nextReview).toLocaleDateString('ru-RU')}</b> — следующая проверка</div>`);
+  if(stats.lastTs)items.push(`<div class="supplier-timeitem"><b>${new Date(stats.lastTs).toLocaleDateString('ru-RU')}</b> — последняя заявка/поставка</div>`);
+  if(!items.length)items.push('<div class="supplier-timeitem">История появится после аккредитации и первых заявок.</div>');
+  return `<div class="supplier-timeline">${items.join('')}</div>`;
+}
+
+function getContactAccStatus(c){
+  const score=Number(c.supplierScore||0);
+  const rating=(c.supplierRating||'').toLowerCase();
+  const hasAcc=!!(c.supplierCheck||c.accreditedAt||score||c.supplierRating);
+  if(!hasAcc)return 'none';
+  if(score>=75 || (rating.includes('аккредитован') && !rating.includes('не аккредит')))return 'accredited';
+  if(score>=50 || rating.includes('услов') || rating.includes('руковод'))return 'conditional';
+  return 'blocked';
+}
+function clearContactFilters(){
+  const ids=['contact-search','contact-filter-activity'];
+  ids.forEach(id=>{const el=document.getElementById(id); if(el)el.value='';});
+  const st=document.getElementById('contact-filter-status'); if(st)st.value='all';
+  const ex=document.getElementById('contact-filter-extra'); if(ex)ex.value='all';
+  rContacts();
+}
+function rContacts(q){
+  let d=uniqueContacts(CONTACTS);
+  if(q===undefined || q===null)q=document.getElementById('contact-search')?.value||'';
+  q=String(q||'').trim().toLowerCase();
+  const status=document.getElementById('contact-filter-status')?.value||'all';
+  const extra=document.getElementById('contact-filter-extra')?.value||'all';
+  const activity=(document.getElementById('contact-filter-activity')?.value||'').trim().toLowerCase();
+  if(q)d=d.filter(c=>JSON.stringify(c).toLowerCase().includes(q));
+  if(activity)d=d.filter(c=>String(c.activity||'').toLowerCase().includes(activity) || String(c.name||'').toLowerCase().includes(activity));
+  if(status!=='all')d=d.filter(c=>getContactAccStatus(c)===status);
+  if(extra!=='all')d=d.filter(c=>{
+    const st=supplierWorkStats(c);
+    if(extra==='preferred')return !!c.supplierPreferred;
+    if(extra==='withInn')return !!normInn(c.inn);
+    if(extra==='withoutInn')return !normInn(c.inn);
+    if(extra==='spec')return c.spec==='Да';
+    if(extra==='withOrders')return st.orders>0;
+    if(extra==='withDelays')return st.delayed>0;
+    return true;
+  });
+  const cnt=document.getElementById('contacts-count');
+  if(cnt)cnt.textContent=`— найдено: ${d.length} из ${uniqueContacts(CONTACTS).length}`;
+  const grid=document.getElementById('con-grid');
+  setPageViewClass('contacts'); updateViewButtons('contacts');
+  if(!d.length){grid.innerHTML='<div style="grid-column:1/-1;text-align:center;color:var(--muted);padding:40px">Нет контактов по выбранным фильтрам</div>';return;}
+  if(getViewMode('contacts')==='list'){
+    grid.innerHTML=`<table class="contact-list-table"><thead><tr><th>Название</th><th>ИНН</th><th>Деятельность</th><th>Телефон</th><th>Email</th><th>Аккредитация</th><th>Заявки</th><th>Сумма</th><th>Действия</th></tr></thead><tbody>`+d.map(c=>{const st=supplierWorkStats(c);return `<tr><td><strong>${esc(c.name||'—')}</strong><div>${supplierCategoryBadge(c)}</div></td><td>${esc(c.inn||'—')}</td><td>${esc(c.activity||'—')}</td><td>${esc(c.phone||'—')}</td><td>${c.email?`<a href="mailto:${esc(c.email)}" style="color:var(--accent)">${esc(c.email)}</a>`:'—'}</td><td>${supplierRatingBadge(c.supplierScore)||'<span class="nf">—</span>'}</td><td>${st.orders}</td><td>${moneyShort(st.total)}</td><td><button class="bsm be" onclick="window.editContact('${c._k}')">✏️</button>${CU?.isAdmin?` <button class="bsm bd" onclick="window.delContact('${c._k}')">🗑️</button>`:''}</td></tr>`;}).join('')+`</tbody></table>`;
+    return;
+  }
+  grid.innerHTML=d.map(c=>{
+    const st=supplierWorkStats(c);
+    return `<div class="con-card"><div class="con-name">${c.name||'—'} ${supplierRatingBadge(c.supplierScore)}</div><div class="con-type">${c.activity||'—'} ${supplierCategoryBadge(c)} ${c.spec==='Да'?'<span class="badge bg">Спецсчёт</span>':''} ${c.supplierWarning?'<span class="badge by">С предупреждением</span>':''}</div><div class="supplier-stat-grid"><div class="supplier-stat"><div class="n">${st.orders}</div><div class="t">заявок</div></div><div class="supplier-stat"><div class="n">${st.contracts}</div><div class="t">договоров</div></div><div class="supplier-stat"><div class="n">${st.delayed}</div><div class="t">подтв. просрочек</div></div><div class="supplier-stat"><div class="n">${st.delivered}</div><div class="t">поставок</div></div><div class="supplier-stat" style="grid-column:span 2"><div class="n">${moneyShort(st.total)}</div><div class="t">сумма</div></div></div>${c.phone?`<div class="con-row"><span class="con-label">📞</span><span>${esc(c.phone)}</span></div>`:''}${c.email?`<div class="con-row"><span class="con-label">✉️</span><a href="mailto:${esc(c.email)}" style="color:var(--accent)">${esc(c.email)}</a></div>`:''}${c.city?`<div class="con-row"><span class="con-label">📍</span><span>${esc(c.city)}</span></div>`:''}${c.inn?`<div class="con-row"><span class="con-label">ИНН</span><span style="font-size:.75rem;color:var(--muted)">${esc(c.inn)}</span></div>`:''}${c.supplierCheck?`<div class="con-row"><span class="con-label">🛡</span><span style="font-size:.75rem;color:var(--muted)">Аккредитация: ${esc(c.supplierRating||supplierRatingLabel(c.supplierScore))} · ${c.supplierCheck.checkedAt?new Date(c.supplierCheck.checkedAt).toLocaleDateString('ru-RU'):''}</span></div>`:''}${c.ogrn?`<div class="con-row"><span class="con-label">ОГРН</span><span style="font-size:.75rem;color:var(--muted)">${esc(c.ogrn)}</span></div>`:''}${c.dadataStatus?`<div class="con-row"><span class="con-label">Статус</span><span style="font-size:.75rem;color:var(--muted)">${esc(c.dadataStatus)}</span></div>`:''}<div style="display:flex;gap:5px;margin-top:10px"><button class="bsm be" onclick="window.editContact('${c._k}')">✏️</button>${CU?.isAdmin?`<button class="bsm bd" onclick="window.delContact('${c._k}')">🗑️</button>`:''}</div>${supplierTimelineHtml(c,st)}</div>`;
+  }).join('');
+}
+
 
 window.openAddContact=function(){contactKey=null;document.getElementById('mct').textContent='Добавить контакт';['ccn','cca','ccp','cce','ccr','cci','ccg'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});document.getElementById('ccs').selectedIndex=0;OM('mo-c');};
 window.editContact=function(k){
