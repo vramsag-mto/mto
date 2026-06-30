@@ -719,6 +719,42 @@ tr:hover td{background:#f8fafc}
 .analysis-reco strong{color:var(--primary)}
 @media(max-width:768px){.kpm{min-width:0}}
 
+
+/* SUPPLIER CHECK */
+.check-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:16px;padding:16px}
+.check-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.check-list{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px}
+.check-item{display:flex;gap:8px;align-items:flex-start;padding:9px;border:1px solid var(--border);border-radius:10px;background:#f8fafc;font-size:.82rem;line-height:1.25}
+.check-item input{margin-top:2px;accent-color:var(--accent)}
+.check-score-card{border:1px solid var(--border);border-radius:14px;background:#fff;padding:18px;position:sticky;top:18px}
+.check-score{font-size:2.4rem;font-weight:900;color:var(--primary);line-height:1}
+.check-score-sub{font-size:.82rem;color:var(--muted);margin-top:6px}
+.check-risk-box{margin-top:14px;padding:12px;border-radius:12px;font-size:.88rem;line-height:1.4}
+.check-risk-box.good{background:#dcfce7;color:#15803d}
+.check-risk-box.warn{background:#fef9c3;color:#92400e}
+.check-risk-box.bad{background:#fee2e2;color:#b91c1c}
+.supplier-rating{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:2px 8px;font-size:.68rem;font-weight:800;margin-left:5px}
+.supplier-rating.good{background:#dcfce7;color:#15803d}
+.supplier-rating.warn{background:#fef9c3;color:#92400e}
+.supplier-rating.bad{background:#fee2e2;color:#b91c1c}
+.check-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.check-note{font-size:.78rem;color:var(--muted);line-height:1.4;margin-top:10px}
+@media(max-width:768px){
+  .check-layout{grid-template-columns:1fr;padding:10px}
+  .check-grid,.check-list{grid-template-columns:1fr}
+  .check-score-card{position:static}
+  .check-actions .btn{width:100%}
+}
+
+
+.check-api-status{font-size:.76rem;color:var(--muted);margin-top:6px;line-height:1.35}
+.check-api-result{margin-top:12px;border:1px solid #dbeafe;background:#eff6ff;border-radius:12px;padding:12px;font-size:.82rem;line-height:1.45;display:none}
+.check-api-result.active{display:block}
+.check-api-result .api-title{font-weight:900;color:var(--primary);margin-bottom:8px}
+.api-kv{display:grid;grid-template-columns:120px 1fr;gap:6px;border-top:1px solid rgba(59,130,246,.18);padding-top:6px;margin-top:6px}
+.api-kv b{color:#64748b;font-size:.72rem;text-transform:uppercase}
+@media(max-width:768px){.api-kv{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -750,6 +786,7 @@ tr:hover td{background:#f8fafc}
       <div class="nav-item" onclick="SP('chat',this)">💬 Вопросы / Чат</div>
       <div class="nav-item" onclick="SP('private',this)">✉️ Личные сообщения <span class="nav-badge" id="pm-unread-badge"></span></div>
       <div class="nav-item" onclick="SP('contacts',this)">📞 Контакты</div>
+      <div class="nav-item" onclick="SP('supplier-check',this)">🛡 Проверка поставщика</div>
       <div class="nav-item" onclick="SP('contracts',this)">📄 Договоры</div>
       <div class="nav-item" onclick="SP('analytics',this)">📊 Аналитика МТО</div>
       <div class="nav-item" onclick="SP('history',this)">🕓 История изменений</div>
@@ -917,6 +954,70 @@ tr:hover td{background:#f8fafc}
           </div>
         </div>
         <div class="con-grid" id="con-grid"></div>
+      </div>
+    </div>
+
+
+
+    <!-- SUPPLIER CHECK -->
+    <div class="page" id="page-supplier-check">
+      <div class="ph"><div class="pt">Проверка поставщика</div><div class="ps">Ручной скоринг поставщика по ИНН перед добавлением в контакты</div></div>
+      <div class="card">
+        <div class="ch">
+          <div class="ct">🛡 Карточка проверки</div>
+          <div class="cf">
+            <button class="btn btn-s" onclick="resetSupplierCheck()">Очистить</button>
+          </div>
+        </div>
+        <div class="check-layout">
+          <div>
+            <div class="check-grid">
+              <div class="fgr"><label class="fl2">ИНН</label><input class="fi" id="sc-inn" placeholder="Введите ИНН" oninput="supplierCheckChanged()"><button class="btn btn-s" style="margin-top:7px;width:100%" onclick="checkSupplierByApi()">🔎 Проверить по API</button><div class="check-api-status" id="sc-api-status">Введите ИНН и нажмите проверку.</div></div>
+              <div class="fgr"><label class="fl2">Название организации</label><input class="fi" id="sc-name" placeholder="ООО Поставщик" oninput="supplierCheckChanged()"></div>
+              <div class="fgr"><label class="fl2">Телефон</label><input class="fi" id="sc-phone" placeholder="8 (___) ___-__-__"></div>
+              <div class="fgr"><label class="fl2">Email</label><input class="fi" id="sc-email" placeholder="info@company.ru"></div>
+              <div class="fgr"><label class="fl2">Сайт</label><input class="fi" id="sc-site" placeholder="https://"></div>
+              <div class="fgr"><label class="fl2">Контактное лицо</label><input class="fi" id="sc-person" placeholder="Имя, должность"></div>
+              <div class="fgr"><label class="fl2">Вид деятельности</label><input class="fi" id="sc-activity" placeholder="Стройматериалы"></div>
+              <div class="fgr"><label class="fl2">Город / регион</label><input class="fi" id="sc-city" placeholder="Москва / регион"></div>
+            </div>
+            <div class="check-api-result" id="sc-api-result"></div>
+
+            <div class="order-section-title">✅ Чек-лист проверки</div>
+            <div class="check-list" id="supplier-check-list">
+              <label class="check-item"><input type="checkbox" data-score="12" onchange="calcSupplierScore()"> Компания действующая</label>
+              <label class="check-item"><input type="checkbox" data-score="10" onchange="calcSupplierScore()"> Не ликвидируется</label>
+              <label class="check-item"><input type="checkbox" data-score="10" onchange="calcSupplierScore()"> Не банкрот</label>
+              <label class="check-item"><input type="checkbox" data-score="10" onchange="calcSupplierScore()"> Нет исполнительных производств</label>
+              <label class="check-item"><input type="checkbox" data-score="8" onchange="calcSupplierScore()"> Не массовый директор</label>
+              <label class="check-item"><input type="checkbox" data-score="8" onchange="calcSupplierScore()"> Не массовый адрес</label>
+              <label class="check-item"><input type="checkbox" data-score="10" onchange="calcSupplierScore()"> Работает более 3 лет</label>
+              <label class="check-item"><input type="checkbox" data-score="8" onchange="calcSupplierScore()"> Есть положительная репутация</label>
+              <label class="check-item"><input type="checkbox" data-score="8" onchange="calcSupplierScore()"> Есть офис / склад / точка выдачи</label>
+              <label class="check-item"><input type="checkbox" data-score="8" onchange="calcSupplierScore()"> Есть сертификаты / документы качества</label>
+              <label class="check-item"><input type="checkbox" data-score="4" onchange="calcSupplierScore()"> Есть сайт / публичные контакты</label>
+              <label class="check-item"><input type="checkbox" data-score="4" onchange="calcSupplierScore()"> Есть рекомендации / работали ранее</label>
+            </div>
+
+            <div class="fgr f" style="margin-top:12px"><label class="fl2">Комментарий проверки</label><textarea class="fi" id="sc-comment" rows="3" placeholder="Например: работали ранее, просрочек не было / нужна проверка юриста"></textarea></div>
+          </div>
+
+          <div class="check-score-card">
+            <div class="check-score" id="sc-score">0</div>
+            <div class="check-score-sub">баллов из 100</div>
+            <div id="sc-risk" class="check-risk-box bad">
+              🔴 Рискованный поставщик<br>Добавление в контакты запрещено без администратора.
+            </div>
+            <div class="check-note" id="sc-reco">Заполните данные и отметьте пункты проверки.</div>
+            <div class="check-actions">
+              <button class="btn btn-p" id="sc-add-btn" onclick="addCheckedSupplierToContacts()">Добавить в контакты</button>
+              <button class="btn btn-s" onclick="prefillContactFromCheck()">Заполнить форму контакта</button>
+            </div>
+            <div class="check-note">
+              Сейчас проверка ручная. Позже сюда можно подключить API ФНС/Контур/СПАРК, и эти пункты будут заполняться автоматически по ИНН.
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -2370,6 +2471,237 @@ async function initContacts(){
   }
 }
 
+
+
+let scApiData=null;
+const SUPPLIER_API_URL='https://m-sag.ru/api/checkSupplier.php';
+
+function setSupplierApiStatus(text,type){
+  const el=document.getElementById('sc-api-status');
+  if(!el)return;
+  el.textContent=text;
+  el.style.color=type==='bad'?'#b91c1c':(type==='good'?'#15803d':'#64748b');
+}
+function setSupplierCheckByText(text,checked){
+  const labels=[...document.querySelectorAll('#supplier-check-list label')];
+  const label=labels.find(l=>l.textContent.trim().toLowerCase().includes(text.toLowerCase()));
+  if(label){
+    const input=label.querySelector('input');
+    if(input)input.checked=!!checked;
+  }
+}
+function ruDateToDate(s){
+  if(!s)return null;
+  const m=String(s).match(/^(\d{2})\.(\d{2})\.(\d{4})$/);
+  if(!m)return null;
+  return new Date(Number(m[3]),Number(m[2])-1,Number(m[1]));
+}
+function showSupplierApiResult(d){
+  const box=document.getElementById('sc-api-result');
+  if(!box)return;
+  box.classList.add('active');
+  box.innerHTML=`
+    <div class="api-title">Данные DaData</div>
+    <div class="api-kv"><b>Название</b><span>${esc(d.shortName||d.name||'—')}</span></div>
+    <div class="api-kv"><b>ИНН / КПП</b><span>${esc(d.inn||'—')} / ${esc(d.kpp||'—')}</span></div>
+    <div class="api-kv"><b>ОГРН</b><span>${esc(d.ogrn||'—')}</span></div>
+    <div class="api-kv"><b>Статус</b><span>${esc(d.status||'—')}</span></div>
+    <div class="api-kv"><b>Регистрация</b><span>${esc(d.registrationDate||'—')}</span></div>
+    <div class="api-kv"><b>Руководитель</b><span>${esc(d.director||'—')} ${d.directorPost?`(${esc(d.directorPost)})`:''}</span></div>
+    <div class="api-kv"><b>Адрес</b><span>${esc(d.address||'—')}</span></div>
+    <div class="api-kv"><b>ОКВЭД</b><span>${esc(d.okved||'—')}</span></div>
+  `;
+}
+window.checkSupplierByApi=async function(){
+  const inn=(document.getElementById('sc-inn')?.value||'').replace(/\D/g,'');
+  if(!inn){alert('Введите ИНН');return;}
+  setSupplierApiStatus('Проверяю поставщика через DaData...', 'info');
+  const btns=[...document.querySelectorAll('button')].filter(b=>String(b.getAttribute('onclick')||'').includes('checkSupplierByApi'));
+  btns.forEach(b=>{b.disabled=true;b.style.opacity='.65';});
+  try{
+    const res=await fetch(SUPPLIER_API_URL,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({inn})
+    });
+    const data=await res.json();
+    if(!data.success)throw new Error(data.error||'Компания не найдена');
+    scApiData=data;
+
+    document.getElementById('sc-name').value=data.shortName||data.name||data.fullName||'';
+    document.getElementById('sc-inn').value=data.inn||inn;
+    if(data.address)document.getElementById('sc-city').value=data.address;
+    if(data.director)document.getElementById('sc-person').value=data.director;
+    if(data.okved)document.getElementById('sc-activity').value='ОКВЭД: '+data.okved;
+
+    const status=String(data.status||'').toUpperCase();
+    const isActive=status==='ACTIVE';
+    setSupplierCheckByText('Компания действующая',isActive);
+    setSupplierCheckByText('Не ликвидируется',status!=='LIQUIDATING' && status!=='LIQUIDATED');
+    setSupplierCheckByText('Не банкрот',status!=='BANKRUPT');
+
+    const reg=ruDateToDate(data.registrationDate);
+    if(reg){
+      const years=(Date.now()-reg.getTime())/(365.25*24*60*60*1000);
+      setSupplierCheckByText('Работает более 3 лет',years>=3);
+    }
+
+    showSupplierApiResult(data);
+    calcSupplierScore();
+    setSupplierApiStatus('Данные получены. Проверьте оставшиеся пункты чек-листа вручную.', 'good');
+  }catch(e){
+    console.error(e);
+    setSupplierApiStatus('Ошибка проверки: '+(e.message||e), 'bad');
+    alert('Не удалось проверить поставщика: '+(e.message||e));
+  }finally{
+    btns.forEach(b=>{b.disabled=false;b.style.opacity='1';});
+  }
+};
+
+function supplierRatingClass(score){
+  score=Number(score)||0;
+  if(score>=80)return 'good';
+  if(score>=50)return 'warn';
+  return 'bad';
+}
+function supplierRatingLabel(score){
+  score=Number(score)||0;
+  if(score>=80)return '🟢 Надёжный';
+  if(score>=50)return '🟡 Требует проверки';
+  return '🔴 Рискованный';
+}
+function supplierRatingBadge(score){
+  if(score===undefined||score===null||score==='')return '';
+  const cls=supplierRatingClass(score);
+  return `<span class="supplier-rating ${cls}">${supplierRatingLabel(score)} · ${Number(score)||0}</span>`;
+}
+window.calcSupplierScore=function(){
+  const checks=[...document.querySelectorAll('#supplier-check-list input[type="checkbox"]')];
+  let score=checks.reduce((a,x)=>a+(x.checked?(Number(x.dataset.score)||0):0),0);
+  score=Math.max(0,Math.min(100,score));
+  const scoreEl=document.getElementById('sc-score');
+  const riskEl=document.getElementById('sc-risk');
+  const recoEl=document.getElementById('sc-reco');
+  const btn=document.getElementById('sc-add-btn');
+  if(scoreEl)scoreEl.textContent=score;
+  if(riskEl){
+    riskEl.className='check-risk-box '+supplierRatingClass(score);
+    if(score>=80)riskEl.innerHTML='🟢 Надёжный поставщик<br>Можно добавить в контакты и использовать в заявках.';
+    else if(score>=50)riskEl.innerHTML='🟡 Требует проверки<br>Можно добавить с предупреждением. Желательно согласовать с руководителем.';
+    else riskEl.innerHTML='🔴 Рискованный поставщик<br>Добавление в контакты запрещено без администратора.';
+  }
+  if(recoEl){
+    if(score>=80)recoEl.textContent='Рекомендация: можно работать в обычном порядке.';
+    else if(score>=50)recoEl.textContent='Рекомендация: работать осторожно, ограничить аванс, запросить доп. документы.';
+    else recoEl.textContent='Рекомендация: не добавлять в базу без решения администратора/руководителя.';
+  }
+  if(btn){
+    const locked=score<50 && !(CU&&CU.isAdmin);
+    btn.disabled=locked;
+    btn.style.opacity=locked?'.55':'1';
+    btn.style.cursor=locked?'not-allowed':'pointer';
+    btn.textContent=score>=80?'Добавить в контакты':(score>=50?'Добавить с предупреждением':'Добавить только администратору');
+  }
+  return score;
+};
+window.supplierCheckChanged=function(){
+  const inn=(document.getElementById('sc-inn')?.value||'').trim();
+  if(inn){
+    const found=CONTACTS.find(c=>String(c.inn||'').trim()===inn);
+    if(found){
+      const note=document.getElementById('sc-reco');
+      if(note)note.textContent=`Поставщик с таким ИНН уже есть в контактах: ${found.name||'без названия'}. Можно обновить проверку или открыть контакты.`;
+    }
+  }
+  calcSupplierScore();
+};
+function supplierCheckPayload(){
+  const checks=[...document.querySelectorAll('#supplier-check-list label')].map(l=>({
+    text:l.textContent.trim(),
+    checked:!!l.querySelector('input')?.checked,
+    score:Number(l.querySelector('input')?.dataset.score)||0
+  }));
+  const score=calcSupplierScore();
+  return {
+    checkedAt:Date.now(),
+    checkedBy:CU?CU.name:'',
+    score,
+    rating:supplierRatingLabel(score),
+    checks,
+    apiData:scApiData||null,
+    comment:document.getElementById('sc-comment')?.value||''
+  };
+}
+window.resetSupplierCheck=function(){
+  scApiData=null;
+  ['sc-inn','sc-name','sc-phone','sc-email','sc-site','sc-person','sc-activity','sc-city','sc-comment'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.querySelectorAll('#supplier-check-list input[type="checkbox"]').forEach(x=>x.checked=false);
+  const box=document.getElementById('sc-api-result');if(box){box.classList.remove('active');box.innerHTML='';}
+  setSupplierApiStatus('Введите ИНН и нажмите проверку.','info');
+  calcSupplierScore();
+};
+window.prefillContactFromCheck=function(){
+  contactKey=null;
+  document.getElementById('mct').textContent='Добавить контакт из проверки';
+  document.getElementById('ccn').value=document.getElementById('sc-name').value||'';
+  document.getElementById('cca').value=document.getElementById('sc-activity').value||'';
+  document.getElementById('ccp').value=document.getElementById('sc-phone').value||'';
+  document.getElementById('cce').value=document.getElementById('sc-email').value||'';
+  document.getElementById('ccr').value=document.getElementById('sc-city').value||'';
+  document.getElementById('cci').value=document.getElementById('sc-inn').value||'';
+  document.getElementById('ccg').value=document.getElementById('sc-city').value||'';
+  document.getElementById('ccs').value='Нет';
+  OM('mo-c');
+};
+window.addCheckedSupplierToContacts=async function(){
+  const score=calcSupplierScore();
+  if(score<50 && !(CU&&CU.isAdmin)){
+    alert('Поставщик рискованный. Добавление запрещено без администратора.');
+    return;
+  }
+  const name=(document.getElementById('sc-name').value||'').trim();
+  const inn=(document.getElementById('sc-inn').value||'').trim();
+  if(!name){alert('Укажите название организации');return;}
+  if(!inn){alert('Укажите ИНН');return;}
+  const check=supplierCheckPayload();
+  const row={
+    name,
+    activity:document.getElementById('sc-activity').value||'',
+    phone:document.getElementById('sc-phone').value||'',
+    email:document.getElementById('sc-email').value||'',
+    region:document.getElementById('sc-city').value||'',
+    city:document.getElementById('sc-city').value||'',
+    inn,
+    kpp:scApiData?.kpp||'',
+    ogrn:scApiData?.ogrn||'',
+    address:scApiData?.address||'',
+    director:scApiData?.director||'',
+    registrationDate:scApiData?.registrationDate||'',
+    okved:scApiData?.okved||'',
+    dadataStatus:scApiData?.status||'',
+    site:document.getElementById('sc-site').value||'',
+    contactPerson:document.getElementById('sc-person').value||'',
+    spec:'Нет',
+    supplierScore:score,
+    supplierRating:check.rating,
+    supplierCheck:check,
+    supplierApproved:score>=50 || (CU&&CU.isAdmin),
+    supplierWarning:score<80
+  };
+  const existing=CONTACTS.find(c=>String(c.inn||'').trim()===inn);
+  if(existing){
+    if(!confirm('Поставщик с таким ИНН уже есть в контактах. Обновить его данные и проверку?'))return;
+    await db.ref(`contacts/${existing._k}`).update(row);
+    await logAction('Проверка поставщика',name,`Обновлена проверка: ${check.rating} (${score}/100)`,existing._k);
+  }else{
+    const refNew=await db.ref('contacts').push(row);
+    await logAction('Проверка поставщика',name,`Добавлен в контакты после проверки: ${check.rating} (${score}/100)`,refNew.key);
+  }
+  alert('Поставщик добавлен/обновлён в контактах');
+  resetSupplierCheck();
+  SP('contacts',document.querySelector('.nav-item[onclick*="contacts"]'));
+};
+
 function rContacts(q){
   let d=[...CONTACTS];
   if(q)d=d.filter(c=>JSON.stringify(c).toLowerCase().includes(q.toLowerCase()));
@@ -2377,12 +2709,15 @@ function rContacts(q){
   if(!d.length){grid.innerHTML='<div style="grid-column:1/-1;text-align:center;color:var(--muted);padding:40px">Нет контактов</div>';return;}
   grid.innerHTML=d.map(c=>`
     <div class="con-card">
-      <div class="con-name">${c.name||'—'}</div>
-      <div class="con-type">${c.activity||'—'} ${c.spec==='Да'?'<span class="badge bg">Спецсчёт</span>':''}</div>
+      <div class="con-name">${c.name||'—'} ${supplierRatingBadge(c.supplierScore)}</div>
+      <div class="con-type">${c.activity||'—'} ${c.spec==='Да'?'<span class="badge bg">Спецсчёт</span>':''} ${c.supplierWarning?'<span class="badge by">С предупреждением</span>':''}</div>
       ${c.phone?`<div class="con-row"><span class="con-label">📞</span><span>${c.phone}</span></div>`:''}
       ${c.email?`<div class="con-row"><span class="con-label">✉️</span><a href="mailto:${c.email}" style="color:var(--accent)">${c.email}</a></div>`:''}
       ${c.city?`<div class="con-row"><span class="con-label">📍</span><span>${c.city}</span></div>`:''}
       ${c.inn?`<div class="con-row"><span class="con-label">ИНН</span><span style="font-size:.75rem;color:var(--muted)">${c.inn}</span></div>`:''}
+      ${c.supplierCheck?`<div class="con-row"><span class="con-label">🛡</span><span style="font-size:.75rem;color:var(--muted)">Проверка: ${c.supplierRating||supplierRatingLabel(c.supplierScore)} · ${c.supplierCheck.checkedAt?new Date(c.supplierCheck.checkedAt).toLocaleDateString('ru-RU'):''}</span></div>`:''}
+      ${c.ogrn?`<div class="con-row"><span class="con-label">ОГРН</span><span style="font-size:.75rem;color:var(--muted)">${c.ogrn}</span></div>`:''}
+      ${c.dadataStatus?`<div class="con-row"><span class="con-label">Статус</span><span style="font-size:.75rem;color:var(--muted)">${c.dadataStatus}</span></div>`:''}
       <div style="display:flex;gap:5px;margin-top:10px">
         <button class="bsm be" onclick="window.editContact('${c._k}')">✏️</button>
         ${CU?.isAdmin?`<button class="bsm bd" onclick="window.delContact('${c._k}')">🗑️</button>`:''}
