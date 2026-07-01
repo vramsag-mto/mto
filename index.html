@@ -804,6 +804,17 @@ tr:hover td{background:#f8fafc}
 @media(max-width:768px){.view-toggle{width:100%;justify-content:center}.view-toggle button{flex:1}.page.view-list table{font-size:.72rem!important}.page.view-list th,.page.view-list td{padding:7px 8px!important}.contact-list-table{font-size:.72rem}}
 
 
+/* ORDER SORT / PRIORITY / NEW BADGE */
+.sort-toggle{display:inline-flex;gap:4px;border:1px solid var(--border);border-radius:10px;background:#fff7ed;padding:3px}
+.sort-toggle button{border:none;background:transparent;color:#92400e;padding:6px 10px;border-radius:8px;font-size:.76rem;font-weight:800;cursor:pointer}
+.sort-toggle button.active{background:#f59e0b;color:#fff}
+.new-badge{display:inline-flex;align-items:center;margin-left:6px;padding:2px 7px;border-radius:999px;background:#dcfce7;color:#15803d;font-size:.62rem;font-weight:900;letter-spacing:.25px;vertical-align:middle}
+.pin-badge{display:inline-flex;align-items:center;margin-left:6px;padding:2px 7px;border-radius:999px;background:#fee2e2;color:#b91c1c;font-size:.62rem;font-weight:900;letter-spacing:.25px;vertical-align:middle}
+.mto-order-card.order-attention{border-color:#fecaca;box-shadow:0 0 0 2px rgba(239,68,68,.10),0 4px 16px rgba(239,68,68,.08)}
+.order-list-card.order-attention{border-color:#fecaca;box-shadow:0 0 0 2px rgba(239,68,68,.10),0 4px 16px rgba(239,68,68,.08)}
+@media(max-width:768px){.sort-toggle{width:100%;justify-content:center}.sort-toggle button{flex:1}}
+
+
 /* USER PROFILE */
 .profile-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:16px;padding:16px}
 .profile-box{border:1px solid var(--border);border-radius:14px;background:#fff;padding:18px}
@@ -1059,6 +1070,17 @@ body.mto-dark{--bg:#0f172a;--text:#e2e8f0;--muted:#94a3b8;--border:#334155}body.
 .pwa-install-btn.show{display:flex}
 @media(max-width:768px){.pwa-install-btn{right:14px;bottom:74px}}
 
+
+/* TRAINING CENTER */
+.help-floating-btn{position:fixed;right:18px;bottom:132px;z-index:1200;width:46px;height:46px;border-radius:50%;border:none;background:linear-gradient(135deg,#0f766e,#14b8a6);color:#fff;font-size:1.15rem;font-weight:900;box-shadow:0 10px 30px rgba(15,23,42,.28);cursor:pointer;display:flex;align-items:center;justify-content:center}
+.training-mode-badge{position:fixed;right:74px;bottom:140px;z-index:1200;background:#ecfeff;color:#0f766e;border:1px solid #99f6e4;border-radius:999px;padding:8px 12px;font-size:.76rem;font-weight:900;box-shadow:0 8px 22px rgba(15,23,42,.12);display:none}.training-mode-badge.show{display:block}
+.help-page-grid{display:grid;grid-template-columns:310px 1fr;gap:16px;align-items:start}.help-search-card{position:sticky;top:16px}.help-search{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:12px;font-size:.95rem;outline:none}.help-search:focus{border-color:var(--accent)}
+.help-cat-list{display:flex;flex-direction:column;gap:7px;padding:12px}.help-cat{border:1px solid var(--border);background:#fff;border-radius:11px;padding:10px 12px;cursor:pointer;color:var(--primary);font-size:.84rem;font-weight:850;text-align:left}.help-cat:hover,.help-cat.active{background:#eff6ff;border-color:#bfdbfe;color:#1d4ed8}.help-tools{display:grid;grid-template-columns:1fr;gap:8px;padding:12px;border-top:1px solid var(--border)}
+.help-content{padding:16px}.help-title{font-size:1.35rem;font-weight:950;color:var(--primary);margin-bottom:6px}.help-sub{color:var(--muted);font-size:.86rem;line-height:1.45;margin-bottom:14px}.help-section{border:1px solid var(--border);border-radius:14px;background:#fff;margin-bottom:12px;overflow:hidden}.help-section-head{padding:13px 15px;background:#f8fafc;font-weight:900;color:var(--primary);display:flex;align-items:center;gap:8px}.help-section-body{padding:13px 15px;font-size:.88rem;line-height:1.55;color:#334155}.help-section-body ul{margin-left:18px}.help-section-body li{margin:5px 0}.help-chip-row{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.help-chip{display:inline-flex;border-radius:999px;background:#eff6ff;color:#1d4ed8;padding:4px 9px;font-size:.72rem;font-weight:850}
+.help-inline-btn{margin-left:8px;border:none;border-radius:999px;background:#eff6ff;color:#1d4ed8;font-weight:900;font-size:.72rem;padding:4px 8px;cursor:pointer;vertical-align:middle}.help-tip-box{border:1px solid #bfdbfe;background:#eff6ff;color:#1e3a8a;border-radius:12px;padding:11px 13px;margin:10px 0;font-size:.84rem;line-height:1.45}
+.help-welcome-overlay{position:fixed;inset:0;background:rgba(15,23,42,.56);z-index:2100;display:none;align-items:center;justify-content:center;padding:16px}.help-welcome-overlay.active{display:flex}.help-welcome{background:#fff;border-radius:20px;width:760px;max-width:96vw;box-shadow:0 30px 80px rgba(15,23,42,.35);overflow:hidden}.help-welcome-head{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;padding:22px}.help-welcome-title{font-size:1.35rem;font-weight:950;margin-bottom:6px}.help-welcome-sub{font-size:.9rem;opacity:.88;line-height:1.45}.help-welcome-body{padding:18px;display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.help-welcome-item{border:1px solid var(--border);border-radius:13px;padding:12px;background:#f8fafc}.help-welcome-item b{color:var(--primary)}.help-welcome-actions{padding:14px 18px;border-top:1px solid var(--border);display:flex;gap:8px;justify-content:flex-end}.help-result-empty{padding:24px;text-align:center;color:var(--muted)}
+@media(max-width:900px){.help-page-grid{grid-template-columns:1fr}.help-search-card{position:static}.help-welcome-body{grid-template-columns:1fr}}@media(max-width:768px){.help-floating-btn{right:14px;bottom:132px}.training-mode-badge{right:66px;bottom:140px}.help-content{padding:10px}.help-title{font-size:1.1rem}.help-welcome-actions{display:grid;grid-template-columns:1fr}}
+
 </style>
 
 <meta name="theme-color" content="#1a2f4e">
@@ -1106,6 +1128,7 @@ body.mto-dark{--bg:#0f172a;--text:#e2e8f0;--muted:#94a3b8;--border:#334155}body.
       <div class="nav-item" onclick="SP('contracts',this)">📄 Договоры</div>
       <div class="nav-item" onclick="SP('docflow',this)">📁 Документооборот</div>
       <div class="nav-item" onclick="SP('ai-helper',this)">🤖 AI-помощник</div>
+      <div class="nav-item" onclick="SP('training-center',this)">🎓 Обучение</div>
       <div class="nav-item" onclick="SP('analytics',this)">📊 Аналитика МТО</div>
       <div class="nav-item" onclick="SP('history',this)">🕓 История изменений</div>
       <div class="nav-sec">Пользователь</div>
@@ -1297,6 +1320,31 @@ body.mto-dark{--bg:#0f172a;--text:#e2e8f0;--muted:#94a3b8;--border:#334155}body.
             <div class="ch"><div class="ct">📊 Сводка</div></div>
             <div class="ai-kpis" id="ai-kpis"></div>
           </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- TRAINING CENTER -->
+    <div class="page" id="page-training-center">
+      <div class="ph">
+        <div class="pt">Центр обучения МТО</div>
+        <div class="ps">Встроенные инструкции, подсказки и обучение по всем функциям программы</div>
+      </div>
+      <div class="help-page-grid">
+        <div class="card help-search-card">
+          <div class="ch"><div class="ct">🔍 Поиск по справке</div></div>
+          <div style="padding:12px"><input class="help-search" id="help-search" placeholder="Например: создать заявку, КП, договор, поставка..." oninput="rTrainingCenter()"></div>
+          <div class="help-cat-list" id="help-cat-list"></div>
+          <div class="help-tools">
+            <button class="btn btn-p" onclick="startTrainingTour()">🎓 Запустить обучение</button>
+            <button class="btn btn-s" onclick="toggleTrainingMode()">💡 Режим обучения</button>
+            <button class="btn btn-s" onclick="openHelpForCurrentPage()">❓ Помощь по текущему разделу</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="ch"><div class="ct">📖 Инструкция</div><button class="btn btn-s" onclick="openHelpForCurrentPage()">Текущий раздел</button></div>
+          <div class="help-content" id="help-content"></div>
         </div>
       </div>
     </div>
@@ -1935,14 +1983,23 @@ function viewToggleHtml(page){
 function setupViewToggles(){
   const map={dash:'#page-dash .ch',all:'#page-all .card .ch',mine:'#page-mine .ch',contracts:'#page-contracts .ch',contacts:'#page-contacts .ch'};
   Object.entries(map).forEach(([page,sel])=>{
-    const ch=document.querySelector(sel); if(!ch || ch.querySelector(`[data-view-page="${page}"]`))return;
+    const ch=document.querySelector(sel); if(!ch)return;
     let cf=ch.querySelector('.cf');
     if(!cf){cf=document.createElement('div');cf.className='cf';ch.appendChild(cf);}
-    cf.insertAdjacentHTML('afterbegin',viewToggleHtml(page));
-    setPageViewClass(page); updateViewButtons(page);
+    if(!ch.querySelector(`[data-view-page="${page}"]`)) cf.insertAdjacentHTML('afterbegin',viewToggleHtml(page));
+    if(['dash','all','mine'].includes(page) && !ch.querySelector('[data-order-sort]')) cf.insertAdjacentHTML('afterbegin',sortToggleHtml());
+    setPageViewClass(page); updateViewButtons(page); updateSortButtons();
   });
+  const editCh=document.querySelector('#page-edit .ch');
+  if(editCh && !editCh.querySelector('[data-order-sort]')){
+    let cf=editCh.querySelector('.cf');
+    if(!cf){cf=document.createElement('div');cf.className='cf';editCh.appendChild(cf);}
+    cf.insertAdjacentHTML('afterbegin',sortToggleHtml());
+    updateSortButtons();
+  }
 }
 window.setViewMode=setViewMode;
+window.setOrderSortMode=setOrderSortMode;
 
 let autoLoginTried=false;
 const CONTROL_USERS=['magomed','emin','vadim'];
@@ -1962,10 +2019,82 @@ function updateControlVisibility(){
 }
 
 
+
+function orderSortTime(r){
+  const vals=[r?.createdAt,r?.created_at,r?.ts,r?.timestamp,r?.updatedAt,r?.date,r?.num,r?._k];
+  for(const v of vals){
+    if(v===undefined||v===null||v==='')continue;
+    if(typeof v==='number')return v;
+    const str=String(v).trim();
+    if(/^\d+$/.test(str))return Number(str);
+    if(/^\d{4}-\d{2}-\d{2}/.test(str)){const t=new Date(str).getTime(); if(!isNaN(t))return t;}
+    const m=str.match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})(?:\s+(\d{1,2}):(\d{2}))?/);
+    if(m){const t=new Date(+m[3],+m[2]-1,+m[1],+(m[4]||0),+(m[5]||0)).getTime(); if(!isNaN(t))return t;}
+    const t=Date.parse(str); if(!isNaN(t))return t;
+  }
+  return 0;
+}
+function orderCreatedTime(r){
+  const vals=[r?.createdAt,r?.created_at,r?.ts,r?.timestamp,r?.date];
+  for(const v of vals){
+    if(v===undefined||v===null||v==='')continue;
+    if(typeof v==='number')return v;
+    const str=String(v).trim();
+    if(/^\d+$/.test(str))return Number(str);
+    if(/^\d{4}-\d{2}-\d{2}/.test(str)){const t=new Date(str).getTime(); if(!isNaN(t))return t;}
+    const m=str.match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})(?:\s+(\d{1,2}):(\d{2}))?/);
+    if(m){const t=new Date(+m[3],+m[2]-1,+m[1],+(m[4]||0),+(m[5]||0)).getTime(); if(!isNaN(t))return t;}
+    const t=Date.parse(str); if(!isNaN(t))return t;
+  }
+  return 0;
+}
+function orderSortNum(r){
+  const n=String(r?.num||r?.number||r?._k||'').match(/\d+/g);
+  return n?Number(n.join('').slice(-12)):0;
+}
+let orderSortMode=localStorage.getItem('mto_order_sort_mode')||'newest';
+function isAttentionOrder(r){
+  const raw=String(r?.status||r?.priority||r?.attention||r?.flag||'').toLowerCase();
+  return raw.includes('требует внимания')||raw.includes('важно')||raw.includes('срочно')||raw.includes('attention')||raw==='true';
+}
+function isNewOrder(r){
+  const t=orderCreatedTime(r);
+  return !!t && (Date.now()-t)>=0 && (Date.now()-t)<=24*60*60*1000;
+}
+function orderMarkersHtml(r){
+  return `${isAttentionOrder(r)?'<span class="pin-badge">📌 ВНИМАНИЕ</span>':''}${isNewOrder(r)?'<span class="new-badge">NEW</span>':''}`;
+}
+function sortOrdersNewest(list){
+  const dir=orderSortMode==='oldest'?1:-1;
+  return [...(list||[])].sort((a,b)=>{
+    const pa=isAttentionOrder(a)?1:0, pb=isAttentionOrder(b)?1:0;
+    if(pb!==pa)return pb-pa;
+    const ta=orderSortTime(a), tb=orderSortTime(b);
+    if(tb!==ta)return dir*(ta-tb);
+    return dir*(orderSortNum(a)-orderSortNum(b));
+  });
+}
+function setOrderSortMode(mode){
+  orderSortMode=mode==='oldest'?'oldest':'newest';
+  localStorage.setItem('mto_order_sort_mode',orderSortMode);
+  updateSortButtons();
+  if(typeof rDash==='function')rDash();
+  if(typeof rAll==='function')rAll();
+  if(typeof rMine==='function')rMine();
+  if(typeof rEdit==='function')rEdit();
+}
+function updateSortButtons(){
+  document.querySelectorAll('[data-order-sort]').forEach(b=>b.classList.toggle('active',b.dataset.orderSort===orderSortMode));
+}
+function sortToggleHtml(){
+  return `<div class="sort-toggle"><button type="button" data-order-sort="newest" onclick="setOrderSortMode('newest')">⬇ Сначала новые</button><button type="button" data-order-sort="oldest" onclick="setOrderSortMode('oldest')">⬆ Сначала старые</button></div>`;
+}
+
 // FIREBASE LISTENERS
 db.ref('orders').on('value',s=>{
   DATA=[];
   if(s.exists())s.forEach(c=>{ DATA.push({_k:c.key,...c.val()}); });
+  DATA=sortOrdersNewest(DATA);
   document.getElementById('loading').style.display='none';
   if(!CU && !autoLoginTried){
     autoLoginTried=true;
@@ -2532,6 +2661,7 @@ window.SP=function(n,el){
   if(n==='delivery-calendar')rDeliveryCalendar();
   if(n==='docflow')rDocFlow();
   if(n==='ai-helper')rAiHelper();
+  if(n==='training-center')rTrainingCenter();
   if(n==='object-center')rObjectCenter();
   renderTopCenter();
 };
@@ -2643,21 +2773,21 @@ function supplierTextForOrder(r){
 function orderListRowHtml(r,type){
   const id=r._k||r.key||r.id||'';
   if(type==='dash')return `<tr>
-    <td>${esc(r.num||'—')}</td><td>${esc(r.company||'—')}</td><td>${shB(r.shifer)}</td><td><strong>${esc(r.name||r.title||'—')}</strong><div class="nf">${esc(r.material||r.requestText||'')}</div></td><td>${userChipsForOrder(r)}</td><td>${sB(r.status)}</td><td>${esc(r.contractor||'—')}</td><td>${mn(orderTotal(r))}</td><td>${esc(r.delivery||'—')}</td><td>${uB(r.upd)}</td><td>${daysB(r)}</td>
+    <td>${esc(r.num||'—')}${orderMarkersHtml(r)}</td><td>${esc(r.company||'—')}</td><td>${shB(r.shifer)}</td><td><strong>${esc(r.name||r.title||'—')}</strong><div class="nf">${esc(r.material||r.requestText||'')}</div></td><td>${userChipsForOrder(r)}</td><td>${sB(r.status)}</td><td>${esc(r.contractor||'—')}</td><td>${mn(orderTotal(r))}</td><td>${esc(r.delivery||'—')}</td><td>${uB(r.upd)}</td><td>${daysB(r)}</td>
   </tr>`;
   if(type==='mine'){const kp=r.kp||[];const sel=kp.filter(k=>k.selected);return `<tr>
-    <td>${esc(r.num||'—')}</td><td>${shB(r.shifer)}</td><td><strong>${esc(r.name||r.title||'—')}</strong><div class="nf">${esc(r.material||r.requestText||'')}</div></td><td>${sB(r.status)}</td><td>${kp.length} КП ${kpCell(r)}</td><td>${sel.length?sel.map(k=>`<span class="badge bgold">✓ ${esc(k.supplier||'Поставщик')}</span>`).join(' '):'<span class="nf">—</span>'}</td><td>${mn(sel.reduce((a,k)=>a+(Number(k.sum)||0),0)||orderTotal(r))}</td><td>${esc(r.delivery||'—')}</td><td>${uB(r.upd)}</td><td>${daysB(r)}</td>
+    <td>${esc(r.num||'—')}${orderMarkersHtml(r)}</td><td>${shB(r.shifer)}</td><td><strong>${esc(r.name||r.title||'—')}</strong><div class="nf">${esc(r.material||r.requestText||'')}</div></td><td>${sB(r.status)}</td><td>${kp.length} КП ${kpCell(r)}</td><td>${sel.length?sel.map(k=>`<span class="badge bgold">✓ ${esc(k.supplier||'Поставщик')}</span>`).join(' '):'<span class="nf">—</span>'}</td><td>${mn(sel.reduce((a,k)=>a+(Number(k.sum)||0),0)||orderTotal(r))}</td><td>${esc(r.delivery||'—')}</td><td>${uB(r.upd)}</td><td>${daysB(r)}</td>
   </tr>`;}
   return `<tr>
-    <td>${esc(r.num||'—')}</td><td>${esc(r.createdAt||r.date||'—')}</td><td>${esc(r.company||'—')}</td><td>${shB(r.shifer)}</td><td><strong>${esc(r.name||r.title||'—')}</strong><div class="nf">${esc(r.material||r.requestText||r.note||'')}</div></td><td>${userChipsForOrder(r)}</td><td>${sB(r.status)}</td><td>${mn(orderTotal(r))}</td><td><span class="badge ${r.payment==='Оплачен'||r.payment==='Оплачено'?'bg':'by'}">${esc(r.payment||'—')}</span></td><td>${esc(r.delivery||'—')}</td><td>${kpCell(r)}${anB(r)}</td><td>${invoiceCell(r)}</td><td>${contractCell(r)}</td><td>${docBadges(r)}</td><td><div class="order-actions compact-actions">${allOrderActionsHtml(r)}</div></td>
+    <td>${esc(r.num||'—')}${orderMarkersHtml(r)}</td><td>${esc(r.createdAt||r.date||'—')}</td><td>${esc(r.company||'—')}</td><td>${shB(r.shifer)}</td><td><strong>${esc(r.name||r.title||'—')}</strong><div class="nf">${esc(r.material||r.requestText||r.note||'')}</div></td><td>${userChipsForOrder(r)}</td><td>${sB(r.status)}</td><td>${mn(orderTotal(r))}</td><td><span class="badge ${r.payment==='Оплачен'||r.payment==='Оплачено'?'bg':'by'}">${esc(r.payment||'—')}</span></td><td>${esc(r.delivery||'—')}</td><td>${kpCell(r)}${anB(r)}</td><td>${invoiceCell(r)}</td><td>${contractCell(r)}</td><td>${docBadges(r)}</td><td><div class="order-actions compact-actions">${allOrderActionsHtml(r)}</div></td>
   </tr>`;
 }
 function orderCardHtml(r,type){
   const kp=r.kp||[]; const inv=invoiceList(r)||[]; const selectedKp=kp.filter(k=>k.selected); const sel=selectedKp;
   const supplierText=supplierTextForOrder(r);
-  if(type==='mine')return `<div class="mto-order-card"><div class="mto-card-top"><div><div class="mto-card-no">№${esc(r.num||'б/н')}</div><div class="mto-card-date">${esc(r.createdAt||r.date||'—')}</div><div class="mto-card-title">${esc(r.name||r.title||'Без наименования')}</div><div class="mto-card-sub">${esc(r.requestText||r.material||'')}</div></div><div class="mto-card-tags">${shB(r.shifer)}${sB(r.status)}</div></div><div class="mto-card-body"><div class="mto-card-field"><div class="mto-card-label">КП</div><div class="mto-card-value"><span class="badge bgr">${kp.length} КП</span> ${kpCell(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Выбранный</div><div class="mto-card-value">${sel.length?sel.map(k=>`<span class="badge bgold">✓ ${esc(k.supplier||'Поставщик')}</span>`).join(' '):'<span class="nf">—</span>'}</div></div><div class="mto-card-field"><div class="mto-card-label">Сумма</div><div class="mto-card-value">${mn(sel.reduce((a,k)=>a+(Number(k.sum)||0),0)||orderTotal(r))}</div></div><div class="mto-card-field"><div class="mto-card-label">Поставка</div><div class="mto-card-value">${esc(r.delivery||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">УПД</div><div class="mto-card-value">${uB(r.upd)}</div></div><div class="mto-card-field"><div class="mto-card-label">Дни</div><div class="mto-card-value">${daysB(r)}</div></div></div><div class="mto-card-actions">${orderActionsCompactHtml(r)}</div></div>`;
-  if(type==='dash')return `<div class="mto-order-card"><div class="mto-card-top"><div><div class="mto-card-no">№${esc(r.num||'б/н')}</div><div class="mto-card-date">${esc(r.createdAt||r.date||'—')}</div><div class="mto-card-title">${esc(r.name||r.title||'Без наименования')}</div><div class="mto-card-sub">${esc(r.requestText||r.material||'')}</div></div><div class="mto-card-tags"><span class="badge bgr">${esc(r.company||'—')}</span>${shB(r.shifer)}${sB(r.status)}</div></div><div class="mto-card-body"><div class="mto-card-field"><div class="mto-card-label">Ответственные</div><div class="mto-card-value">${userChipsForOrder(r)}${respButtons(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Контрагент</div><div class="mto-card-value">${esc(r.contractor||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">Сумма</div><div class="mto-card-value">${mn(orderTotal(r))}</div></div><div class="mto-card-field"><div class="mto-card-label">Поставка</div><div class="mto-card-value">${esc(r.delivery||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">УПД</div><div class="mto-card-value">${uB(r.upd)}</div></div><div class="mto-card-field"><div class="mto-card-label">Дни</div><div class="mto-card-value">${daysB(r)}</div></div></div><div class="mto-card-actions">${orderActionsCompactHtml(r)}</div></div>`;
-  return `<div class="mto-order-card all-order-card"><div class="mto-card-top"><div><div class="mto-card-no">№${esc(r.num||'б/н')}</div><div class="mto-card-date">${esc(r.createdAt||r.date||'—')}</div><div class="mto-card-title">${esc(r.name||r.title||'Без наименования')}</div><div class="mto-card-sub">${esc(r.requestText||r.material||r.note||'')}</div></div><div class="mto-card-tags"><span class="badge bgr">${esc(r.company||'—')}</span>${shB(r.shifer)}${sB(r.status)}</div></div><div class="mto-card-body"><div class="mto-card-field"><div class="mto-card-label">Ответственные</div><div class="mto-card-value">${userChipsForOrder(r)}${respButtons(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Поставщик</div><div class="mto-card-value">${esc(supplierText)}</div></div><div class="mto-card-field"><div class="mto-card-label">Сумма</div><div class="mto-card-value">${mn(orderTotal(r))}</div></div><div class="mto-card-field"><div class="mto-card-label">Оплата</div><div class="mto-card-value"><span class="badge ${r.payment==='Оплачен'||r.payment==='Оплачено'?'bg':'by'}">${esc(r.payment||'—')}</span></div></div><div class="mto-card-field"><div class="mto-card-label">Поставка</div><div class="mto-card-value">${esc(r.delivery||'—')}${r.vehicleNumber?'<br><span class="nf">🚚 '+esc(r.vehicleNumber)+'</span>':''}</div></div><div class="mto-card-field"><div class="mto-card-label">Дни</div><div class="mto-card-value">${daysB(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">КП</div><div class="mto-card-value">${kpCell(r)}${anB(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Счёт</div><div class="mto-card-value">${invoiceCell(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Договор</div><div class="mto-card-value">${contractCell(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Документы</div><div class="mto-card-value">${docBadges(r)}</div></div><div class="mto-card-field mto-card-wide"><div class="mto-card-label">Примечание</div><div class="mto-card-value">${esc(r.note||'—')}</div></div></div><div class="mto-card-actions">${allOrderActionsHtml(r)}</div></div>`;
+  if(type==='mine')return `<div class="mto-order-card ${isAttentionOrder(r)?'order-attention':''}"><div class="mto-card-top"><div><div class="mto-card-no">№${esc(r.num||'б/н')}${orderMarkersHtml(r)}</div><div class="mto-card-date">${esc(r.createdAt||r.date||'—')}</div><div class="mto-card-title">${esc(r.name||r.title||'Без наименования')}</div><div class="mto-card-sub">${esc(r.requestText||r.material||'')}</div></div><div class="mto-card-tags">${shB(r.shifer)}${sB(r.status)}</div></div><div class="mto-card-body"><div class="mto-card-field"><div class="mto-card-label">КП</div><div class="mto-card-value"><span class="badge bgr">${kp.length} КП</span> ${kpCell(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Выбранный</div><div class="mto-card-value">${sel.length?sel.map(k=>`<span class="badge bgold">✓ ${esc(k.supplier||'Поставщик')}</span>`).join(' '):'<span class="nf">—</span>'}</div></div><div class="mto-card-field"><div class="mto-card-label">Сумма</div><div class="mto-card-value">${mn(sel.reduce((a,k)=>a+(Number(k.sum)||0),0)||orderTotal(r))}</div></div><div class="mto-card-field"><div class="mto-card-label">Поставка</div><div class="mto-card-value">${esc(r.delivery||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">УПД</div><div class="mto-card-value">${uB(r.upd)}</div></div><div class="mto-card-field"><div class="mto-card-label">Дни</div><div class="mto-card-value">${daysB(r)}</div></div></div><div class="mto-card-actions">${orderActionsCompactHtml(r)}</div></div>`;
+  if(type==='dash')return `<div class="mto-order-card ${isAttentionOrder(r)?'order-attention':''}"><div class="mto-card-top"><div><div class="mto-card-no">№${esc(r.num||'б/н')}${orderMarkersHtml(r)}</div><div class="mto-card-date">${esc(r.createdAt||r.date||'—')}</div><div class="mto-card-title">${esc(r.name||r.title||'Без наименования')}</div><div class="mto-card-sub">${esc(r.requestText||r.material||'')}</div></div><div class="mto-card-tags"><span class="badge bgr">${esc(r.company||'—')}</span>${shB(r.shifer)}${sB(r.status)}</div></div><div class="mto-card-body"><div class="mto-card-field"><div class="mto-card-label">Ответственные</div><div class="mto-card-value">${userChipsForOrder(r)}${respButtons(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Контрагент</div><div class="mto-card-value">${esc(r.contractor||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">Сумма</div><div class="mto-card-value">${mn(orderTotal(r))}</div></div><div class="mto-card-field"><div class="mto-card-label">Поставка</div><div class="mto-card-value">${esc(r.delivery||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">УПД</div><div class="mto-card-value">${uB(r.upd)}</div></div><div class="mto-card-field"><div class="mto-card-label">Дни</div><div class="mto-card-value">${daysB(r)}</div></div></div><div class="mto-card-actions">${orderActionsCompactHtml(r)}</div></div>`;
+  return `<div class="mto-order-card all-order-card ${isAttentionOrder(r)?'order-attention':''}"><div class="mto-card-top"><div><div class="mto-card-no">№${esc(r.num||'б/н')}${orderMarkersHtml(r)}</div><div class="mto-card-date">${esc(r.createdAt||r.date||'—')}</div><div class="mto-card-title">${esc(r.name||r.title||'Без наименования')}</div><div class="mto-card-sub">${esc(r.requestText||r.material||r.note||'')}</div></div><div class="mto-card-tags"><span class="badge bgr">${esc(r.company||'—')}</span>${shB(r.shifer)}${sB(r.status)}</div></div><div class="mto-card-body"><div class="mto-card-field"><div class="mto-card-label">Ответственные</div><div class="mto-card-value">${userChipsForOrder(r)}${respButtons(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Поставщик</div><div class="mto-card-value">${esc(supplierText)}</div></div><div class="mto-card-field"><div class="mto-card-label">Сумма</div><div class="mto-card-value">${mn(orderTotal(r))}</div></div><div class="mto-card-field"><div class="mto-card-label">Оплата</div><div class="mto-card-value"><span class="badge ${r.payment==='Оплачен'||r.payment==='Оплачено'?'bg':'by'}">${esc(r.payment||'—')}</span></div></div><div class="mto-card-field"><div class="mto-card-label">Поставка</div><div class="mto-card-value">${esc(r.delivery||'—')}${r.vehicleNumber?'<br><span class="nf">🚚 '+esc(r.vehicleNumber)+'</span>':''}</div></div><div class="mto-card-field"><div class="mto-card-label">Дни</div><div class="mto-card-value">${daysB(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">КП</div><div class="mto-card-value">${kpCell(r)}${anB(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Счёт</div><div class="mto-card-value">${invoiceCell(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Договор</div><div class="mto-card-value">${contractCell(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Документы</div><div class="mto-card-value">${docBadges(r)}</div></div><div class="mto-card-field mto-card-wide"><div class="mto-card-label">Примечание</div><div class="mto-card-value">${esc(r.note||'—')}</div></div></div><div class="mto-card-actions">${allOrderActionsHtml(r)}</div></div>`;
 }
 function contractListRowHtml(c){
   const life=contractLife(c); const files=c.fileUrl?`<a class="fl" href="${esc(c.fileUrl)}" target="_blank">📄</a>`:'<span class="nf">—</span>';
@@ -2667,13 +2797,13 @@ function contractCardHtml(c){
   const life=contractLife(c); const files=[];
   if(c.fileUrl)files.push(`<a class="fl" href="${esc(c.fileUrl)}" target="_blank">📄 Договор</a>`);
   (c.attachments||[]).forEach((a,i)=>{if(a.fileUrl)files.push(`<a class="fl" href="${esc(a.fileUrl)}" target="_blank">📎 ${esc(a.name||('Файл '+(i+1)))}</a>`);});
-  return `<div class="mto-contract-card"><div class="mto-card-top"><div><div class="mto-card-no">${esc(c.counterparty||'—')}</div><div class="mto-card-date">ИНН: ${esc(c.inn||'—')}${c.kpp?' / КПП: '+esc(c.kpp):''}</div><div class="mto-card-title">Договор № ${esc(c.contractNumber||'—')}</div><div class="mto-card-sub">${esc(c.subject||'')}</div></div><div class="mto-card-tags"><span class="badge ${life.cls}">${life.label}</span></div></div><div class="mto-card-body"><div class="mto-card-field"><div class="mto-card-label">Дата договора</div><div class="mto-card-value">${esc(c.contractDate||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">Срок до</div><div class="mto-card-value">${esc(c.dateTo||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">Тип</div><div class="mto-card-value">${esc(c.type||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">Сумма</div><div class="mto-card-value">${esc(c.amount||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">Статус</div><div class="mto-card-value"><span class="badge ${life.cls}">${life.label}</span>${c.confidence?`<div class="nf">Уверенность: ${esc(c.confidence)}%</div>`:''}</div></div><div class="mto-card-field"><div class="mto-card-label">Файлы</div><div class="mto-card-value"><div class="contract-file-links">${files.length?files.join(''):'<span class="nf">Файл не загружен</span>'}</div>${c.fileUploadError?`<div class="nf">${esc(c.fileUploadError)}</div>`:''}</div></div><div class="mto-card-field mto-card-wide"><div class="mto-card-label">Предмет / текст</div><div class="mto-card-value">${esc(c.textPreview||c.subject||'—')}</div></div></div><div class="mto-card-actions">${favoriteButton('contract',c._k,favoriteTitle('contract',c._k))}${canManageContracts()?`<button class="bsm be" onclick="editContract('${c._k}')">✏️</button><button class="bsm bd" onclick="delContract('${c._k}')">🗑️</button>`:''}</div></div>`;
+  return `<div class="mto-contract-card"><div class="mto-card-top"><div><div class="mto-card-no">${esc(c.counterparty||'—')}</div><div class="mto-card-date">ИНН: ${esc(c.inn||'—')}${c.kpp?' / КПП: '+esc(c.kpp):''}</div><div class="mto-card-title">Договор № ${esc(c.contractNumber||'—')}</div></div><div class="mto-card-tags"><span class="badge ${life.cls}">${life.label}</span></div></div><div class="mto-card-body"><div class="mto-card-field"><div class="mto-card-label">Дата договора</div><div class="mto-card-value">${esc(c.contractDate||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">Срок до</div><div class="mto-card-value">${esc(c.dateTo||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">Тип</div><div class="mto-card-value">${esc(c.type||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">Сумма</div><div class="mto-card-value">${esc(c.amount||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">Статус</div><div class="mto-card-value"><span class="badge ${life.cls}">${life.label}</span>${c.confidence?`<div class="nf">Уверенность: ${esc(c.confidence)}%</div>`:''}</div></div><div class="mto-card-field"><div class="mto-card-label">Файлы</div><div class="mto-card-value"><div class="contract-file-links">${files.length?files.join(''):'<span class="nf">Файл не загружен</span>'}</div>${c.fileUploadError?`<div class="nf">${esc(c.fileUploadError)}</div>`:''}</div></div></div><div class="mto-card-actions">${favoriteButton('contract',c._k,favoriteTitle('contract',c._k))}${canManageContracts()?`<button class="bsm be" onclick="editContract('${c._k}')">✏️</button><button class="bsm bd" onclick="delContract('${c._k}')">🗑️</button>`:''}</div></div>`;
 }
 
 // DASHBOARD
 window.sDashC=function(v,el){dashC=v;document.querySelectorAll('.dashco').forEach(t=>t.classList.remove('active'));el.classList.add('active');rDash();};
 function getDashData(){
-  return dashC==='ALL' ? [...DATA] : DATA.filter(r=>r.company===dashC);
+  return dashC==='ALL' ? sortOrdersNewest(DATA) : sortOrdersNewest(DATA.filter(r=>r.company===dashC));
 }
 function rDash(){
   const d=getDashData();
@@ -2692,9 +2822,9 @@ function rDash(){
 window.dQ='';
 function rDashT(){
   const d=getDashData();
-  const f=dQ?d.filter(r=>JSON.stringify(r).toLowerCase().includes(dQ.toLowerCase())):d;
+  const f=sortOrdersNewest(dQ?d.filter(r=>JSON.stringify(r).toLowerCase().includes(dQ.toLowerCase())):d);
   const tb=document.getElementById('dtb');
-  setPageViewClass('dash'); updateViewButtons('dash');
+  setPageViewClass('dash'); updateViewButtons('dash'); updateSortButtons();
   if(!f.length){tb.innerHTML='<tr><td colspan="11" class="erow">Нет данных</td></tr>';return;}
   if(getViewMode('dash')==='list'){tb.innerHTML=f.map(r=>orderListRowHtml(r,'dash')).join('');return;}
   tb.innerHTML=`<tr class="order-card-row"><td colspan="11"><div class="mto-card-grid">`+f.map(r=>orderCardHtml(r,'dash')).join('')+`</div></td></tr>`;
@@ -2786,15 +2916,15 @@ function allOrderActionsHtml(r){
 }
 
 function rAll(){
-  let d=[...DATA];
+  let d=sortOrdersNewest(DATA);
   if(aC!=='ALL')d=d.filter(r=>r.company===aC);
   if(aSh!=='ALL')d=d.filter(r=>r.shifer===aSh);
   if(aSt)d=d.filter(r=>r.status===aSt);
   if(aSr)d=d.filter(r=>JSON.stringify(r).toLowerCase().includes(aSr.toLowerCase()));
-  d=applyAllFilters(d);
+  d=sortOrdersNewest(applyAllFilters(d));
   const tb=document.getElementById('atb');
   if(!tb)return;
-  setPageViewClass('all'); updateViewButtons('all');
+  setPageViewClass('all'); updateViewButtons('all'); updateSortButtons();
   if(!d.length){tb.innerHTML='<tr><td colspan="15" class="erow">Нет данных</td></tr>';return;}
   if(getViewMode('all')==='list'){tb.innerHTML=d.map(r=>orderListRowHtml(r,'all')).join('');return;}
   tb.innerHTML=`<tr class="force-card-row"><td colspan="15"><div class="all-card-grid">`+d.map(r=>orderCardHtml(r,'all')).join('')+`</div></td></tr>`;
@@ -2804,9 +2934,9 @@ function rAll(){
 // MINE
 function rMine(){
   if(!CU)return;
-  const d=DATA.filter(r=>isRespResponsible(r,CU.resp));
+  const d=sortOrdersNewest(DATA.filter(r=>isRespResponsible(r,CU.resp)));
   const tb=document.getElementById('mtb');
-  setPageViewClass('mine'); updateViewButtons('mine');
+  setPageViewClass('mine'); updateViewButtons('mine'); updateSortButtons();
   if(!d.length){tb.innerHTML='<tr><td colspan="10" class="erow">У вас нет заявок</td></tr>';return;}
   if(getViewMode('mine')==='list'){tb.innerHTML=d.map(r=>orderListRowHtml(r,'mine')).join('');return;}
   tb.innerHTML=`<tr class="order-card-row"><td colspan="10"><div class="mto-card-grid">`+d.map(r=>orderCardHtml(r,'mine')).join('')+`</div></td></tr>`;
@@ -2866,12 +2996,12 @@ function rHistory(q=''){
 // EDIT
 function rEdit(q=''){
   if(!CU)return;
-  let d=CU.isAdmin?[...DATA]:DATA.filter(r=>isRespResponsible(r,CU.resp));
-  if(q)d=d.filter(r=>JSON.stringify(r).toLowerCase().includes(q.toLowerCase()));
+  let d=CU.isAdmin?sortOrdersNewest(DATA):sortOrdersNewest(DATA.filter(r=>isRespResponsible(r,CU.resp))); 
+  if(q)d=sortOrdersNewest(d.filter(r=>JSON.stringify(r).toLowerCase().includes(q.toLowerCase())));
   const tb=document.getElementById('etb');
   if(!d.length){tb.innerHTML='<tr><td colspan="9" class="erow">Нет заявок</td></tr>';return;}
   tb.innerHTML=d.map(r=>`<tr>
-    <td data-label="№" class="nc">${r.num||'б/н'}</td>
+    <td data-label="№" class="nc">${r.num||'б/н'}${orderMarkersHtml(r)}</td>
     <td data-label="Компания"><span class="badge bgr">${r.company}</span></td>
     <td data-label="Шифр">${shB(r.shifer)}</td>
     <td data-label="Заявка">${orderTitleHtml(r)}</td>
@@ -4711,6 +4841,58 @@ if('serviceWorker' in navigator){
     });
   });
 }
+</script>
+
+
+<button class="help-floating-btn" id="help-floating-btn" onclick="openHelpForCurrentPage()" title="Помощь">❓</button>
+<div class="training-mode-badge" id="training-mode-badge">🎓 Режим обучения</div>
+<div class="help-welcome-overlay" id="help-welcome-overlay">
+  <div class="help-welcome">
+    <div class="help-welcome-head"><div class="help-welcome-title">Добро пожаловать в МТО</div><div class="help-welcome-sub">Это встроенный центр обучения. Здесь можно быстро понять, как работать с заявками, поставщиками, договорами, документами, календарем и AI-помощником.</div></div>
+    <div class="help-welcome-body">
+      <div class="help-welcome-item"><b>1. Заявки</b><br>Создавайте, редактируйте и контролируйте закупки.</div>
+      <div class="help-welcome-item"><b>2. Поставщики</b><br>Храните контакты и выбирайте поставщиков из базы.</div>
+      <div class="help-welcome-item"><b>3. Документы</b><br>Контролируйте счета, КП, договоры, УПД и сертификаты.</div>
+      <div class="help-welcome-item"><b>4. Аналитика</b><br>Смотрите KPI, суммы, эффективность и просрочки.</div>
+    </div>
+    <div class="help-welcome-actions"><button class="btn btn-s" onclick="closeWelcomeTraining()">Закрыть</button><button class="btn btn-p" onclick="closeWelcomeTraining();startTrainingTour()">Начать обучение</button></div>
+  </div>
+</div>
+
+
+<script>
+/* TRAINING CENTER JS */
+let HELP_ACTIVE='dash';
+const HELP_DATA={
+dash:['Дашборд','Главная панель контроля МТО. Здесь видно общее состояние заявок, просрочки, поставки и последние действия.',['главная','статистика','контроль'],[['Для чего нужен раздел',['Быстро увидеть состояние МТО.','Понять, сколько заявок в работе, закрыто и просрочено.','Перейти к важным заявкам.']],['Что смотреть в первую очередь',['Просроченные поставки.','Заявки на оплате.','Ближайшие поставки.','Активность сотрудников.']]]],
+all:['Все заявки','Единый журнал всех заявок по всем шифрам, подрядчикам и ответственным.',['заявки','поиск','фильтр'],[['Основные действия',['Открыть карточку заявки.','Создать новую заявку.','Отредактировать или удалить заявку при наличии прав.','Переключить вид: карточки или список.']],['Частые ошибки',['Не заполнен срок поставки.','Не выбран поставщик.','Не прикреплены документы.']]]],
+mine:['Мои заявки','Заявки текущего пользователя.',['мои заявки','ответственный'],[['Что делать ежедневно',['Проверять новые заявки.','Обновлять статус.','Добавлять комментарии и документы.','Закрывать поставки после завершения.']]]],
+create:['Создание заявки','Форма создания закупочной заявки.',['создать заявку','материал','поставщик'],[['Порядок заполнения',['Выбери шифр объекта.','Укажи подрядчика.','Заполни материал, количество и единицы.','Назначь ответственного.','Добавь поставщиков или выбери из контактов.','Укажи срок поставки.']]]],
+contacts:['Контакты','База поставщиков, подрядчиков и контактных лиц.',['контакты','поставщик','инн'],[['Что хранится',['Название, ИНН, КПП, ОГРН и адрес.','Телефоны, email, сайт.','История заявок и сумма поставок.']],['Как использовать',['Выбирай поставщика из контактов при создании заявки.','Добавляй надежных поставщиков в избранное.']]]],
+contracts:['Договоры','Реестр договоров с поставщиками и подрядчиками.',['договор','реестр','юрист'],[['Что можно делать',['Создать договор.','Привязать договор к поставщику.','Указать номер, дату, срок и сумму.','Прикрепить файл договора.']]]],
+docflow:['Документооборот','Контроль комплектности документов по заявкам.',['документы','счет','кп','упд'],[['Документы',['КП.','Счета.','Договоры.','УПД / ТТН.','Сертификаты и паспорта качества.']],['Как работать',['Открой заявку с недостающими документами.','Загрузи файл или отметь наличие документа.']]]],
+analysis:['Анализ МТО','Аналитика закупок, сотрудников, поставщиков и экономии.',['анализ','kpi','экономия'],[['Что показывает',['Общую сумму закупок.','Количество заявок.','Экономию по КП.','Эффективность сотрудников.','Статистику по поставщикам и объектам.']]]],
+calendar:['Календарь поставок','Поставки по датам.',['календарь','поставка','срок'],[['Что видно',['Поставки на сегодня.','Ближайшие поставки.','Просроченные поставки.','Закрытые поставки.']],['Важно',['Если в заявке нет даты поставки, она не появится в календаре.']]]],
+objectcenter:['Центр объекта','Сводка по выбранному шифру объекта.',['центр объекта','шифр','594-151'],[['Что показывает',['Все заявки выбранного шифра.','Поставщиков по объекту.','Договоры, поставки и документы.','Сумму закупок.']]]],
+ai:['AI-помощник','Помощник, который отвечает по данным МТО.',['ai','помощник','бот'],[['Примеры запросов',['Покажи просрочки.','Какие документы отсутствуют?','Поставки на сегодня.','Покажи заявки по 594-151.','Топ поставщиков.']]]],
+chat:['Чаты и сообщения','Общий чат и личные сообщения.',['чат','сообщения'],[['Общий чат',['Сообщения автоматически подписываются пользователем.','Рядом отображается аватар.']],['Личные сообщения',['Можно написать конкретному сотруднику.','Есть счетчик непрочитанных сообщений.']]]],
+profile:['Профиль пользователя','Личный кабинет сотрудника.',['профиль','пароль','аватар'],[['Что можно изменить',['Имя.','Аватар.','Пароль.','Настройки.']],['Что посмотреть',['Моя статистика.','Моя эффективность.']]]],
+pwa:['PWA-приложение','МТО можно установить как приложение.',['pwa','установка'],[['Как установить',['Открой МТО в браузере.','Нажми кнопку установки или выбери Добавить на главный экран.']]]]
+};
+function hEsc(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+function helpKeys(){return ['dash','all','mine','create','contacts','contracts','docflow','calendar','objectcenter','analysis','ai','chat','profile','pwa'];}
+function helpCurrentPageKey(){const id=document.querySelector('.page.active')?.id||'';if(id.includes('all'))return'all';if(id.includes('mine'))return'mine';if(id.includes('contacts'))return'contacts';if(id.includes('contracts'))return'contracts';if(id.includes('docflow'))return'docflow';if(id.includes('delivery-calendar'))return'calendar';if(id.includes('object-center'))return'objectcenter';if(id.includes('ai-helper'))return'ai';if(id.includes('analysis'))return'analysis';if(id.includes('profile'))return'profile';if(id.includes('chat')||id.includes('pm'))return'chat';return'dash';}
+function helpSetActive(k){HELP_ACTIVE=k||'dash';rTrainingCenter();}
+function helpArticle(k){const d=HELP_DATA[k]||HELP_DATA.dash;return `<div class="help-title">${hEsc(d[0])}</div><div class="help-sub">${hEsc(d[1])}</div><div class="help-chip-row">${(d[2]||[]).map(t=>`<span class="help-chip">${hEsc(t)}</span>`).join('')}</div><div style="height:12px"></div>${(d[3]||[]).map(sec=>`<div class="help-section"><div class="help-section-head">📌 ${hEsc(sec[0])}</div><div class="help-section-body"><ul>${(sec[1]||[]).map(x=>`<li>${hEsc(x)}</li>`).join('')}</ul></div></div>`).join('')}<div class="help-tip-box">💡 Включи «Режим обучения», чтобы видеть подсказки прямо в разделах.</div>`;}
+function rTrainingCenter(){const cat=document.getElementById('help-cat-list'),content=document.getElementById('help-content');if(!cat||!content)return;const q=String(document.getElementById('help-search')?.value||'').toLowerCase().trim();let keys=helpKeys();if(q)keys=keys.filter(k=>JSON.stringify(HELP_DATA[k]).toLowerCase().includes(q));if(q&&keys.length&&!keys.includes(HELP_ACTIVE))HELP_ACTIVE=keys[0];cat.innerHTML=keys.length?keys.map(k=>`<button class="help-cat ${k===HELP_ACTIVE?'active':''}" data-key="${k}" onclick="helpSetActive('${k}')">${hEsc(HELP_DATA[k][0])}</button>`).join(''):'<div class="help-result-empty">Ничего не найдено</div>';content.innerHTML=keys.length?helpArticle(HELP_ACTIVE):'<div class="help-result-empty">Попробуй другой запрос: заявка, договор, КП, поставка, документы.</div>';}
+function openHelpForCurrentPage(){HELP_ACTIVE=helpCurrentPageKey();const nav=[...document.querySelectorAll('.nav-item')].find(x=>String(x.getAttribute('onclick')||'').includes("training-center"));if(typeof SP==='function')SP('training-center',nav||null);setTimeout(rTrainingCenter,80);}
+function toggleTrainingMode(){localStorage.setItem('mtoTrainingMode',localStorage.getItem('mtoTrainingMode')==='1'?'0':'1');applyTrainingMode();}
+function applyTrainingMode(){const on=localStorage.getItem('mtoTrainingMode')==='1';document.getElementById('training-mode-badge')?.classList.toggle('show',on);document.querySelectorAll('.help-inline-btn').forEach(x=>x.remove());if(!on)return;document.querySelectorAll('.ph .pt').forEach(pt=>{const btn=document.createElement('button');btn.className='help-inline-btn';btn.textContent='❓ Как пользоваться';btn.onclick=openHelpForCurrentPage;pt.appendChild(btn);});}
+function closeWelcomeTraining(){localStorage.setItem('mtoHelpWelcomeSeen','1');document.getElementById('help-welcome-overlay')?.classList.remove('active');}
+function startTrainingTour(){closeWelcomeTraining();if(typeof startTour==='function'){startTour();return;}alert('Начните с Дашборда, затем откройте Все заявки, Контакты, Договоры, Документооборот, Календарь, Центр объекта и AI-помощник.');}
+window.addEventListener('load',()=>setTimeout(()=>{applyTrainingMode();if(localStorage.getItem('mtoHelpWelcomeSeen')!=='1'&&document.querySelector('.app.active'))document.getElementById('help-welcome-overlay')?.classList.add('active');},1200));
+setInterval(applyTrainingMode,2500);
+window.rTrainingCenter=rTrainingCenter;window.helpSetActive=helpSetActive;window.openHelpForCurrentPage=openHelpForCurrentPage;window.toggleTrainingMode=toggleTrainingMode;window.startTrainingTour=startTrainingTour;window.closeWelcomeTraining=closeWelcomeTraining;
 </script>
 
 </body>
