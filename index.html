@@ -294,6 +294,22 @@ tr:hover td{background:#f8fafc}
   .chat-nav-info{text-align:left;font-size:.72rem}
 }
 
+
+
+/* ENTITY QUICK INSERT: chat links to orders/contracts/contacts */
+.entity-suggest{position:fixed;z-index:2500;background:#fff;border:1px solid var(--border);border-radius:12px;box-shadow:0 16px 36px rgba(15,23,42,.18);width:min(420px,92vw);max-height:280px;overflow-y:auto;padding:6px;display:none}
+.entity-suggest.show{display:block}
+.entity-suggest-title{font-size:.72rem;color:var(--muted);font-weight:900;text-transform:uppercase;letter-spacing:.35px;padding:7px 9px}
+.entity-suggest-item{display:flex;gap:9px;align-items:flex-start;width:100%;border:0;background:#fff;text-align:left;border-radius:10px;padding:9px;cursor:pointer;color:var(--text)}
+.entity-suggest-item:hover,.entity-suggest-item.active{background:#eff6ff}
+.entity-suggest-ico{width:28px;height:28px;border-radius:9px;background:#dbeafe;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.entity-suggest-main{font-weight:900;color:var(--primary);font-size:.84rem}
+.entity-suggest-sub{font-size:.73rem;color:var(--muted);margin-top:2px;line-height:1.25}
+.entity-link{display:inline-flex;align-items:center;gap:6px;border:1px solid #bfdbfe;background:#eff6ff;color:#1d4ed8;border-radius:999px;padding:3px 9px;font-weight:900;text-decoration:none;cursor:pointer;margin:2px 3px 2px 0;font-size:.78rem;vertical-align:baseline}
+.entity-link:hover{background:#dbeafe;border-color:#93c5fd}
+.msg.me .entity-link{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.35);color:#fff}
+.entity-help{font-size:.70rem;color:var(--muted);padding:4px 2px 0}
+@media(max-width:768px){.entity-suggest{left:8px!important;right:8px!important;width:auto!important;max-height:45vh}.entity-suggest-item{padding:10px}.entity-link{font-size:.76rem}}
 /* CONTACTS */
 .con-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;padding:16px}
 .con-card{border:1px solid var(--border);border-radius:10px;padding:14px;background:#fff}
@@ -2634,6 +2650,7 @@ function respButtons(r){
 function isRespResponsible(r,resp){
   return !!(r&&resp&&(r.resp===resp||r.resp2===resp));
 }
+function escAttr(v){return String(v==null?'':v).replace(/&/g,'&amp;').replace(/'/g,'&#39;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function esc(v){return String(v??'').replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));}
 function briefOrder(r){return `№${r?.num||'б/н'} • ${r?.company||'—'} • ${r?.name||r?.material||'—'}`;}
 function diffFields(oldR,row){
@@ -4305,7 +4322,7 @@ function msgTextHtml(m){
   if(m&&m.deleted){
     return `<div class="msg-bubble deleted">Сообщение удалено</div>`;
   }
-  const txt=m&&m.text?`<div>${esc(m.text)}</div>`:'';
+  const txt=m&&m.text?`<div>${entityTextHtml(m.text)}</div>`:'';
   return `${msgBadgesHtml(m)}${forwardPreviewHtml(m)}${replyPreviewHtml(m)}${txt}${fileHtml(m)}`;
 }
 function msgActionsHtml(scope,m,isOwnRender){
@@ -4436,7 +4453,7 @@ window.sendMsg=async function(){
 function rChat(){
   const wrap=document.getElementById('chat-msgs');
   if(!wrap)return;
-  initEmojiPanels();setupTypingInputs();
+  initEmojiPanels();setupTypingInputs();setupEntityInputs();
   updateChatAuthorNote();
   const allSorted=[...MSGS].sort((a,b)=>(a.ts||0)-(b.ts||0));
   const sorted=filteredChatMessages('chat',allSorted);
@@ -4573,6 +4590,149 @@ window.sendPrivateMsg=async function(){
   if(input)input.value='';
   pmReplyDraft=null;pmFileDraft=null;clearFileDraft('pm');updateComposeChips('pm');
 };
+
+
+// ENTITY QUICK INSERT: #заявки, &договоры, +контакты in common and private chats
+const ENTITY_TOKEN_RE=/(^|\s)([#&+])([^\s]*)$/;
+let entityPickerState={input:null,scope:'chat',symbol:'',query:'',items:[],active:0};
+function entityLabel(type,item){
+  if(type==='order')return `📋 Заявка №${item.num||item.number||item.id||item._k||'б/н'}`;
+  if(type==='contract')return `📄 Договор №${item.contractNumber||item.number||item.num||'б/н'}`;
+  if(type==='contact')return `🏢 ${item.name||item.counterparty||'Контакт'}`;
+  return 'Ссылка';
+}
+function entitySub(type,item){
+  if(type==='order')return [item.company,item.contractor,item.name||item.material,item.status].filter(Boolean).join(' · ')||'Открыть карточку заявки';
+  if(type==='contract')return [item.counterparty,item.dateTo?`до ${item.dateTo}`:'',item.type,item.amount?mn(item.amount):''].filter(Boolean).join(' · ')||'Открыть договор';
+  if(type==='contact')return [item.activity,item.inn?`ИНН ${item.inn}`:'',item.phone,item.email].filter(Boolean).join(' · ')||'Открыть контакт';
+  return '';
+}
+function entityTypeBySymbol(sym){return sym==='#'?'order':sym==='&'?'contract':sym==='+'?'contact':'';}
+function entityHintBySymbol(sym){return sym==='#'?'Заявки':sym==='&'?'Договоры':sym==='+'?'Контакты':'Ссылки';}
+function entityIcon(type){return type==='order'?'📋':type==='contract'?'📄':type==='contact'?'🏢':'🔗';}
+function entitySearchItems(sym,query){
+  const q=String(query||'').toLowerCase().trim();
+  const type=entityTypeBySymbol(sym);
+  let arr=[];
+  if(type==='order'){
+    arr=(DATA||[]).map(o=>({type,id:String(o._k||o.key||o.id||''),raw:o,label:entityLabel('order',o),sub:entitySub('order',o),blob:[o.num,o.number,o.id,o.company,o.contractor,o.name,o.material,o.status,o.shifr,o.shifer].join(' ').toLowerCase()}));
+  }else if(type==='contract'){
+    arr=(CONTRACTS||[]).map(c=>({type,id:String(c._k||c.id||''),raw:c,label:entityLabel('contract',c),sub:entitySub('contract',c),blob:[c.contractNumber,c.counterparty,c.inn,c.type,c.subject,c.amount,c.dateTo,c.fileName].join(' ').toLowerCase()}));
+  }else if(type==='contact'){
+    arr=uniqueContacts(CONTACTS||[]).map(c=>({type,id:String(c._k||c.id||''),raw:c,label:entityLabel('contact',c),sub:entitySub('contact',c),blob:[c.name,c.activity,c.inn,c.phone,c.email,c.city].join(' ').toLowerCase()}));
+  }
+  if(q)arr=arr.filter(x=>x.blob.includes(q));
+  return arr.slice(0,8);
+}
+function entityMarker(item){
+  const safeId=String(item.id||'').replace(/\]/g,'');
+  const safeLabel=String(item.label||'Ссылка').replace(/[\[\]|]/g,' ');
+  return `[[${item.type}:${safeId}|${safeLabel}]]`;
+}
+function entityTextHtml(text){
+  let src=String(text||'');
+  const re=/\[\[(order|contract|contact):([^\]|]+)\|([^\]]+)\]\]/g;
+  let out='',last=0,m;
+  while((m=re.exec(src))){
+    out+=esc(src.slice(last,m.index));
+    const type=m[1],id=m[2],label=m[3];
+    out+=`<button type="button" class="entity-link" onclick="openLinkedEntity('${type}','${escAttr(id)}')">${entityIcon(type)} ${esc(label)}</button>`;
+    last=re.lastIndex;
+  }
+  out+=esc(src.slice(last));
+  // also make plain #123 links clickable when no marker was selected
+  out=out.replace(/(^|\s)#([\w\-А-Яа-яЁё]+)/g,(mm,p,num)=>`${p}<button type="button" class="entity-link" onclick="openLinkedEntityByNumber('${escAttr(num)}')">📋 #${esc(num)}</button>`);
+  return out.replace(/\n/g,'<br>');
+}
+function ensureEntitySuggest(){
+  let box=document.getElementById('entity-suggest');
+  if(!box){box=document.createElement('div');box.id='entity-suggest';box.className='entity-suggest';document.body.appendChild(box);}
+  return box;
+}
+function hideEntitySuggest(){const box=document.getElementById('entity-suggest');if(box)box.classList.remove('show');entityPickerState.items=[];}
+function inputEntityMatch(input){
+  const val=input.value.slice(0,input.selectionStart||input.value.length);
+  const m=val.match(ENTITY_TOKEN_RE);
+  if(!m)return null;
+  return {prefix:m[1]||'',symbol:m[2],query:m[3]||'',start:val.length-(m[2]+(m[3]||'')).length};
+}
+function showEntitySuggestFor(input,scope){
+  const match=inputEntityMatch(input);
+  if(!match){hideEntitySuggest();return;}
+  const items=entitySearchItems(match.symbol,match.query);
+  if(!items.length){hideEntitySuggest();return;}
+  entityPickerState={input,scope,symbol:match.symbol,query:match.query,items,active:0,match};
+  const box=ensureEntitySuggest();
+  box.innerHTML=`<div class="entity-suggest-title">${entityHintBySymbol(match.symbol)} — выберите карточку</div>`+
+    items.map((it,i)=>`<button type="button" class="entity-suggest-item ${i===0?'active':''}" onmousedown="event.preventDefault();selectEntitySuggest(${i})"><span class="entity-suggest-ico">${entityIcon(it.type)}</span><span><div class="entity-suggest-main">${esc(it.label)}</div><div class="entity-suggest-sub">${esc(it.sub)}</div></span></button>`).join('')+
+    `<div class="entity-help"># — заявки · & — договоры · + — контакты. После отправки нажмите на ссылку в чате, чтобы открыть карточку.</div>`;
+  const r=input.getBoundingClientRect();
+  box.style.left=Math.max(8,Math.min(r.left,window.innerWidth-430))+'px';
+  box.style.top=Math.max(8,(r.top-300>0?r.top-300:r.bottom+8))+'px';
+  box.classList.add('show');
+}
+function selectEntitySuggest(idx){
+  const st=entityPickerState; const item=st.items&&st.items[idx]; if(!item||!st.input)return;
+  const input=st.input; const val=input.value; const pos=input.selectionStart||val.length; const before=val.slice(0,pos); const after=val.slice(pos);
+  const match=before.match(ENTITY_TOKEN_RE); if(!match)return hideEntitySuggest();
+  const tokenLen=(match[2]+(match[3]||'')).length;
+  const start=before.length-tokenLen;
+  const sep=start>0&&before[start-1]!==' '?' ':'';
+  const next=before.slice(0,start)+sep+entityMarker(item)+' ';
+  input.value=next+after;
+  input.focus(); input.setSelectionRange(next.length,next.length);
+  hideEntitySuggest();
+}
+function entityInputKeydown(e,scope){
+  const box=document.getElementById('entity-suggest');
+  if(box&&box.classList.contains('show')&&entityPickerState.items.length){
+    if(e.key==='ArrowDown'){e.preventDefault();entityPickerState.active=(entityPickerState.active+1)%entityPickerState.items.length;showEntitySuggestFor(e.target,scope);return;}
+    if(e.key==='ArrowUp'){e.preventDefault();entityPickerState.active=(entityPickerState.active-1+entityPickerState.items.length)%entityPickerState.items.length;showEntitySuggestFor(e.target,scope);return;}
+    if(e.key==='Tab'){e.preventDefault();selectEntitySuggest(entityPickerState.active||0);return;}
+    if(e.key==='Escape'){hideEntitySuggest();return;}
+  }
+  if(e.key==='Enter'){
+    if(box&&box.classList.contains('show')&&entityPickerState.items.length){e.preventDefault();selectEntitySuggest(entityPickerState.active||0);return;}
+    if(scope==='pm')sendPrivateMsg(); else sendMsg();
+  }
+}
+function setupEntityInputs(){
+  const configs=[['chat-in','chat'],['pm-in','pm']];
+  configs.forEach(([id,scope])=>{
+    const input=document.getElementById(id); if(!input||input.dataset.entityReady)return;
+    input.dataset.entityReady='1';
+    input.addEventListener('input',()=>showEntitySuggestFor(input,scope));
+    input.addEventListener('keydown',e=>entityInputKeydown(e,scope));
+    input.addEventListener('blur',()=>setTimeout(hideEntitySuggest,180));
+  });
+}
+function openLinkedEntityByNumber(num){
+  const q=String(num||'').toLowerCase();
+  const o=(DATA||[]).find(r=>String(r.num||r.number||r.id||r._k||'').toLowerCase()===q)||
+          (DATA||[]).find(r=>String(r.num||r.number||r.id||r._k||'').toLowerCase().includes(q));
+  if(o)openLinkedEntity('order',String(o._k||o.key||o.id||''));
+  else alert('Заявка #'+num+' не найдена');
+}
+window.openLinkedEntity=function(type,id){
+  id=String(id||'');
+  if(type==='order'){
+    const o=(DATA||[]).find(x=>String(x._k||x.key||x.id||'')===id)||DATA.find(x=>String(x.num||x.number||'')===id);
+    if(o&&typeof window.openOrderView==='function'){window.openOrderView(String(o._k||o.key||o.id));return;}
+    alert('Заявка не найдена');return;
+  }
+  if(type==='contract'){
+    const c=(CONTRACTS||[]).find(x=>String(x._k||x.id||'')===id);
+    if(c){SP('contracts',document.querySelector('.nav-item[onclick*=contracts]')); const inp=document.getElementById('contract-search'); if(inp){inp.value=c.contractNumber||c.counterparty||''; rContracts();} return;}
+    alert('Договор не найден');return;
+  }
+  if(type==='contact'){
+    const c=(CONTACTS||[]).find(x=>String(x._k||x.id||'')===id);
+    if(c){SP('contacts',document.querySelector('.nav-item[onclick*=contacts]')); const inp=document.getElementById('contact-search'); if(inp){inp.value=c.name||c.inn||''; rContacts();} if(typeof window.editContact==='function')setTimeout(()=>window.editContact(id),150); return;}
+    alert('Контакт не найден');return;
+  }
+};
+setTimeout(setupEntityInputs,500);
+document.addEventListener('click',e=>{if(!e.target.closest('#entity-suggest'))hideEntitySuggest();});
 
 
 
@@ -7591,6 +7751,102 @@ window.rTrainingCenter=rTrainingCenter;window.helpSetActive=helpSetActive;window
     window.saveZ.__mtoV20Guard=true;
     try{saveZ=window.saveZ;}catch(e){}
   }
+})();
+</script>
+
+
+
+<style id="entity-link-v24-style">
+.entity-link{white-space:normal!important;max-width:100%;line-height:1.25}
+.entity-view-modal{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:3000;align-items:center;justify-content:center;padding:18px}
+.entity-view-modal.active{display:flex}
+.entity-view-card{width:min(620px,96vw);max-height:88vh;overflow:auto;background:#fff;border-radius:18px;box-shadow:0 28px 70px rgba(15,23,42,.32);border:1px solid #e2e8f0}
+.entity-view-head{padding:18px 20px;background:linear-gradient(135deg,var(--primary),#2e4d7a);color:#fff;border-radius:18px 18px 0 0;display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.entity-view-title{font-size:1.05rem;font-weight:900;line-height:1.25}
+.entity-view-sub{font-size:.82rem;opacity:.8;margin-top:4px}
+.entity-view-close{border:0;background:rgba(255,255,255,.16);color:#fff;border-radius:10px;width:34px;height:34px;font-size:1.25rem;cursor:pointer}
+.entity-view-body{padding:18px 20px;display:grid;gap:10px}
+.entity-view-row{border:1px solid #e2e8f0;border-radius:12px;padding:10px 12px;background:#f8fafc}
+.entity-view-row b{display:block;font-size:.70rem;color:#64748b;text-transform:uppercase;letter-spacing:.4px;margin-bottom:3px}
+.entity-view-actions{padding:14px 20px;border-top:1px solid #e2e8f0;display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.entity-view-actions .btn{padding:8px 13px}
+</style>
+
+<script id="entity-links-v24-fix">
+(function(){
+  function e24Esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  function e24Attr(v){return e24Esc(v).replace(/`/g,'&#96;');}
+  function e24Money(v){try{return typeof mn==='function'?mn(v):(v?String(v)+' ₽':'—');}catch(e){return v?String(v)+' ₽':'—';}}
+  function e24TextHtml(text){
+    if(typeof entityTextHtml==='function')return entityTextHtml(text||'');
+    return e24Esc(text||'').replace(/\n/g,'<br>');
+  }
+  window.msgTextHtml=function(m){
+    if(m&&m.deleted)return '<div class="msg-bubble deleted">Сообщение удалено</div>';
+    var txt=m&&m.text?'<div>'+e24TextHtml(m.text)+'</div>':'';
+    var badges=(typeof msgBadgesHtml==='function')?msgBadgesHtml(m):'';
+    var fwd=(typeof forwardPreviewHtml==='function')?forwardPreviewHtml(m):'';
+    var reply=(typeof replyPreviewHtml==='function')?replyPreviewHtml(m):'';
+    var file=(typeof window.fileHtml==='function')?window.fileHtml(m):'';
+    var loc=(typeof window.locationHtml==='function')?window.locationHtml(m):'';
+    return badges+fwd+reply+txt+file+loc;
+  };
+  window.closeEntityView=function(){var m=document.getElementById('entity-view-modal');if(m)m.classList.remove('active');};
+  function ensureEntityView(){
+    var m=document.getElementById('entity-view-modal');
+    if(m)return m;
+    m=document.createElement('div');m.id='entity-view-modal';m.className='entity-view-modal';
+    m.innerHTML='<div class="entity-view-card"><div class="entity-view-head"><div><div class="entity-view-title" id="entity-view-title"></div><div class="entity-view-sub" id="entity-view-sub"></div></div><button class="entity-view-close" onclick="closeEntityView()">×</button></div><div class="entity-view-body" id="entity-view-body"></div><div class="entity-view-actions" id="entity-view-actions"></div></div>';
+    document.body.appendChild(m);m.addEventListener('click',function(ev){if(ev.target===m)closeEntityView();});return m;
+  }
+  function row(k,v){return '<div class="entity-view-row"><b>'+e24Esc(k)+'</b>'+e24Esc(v||'—')+'</div>';}
+  function openContractCard(id){
+    var c=(window.CONTRACTS||CONTRACTS||[]).find(function(x){return String(x._k||x.id||'')===String(id);});
+    if(!c){alert('Договор не найден');return;}
+    var m=ensureEntityView();
+    document.getElementById('entity-view-title').textContent='📄 Договор №'+(c.contractNumber||c.number||'б/н');
+    document.getElementById('entity-view-sub').textContent=c.counterparty||'Карточка договора';
+    document.getElementById('entity-view-body').innerHTML=
+      row('Контрагент',c.counterparty)+row('ИНН',c.inn)+row('Предмет',c.subject||c.type)+row('Срок действия',c.dateTo)+row('Сумма',c.amount?e24Money(c.amount):'—')+row('Файл',c.fileName||c.name||'—');
+    var acts=[];
+    if(c.fileUrl||c.fileDataUrl)acts.push('<a class="btn btn-s" target="_blank" href="'+e24Attr(c.fileUrl||c.fileDataUrl)+'">📎 Открыть файл</a>');
+    if(typeof editCloudContract==='function')acts.push('<button class="btn btn-s" onclick="closeEntityView();editCloudContract(\''+e24Attr(c._k||c.id||'')+'\')">✏️ Редактировать</button>');
+    acts.push('<button class="btn btn-p" onclick="closeEntityView();SP(\'contracts\',document.querySelector(\'.nav-item[onclick*=contracts]\'));var i=document.getElementById(\'contract-search\');if(i){i.value=\''+e24Attr(c.contractNumber||c.counterparty||'')+'\';rContracts();}">Перейти в договоры</button>');
+    document.getElementById('entity-view-actions').innerHTML=acts.join('');
+    m.classList.add('active');
+  }
+  function openContactCard(id){
+    var c=(window.CONTACTS||CONTACTS||[]).find(function(x){return String(x._k||x.id||'')===String(id);});
+    if(!c){alert('Контакт не найден');return;}
+    var m=ensureEntityView();
+    document.getElementById('entity-view-title').textContent='🏢 '+(c.name||'Контакт');
+    document.getElementById('entity-view-sub').textContent=c.activity||'Карточка контакта';
+    document.getElementById('entity-view-body').innerHTML=row('ИНН',c.inn)+row('Телефон',c.phone)+row('Email',c.email)+row('Город',c.city||c.region)+row('Спецсчёт',c.spec)+row('Аккредитация',c.supplierRating||c.dadataStatus);
+    var acts=['<button class="btn btn-s" onclick="closeEntityView();SP(\'contacts\',document.querySelector(\'.nav-item[onclick*=contacts]\'));var i=document.getElementById(\'contact-search\');if(i){i.value=\''+e24Attr(c.name||c.inn||'')+'\';rContacts();}">Перейти в контакты</button>'];
+    if(typeof window.editContact==='function')acts.push('<button class="btn btn-p" onclick="closeEntityView();window.editContact(\''+e24Attr(c._k||c.id||'')+'\')">Открыть карточку</button>');
+    document.getElementById('entity-view-actions').innerHTML=acts.join('');
+    m.classList.add('active');
+  }
+  window.openLinkedEntity=function(type,id){
+    id=String(id||'');
+    if(type==='order'){
+      var list=(window.DATA||DATA||[]);
+      var o=list.find(function(x){return String(x._k||x.key||x.id||'')===id;})||list.find(function(x){return String(x.num||x.number||'')===id;});
+      if(o&&typeof window.openOrderView==='function'){window.openOrderView(String(o._k||o.key||o.id));return;}
+      alert('Заявка не найдена');return;
+    }
+    if(type==='contract'){openContractCard(id);return;}
+    if(type==='contact'){openContactCard(id);return;}
+  };
+  window.openLinkedEntityByNumber=function(num){
+    var q=String(num||'').toLowerCase();
+    var list=(window.DATA||DATA||[]);
+    var o=list.find(function(r){return String(r.num||r.number||r.id||r._k||'').toLowerCase()===q;})||list.find(function(r){return String(r.num||r.number||r.id||r._k||'').toLowerCase().includes(q);});
+    if(o)window.openLinkedEntity('order',String(o._k||o.key||o.id||''));
+    else alert('Заявка #'+num+' не найдена');
+  };
+  if(typeof rChat==='function')setTimeout(function(){try{rChat();}catch(e){}},300);
+  if(typeof rPrivateDialog==='function'&&window.currentPrivateLogin)setTimeout(function(){try{rPrivateDialog(window.currentPrivateLogin);}catch(e){}},350);
 })();
 </script>
 
