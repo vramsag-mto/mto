@@ -1212,15 +1212,257 @@ body.mto-dark{--bg:#0f172a;--text:#e2e8f0;--muted:#94a3b8;--border:#334155}body.
 .help-welcome-overlay{position:fixed;inset:0;background:rgba(15,23,42,.56);z-index:2100;display:none;align-items:center;justify-content:center;padding:16px}.help-welcome-overlay.active{display:flex}.help-welcome{background:#fff;border-radius:20px;width:760px;max-width:96vw;box-shadow:0 30px 80px rgba(15,23,42,.35);overflow:hidden}.help-welcome-head{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;padding:22px}.help-welcome-title{font-size:1.35rem;font-weight:950;margin-bottom:6px}.help-welcome-sub{font-size:.9rem;opacity:.88;line-height:1.45}.help-welcome-body{padding:18px;display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.help-welcome-item{border:1px solid var(--border);border-radius:13px;padding:12px;background:#f8fafc}.help-welcome-item b{color:var(--primary)}.help-welcome-actions{padding:14px 18px;border-top:1px solid var(--border);display:flex;gap:8px;justify-content:flex-end}.help-result-empty{padding:24px;text-align:center;color:var(--muted)}
 @media(max-width:900px){.help-page-grid{grid-template-columns:1fr}.help-search-card{position:static}.help-welcome-body{grid-template-columns:1fr}}@media(max-width:768px){.help-floating-btn{right:14px;bottom:132px}.training-mode-badge{right:66px;bottom:140px}.help-content{padding:10px}.help-title{font-size:1.1rem}.help-welcome-actions{display:grid;grid-template-columns:1fr}}
 
+
+
+/* FIX v49: mobile composer restored, no horizontal scroll */
+@media(max-width:768px){
+  html,body{max-width:100%;overflow-x:hidden!important}
+  .composer-wrap{overflow:hidden!important;max-width:100%!important;box-sizing:border-box!important}
+  .composer-row.chat-input-wrap,.composer-row.pm-input-wrap{
+    display:grid!important;
+    grid-template-columns:repeat(6,minmax(0,1fr))!important;
+    gap:6px!important;
+    width:100%!important;
+    max-width:100%!important;
+    padding:0!important;
+    overflow:visible!important;
+    box-sizing:border-box!important;
+    align-items:center!important;
+    flex-wrap:initial!important;
+  }
+  .composer-row.chat-input-wrap input[type=file],
+  .composer-row.pm-input-wrap input[type=file]{display:none!important}
+  .composer-row.chat-input-wrap .chat-input,
+  .composer-row.pm-input-wrap .pm-input{
+    grid-column:1/-1!important;
+    width:100%!important;
+    min-width:0!important;
+    max-width:100%!important;
+    order:0!important;
+    box-sizing:border-box!important;
+  }
+  .composer-row.chat-input-wrap .tool-btn,
+  .composer-row.pm-input-wrap .tool-btn,
+  .composer-row.chat-input-wrap .chat-send,
+  .composer-row.pm-input-wrap .pm-send{
+    order:1!important;
+    width:100%!important;
+    min-width:0!important;
+    height:40px!important;
+    padding:0!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    font-size:1rem!important;
+    box-sizing:border-box!important;
+  }
+  .composer-row.chat-input-wrap .stage4-tools,
+  .composer-row.pm-input-wrap .stage4-tools{display:contents!important}
+  .chat-send,.pm-send{min-width:0!important}
+  .pm-dialog,.card,.page,.main{max-width:100%!important;overflow-x:hidden!important}
+}
+
+
+/* CHAT DELETE FIX v50 */
+.msg-del-quick{color:#ef4444!important}
+.msg.me .msg-del-quick{color:rgba(255,255,255,.95)!important}
+@media (min-width:769px){
+  #page-chat .card,#page-private .card{width:100%!important;max-width:none!important;}
+  #chat-msgs,.pm-messages{max-height:calc(100vh - 285px)!important;}
+  .pm-wrap{grid-template-columns:300px minmax(0,1fr)!important;}
+  .pm-dialog{width:100%!important;}
+}
+
+
+
+/* CHAT V51: visible own-message actions/delete button */
+.msg.me .msg-actions-compact .msg-act{
+  color:var(--accent)!important;
+  background:#fff!important;
+  border:1px solid var(--border)!important;
+  box-shadow:0 1px 4px rgba(15,23,42,.08)!important;
+}
+.msg.me .msg-actions-compact .msg-act:hover{
+  background:#eff6ff!important;
+  color:#1d4ed8!important;
+  border-color:var(--accent)!important;
+}
+.msg-actions-compact .msg-del-quick{
+  color:#b91c1c!important;
+  border-color:#fecaca!important;
+}
+.msg-actions-compact .msg-del-quick:hover{
+  background:#fee2e2!important;
+  color:#991b1b!important;
+  border-color:#fca5a5!important;
+}
+@media(max-width:768px){
+  .msg.me .msg-actions-compact .msg-act{color:var(--accent)!important;background:#fff!important;border:1px solid var(--border)!important;}
+}
+
+
+
+/* CHAT V52: desktop visible delete actions */
+@media (min-width:769px){
+  #page-chat .msg-actions.msg-actions-compact,
+  #page-private .msg-actions.msg-actions-compact{
+    display:flex!important;
+    opacity:1!important;
+    visibility:visible!important;
+    height:auto!important;
+    overflow:visible!important;
+    margin-top:7px!important;
+    z-index:10!important;
+  }
+  #page-chat .msg.me .msg-actions.msg-actions-compact,
+  #page-private .msg.me .msg-actions.msg-actions-compact{
+    justify-content:flex-end!important;
+    align-self:flex-end!important;
+  }
+  #page-chat .msg-actions-compact .msg-act,
+  #page-private .msg-actions-compact .msg-act{
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    min-height:28px!important;
+    opacity:1!important;
+    visibility:visible!important;
+    background:#fff!important;
+    color:var(--accent)!important;
+    border:1px solid var(--border)!important;
+    box-shadow:0 1px 4px rgba(15,23,42,.10)!important;
+  }
+  #page-chat .msg-actions-compact .msg-del-quick,
+  #page-private .msg-actions-compact .msg-del-quick{
+    display:inline-flex!important;
+    color:#b91c1c!important;
+    background:#fee2e2!important;
+    border-color:#fecaca!important;
+    font-weight:900!important;
+  }
+}
+
+
+/* USER PROFILE MODAL FROM CHAT */
+.user-mini-avatar.chat-avatar-click,.pav.chat-avatar-click{cursor:pointer;transition:transform .12s ease,box-shadow .12s ease}
+.user-mini-avatar.chat-avatar-click:hover,.pav.chat-avatar-click:hover{transform:scale(1.06);box-shadow:0 0 0 3px rgba(59,130,246,.18)}
+.profile-view-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px}
+.profile-view-card{border:1px solid var(--border);background:#f8fafc;border-radius:12px;padding:11px}
+.profile-view-label{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.35px;font-weight:800;margin-bottom:5px}
+.profile-view-value{font-size:.9rem;color:var(--primary);font-weight:750;word-break:break-word}
+@media(max-width:768px){.profile-view-grid{grid-template-columns:1fr}.phead{gap:10px}}
+
+
+
+/* DASHBOARD V64: полностью независимый дашборд */
+.dash-v64-controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.dash-v64-grid{display:grid;grid-template-columns:2fr .9fr;gap:16px;align-items:start}
+.dash-v64-list{padding:14px;display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px}
+.dash-v64-card{background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:0 2px 10px rgba(15,23,42,.06);overflow:hidden}
+.dash-v64-card.attention{border-color:#f59e0b;box-shadow:0 0 0 2px rgba(245,158,11,.15)}
+.dash-v64-card-head{padding:13px 14px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.dash-v64-num{font-weight:900;color:var(--primary);font-size:1rem}
+.dash-v64-date{font-size:.72rem;color:var(--muted);margin-top:3px}
+.dash-v64-title{font-weight:850;color:var(--primary);line-height:1.25;margin-top:7px}
+.dash-v64-sub{font-size:.74rem;color:var(--muted);line-height:1.35;margin-top:4px}
+.dash-v64-tags{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}
+.dash-v64-body{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:12px 14px;background:#f8fafc}
+.dash-v64-field{min-width:0;background:#fff;border:1px solid #e8edf4;border-radius:10px;padding:9px}
+.dash-v64-label{font-size:.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:.35px;font-weight:800;margin-bottom:4px}
+.dash-v64-value{font-size:.82rem;line-height:1.35;color:var(--text);word-break:break-word}
+.dash-v64-actions{display:flex;gap:7px;flex-wrap:wrap;padding:12px 14px;border-top:1px solid var(--border)}
+.dash-v64-side{padding:12px;display:flex;flex-direction:column;gap:8px}
+.dash-v64-side-item{border:1px solid var(--border);border-radius:12px;padding:10px;background:#fff;cursor:pointer}
+.dash-v64-side-item:hover{background:#eff6ff;border-color:#bfdbfe}
+.dash-v64-empty{padding:34px;text-align:center;color:var(--muted);font-size:.9rem}
+@media(max-width:1020px){.dash-v64-grid{grid-template-columns:1fr}.dash-v64-list{grid-template-columns:1fr}}
+@media(max-width:768px){.dash-v64-controls{display:grid;grid-template-columns:1fr;gap:8px}.dash-v64-body{grid-template-columns:1fr}.dash-v64-list{padding:10px}.dash-v64-actions .bsm{flex:1;min-height:38px}.dash-v64-tags{justify-content:flex-start;margin-top:8px}.dash-v64-card-head{display:block}}
+
+
+
+/* ORDER DISCUSSIONS — stage 1 */
+.order-tabs{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0 14px;padding-bottom:2px;border-bottom:1px solid var(--border)}
+.order-tab{border:1px solid var(--border);background:#fff;border-radius:10px 10px 0 0;padding:9px 12px;font-size:.82rem;font-weight:800;color:var(--muted);cursor:pointer;transition:.18s}
+.order-tab:hover{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe}
+.order-tab.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.order-pane{display:none}.order-pane.active{display:block}
+.order-discussion-wrap{border:1px solid var(--border);border-radius:14px;background:#fff;overflow:hidden}
+.order-discussion-head{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:12px 14px;background:#f8fafc;border-bottom:1px solid var(--border)}
+.order-discussion-title{font-weight:900;color:var(--primary)}
+.order-discussion-sub{font-size:.74rem;color:var(--muted);margin-top:2px}
+.order-discussion-messages{display:flex;flex-direction:column;gap:10px;padding:14px;max-height:420px;overflow-y:auto;background:#fff}
+.order-msg{display:flex;gap:8px;max-width:88%;align-items:flex-end}.order-msg.me{align-self:flex-end;flex-direction:row-reverse}.order-msg.system{align-self:center;max-width:94%}
+.order-msg-bubble{padding:9px 13px;border-radius:13px;background:#f1f5f9;line-height:1.42;font-size:.86rem;white-space:pre-wrap;word-break:break-word}.order-msg.me .order-msg-bubble{background:var(--accent);color:#fff;border-bottom-right-radius:4px}.order-msg.system .order-msg-bubble{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;text-align:center;font-weight:700}
+.order-msg-meta{font-size:.68rem;color:var(--muted);margin-top:3px}.order-msg.me .order-msg-meta{text-align:right;color:#dbeafe}.order-msg.system .order-msg-meta{text-align:center}
+.order-discussion-input{display:flex;gap:8px;padding:12px;border-top:1px solid var(--border);background:#fff}.order-discussion-input textarea{flex:1;min-height:42px;max-height:110px;resize:vertical;padding:10px 12px;border:1.5px solid var(--border);border-radius:10px;font-family:inherit;font-size:.88rem;outline:none}.order-discussion-input textarea:focus{border-color:var(--accent)}
+.order-empty{padding:26px;text-align:center;color:var(--muted);font-size:.88rem;background:#f8fafc;border-radius:12px;border:1px dashed var(--border)}
+@media(max-width:768px){.order-tabs{overflow-x:auto;flex-wrap:nowrap}.order-tab{white-space:nowrap;flex:0 0 auto}.order-discussion-messages{max-height:calc(100vh - 330px);padding:10px}.order-msg{max-width:94%}.order-discussion-input{display:grid;grid-template-columns:1fr;gap:8px}.order-discussion-input textarea{font-size:16px}.order-discussion-input .btn{width:100%}}
+
 </style>
 
 <meta name="theme-color" content="#1a2f4e">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="МТО">
-<link rel="manifest" href="manifest.webmanifest">
+<link rel="manifest" href="manifest.webmanifest?v=52">
 <link rel="apple-touch-icon" href="icon-192.png">
 
+
+<style id="chat-desktop-fullwidth-v47">
+/* V47: ПК-версия чата и личных сообщений на всю рабочую область */
+@media (min-width:769px){
+  #page-chat .card{
+    max-width:none!important;
+    width:100%!important;
+    height:calc(100vh - 118px)!important;
+    display:flex!important;
+    flex-direction:column!important;
+  }
+  #page-chat .chat-wrap{
+    flex:1 1 auto!important;
+    max-height:none!important;
+    height:auto!important;
+    min-height:0!important;
+  }
+  #page-chat .composer-wrap{
+    flex:0 0 auto!important;
+  }
+  #page-private .card{
+    width:100%!important;
+    height:calc(100vh - 118px)!important;
+    display:flex!important;
+    flex-direction:column!important;
+  }
+  #page-private .pm-wrap{
+    flex:1 1 auto!important;
+    min-height:0!important;
+    height:auto!important;
+    display:grid!important;
+    grid-template-columns:320px minmax(0,1fr)!important;
+  }
+  #page-private .pm-dialog{
+    min-height:0!important;
+    height:100%!important;
+  }
+  #page-private .pm-messages{
+    flex:1 1 auto!important;
+    max-height:none!important;
+    height:auto!important;
+    min-height:0!important;
+  }
+  #page-chat .composer-row,
+  #page-private .composer-row{
+    flex-wrap:nowrap!important;
+    width:100%!important;
+  }
+  #page-chat .chat-input,
+  #page-private .pm-input{
+    min-width:0!important;
+  }
+}
+</style>
+
+<!-- MTO v52: desktop visible own-message delete button -->
 </head>
 <body>
 <div id="loading"><div class="spinner"></div><div style="color:var(--muted);font-size:.9rem">Подключение...</div></div>
@@ -1247,7 +1489,6 @@ body.mto-dark{--bg:#0f172a;--text:#e2e8f0;--muted:#94a3b8;--border:#334155}body.
       <div class="nav-item" onclick="SP('all',this)">📋 Все заявки</div>
       <div class="nav-item" onclick="SP('mine',this)">👤 Мои заявки</div>
       <div class="nav-item" onclick="SP('notifications',this)">🔔 Уведомления <span class="nav-badge" id="nav-notify-badge"></span></div>
-      <div class="nav-item" onclick="SP('favorites',this)">⭐ Избранное</div>
       <div class="nav-item" onclick="SP('delivery-calendar',this)">📅 Календарь поставок</div>
       <div class="nav-item" onclick="SP('object-center',this)">🏗 Центр объекта</div>
       <div class="nav-sec">Инструменты</div>
@@ -1276,7 +1517,6 @@ body.mto-dark{--bg:#0f172a;--text:#e2e8f0;--muted:#94a3b8;--border:#334155}body.
   <div class="main">
     <div class="mto-top-actions">
       <button class="top-action-btn" onclick="SP('notifications',document.querySelector('.nav-item[onclick*=notifications]'))">🔔 <span class="top-action-text">Уведомления</span><span class="top-count" id="top-notify-count"></span></button>
-      <button class="top-action-btn" onclick="SP('favorites',document.querySelector('.nav-item[onclick*=favorites]'))">⭐ <span class="top-action-text">Избранное</span><span class="top-count" id="top-fav-count"></span></button>
     </div>
 
 
@@ -1290,16 +1530,6 @@ body.mto-dark{--bg:#0f172a;--text:#e2e8f0;--muted:#94a3b8;--border:#334155}body.
         <div class="center-list" id="notifications-list"></div>
       </div>
     </div>
-
-    <!-- FAVORITES -->
-    <div class="page" id="page-favorites">
-      <div class="ph"><div class="pt">Избранное</div><div class="ps">Быстрый доступ к заявкам, контактам и договорам</div></div>
-      <div class="card">
-        <div class="ch"><div class="ct">⭐ Избранное <span class="filter-count" id="favorites-count"></span></div></div>
-        <div class="center-list" id="favorites-list"></div>
-      </div>
-    </div>
-
 
     <!-- DELIVERY CALENDAR -->
     <div class="page" id="page-delivery-calendar">
@@ -1482,19 +1712,31 @@ body.mto-dark{--bg:#0f172a;--text:#e2e8f0;--muted:#94a3b8;--border:#334155}body.
 
     <!-- DASHBOARD -->
     <div class="page active" id="page-dash">
-      <div class="ph"><div class="pt">Дашборд</div><div class="ps">Контроль заявок МТО</div></div>
-      <div class="tabs" id="dash-co-tabs">
-        <div class="tab dashco active" onclick="sDashC('ALL',this)">Все</div>
-        <div class="tab dashco" onclick="sDashC('СТЕЛС',this)">СТЕЛС</div>
-        <div class="tab dashco" onclick="sDashC('ДОРСНАБ',this)">ДОРСНАБ</div>
+      <div class="ph"><div class="pt">Дашборд</div><div class="ps">Новая независимая панель контроля заявок МТО</div></div>
+      <div class="dash-v64-controls">
+        <button class="tab dashco active" type="button" onclick="sDashC('ALL',this)">Все</button>
+        <button class="tab dashco" type="button" onclick="sDashC('СТЕЛС',this)">СТЕЛС</button>
+        <button class="tab dashco" type="button" onclick="sDashC('ДОРСНАБ',this)">ДОРСНАБ</button>
+        <select class="si2" id="dash-status-filter" onchange="dashStatus=this.value;rDash()">
+          <option value="">Все статусы</option>
+          <option>Требует внимания</option>
+          <option>ЖДЕМ ДОСТАВКИ</option>
+          <option>Ожидаем доставку</option>
+          <option>ДОСТАВЛЕНО</option>
+          <option>На оплате</option>
+        </select>
+        <input class="si2" id="dash-search" placeholder="🔍 Поиск по дашборду..." oninput="dQ=this.value;rDash()" style="min-width:240px;flex:1">
       </div>
       <div class="stats" id="stats"></div>
-      <div class="card">
-        <div class="ch"><div class="ct" id="dash-table-title">Активные заявки — Все компании</div>
-          <input class="si2" placeholder="🔍 Поиск..." oninput="dQ=this.value;rDash()" style="width:190px"/></div>
-        <div class="tw"><table><thead><tr>
-          <th>№</th><th>Компания</th><th>Шифр</th><th>Наименование</th><th>Отв.</th><th>Статус</th><th>Контрагент</th><th>Сумма</th><th>Поставка</th><th>УПД</th><th>Дни</th>
-        </tr></thead><tbody id="dtb"></tbody></table></div>
+      <div class="dash-v64-grid">
+        <div class="card">
+          <div class="ch"><div class="ct" id="dash-table-title">Активные заявки</div><div class="nf" id="dash-count-label">—</div></div>
+          <div id="dash-v64-list" class="dash-v64-list"></div>
+        </div>
+        <div class="card">
+          <div class="ch"><div class="ct">⚡ Быстрый контроль</div></div>
+          <div id="dash-v64-side" class="dash-v64-side"></div>
+        </div>
       </div>
     </div>
 
@@ -1555,7 +1797,7 @@ body.mto-dark{--bg:#0f172a;--text:#e2e8f0;--muted:#94a3b8;--border:#334155}body.
               <option>ДОСТАВЛЕНО</option><option>ЖДЕМ ДОСТАВКИ</option><option>Ожидаем доставку</option>
               <option>ЧАСТИЧНО ДОСТАВЛЕНО</option><option>На оплате</option><option>Идет сбор КП</option><option>Приостановлена</option>
             </select>
-            <input class="si2" placeholder="🔍 Поиск..." oninput="aSr=this.value;rAll()" style="width:170px"/>
+            <input class="si2" id="all-search-input" placeholder="🔍 Поиск..." oninput="aSr=this.value;rAll()" style="width:170px"/>
           </div>
         </div>
         <div class="tw"><table><thead><tr>
@@ -2100,7 +2342,7 @@ const US={
   'yunus':{pass:'yu2026',name:'Юнус',role:'Юрист',isAdmin:false,resp:'Юнус'},
 };
 
-let CU=null,DATA=[],CONTACTS=[],CONTRACTS=[],MSGS=[],HISTORY=[],PRIV=[],PROFILES={},CHAT_TYPING={},PM_TYPING={};
+let CU=null,DATA=[],CONTACTS=[],CONTRACTS=[],MSGS=[],HISTORY=[],PRIV=[],PROFILES={},CHAT_TYPING={},PM_TYPING={},ORDER_DISCUSSIONS={};
 let dQ='',dashC='ALL',aC='СТЕЛС',aSh='ALL',aSt='',aSr='',quickFilter='';
 let advF={resp:'',payment:'',upd:'',docs:'',sumFrom:'',sumTo:'',dateFrom:'',dateTo:'',delivFrom:'',delivTo:'',daysFrom:'',daysTo:'',contractor:''};
 let editKey=null,kpRows=[],invoiceRows=[],contactKey=null,currentPrivateLogin='';
@@ -2288,6 +2530,23 @@ db.ref('typing/private').on('value',s=>{
   if(CU)renderTypingIndicators();
 });
 
+
+
+db.ref('orderDiscussions').on('value',s=>{
+  ORDER_DISCUSSIONS={};
+  if(s.exists())s.forEach(orderSnap=>{
+    const arr=[];
+    orderSnap.forEach(c=>arr.push({_k:c.key,...(c.val()||{})}));
+    arr.sort((a,b)=>(a.ts||0)-(b.ts||0));
+    ORDER_DISCUSSIONS[orderSnap.key]=arr;
+  });
+  if(CU){
+    const mo=document.getElementById('mo-order');
+    const activeKey=mo?.dataset?.orderKey;
+    if(activeKey && mo.classList.contains('active')) renderOrderDiscussion(activeKey);
+  }
+});
+
 db.ref('history').limitToLast(300).on('value',s=>{
   HISTORY=[];
   if(s.exists())s.forEach(c=>{ HISTORY.push({_k:c.key,...c.val()}); });
@@ -2298,7 +2557,19 @@ db.ref('history').limitToLast(300).on('value',s=>{
 db.ref('userProfiles').on('value',s=>{
   PROFILES={};
   if(s.exists())s.forEach(c=>{PROFILES[c.key]=c.val()||{};});
-  if(CU){updateSidebarUser();updateChatAuthorNote();rProfile();rPrivateList();if(currentPrivateLogin)rPrivateDialog(currentPrivateLogin);rChat();rDash();rAll();rMine();rContracts();rContacts();renderTopCenter();rNotifications();rFavorites();}
+  if(CU){
+    updateSidebarUser();
+    updateChatAuthorNote();
+    rProfile();
+    rPrivateList();
+    if(currentPrivateLogin)rPrivateDialog(currentPrivateLogin);
+    rChat();
+    renderTopCenter();
+    rNotifications();
+    if(document.getElementById('page-all')?.classList.contains('active')) rAll();
+    if(document.getElementById('page-dash')?.classList.contains('active')) rDash();
+    if(document.getElementById('page-mine')?.classList.contains('active')) rMine();
+  }
 });
 
 // HELPERS
@@ -2386,9 +2657,9 @@ async function logAction(action,obj,details='',orderKey=''){
 
 // NOTIFICATIONS + FAVORITES
 function favKey(type,id){return String(type||'item')+'_'+String(id||'').replace(/[^a-zA-Z0-9А-Яа-я_-]/g,'_');}
-function userFavs(){return (getProfile(CU?.login||'').favorites)||{};}
+function userFavs(){return {};}
 function userReadNotifications(){return (getProfile(CU?.login||'').notificationRead)||{};}
-function isFavorite(type,id){return !!userFavs()[favKey(type,id)];}
+function isFavorite(type,id){return false;}
 function favoriteTitle(type,id){
   if(type==='order'){const r=DATA.find(x=>x._k===id);return r?`Заявка №${r.num||'б/н'} — ${r.name||r.material||'без названия'}`:'Заявка';}
   if(type==='contact'){const c=CONTACTS.find(x=>x._k===id);return c?c.name||'Контакт':'Контакт';}
@@ -2396,23 +2667,14 @@ function favoriteTitle(type,id){
   return 'Избранное';
 }
 function favoriteIcon(type){return type==='order'?'📋':type==='contact'?'📞':type==='contract'?'📄':'⭐';}
-function favoriteButton(type,id,title){
-  if(!CU||!id)return '';
-  const active=isFavorite(type,id);
-  const safeId=String(id).replace(/'/g,"\'");
-  return `<button class="fav-btn ${active?'active':''}" title="${active?'Убрать из избранного':'В избранное'}" onclick="event.stopPropagation();toggleFavorite('${type}','${safeId}')">${active?'★':'☆'}</button>`;
-}
-window.toggleFavorite=async function(type,id,title){
-  if(!CU||!id)return;
-  const key=favKey(type,id);
-  const path='userProfiles/'+CU.login+'/favorites/'+key;
-  if(isFavorite(type,id)){await db.ref(path).remove(); if(PROFILES[CU.login]?.favorites)delete PROFILES[CU.login].favorites[key];}
-  else{const row={type,id,title:title||favoriteTitle(type,id),ts:Date.now()}; await db.ref(path).set(row); PROFILES[CU.login]={...(PROFILES[CU.login]||{}),favorites:{...(PROFILES[CU.login]?.favorites||{}),[key]:row}};}
-  refreshFavoriteDependentViews();
-};
-function refreshFavoriteDependentViews(){
-  renderTopCenter(); rFavorites(); rDash(); rAll(); rMine(); rContracts(); rContacts();
-}
+function favoriteButton(type,id,title){return '';}
+
+function allOrderFavoriteButton(id){return '';}
+window.toggleAllOrderFavorite=function(ev,id,btn){if(ev){ev.preventDefault();ev.stopPropagation();}return false;};
+window.handleFavoriteClick=function(ev,btn){if(ev){ev.preventDefault();ev.stopPropagation();}return false;};
+window.toggleFavorite=function(type,id,title,btn){return false;};
+function updateFavoriteButtons(type,id){}
+function refreshFavoriteDependentViews(type,id){renderTopCenter();}
 function orderDueDate(r){return parseRuDate(r?.delivery);}
 function notificationItems(){
   if(!CU)return [];
@@ -2448,23 +2710,12 @@ function rNotifications(){
   if(!list.length){box.innerHTML='<div class="erow">Новых уведомлений нет</div>';return;}
   box.innerHTML=list.map(n=>`<div class="center-item ${n.read?'':'unread'}"><div class="center-main"><div class="center-title">${n.level==='bad'?'🔴':n.level==='warn'?'🟡':'🔵'} ${esc(n.title)}</div><div class="center-text">${esc(n.text)}</div><div class="center-meta">${n.read?'Прочитано':'Новое'}</div></div><div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end"><button class="bsm be" onclick='notificationOpen(${JSON.stringify(n).replace(/'/g,"&#39;")})'>Открыть</button>${n.read?'':`<button class="bsm" onclick="markNotificationRead('${n.key}')">✓</button>`}</div></div>`).join('');
 }
-function rFavorites(){
-  const box=document.getElementById('favorites-list'); if(!box)return;
-  const favs=Object.values(userFavs()).sort((a,b)=>(b.ts||0)-(a.ts||0));
-  const cnt=document.getElementById('favorites-count'); if(cnt)cnt.textContent=`— ${favs.length}`;
-  if(!favs.length){box.innerHTML='<div class="erow">Избранного пока нет</div>';return;}
-  box.innerHTML=favs.map(f=>`<div class="favorite-card"><div><div class="favorite-type">${favoriteIcon(f.type)} ${esc(f.type==='order'?'Заявка':f.type==='contact'?'Контакт':f.type==='contract'?'Договор':'Элемент')}</div><div class="center-title">${esc(f.title||favoriteTitle(f.type,f.id))}</div><div class="center-meta">Добавлено: ${f.ts?new Date(f.ts).toLocaleString('ru-RU'):'—'}</div></div><div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end"><button class="bsm be" onclick="openFavoriteItem('${f.type}','${f.id}')">Открыть</button><button class="bsm bd" onclick="toggleFavorite('${f.type}','${f.id}')">Убрать</button></div></div>`).join('');
-}
-window.openFavoriteItem=function(type,id){
-  if(type==='order')window.openOrderView(id);
-  else if(type==='contact'){SP('contacts',document.querySelector('.nav-item[onclick*=contacts]')); const c=CONTACTS.find(x=>x._k===id); const inp=document.getElementById('contact-search'); if(inp&&c){inp.value=c.name||c.inn||''; rContacts();}}
-  else if(type==='contract'){SP('contracts',document.querySelector('.nav-item[onclick*=contracts]')); const c=CONTRACTS.find(x=>x._k===id); const inp=document.getElementById('contract-search'); if(inp&&c){inp.value=c.counterparty||c.contractNumber||''; rContracts();}}
-};
+function rFavorites(){}
+window.openFavoriteItem=function(type,id){};
 function renderTopCenter(){
   if(!CU)return;
   const unread=notificationItems().filter(x=>!x.read).length;
   ['top-notify-count','nav-notify-badge'].forEach(id=>{const el=document.getElementById(id); if(el){el.textContent=unread>99?'99+':String(unread); el.classList.toggle('show',unread>0);}});
-  const favs=Object.keys(userFavs()).length; const f=document.getElementById('top-fav-count'); if(f){f.textContent=favs>99?'99+':String(favs); f.classList.toggle('show',favs>0);}
 }
 
 // LOGIN
@@ -2534,6 +2785,11 @@ function avatarMiniHtml(login,name='',cls=''){
   const initial=(nm||'П').trim()[0]||'П';
   const style=av?` style="background-image:url('${esc(av)}')"`:'';
   return `<span class="user-mini-avatar ${cls} ${av?'has-img':''}"${style}>${av?'':esc(initial)}</span>`;
+}
+function chatAvatarHtml(login,name='',cls=''){
+  const safeLogin=String(login||'').replace(/[^a-zA-Z0-9_-]/g,'');
+  if(!safeLogin)return avatarMiniHtml(login,name,cls);
+  return `<span class="chat-avatar-click-wrap" title="Открыть профиль" onclick="event.stopPropagation();openUserProfile('${safeLogin}')">${avatarMiniHtml(login,name,((cls||'')+' chat-avatar-click').trim())}</span>`;
 }
 function userChipByLogin(login,label){
   if(!login)return `<span class="nf">—</span>`;
@@ -2804,6 +3060,9 @@ window.SP=function(n,el){
   document.querySelectorAll('.nav-item').forEach(x=>x.classList.remove('active'));
   document.getElementById('page-'+n).classList.add('active');
   if(el)el.classList.add('active');
+  if(n==='dash')rDash();
+  if(n==='all')rAll();
+  if(n==='mine')rMine();
   if(n==='contacts')rContacts('');
   if(n==='contracts')rContracts();
   if(n==='chat')rChat();
@@ -2813,7 +3072,6 @@ window.SP=function(n,el){
   if(n==='history')rHistory('');
   if(n==='profile')rProfile();
   if(n==='notifications')rNotifications();
-  if(n==='favorites')rFavorites();
   if(n==='delivery-calendar')rDeliveryCalendar();
   if(n==='docflow')rDocFlow();
   if(n==='ai-helper')rAiHelper();
@@ -2872,9 +3130,18 @@ function kpCell(r){
   if(!k.length)return '<span class="nf">—</span>';
   return `<div class="doc-stack"><span class="doc-mini ok">${k.length} КП</span>${s?`<span class="doc-mini ok">✓ ${esc(s.supplier||'выбран')}</span>`:''}</div>`;
 }
+function orderKeyForInline(id){return String(id||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/'/g,'&#39;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function orderBtnCall(fn,id,label,cls='bsm be',title=''){
+  const safe=orderKeyForInline(id);
+  return `<button type="button" class="${cls}" ${title?`title="${esc(title)}"`:''} onclick='event.stopPropagation();event.preventDefault();${fn}("${safe}");return false;'>${label}</button>`;
+}
+function orderOpenBtn(id,label='👁️',cls='bsm be',title='Открыть'){return orderBtnCall('window.openOrderView',id,label,cls,title);}
+function orderAnalysisBtn(id,label='📈',cls='bsm be',title='Анализ'){return orderBtnCall('window.openAnalysisFor',id,label,cls,title);}
+function orderEditBtn(id,label='✏️',cls='bsm be',title='Редактировать'){return orderBtnCall('window.openE',id,label,cls,title);}
 function orderActionsCompactHtml(r){
-  const edit=canEditOrder(r)?`<button class="bsm be" title="Редактировать" onclick="window.openE('${r._k}')">✏️</button>`:'';
-  return `<div class="order-actions compact-actions">${favoriteButton('order',r._k,favoriteTitle('order',r._k))}<button class="bsm be" title="Открыть" onclick="window.openOrderView('${r._k}')">👁️</button><button class="bsm be" title="Анализ" onclick="window.openAnalysisFor('${r._k}')">📈</button>${edit}</div>`;
+  const id=r._k||r.key||r.id||'';
+  const edit=canEditOrder(r)?orderEditBtn(id,'✏️') : '';
+  return `<div class="order-actions compact-actions">${favoriteButton('order',id,favoriteTitle('order',id))}${orderOpenBtn(id,'👁️')}${orderAnalysisBtn(id,'📈')}${edit}</div>`;
 }
 function orderTitleHtml(r){
   const sub=[];
@@ -2884,41 +3151,130 @@ function orderTitleHtml(r){
   return `<div class="order-title-cell"><div class="order-title-main">${esc(r.name||r.material||'Без наименования')}</div><div class="order-title-sub">${sub.join('<br>')||'—'}</div></div>`;
 }
 function orderActionsHtml(r){
-  const edit=canEditOrder(r)?`<button class="bsm be" onclick="window.openE('${r._k}')">✏️ Ред.</button>`:'';
-  return `<div class="order-actions">${favoriteButton('order',r._k,favoriteTitle('order',r._k))}<button class="bsm be" onclick="window.openOrderView('${r._k}')">👁️ Открыть</button><button class="bsm be" onclick="window.openAnalysisFor('${r._k}')">📈 Анализ</button>${edit}</div>`;
+  const id=r._k||r.key||r.id||'';
+  const edit=canEditOrder(r)?orderEditBtn(id,'✏️ Ред.') : '';
+  return `<div class="order-actions">${favoriteButton('order',id,favoriteTitle('order',id))}${orderOpenBtn(id,'👁️ Открыть')}${orderAnalysisBtn(id,'📈 Анализ')}${edit}</div>`;
 }
 window.openOrderView=function(key){
-  const r=DATA.find(x=>x._k===key); if(!r)return;
-  const kp=r.kp||[]; const an=r.analysis;
+  key=String(key||'');
+  const r=DATA.find(x=>String(x._k||'')===key)||DATA.find(x=>String(x.key||x.id||x.num||'')===key);
+  if(!r)return false;
   const content=document.getElementById('order-detail-content');
+  const modal=document.getElementById('mo-order');
+  if(!content||!modal)return false;
+  const realKey=String(r._k||key);
+  modal.dataset.orderKey=realKey;
+  content.innerHTML=orderDetailHtml(r);
+  modal.classList.add('active');
+  setTimeout(()=>{switchOrderTab('info');},30);
+  return false;
+};
+
+function orderDetailHtml(r){
+  const kp=r.kp||[]; const an=r.analysis;
   const logisticsExtra=[r.driverPhone?`Телефон водителя: ${esc(r.driverPhone)}`:'',r.vehicleNumber?`Машина: ${esc(r.vehicleNumber)}`:''].filter(Boolean).join('<br>')||'—';
-  content.innerHTML=`
+  const key=r._k;
+  return `
     <div class="order-detail-head">
       <div><div class="order-detail-num">Заявка №${esc(r.num||'б/н')}</div><div class="order-detail-name">${esc(r.name||r.material||'Без наименования')}</div><div class="badges"><span class="badge">${esc(r.company||'—')}</span><span class="badge">${esc(r.shifer||'—')}</span>${sB(r.status)}</div></div>
       <div style="text-align:right"><div style="font-size:.8rem;opacity:.75">Сумма</div><div style="font-size:1.25rem;font-weight:900">${mn(orderTotal(r))}</div></div>
     </div>
-    <div class="info-grid">
-      <div class="info-card"><div class="info-label">Ответственные</div><div class="info-value">${userChipsForOrder(r)} ${respButtons(r)}</div></div>
-      <div class="info-card"><div class="info-label">Дата заявки</div><div class="info-value">${esc(r.date||'—')}</div></div>
-      <div class="info-card"><div class="info-label">Дней в работе</div><div class="info-value">${daysB(r)}</div></div>
-      <div class="info-card"><div class="info-label">Контрагент</div><div class="info-value">${esc(r.contractor||'—')}</div></div>
-      <div class="info-card"><div class="info-label">Договор из реестра</div><div class="info-value">${contractCell(r)}</div></div>
-      <div class="info-card"><div class="info-label">Оплата</div><div class="info-value">${esc(r.payment||'—')}</div></div>
-      <div class="info-card"><div class="info-label">Поставка / логистика</div><div class="info-value">${esc(r.delivery||'—')}<br>${logisticsExtra}</div></div>
-      <div class="info-card"><div class="info-label">Счета / итоговые поставщики</div><div class="info-value">${invoiceCell(r)}</div></div>
-      <div class="info-card"><div class="info-label">УПД / ТТН / Акт</div><div class="info-value">${uB(r.upd)}</div></div>
-      <div class="info-card"><div class="info-label">Сертификаты</div><div class="info-value">${uB(r.docs)}</div></div>
+    <div class="order-tabs">
+      <button type="button" class="order-tab active" data-order-tab="info" onclick="event.stopPropagation();event.preventDefault();switchOrderTab('info');return false;">📋 Информация</button>
+      <button type="button" class="order-tab" data-order-tab="docs" onclick="event.stopPropagation();event.preventDefault();switchOrderTab('docs');return false;">📎 Документы</button>
+      <button type="button" class="order-tab" data-order-tab="pay" onclick="event.stopPropagation();event.preventDefault();switchOrderTab('pay');return false;">💰 Оплата</button>
+      <button type="button" class="order-tab" data-order-tab="delivery" onclick="event.stopPropagation();event.preventDefault();switchOrderTab('delivery');return false;">🚚 Поставка</button>
+      <button type="button" class="order-tab" data-order-tab="discussion" onclick="return openOrderDiscussionTab('${orderKeyForInline(key)}', event);">💬 Обсуждение</button>
+      <button type="button" class="order-tab" data-order-tab="history" onclick="event.stopPropagation();event.preventDefault();switchOrderTab('history');return false;">📜 История</button>
     </div>
-    <div class="order-section-title">📦 Материал</div><div class="info-card"><div class="info-value">${esc(r.material||'—')}</div></div>
-    <div class="order-section-title">💳 Итоговые поставщики / счета</div>
-    ${invoiceList(r).length?`<table class="kt"><thead><tr><th>Поставщик</th><th>Сумма</th><th>Счёт / КП</th><th>Примечание</th></tr></thead><tbody>${invoiceList(r).map(x=>`<tr><td>${esc(x.supplier||'—')}</td><td>${x.sum?Number(x.sum).toLocaleString('ru-RU')+'₽':'—'}</td><td>${x.url?`<a class="fl" href="${x.url}" target="_blank">📄 Открыть</a>`:'<span class="nf">—</span>'}</td><td>${esc(x.note||'—')}</td></tr>`).join('')}</tbody></table>`:'<div class="info-card"><div class="info-value">Счета не добавлены</div></div>'}
-    <div class="order-section-title">📁 КП для сравнения</div>
-    ${kp.length?`<table class="kt"><thead><tr><th>Поставщик</th><th>Сумма</th><th>КП</th><th>Статус</th></tr></thead><tbody>${kp.map(k=>`<tr class="${k.selected?'win':''}"><td>${esc(k.supplier||'—')}</td><td>${k.sum?Number(k.sum).toLocaleString('ru-RU')+'₽':'—'}</td><td>${k.url?`<a class="fl" href="${k.url}" target="_blank">📄 КП</a>`:'<span class="nf">—</span>'}</td><td>${k.selected?'<span class="wb">✓ Выбран</span>':''}</td></tr>`).join('')}</tbody></table>`:'<div class="info-card"><div class="info-value">КП не добавлены</div></div>'}
-    ${an?`<div class="order-section-title">📈 Конъюнктурный анализ</div>${analysisHtml(r,an,false)}`:''}
-    <div class="order-section-title">📝 Примечание</div><div class="info-card"><div class="info-value">${esc(r.note||'—')}</div></div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px"><button class="btn btn-p" onclick="window.openAnalysisFor('${r._k}')">📈 Анализ</button>${canEditOrder(r)?`<button class="btn btn-s" onclick="CM('mo-order');window.openE('${r._k}')">✏️ Редактировать</button>`:''}</div>`;
-  OM('mo-order');
-};
+    <div class="order-pane active" id="order-pane-info">
+      <div class="info-grid">
+        <div class="info-card"><div class="info-label">Ответственные</div><div class="info-value">${userChipsForOrder(r)} ${respButtons(r)}</div></div>
+        <div class="info-card"><div class="info-label">Дата заявки</div><div class="info-value">${esc(r.date||'—')}</div></div>
+        <div class="info-card"><div class="info-label">Дней в работе</div><div class="info-value">${daysB(r)}</div></div>
+        <div class="info-card"><div class="info-label">Контрагент</div><div class="info-value">${esc(r.contractor||'—')}</div></div>
+        <div class="info-card"><div class="info-label">Договор из реестра</div><div class="info-value">${contractCell(r)}</div></div>
+        <div class="info-card"><div class="info-label">Статус заявки</div><div class="info-value">${sB(r.status)||'—'}</div></div>
+      </div>
+      <div class="order-section-title">📦 Материал</div><div class="info-card"><div class="info-value">${esc(r.material||'—')}</div></div>
+      ${an?`<div class="order-section-title">📈 Конъюнктурный анализ</div>${analysisHtml(r,an,false)}`:''}
+      <div class="order-section-title">📝 Примечание</div><div class="info-card"><div class="info-value">${esc(r.note||'—')}</div></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px"><button class="btn btn-p" onclick="window.openAnalysisFor('${key}')">📈 Анализ</button>${canEditOrder(r)?`<button class="btn btn-s" onclick="CM('mo-order');window.openE('${key}')">✏️ Редактировать</button>`:''}</div>
+    </div>
+    <div class="order-pane" id="order-pane-docs">
+      <div class="order-section-title">📁 КП для сравнения</div>
+      ${kp.length?`<table class="kt"><thead><tr><th>Поставщик</th><th>Сумма</th><th>КП</th><th>Статус</th></tr></thead><tbody>${kp.map(k=>`<tr class="${k.selected?'win':''}"><td>${esc(k.supplier||'—')}</td><td>${k.sum?Number(k.sum).toLocaleString('ru-RU')+'₽':'—'}</td><td>${k.url?`<a class="fl" href="${esc(k.url)}" target="_blank">📄 КП</a>`:'<span class="nf">—</span>'}</td><td>${k.selected?'<span class="wb">✓ Выбран</span>':''}</td></tr>`).join('')}</tbody></table>`:'<div class="order-empty">КП пока не добавлены</div>'}
+      <div class="order-section-title">📄 Договор / документы</div>
+      <div class="info-grid"><div class="info-card"><div class="info-label">Договор из реестра</div><div class="info-value">${contractCell(r)}</div></div><div class="info-card"><div class="info-label">УПД / ТТН / Акт</div><div class="info-value">${uB(r.upd)}</div></div><div class="info-card"><div class="info-label">Сертификаты</div><div class="info-value">${uB(r.docs)}</div></div></div>
+    </div>
+    <div class="order-pane" id="order-pane-pay">
+      <div class="info-grid"><div class="info-card"><div class="info-label">Статус оплаты</div><div class="info-value">${esc(r.payment||'—')}</div></div><div class="info-card"><div class="info-label">Сумма</div><div class="info-value">${mn(orderTotal(r))}</div></div><div class="info-card"><div class="info-label">Основной счёт</div><div class="info-value">${fI(r.invoice,'Счёт')}</div></div></div>
+      <div class="order-section-title">💳 Итоговые поставщики / счета</div>
+      ${invoiceList(r).length?`<table class="kt"><thead><tr><th>Поставщик</th><th>Сумма</th><th>Счёт / КП</th><th>Примечание</th></tr></thead><tbody>${invoiceList(r).map(x=>`<tr><td>${esc(x.supplier||'—')}</td><td>${x.sum?Number(x.sum).toLocaleString('ru-RU')+'₽':'—'}</td><td>${x.url?`<a class="fl" href="${esc(x.url)}" target="_blank">📄 Открыть</a>`:'<span class="nf">—</span>'}</td><td>${esc(x.note||'—')}</td></tr>`).join('')}</tbody></table>`:'<div class="order-empty">Счета не добавлены</div>'}
+    </div>
+    <div class="order-pane" id="order-pane-delivery">
+      <div class="info-grid"><div class="info-card"><div class="info-label">Дата поставки</div><div class="info-value">${esc(r.delivery||'—')}</div></div><div class="info-card"><div class="info-label">Телефон водителя</div><div class="info-value">${esc(r.driverPhone||'—')}</div></div><div class="info-card"><div class="info-label">Машина / госномер</div><div class="info-value">${esc(r.vehicleNumber||'—')}</div></div></div>
+      <div class="order-section-title">🚚 Логистика</div><div class="info-card"><div class="info-value">${esc(r.delivery||'—')}<br>${logisticsExtra}</div></div>
+    </div>
+    <div class="order-pane" id="order-pane-discussion"><div id="order-discussion-box"></div></div>
+    <div class="order-pane" id="order-pane-history">${orderHistoryHtml(key)}</div>`;
+}
+
+function switchOrderTab(tab){
+  document.querySelectorAll('#order-detail-content .order-tab').forEach(b=>b.classList.toggle('active',b.dataset.orderTab===tab));
+  document.querySelectorAll('#order-detail-content .order-pane').forEach(p=>p.classList.remove('active'));
+  const pane=document.getElementById('order-pane-'+tab); if(pane)pane.classList.add('active');
+}
+window.switchOrderTab=switchOrderTab;
+
+function orderHistoryHtml(key){
+  const items=(HISTORY||[]).filter(h=>String(h.orderKey||'')===String(key)).sort((a,b)=>(b.ts||0)-(a.ts||0)).slice(0,80);
+  if(!items.length)return '<div class="order-empty">История по этой заявке пока пустая</div>';
+  return `<table class="kt"><thead><tr><th>Время</th><th>Пользователь</th><th>Действие</th><th>Детали</th></tr></thead><tbody>${items.map(h=>`<tr><td>${h.ts?new Date(h.ts).toLocaleString('ru-RU'):''}</td><td>${esc(h.user||'—')}</td><td>${esc(h.action||'—')}</td><td>${esc(h.details||h.obj||'—')}</td></tr>`).join('')}</tbody></table>`;
+}
+
+function renderOrderDiscussion(key){
+  const box=document.getElementById('order-discussion-box'); if(!box)return;
+  const r=DATA.find(x=>x._k===key)||{};
+  const msgs=ORDER_DISCUSSIONS[key]||[];
+  const listHtml=msgs.length?msgs.map(m=>{
+    const isSystem=m.type==='system';
+    const isMe=!isSystem&&CU&&m.login===CU.login;
+    const name=isSystem?'🤖 Система':(m.user||displayNameFor(m.login)||'Пользователь');
+    const time=m.ts?new Date(m.ts).toLocaleString('ru-RU',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}):'';
+    return `<div class="order-msg ${isSystem?'system':(isMe?'me':'other')}">${isSystem?'':chatAvatarHtml(m.login,name)}<div><div class="order-msg-bubble">${esc(m.text||'')}</div><div class="order-msg-meta">${esc(name)} • ${time}</div></div></div>`;
+  }).join(''):'<div class="order-empty">Обсуждение по этой заявке пока пустое. Напишите первое сообщение — оно останется в истории заявки.</div>';
+  box.innerHTML=`<div class="order-discussion-wrap"><div class="order-discussion-head"><div><div class="order-discussion-title">💬 Обсуждение заявки №${esc(r.num||'б/н')}</div><div class="order-discussion-sub">Отдельный чат именно по этой заявке</div></div><span class="badge bgr">${msgs.length} сообщ.</span></div><div class="order-discussion-messages" id="order-discussion-messages">${listHtml}</div><div class="order-discussion-input"><textarea id="order-discussion-input" placeholder="Напишите сообщение по заявке №${esc(r.num||'')}..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendOrderDiscussion('${key}');}"></textarea><button class="btn btn-p" onclick="sendOrderDiscussion('${key}')">➤ Отправить</button></div></div>`;
+  const wrap=document.getElementById('order-discussion-messages'); if(wrap)wrap.scrollTop=wrap.scrollHeight;
+}
+
+async function sendOrderDiscussion(key){
+  const input=document.getElementById('order-discussion-input');
+  const text=(input?.value||'').trim();
+  if(!text||!CU)return;
+  await db.ref(`orderDiscussions/${key}`).push({type:'user',login:CU.login,user:displayNameFor(CU.login),text,ts:Date.now()});
+  if(input)input.value='';
+}
+window.sendOrderDiscussion=sendOrderDiscussion;
+
+async function pushOrderDiscussion(key,text,type='system'){
+  if(!key||!text)return;
+  try{await db.ref(`orderDiscussions/${key}`).push({type,login:type==='system'?'system':(CU?.login||''),user:type==='system'?'Система':(CU?displayNameFor(CU.login):'Пользователь'),text,ts:Date.now()});}catch(e){console.warn('order discussion log error',e);}
+}
+
+function orderSystemMessagesFromChanges(oldR,row){
+  const out=[];
+  const fields={status:'Статус заявки',payment:'Статус оплаты',delivery:'Срок поставки',upd:'УПД / ТТН / Акт',docs:'Документы качества',selectedContractName:'Договор',contractor:'Поставщик / контрагент'};
+  Object.entries(fields).forEach(([k,label])=>{
+    const a=oldR?oldR[k]||'':''; const b=row?row[k]||'':'';
+    if(String(a)!==String(b))out.push(`${label} изменен:\n${a||'—'} → ${b||'—'}`);
+  });
+  const oldK=(oldR?.kp||[]).length, newK=(row?.kp||[]).length;
+  if(oldK!==newK)out.push(`Коммерческие предложения изменены:\n${oldK} → ${newK}`);
+  const oldI=(oldR?.invoices||[]).length, newI=(row?.invoices||[]).length;
+  if(oldI!==newI)out.push(`Счета / поставщики изменены:\n${oldI} → ${newI}`);
+  return out.slice(0,8);
+}
 
 
 function supplierTextForOrder(r){
@@ -2956,36 +3312,88 @@ function contractCardHtml(c){
   return `<div class="mto-contract-card"><div class="mto-card-top"><div><div class="mto-card-no">${esc(c.counterparty||'—')}</div><div class="mto-card-date">ИНН: ${esc(c.inn||'—')}${c.kpp?' / КПП: '+esc(c.kpp):''}</div><div class="mto-card-title">Договор № ${esc(c.contractNumber||'—')}</div></div><div class="mto-card-tags"><span class="badge ${life.cls}">${life.label}</span></div></div><div class="mto-card-body"><div class="mto-card-field"><div class="mto-card-label">Дата договора</div><div class="mto-card-value">${esc(c.contractDate||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">Срок до</div><div class="mto-card-value">${esc(c.dateTo||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">Тип</div><div class="mto-card-value">${esc(c.type||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">Сумма</div><div class="mto-card-value">${esc(c.amount||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">Статус</div><div class="mto-card-value"><span class="badge ${life.cls}">${life.label}</span>${c.confidence?`<div class="nf">Уверенность: ${esc(c.confidence)}%</div>`:''}</div></div><div class="mto-card-field"><div class="mto-card-label">Файлы</div><div class="mto-card-value"><div class="contract-file-links">${files.length?files.join(''):'<span class="nf">Файл не загружен</span>'}</div>${c.fileUploadError?`<div class="nf">${esc(c.fileUploadError)}</div>`:''}</div></div></div><div class="mto-card-actions">${favoriteButton('contract',c._k,favoriteTitle('contract',c._k))}${canManageContracts()?`<button class="bsm be" onclick="editContract('${c._k}')">✏️</button><button class="bsm bd" onclick="delContract('${c._k}')">🗑️</button>`:''}</div></div>`;
 }
 
-// DASHBOARD
-window.sDashC=function(v,el){dashC=v;document.querySelectorAll('.dashco').forEach(t=>t.classList.remove('active'));el.classList.add('active');rDash();};
+// DASHBOARD V64 — независимый дашборд без старых таблиц
+window.dashStatus = '';
+window.sDashC=function(v,el){
+  dashC=v;
+  document.querySelectorAll('.dashco').forEach(t=>t.classList.remove('active'));
+  if(el)el.classList.add('active');
+  rDash();
+};
 function getDashData(){
-  return dashC==='ALL' ? sortOrdersNewest(DATA) : sortOrdersNewest(DATA.filter(r=>r.company===dashC));
+  let list = Array.isArray(DATA) ? [...DATA] : [];
+  if(dashC && dashC !== 'ALL') list = list.filter(r=>r.company===dashC);
+  if(window.dashStatus){
+    if(window.dashStatus === 'Требует внимания') list = list.filter(r=>isAttentionOrder(r));
+    else list = list.filter(r=>String(r.status||r.payment||'')===window.dashStatus || String(r.status||'').includes(window.dashStatus));
+  }
+  if(window.dQ){
+    const q=String(window.dQ).toLowerCase();
+    list=list.filter(r=>JSON.stringify(r).toLowerCase().includes(q));
+  }
+  return sortOrdersNewest(list);
+}
+function dashSafeText(v,empty='—'){return esc(v==null||v===''?empty:v);}
+function dashCardHtml(r){
+  const id=r._k||r.key||r.id||'';
+  const title=r.name||r.title||r.material||'Без наименования';
+  const sub=[r.material,r.requestText,r.note].filter(Boolean).map(x=>esc(String(x)).slice(0,120)).join('<br>')||'—';
+  const canEdit = (typeof canEditOrder==='function' && canEditOrder(r));
+  return `<div class="dash-v64-card ${isAttentionOrder(r)?'attention':''}">
+    <div class="dash-v64-card-head">
+      <div>
+        <div class="dash-v64-num">№${dashSafeText(r.num,'б/н')} ${orderMarkersHtml(r)}</div>
+        <div class="dash-v64-date">${dashSafeText(r.createdAt||r.date)}</div>
+        <div class="dash-v64-title">${dashSafeText(title)}</div>
+        <div class="dash-v64-sub">${sub}</div>
+      </div>
+      <div class="dash-v64-tags"><span class="badge bgr">${dashSafeText(r.company)}</span>${shB(r.shifer)}${sB(r.status)}</div>
+    </div>
+    <div class="dash-v64-body">
+      <div class="dash-v64-field"><div class="dash-v64-label">Ответственные</div><div class="dash-v64-value">${userChipsForOrder(r)||'—'} ${respButtons(r)||''}</div></div>
+      <div class="dash-v64-field"><div class="dash-v64-label">Поставщик</div><div class="dash-v64-value">${dashSafeText(supplierTextForOrder(r))}</div></div>
+      <div class="dash-v64-field"><div class="dash-v64-label">Сумма</div><div class="dash-v64-value">${mn(orderTotal(r))}</div></div>
+      <div class="dash-v64-field"><div class="dash-v64-label">Оплата</div><div class="dash-v64-value">${dashSafeText(r.payment)}</div></div>
+      <div class="dash-v64-field"><div class="dash-v64-label">Поставка</div><div class="dash-v64-value">${dashSafeText(r.delivery)}${r.vehicleNumber?'<br><span class="nf">🚚 '+esc(r.vehicleNumber)+'</span>':''}</div></div>
+      <div class="dash-v64-field"><div class="dash-v64-label">Дни</div><div class="dash-v64-value">${daysB(r)}</div></div>
+    </div>
+    <div class="dash-v64-actions">
+      <button class="bsm be" onclick="window.openOrderView('${id}')">👁 Открыть</button>
+      ${typeof window.openAnalysisFor==='function'?`<button class="bsm be" onclick="window.openAnalysisFor('${id}')">📈 Анализ</button>`:''}
+      ${canEdit?`<button class="bsm be" onclick="window.openE('${id}')">✏️ Редактировать</button>`:''}
+    </div>
+  </div>`;
 }
 function rDash(){
-  const d=getDashData();
+  const all = Array.isArray(DATA) ? (dashC==='ALL' ? [...DATA] : DATA.filter(r=>r.company===dashC)) : [];
+  const visible = getDashData();
+  const stats=document.getElementById('stats');
+  const list=document.getElementById('dash-v64-list');
+  const side=document.getElementById('dash-v64-side');
   const title=document.getElementById('dash-table-title');
+  const count=document.getElementById('dash-count-label');
   if(title)title.textContent='Активные заявки — '+(dashC==='ALL'?'Все компании':dashC);
-  const done=d.filter(r=>r.status==='ДОСТАВЛЕНО').length;
-  const wait=d.filter(r=>['ЖДЕМ ДОСТАВКИ','Ожидаем доставку'].includes(r.status)).length;
-  const act=d.filter(r=>r.status!=='ДОСТАВЛЕНО').length;
-  document.getElementById('stats').innerHTML=`
-    <div class="sc"><div class="si b">📋</div><div><div class="sv">${d.length}</div><div class="sl">Всего заявок</div></div></div>
-    <div class="sc"><div class="si g">✅</div><div><div class="sv">${done}</div><div class="sl">Доставлено</div></div></div>
-    <div class="sc"><div class="si y">🚚</div><div><div class="sv">${wait}</div><div class="sl">Ждём доставки</div></div></div>
-    <div class="sc"><div class="si r">🔄</div><div><div class="sv">${act}</div><div class="sl">В работе</div></div></div>`;
-  rDashT();
+  if(count)count.textContent=`Показано: ${visible.length} из ${all.length}`;
+  if(stats){
+    const done=all.filter(r=>r.status==='ДОСТАВЛЕНО').length;
+    const wait=all.filter(r=>['ЖДЕМ ДОСТАВКИ','Ожидаем доставку'].includes(r.status)).length;
+    const attention=all.filter(r=>isAttentionOrder(r)).length;
+    const inWork=all.filter(r=>r.status!=='ДОСТАВЛЕНО').length;
+    stats.innerHTML=`
+      <div class="sc"><div class="si b">📋</div><div><div class="sv">${all.length}</div><div class="sl">Всего заявок</div></div></div>
+      <div class="sc"><div class="si r">📌</div><div><div class="sv">${attention}</div><div class="sl">Требуют внимания</div></div></div>
+      <div class="sc"><div class="si y">🚚</div><div><div class="sv">${wait}</div><div class="sl">Ждём доставки</div></div></div>
+      <div class="sc"><div class="si g">✅</div><div><div class="sv">${done}</div><div class="sl">Доставлено</div></div></div>`;
+  }
+  if(list){
+    list.innerHTML=visible.length?visible.map(dashCardHtml).join(''):'<div class="dash-v64-empty">Нет заявок по выбранным условиям</div>';
+  }
+  if(side){
+    const control=sortOrdersNewest(all.filter(r=>isAttentionOrder(r)||r.status!=='ДОСТАВЛЕНО')).slice(0,8);
+    side.innerHTML=control.length?control.map(r=>`<div class="dash-v64-side-item" onclick="window.openOrderView('${r._k||''}')"><b>№${dashSafeText(r.num,'б/н')}</b> ${sB(r.status)}<div class="nf">${dashSafeText(r.name||r.material)}</div></div>`).join(''):'<div class="dash-v64-empty">Нет активных задач</div>';
+  }
 }
-window.dQ='';
-function rDashT(){
-  const d=getDashData();
-  const f=sortOrdersNewest(dQ?d.filter(r=>JSON.stringify(r).toLowerCase().includes(dQ.toLowerCase())):d);
-  const tb=document.getElementById('dtb');
-  setPageViewClass('dash'); updateViewButtons('dash'); updateSortButtons();
-  if(!f.length){tb.innerHTML='<tr><td colspan="11" class="erow">Нет данных</td></tr>';return;}
-  if(getViewMode('dash')==='list'){tb.innerHTML=f.map(r=>orderListRowHtml(r,'dash')).join('');return;}
-  tb.innerHTML=`<tr class="order-card-row"><td colspan="11"><div class="mto-card-grid">`+f.map(r=>orderCardHtml(r,'dash')).join('')+`</div></td></tr>`;
-}
-
+function rDashT(){ rDash(); }
 
 function parseRuDate(v){
   if(!v)return null;
@@ -3061,13 +3469,14 @@ window.sC=function(v,el){aC=v;document.querySelectorAll('.co').forEach(t=>t.clas
 window.sSh=function(v,el){aSh=v;document.querySelectorAll('[onclick^="sSh"]').forEach(t=>t.classList.remove('active'));el.classList.add('active');rAll();};
 function allOrderActionsHtml(r){
   const id = r._k || r.key || r.id || '';
+  const safe=orderKeyForInline(id);
   const btns = [];
-  btns.push(favoriteButton('order',id,favoriteTitle('order',id)));
-  btns.push(`<button class="bsm be" onclick="window.openOrderView('${id}')">👁 Открыть</button>`);
-  if(canEditOrder(r)) btns.push(`<button class="bsm be" onclick="window.openE('${id}')">✏️ Редактировать</button>`);
-  if(typeof openChat==='function') btns.push(`<button class="bsm be" onclick="openChat('${id}')">💬 Чат</button>`);
-  if(typeof window.openAnalysisFor==='function') btns.push(`<button class="bsm be" onclick="window.openAnalysisFor('${id}')">📈 Анализ</button>`);
-  if(typeof delOrder==='function') btns.push(`<button class="bsm bd" onclick="delOrder('${id}')">🗑 Удалить</button>`);
+  btns.push(allOrderFavoriteButton(id));
+  btns.push(orderOpenBtn(id,'👁 Открыть'));
+  if(canEditOrder(r)) btns.push(orderEditBtn(id,'✏️ Редактировать'));
+  if(typeof openChat==='function') btns.push(`<button type="button" class="bsm be" onclick='event.stopPropagation();event.preventDefault();openChat("${safe}");return false;'>💬 Чат</button>`);
+  if(typeof window.openAnalysisFor==='function') btns.push(orderAnalysisBtn(id,'📈 Анализ'));
+  if(typeof delOrder==='function') btns.push(`<button type="button" class="bsm bd" onclick='event.stopPropagation();event.preventDefault();delOrder("${safe}");return false;'>🗑 Удалить</button>`);
   return btns.join('');
 }
 
@@ -3163,7 +3572,7 @@ function rEdit(q=''){
     <td data-label="Заявка">${orderTitleHtml(r)}</td>
     <td data-label="Ответственные">${userChipsForOrder(r)} ${respButtons(r)}</td><td data-label="Статус">${sB(r.status)}</td><td data-label="Сумма">${mn(orderTotal(r))}</td>
     <td data-label="КП">${kpC(r)}${anB(r)}</td>
-    <td data-label="Действия"><div class="order-actions"><button class="bsm be" onclick="window.openOrderView('${r._k}')">👁️</button><button class="bsm be" onclick="window.openAnalysisFor('${r._k}')">📈</button><button class="bsm be" onclick="window.openE('${r._k}')">✏️</button>${CU.isAdmin?`<button class="bsm bd" onclick="window.delR('${r._k}')">🗑️</button>`:''}</div></td>
+    <td data-label="Действия"><div class="order-actions">${orderOpenBtn(r._k,'👁️')}${orderAnalysisBtn(r._k,'📈')}${orderEditBtn(r._k,'✏️')}${CU.isAdmin?`<button type="button" class="bsm bd" onclick='event.stopPropagation();event.preventDefault();window.delR("${orderKeyForInline(r._k)}");return false;'>🗑️</button>`:''}</div></td>
   </tr>`).join('');
 }
 window.rEdit=rEdit;
@@ -3421,9 +3830,11 @@ window.saveZ=async function(){
     await db.ref(`orders/${editKey}`).update(row);
     const changes=diffFields(oldR,row);
     await logAction('Изменение заявки',briefOrder({...oldR,...row}),changes.slice(0,12).join('; ')||'Сохранение без заметных изменений',editKey);
+    for(const msg of orderSystemMessagesFromChanges(oldR,row)) await pushOrderDiscussion(editKey,msg,'system');
   }else{
     const refNew=await db.ref('orders').push(row);
     await logAction('Создание заявки',briefOrder(row),`Ответственные: ${row.resp||'—'}${row.resp2?' / '+row.resp2:''}; статус: ${row.status||'—'}`,refNew.key);
+    await pushOrderDiscussion(refNew.key,`Создана заявка №${row.num||'б/н'}\nСтатус: ${row.status||'—'}\nОтветственные: ${row.resp||'—'}${row.resp2?' / '+row.resp2:''}`,'system');
   }
   CM('mo-z');
 };
@@ -3435,24 +3846,47 @@ window.delR=async function(k){
 };
 
 // PERSON
-window.openP=function(name){
-  if(!name||name==='Не выбран')return;
-  const login=loginByResp(name);
-  const realName=login?displayNameFor(login):name;
-  const role=login?roleFor(login):'Специалист МТО';
-  const d=DATA.filter(r=>isRespResponsible(r,name)||isRespResponsible(r,realName));
+function personOrdersByName(name,realName){
+  return DATA.filter(r=>isRespResponsible(r,name)||isRespResponsible(r,realName));
+}
+window.openUserProfile=function(login){
+  if(!login)return;
+  const u=userByLogin(login);
+  const p=getProfile(login);
+  const realName=displayNameFor(login);
+  const role=roleFor(login);
+  const phone=phoneFor(login);
+  const email=p.email||p.mail||'';
+  const department=p.department||p.company||p.object||'';
+  const d=personOrdersByName(US[login]?.resp||US[login]?.name||realName,realName);
   const done=d.filter(r=>r.status==='ДОСТАВЛЕНО').length;
   const total=d.reduce((a,r)=>a+orderTotal(r),0);
+  const av=avatarFor(login);
+  const pm=login&&CU&&login!==CU.login?`<button class="btn btn-p" onclick="CM('mo-p');openPrivateWith('${login}')">✉️ Написать в личку</button>`:'';
   document.getElementById('ph2').innerHTML=`
-    <div class="pav ${login&&avatarFor(login)?'has-img':''}" ${login&&avatarFor(login)?`style="background-image:url('${esc(avatarFor(login))}')"`:''}>${login&&avatarFor(login)?'':esc((realName||'П')[0])}</div>
-    <div><div style="font-size:1.2rem;font-weight:700">${esc(realName)}</div><div style="font-size:.8rem;opacity:.7">${esc(role)}</div><div style="margin-top:6px">${pmButton(realName)}</div></div>
+    <div class="pav chat-avatar-click ${av?'has-img':''}" ${av?`style="background-image:url('${esc(av)}')"`:''}>${av?'':esc((realName||'П')[0])}</div>
+    <div style="min-width:0;flex:1">
+      <div style="font-size:1.2rem;font-weight:800">${esc(realName)}</div>
+      <div style="font-size:.82rem;opacity:.78">${esc(role)}</div>
+      <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">${pm}</div>
+    </div>
     <div class="pst">
       <div><div class="psv">${d.length}</div><div class="psl">Заявок</div></div>
       <div><div class="psv">${done}</div><div class="psl">Доставлено</div></div>
       <div><div class="psv">${d.length-done}</div><div class="psl">В работе</div></div>
       <div><div class="psv">${(total/1000000).toFixed(1)}М</div><div class="psl">₽</div></div>
     </div>`;
-  document.getElementById('pc2').innerHTML=d.length?d.map(r=>{
+  const infoHtml=`
+    <div class="profile-view-grid">
+      <div class="profile-view-card"><div class="profile-view-label">ФИО</div><div class="profile-view-value">${esc(realName)}</div></div>
+      <div class="profile-view-card"><div class="profile-view-label">Логин</div><div class="profile-view-value">${esc(login)}</div></div>
+      <div class="profile-view-card"><div class="profile-view-label">Роль</div><div class="profile-view-value">${esc(role)}</div></div>
+      <div class="profile-view-card"><div class="profile-view-label">Статус</div><div class="profile-view-value">${login===CU?.login?'Это вы':'Сотрудник'}</div></div>
+      ${department?`<div class="profile-view-card"><div class="profile-view-label">Отдел / объект</div><div class="profile-view-value">${esc(department)}</div></div>`:''}
+      ${phone?`<div class="profile-view-card"><div class="profile-view-label">Телефон</div><div class="profile-view-value">${esc(phone)}</div></div>`:''}
+      ${email?`<div class="profile-view-card"><div class="profile-view-label">Email</div><div class="profile-view-value">${esc(email)}</div></div>`:''}
+    </div>`;
+  const ordersHtml=d.length?d.map(r=>{
     const kp=r.kp||[];
     return`<div class="zc">
       <div class="zch"><span class="zn">№${r.num||'б/н'}</span>${shB(r.shifer)}${sB(r.status)}
@@ -3468,7 +3902,29 @@ window.openP=function(name){
             <td>${k.selected?'<span class="wb">✓ Выбран</span>':''}</td>
           </tr>`).join('')}</tbody></table>`:'<div style="color:var(--muted);font-size:.8rem">КП не добавлены</div>'}
       </div></div>`;
-  }).join(''):'<div style="text-align:center;color:var(--muted);padding:40px">Нет заявок</div>';
+  }).join(''):'<div style="text-align:center;color:var(--muted);padding:30px">Нет заявок</div>';
+  document.getElementById('pc2').innerHTML=infoHtml+ordersHtml;
+  OM('mo-p');
+};
+window.openP=function(name){
+  if(!name||name==='Не выбран')return;
+  const login=loginByResp(name);
+  if(login){openUserProfile(login);return;}
+  const realName=name;
+  const role='Специалист МТО';
+  const d=personOrdersByName(name,realName);
+  const done=d.filter(r=>r.status==='ДОСТАВЛЕНО').length;
+  const total=d.reduce((a,r)=>a+orderTotal(r),0);
+  document.getElementById('ph2').innerHTML=`
+    <div class="pav">${esc((realName||'П')[0])}</div>
+    <div><div style="font-size:1.2rem;font-weight:700">${esc(realName)}</div><div style="font-size:.8rem;opacity:.7">${esc(role)}</div></div>
+    <div class="pst">
+      <div><div class="psv">${d.length}</div><div class="psl">Заявок</div></div>
+      <div><div class="psv">${done}</div><div class="psl">Доставлено</div></div>
+      <div><div class="psv">${d.length-done}</div><div class="psl">В работе</div></div>
+      <div><div class="psv">${(total/1000000).toFixed(1)}М</div><div class="psl">₽</div></div>
+    </div>`;
+  document.getElementById('pc2').innerHTML=d.length?d.map(r=>`<div class="zc"><div class="zch"><span class="zn">№${r.num||'б/н'}</span>${shB(r.shifer)}${sB(r.status)}<span style="color:var(--muted);font-size:.78rem">${r.name||''}</span><span style="margin-left:auto">${mn(orderTotal(r))}</span></div></div>`).join(''):'<div style="text-align:center;color:var(--muted);padding:40px">Нет заявок</div>';
   OM('mo-p');
 };
 
@@ -3807,15 +4263,32 @@ function msgPath(scope,m){
   return `chat/${m._k}`;
 }
 function msgOwnerLogin(m){
-  return (m&&(m.login||m.fromLogin||loginByResp(m.user||m.fromName)))||'';
+  return (m&&(m.login||m.fromLogin||m.authorLogin||m.createdBy||loginByResp(m.user||m.fromName)))||'';
+}
+function isMyMsg(m){
+  if(!CU||!m)return false;
+  const login=CU.login||'';
+  const myName=displayNameFor(login);
+  return (m.login&&m.login===login) ||
+    (m.fromLogin&&m.fromLogin===login) ||
+    (m.authorLogin&&m.authorLogin===login) ||
+    (m.createdBy&&m.createdBy===login) ||
+    (!!myName && (m.user===myName || m.fromName===myName));
 }
 function canEditMsg(m){
   if(!CU||!m||m.deleted)return false;
-  return msgOwnerLogin(m)===CU.login || !!CU.isAdmin;
+  return isMyMsg(m) || !!CU.isAdmin;
 }
-function canDeleteMsg(m){
+function canDeleteMsg(scope,m,isOwnRender){
+  if(typeof scope==='object'){isOwnRender=!!m;m=scope;scope='';}
   if(!CU||!m||m.deleted)return false;
-  return msgOwnerLogin(m)===CU.login || !!CU.isAdmin;
+  // Автор сообщения всегда может удалить свое сообщение.
+  // isOwnRender передается из реальной функции отрисовки, поэтому работает даже для старых сообщений, где нет login/fromLogin.
+  if(isOwnRender===true)return true;
+  if(isMyMsg(m))return true;
+  // Администратор может удалять чужие сообщения.
+  if(!!CU.isAdmin)return true;
+  return false;
 }
 function reactionsHtml(scope,m){
   const reactions=m&&m.reactions?m.reactions:{};
@@ -3835,19 +4308,24 @@ function msgTextHtml(m){
   const txt=m&&m.text?`<div>${esc(m.text)}</div>`:'';
   return `${msgBadgesHtml(m)}${forwardPreviewHtml(m)}${replyPreviewHtml(m)}${txt}${fileHtml(m)}`;
 }
-function msgActionsHtml(scope,m){
+function msgActionsHtml(scope,m,isOwnRender){
   if(!m||!m._k)return '';
   const key=m._k;
   if(m.deleted)return reactionsHtml(scope,m);
+  const canDelete=canDeleteMsg(scope,m,isOwnRender);
+  const canEdit=canEditMsg(m)||isOwnRender===true;
   const menu=[];
   menu.push(`<button onclick="forwardMsg('${scope}','${key}')">↗ Репост</button>`);
   menu.push(`<button onclick="togglePinMsg('${scope}','${key}')">${m.pinned?'📌 Открепить':'📌 Закрепить'}</button>`);
   menu.push(`<button onclick="toggleFavoriteMsg('${scope}','${key}')">${isFavoriteMsg(m)?'⭐ Убрать из избранного':'⭐ В избранное'}</button>`);
-  if(canEditMsg(m))menu.push(`<button onclick="editMsg('${scope}','${key}')">✏️ Изменить</button>`);
-  if(canDeleteMsg(m))menu.push(`<button onclick="deleteMsg('${scope}','${key}')">🗑 Удалить</button>`);
+  if(canEdit)menu.push(`<button onclick="editMsg('${scope}','${key}')">✏️ Изменить</button>`);
+  if(canDelete)menu.push(`<button onclick="deleteMsg('${scope}','${key}',${isOwnRender===true?'true':'false'})">🗑 Удалить</button>`);
+  // Для своих сообщений добавляем маленькую прямую кнопку 🗑 рядом с Ответить/😊, чтобы удаление было видно сразу.
+  const quickDelete=canDelete?`<button class="msg-act msg-del-quick" title="Удалить сообщение" onclick="deleteMsg('${scope}','${key}',${isOwnRender===true?'true':'false'})">🗑 Удалить</button>`:'';
   return `<div class="msg-actions msg-actions-compact">
     <button class="msg-act" onclick="replyToMsg('${scope}','${key}')">↩ Ответить</button>
     <button class="msg-act" onclick="showReactionPicker('${scope}','${key}')">😊</button>
+    ${quickDelete}
     <span class="msg-more-wrap">
       <button class="msg-act" onclick="toggleMsgMenu('${scope}','${key}',event)">⋯</button>
       <span id="msg-menu-${scope}-${key}" class="msg-more-menu">${menu.join('')}</span>
@@ -3895,12 +4373,16 @@ window.editMsg=async function(scope,key){
   const path=msgPath(scope,m); if(!path)return;
   await db.ref(path).update({text,editedAt:Date.now(),editedBy:CU.login});
 };
-window.deleteMsg=async function(scope,key){
+window.deleteMsg=async function(scope,key,isOwnRender){
   if(!CU)return;
-  const m=findMsgByScope(scope,key); if(!m||!canDeleteMsg(m))return;
-  if(!confirm('Удалить сообщение?'))return;
+  const m=findMsgByScope(scope,key); if(!m||!canDeleteMsg(scope,m,isOwnRender===true))return;
+  const hasFile=!!(m.file||m.location||m.voice||m.video||m.image);
+  const confirmText=hasFile
+    ? 'Удалить сообщение?\n\nСообщение и все прикрепленные к нему файлы будут удалены без возможности восстановления.'
+    : 'Удалить сообщение?\n\nЭто действие нельзя отменить.';
+  if(!confirm(confirmText))return;
   const path=msgPath(scope,m); if(!path)return;
-  await db.ref(path).update({deleted:true,text:'',file:null,deletedAt:Date.now(),deletedBy:CU.login});
+  await db.ref(path).remove();
 };
 window.togglePinMsg=async function(scope,key){
   if(!CU)return;
@@ -3967,10 +4449,10 @@ function rChat(){
     const time=m.ts?new Date(m.ts).toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'}):'';
     const hit=hasChatNavFilter('chat')?' chat-search-hit':'';
     return`${dateDividerHtml(sorted,i)}<div id="msg-chat-${m._k}" class="msg-row ${isMe?'me':'other'}${hit}">
-      ${avatarMiniHtml(login,author,'lg')}
+      ${chatAvatarHtml(login,author,'lg')}
       <div class="msg ${isMe?'me':'other'}">
         <div class="msg-bubble ${m.deleted?'deleted':''}">${msgTextHtml(m)}</div>
-        ${msgActionsHtml('chat',m)}
+        ${msgActionsHtml('chat',m,isMe)}
         <div class="msg-meta">${isMe?'Вы':esc(author)} • ${time}${m.editedAt?' <span class="msg-edited">(изменено)</span>':''}${readStatusHtml('chat',m,isMe)}</div>
       </div>
     </div>`;
@@ -4028,7 +4510,7 @@ function rPrivateList(){
     const nm=displayNameFor(login);
     const lastText=last?(last.text||last.file?.name||'Файл'):'Нет сообщений';
     return `<div class="pm-user ${currentPrivateLogin===login?'active':''}" onclick="openPrivateWith('${login}')">
-      ${avatarMiniHtml(login,nm,'lg')}
+      ${chatAvatarHtml(login,nm,'lg')}
       <div style="min-width:0"><div class="pm-name">${esc(nm)}</div><div class="pm-last">${esc(lastText)}</div></div>
       ${unread?`<div class="pm-unread">${unread}</div>`:''}
     </div>`;
@@ -4043,7 +4525,7 @@ function rPrivateDialog(login){
   const u=userByLogin(login);
   if(!u){head.textContent='Выберите сотрудника';wrap.innerHTML='<div class="pm-empty">Выберите пользователя слева, чтобы открыть личный чат</div>';return;}
   const dialogName=displayNameFor(login);
-  head.innerHTML=`<div class="pm-head-user">${avatarMiniHtml(login,dialogName)}<span>Чат с ${esc(dialogName)}</span></div>`;
+  head.innerHTML=`<div class="pm-head-user">${chatAvatarHtml(login,dialogName)}<span>Чат с ${esc(dialogName)}</span></div>`;
   const allMsgs=privateMessagesFor(login);
   const msgs=filteredChatMessages('pm',allMsgs);
   if(!allMsgs.length){wrap.innerHTML=chatNavHtml('pm',0,0)+'<div class="pm-empty">Сообщений пока нет. Напишите первым.</div><div class="pm-typing-line" id="pm-typing"></div>';renderTypingIndicators();return;}
@@ -4055,10 +4537,10 @@ function rPrivateDialog(login){
     const time=m.ts?new Date(m.ts).toLocaleString('ru-RU',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}):'';
     const hit=hasChatNavFilter('pm')?' chat-search-hit':'';
     return `${dateDividerHtml(msgs,i)}<div id="msg-pm-${m._k}" class="msg-row ${isMe?'me':'other'}${hit}">
-      ${avatarMiniHtml(fromLogin,fromName,'lg')}
+      ${chatAvatarHtml(fromLogin,fromName,'lg')}
       <div class="msg ${isMe?'me':'other'}">
         <div class="msg-bubble ${m.deleted?'deleted':''}">${msgTextHtml(m)}</div>
-        ${msgActionsHtml('pm',m)}
+        ${msgActionsHtml('pm',m,isMe)}
         <div class="msg-meta">${isMe?'Вы':esc(fromName)} • ${time}${m.editedAt?' <span class="msg-edited">(изменено)</span>':''}${readStatusHtml('pm',m,isMe)}</div>
       </div>
     </div>`;
@@ -5668,6 +6150,1447 @@ window.rTrainingCenter=rTrainingCenter;window.helpSetActive=helpSetActive;window
   function installAll(){installComposer('chat');installComposer('pm');ensureViewer();}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',installAll);else installAll();
   window.addEventListener('load',installAll); setInterval(installAll,2500);
+})();
+
+
+
+/* FIX10 FINAL: причина была не в таблице, а в состоянии фильтра поиска раздела "Все заявки".
+   При переходе во вкладку "Обсуждение" фокус/старые обработчики могли записывать текст в поиск заявок,
+   из-за чего rAll() показывал "Нет данных". Теперь карточка заявки полностью изолирована:
+   вкладки не меняют aSr/фильтры, поиск и таблица восстанавливаются после рендера обсуждения,
+   Firebase-слушатель обсуждений обновляет чат только когда активна именно вкладка обсуждения. */
+(function(){
+  if(window.__MTO_ORDER_DISCUSSION_FIXED10__) return;
+  window.__MTO_ORDER_DISCUSSION_FIXED10__ = true;
+  function safe10(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  function currentOrderKey10(){var m=document.getElementById('mo-order');return m&&m.dataset?String(m.dataset.orderKey||''):'';}
+  function findOrder10(key){key=String(key||'');return (DATA||[]).find(function(x){return String(x._k||'')===key;})||(DATA||[]).find(function(x){return String(x.key||x.id||x.num||'')===key;})||{};}
+  function allSearchInput10(){return document.getElementById('all-search-input')||document.querySelector('#page-all input[placeholder*="Поиск"]');}
+  function snapshotAllState10(){
+    var ids=['atb','mtb','dtb','etb']; var tables={};
+    ids.forEach(function(id){var el=document.getElementById(id); if(el) tables[id]=el.innerHTML;});
+    var inp=allSearchInput10();
+    return {
+      tables:tables,
+      aSr: (typeof aSr!=='undefined'?aSr:''),
+      aC: (typeof aC!=='undefined'?aC:''),
+      aSh: (typeof aSh!=='undefined'?aSh:''),
+      aSt: (typeof aSt!=='undefined'?aSt:''),
+      quickFilter: (typeof quickFilter!=='undefined'?quickFilter:''),
+      advF: (typeof advF!=='undefined'?JSON.stringify(advF):''),
+      searchValue: inp?inp.value:'',
+      filterCount: (document.getElementById('filter-count')||{}).textContent||''
+    };
+  }
+  function restoreAllState10(snap){
+    if(!snap) return;
+    try{ if(typeof aSr!=='undefined') aSr=snap.aSr||''; }catch(e){}
+    try{ if(typeof aC!=='undefined') aC=snap.aC||aC; }catch(e){}
+    try{ if(typeof aSh!=='undefined') aSh=snap.aSh||aSh; }catch(e){}
+    try{ if(typeof aSt!=='undefined') aSt=snap.aSt||''; }catch(e){}
+    try{ if(typeof quickFilter!=='undefined') quickFilter=snap.quickFilter||''; }catch(e){}
+    try{ if(typeof advF!=='undefined' && snap.advF) Object.assign(advF, JSON.parse(snap.advF)); }catch(e){}
+    var inp=allSearchInput10(); if(inp) inp.value=snap.searchValue||'';
+    var fc=document.getElementById('filter-count'); if(fc && snap.filterCount) fc.textContent=snap.filterCount;
+    Object.keys(snap.tables||{}).forEach(function(id){
+      var el=document.getElementById(id); if(!el) return;
+      var oldHtml=snap.tables[id]||'';
+      var now=el.innerHTML||'';
+      if(!now.trim() || now.indexOf('Нет данных')!==-1 || now.length < Math.max(40, oldHtml.length*0.35)) el.innerHTML=oldHtml;
+    });
+  }
+  function isDiscussionTabActive10(){
+    var content=document.getElementById('order-detail-content');
+    if(!content) return false;
+    var pane=content.querySelector('#order-pane-discussion');
+    return !!(pane && pane.classList.contains('active'));
+  }
+  window.switchOrderTab=function(tab,ev){
+    if(ev){ev.preventDefault();ev.stopPropagation(); if(ev.stopImmediatePropagation)ev.stopImmediatePropagation();}
+    var snap=snapshotAllState10();
+    var content=document.getElementById('order-detail-content'); if(!content) return false;
+    tab=String(tab||'info');
+    content.querySelectorAll('.order-tab').forEach(function(b){b.classList.toggle('active',String(b.dataset.orderTab||'')===tab);});
+    content.querySelectorAll('.order-pane').forEach(function(p){p.classList.remove('active');});
+    var pane=content.querySelector('#order-pane-'+tab); if(pane) pane.classList.add('active');
+    if(tab==='discussion') window.renderOrderDiscussion(currentOrderKey10(), snap);
+    setTimeout(function(){restoreAllState10(snap);},0);
+    setTimeout(function(){restoreAllState10(snap);},80);
+    setTimeout(function(){restoreAllState10(snap);},250);
+    return false;
+  };
+  window.openOrderDiscussionTab=function(key,ev){
+    if(ev){ev.preventDefault();ev.stopPropagation(); if(ev.stopImmediatePropagation)ev.stopImmediatePropagation();}
+    var m=document.getElementById('mo-order'); if(m&&m.dataset&&key)m.dataset.orderKey=String(key);
+    return window.switchOrderTab('discussion', ev);
+  };
+  window.renderOrderDiscussion=function(key, outerSnap){
+    var snap=outerSnap||snapshotAllState10();
+    key=String(key||currentOrderKey10()||'');
+    var box=document.getElementById('order-discussion-box'); if(!box){restoreAllState10(snap);return false;}
+    var r=findOrder10(key);
+    var msgs=(ORDER_DISCUSSIONS&&ORDER_DISCUSSIONS[key]&&Array.isArray(ORDER_DISCUSSIONS[key]))?ORDER_DISCUSSIONS[key]:[];
+    var listHtml=msgs.length?msgs.map(function(m){
+      var isSystem=m&&m.type==='system'; var isMe=!isSystem&&CU&&m.login===CU.login;
+      var name=isSystem?'🤖 Система':((m&&(m.user||m.login))||'Пользователь');
+      var time=m&&m.ts?new Date(m.ts).toLocaleString('ru-RU',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}):'';
+      return '<div class="order-msg '+(isSystem?'system':(isMe?'me':'other'))+'"><div><div class="order-msg-bubble">'+safe10((m&&m.text)||'')+'</div><div class="order-msg-meta">'+safe10(name)+' • '+safe10(time)+'</div></div></div>';
+    }).join(''):'<div class="order-empty">Обсуждение по этой заявке пока пустое. Напишите первое сообщение — оно останется в истории заявки.</div>';
+    box.innerHTML='<div class="order-discussion-wrap"><div class="order-discussion-head"><div><div class="order-discussion-title">💬 Обсуждение заявки №'+safe10(r.num||'б/н')+'</div><div class="order-discussion-sub">Отдельный чат именно по этой заявке</div></div><span class="badge bgr">'+msgs.length+' сообщ.</span></div><div class="order-discussion-messages" id="order-discussion-messages">'+listHtml+'</div><div class="order-discussion-input"><textarea id="order-discussion-input" placeholder="Напишите сообщение по заявке..." onkeydown="if(event.key===\'Enter\'&&!event.shiftKey){event.preventDefault();sendOrderDiscussion(\''+safe10(key)+'\');}"></textarea><button type="button" class="btn btn-p" onclick="return sendOrderDiscussion(\''+safe10(key)+'\')">➤ Отправить</button></div></div>';
+    var wrap=document.getElementById('order-discussion-messages'); if(wrap)wrap.scrollTop=wrap.scrollHeight;
+    setTimeout(function(){restoreAllState10(snap); var ta=document.getElementById('order-discussion-input'); if(ta && isDiscussionTabActive10()) ta.focus();},0);
+    setTimeout(function(){restoreAllState10(snap);},80);
+    setTimeout(function(){restoreAllState10(snap);},250);
+    return false;
+  };
+  // Дополнительная страховка: если фоновой поиск случайно меняется, пока открыта модалка, возвращаем его назад.
+  document.addEventListener('input', function(e){
+    var m=document.getElementById('mo-order');
+    if(m && m.classList.contains('active') && e.target===allSearchInput10()){
+      e.stopPropagation();
+      if(e.stopImmediatePropagation)e.stopImmediatePropagation();
+      e.target.value=(typeof aSr!=='undefined'?aSr:'')||'';
+      return false;
+    }
+  }, true);
+  // Переопределяем Firebase-реакцию мягко: если сообщение пришло, обновляем только активный чат, таблицы не трогаем.
+  window.__MTO_SAFE_REFRESH_ORDER_DISCUSSION__=function(){
+    var m=document.getElementById('mo-order');
+    if(m && m.classList.contains('active') && isDiscussionTabActive10()) window.renderOrderDiscussion(currentOrderKey10());
+  };
+})();
+
+</script>
+
+
+
+<script>
+/* FIX11 FINAL: изоляция модалки редактирования.
+   Кнопка «Редактировать» открывает mo-z, но старые обработчики/фокус могли менять поиск и фильтры раздела «Все заявки».
+   Теперь открытие/работа модалки редактирования сохраняет состояние списка и возвращает его назад. */
+(function(){
+  if(window.__MTO_EDIT_MODAL_FIXED11__) return;
+  window.__MTO_EDIT_MODAL_FIXED11__ = true;
+  function allSearchInput11(){return document.getElementById('all-search-input')||document.querySelector('#page-all input[placeholder*="Поиск"]');}
+  function snap11(){
+    var tables={}; ['atb','mtb','dtb','etb'].forEach(function(id){var el=document.getElementById(id); if(el)tables[id]=el.innerHTML||'';});
+    var inp=allSearchInput11();
+    var adv=''; try{adv=(typeof advF!=='undefined')?JSON.stringify(advF):'';}catch(e){}
+    return {
+      tables:tables,
+      aSr:(typeof aSr!=='undefined'?aSr:''),
+      aC:(typeof aC!=='undefined'?aC:''),
+      aSh:(typeof aSh!=='undefined'?aSh:''),
+      aSt:(typeof aSt!=='undefined'?aSt:''),
+      quickFilter:(typeof quickFilter!=='undefined'?quickFilter:''),
+      advF:adv,
+      searchValue:inp?inp.value:'',
+      filterCount:(document.getElementById('filter-count')||{}).textContent||''
+    };
+  }
+  function restore11(s){
+    if(!s) return;
+    try{if(typeof aSr!=='undefined')aSr=s.aSr||'';}catch(e){}
+    try{if(typeof aC!=='undefined')aC=s.aC||aC;}catch(e){}
+    try{if(typeof aSh!=='undefined')aSh=s.aSh||aSh;}catch(e){}
+    try{if(typeof aSt!=='undefined')aSt=s.aSt||'';}catch(e){}
+    try{if(typeof quickFilter!=='undefined')quickFilter=s.quickFilter||'';}catch(e){}
+    try{if(typeof advF!=='undefined' && s.advF)Object.assign(advF,JSON.parse(s.advF));}catch(e){}
+    var inp=allSearchInput11(); if(inp) inp.value=s.searchValue||'';
+    var fc=document.getElementById('filter-count'); if(fc && s.filterCount) fc.textContent=s.filterCount;
+    Object.keys(s.tables||{}).forEach(function(id){
+      var el=document.getElementById(id); if(!el)return;
+      var old=s.tables[id]||'', now=el.innerHTML||'';
+      if(!now.trim() || now.indexOf('Нет данных')!==-1 || now.length < Math.max(40, old.length*0.35)) el.innerHTML=old;
+    });
+  }
+  function activeModal11(){return !!document.querySelector('.mo.active');}
+  var originalOpenE11=window.openE;
+  if(typeof originalOpenE11==='function'){
+    window.openE=function(k){
+      var s=snap11();
+      var res=originalOpenE11.apply(this,arguments);
+      setTimeout(function(){restore11(s);},0);
+      setTimeout(function(){restore11(s);},80);
+      setTimeout(function(){restore11(s);},250);
+      setTimeout(function(){restore11(s);},600);
+      return res;
+    };
+  }
+  // Если любой активной модалкой случайно дернули поиск заявок на фоне — отменяем это.
+  document.addEventListener('input',function(e){
+    if(!activeModal11()) return;
+    if(e.target===allSearchInput11()){
+      e.stopPropagation(); if(e.stopImmediatePropagation)e.stopImmediatePropagation();
+      e.target.value=(typeof aSr!=='undefined'?aSr:'')||'';
+      return false;
+    }
+  },true);
+})();
+</script>
+
+
+
+<script>
+/* MTO DISCUSSION MODULE REBUILD v12
+   Независимый модуль обсуждения заявки. Не вызывает renderOrders/rAll и не меняет фильтры списка. */
+(function(){
+  if(window.__MTO_DISCUSSION_REBUILD_V12__) return;
+  window.__MTO_DISCUSSION_REBUILD_V12__ = true;
+
+  function safe(v){
+    return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});
+  }
+  function orderModal(){ return document.getElementById('mo-order'); }
+  function orderContent(){ return document.getElementById('order-detail-content'); }
+  function currentOrderKey(){
+    var m=orderModal();
+    return m && m.dataset ? String(m.dataset.orderKey||'') : '';
+  }
+  function findOrder(key){
+    key=String(key||'');
+    var list=Array.isArray(window.DATA)?window.DATA:(typeof DATA!=='undefined'?DATA:[]);
+    return (list||[]).find(function(x){return String(x && x._k || '')===key;}) ||
+           (list||[]).find(function(x){return String((x && (x.key||x.id||x.num)) || '')===key;}) || {};
+  }
+  function displayUser(login){
+    try{ if(typeof displayNameFor==='function') return displayNameFor(login); }catch(e){}
+    return login || 'Пользователь';
+  }
+  function snapshotListState(){
+    var ids=['atb','mtb','dtb','etb'];
+    var tables={};
+    ids.forEach(function(id){var el=document.getElementById(id); if(el) tables[id]=el.innerHTML||'';});
+    var input=document.getElementById('all-search-input') || document.querySelector('#page-all input[placeholder*="Поиск"]');
+    var adv='';
+    try{ adv=(typeof advF!=='undefined')?JSON.stringify(advF):''; }catch(e){}
+    return {
+      tables:tables,
+      searchValue:input?input.value:'',
+      aSr:(typeof aSr!=='undefined'?aSr:''),
+      aC:(typeof aC!=='undefined'?aC:''),
+      aSh:(typeof aSh!=='undefined'?aSh:''),
+      aSt:(typeof aSt!=='undefined'?aSt:''),
+      quickFilter:(typeof quickFilter!=='undefined'?quickFilter:''),
+      advF:adv,
+      filterCount:(document.getElementById('filter-count')||{}).textContent||''
+    };
+  }
+  function restoreListState(snap){
+    if(!snap) return;
+    try{ if(typeof aSr!=='undefined') aSr=snap.aSr||''; }catch(e){}
+    try{ if(typeof aC!=='undefined') aC=snap.aC||aC; }catch(e){}
+    try{ if(typeof aSh!=='undefined') aSh=snap.aSh||aSh; }catch(e){}
+    try{ if(typeof aSt!=='undefined') aSt=snap.aSt||''; }catch(e){}
+    try{ if(typeof quickFilter!=='undefined') quickFilter=snap.quickFilter||''; }catch(e){}
+    try{ if(typeof advF!=='undefined' && snap.advF) Object.assign(advF, JSON.parse(snap.advF)); }catch(e){}
+    var input=document.getElementById('all-search-input') || document.querySelector('#page-all input[placeholder*="Поиск"]');
+    if(input) input.value=snap.searchValue||'';
+    var fc=document.getElementById('filter-count'); if(fc && snap.filterCount) fc.textContent=snap.filterCount;
+    Object.keys(snap.tables||{}).forEach(function(id){
+      var el=document.getElementById(id); if(!el) return;
+      var old=snap.tables[id]||'';
+      var now=el.innerHTML||'';
+      if(!now.trim() || now.indexOf('Нет данных')!==-1 || now.length < Math.max(40, old.length*0.35)) el.innerHTML=old;
+    });
+  }
+  function discussionIsOpen(){
+    var p=document.getElementById('order-pane-discussion');
+    var m=orderModal();
+    return !!(m && m.classList.contains('active') && p && p.classList.contains('active'));
+  }
+  function localMsgs(key){
+    try{return JSON.parse(localStorage.getItem('mto_order_discussion_'+key)||'[]')||[];}catch(e){return [];}
+  }
+  function saveLocalMsg(key,msg){
+    try{
+      var arr=localMsgs(key);
+      arr.push(msg);
+      localStorage.setItem('mto_order_discussion_'+key, JSON.stringify(arr.slice(-300)));
+    }catch(e){}
+  }
+  function allMsgs(key){
+    var remote=[];
+    try{ remote=(ORDER_DISCUSSIONS && ORDER_DISCUSSIONS[key] && Array.isArray(ORDER_DISCUSSIONS[key])) ? ORDER_DISCUSSIONS[key] : []; }catch(e){}
+    var local=localMsgs(key);
+    var seen={};
+    return remote.concat(local).filter(function(m){
+      var k=String((m && (m._k||m.ts||''))+'|'+(m && m.text||'')+'|'+(m && m.login||''));
+      if(seen[k]) return false; seen[k]=true; return true;
+    }).sort(function(a,b){return (a.ts||0)-(b.ts||0);});
+  }
+
+  window.renderOrderDiscussion=function(key, options){
+    var snap = options && options.noSnap ? null : snapshotListState();
+    key=String(key||currentOrderKey()||'');
+    var box=document.getElementById('order-discussion-box');
+    if(!box){ restoreListState(snap); return false; }
+    var r=findOrder(key);
+    var msgs=allMsgs(key);
+    var html=msgs.length ? msgs.map(function(m){
+      var isSystem=(m && m.type)==='system';
+      var isMe=!isSystem && (typeof CU!=='undefined') && CU && m && m.login===CU.login;
+      var name=isSystem?'🤖 Система':((m && m.user) || displayUser(m && m.login));
+      var time=m && m.ts ? new Date(m.ts).toLocaleString('ru-RU',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}) : '';
+      return '<div class="order-msg '+(isSystem?'system':(isMe?'me':'other'))+'"><div><div class="order-msg-bubble">'+safe((m&&m.text)||'')+'</div><div class="order-msg-meta">'+safe(name)+' • '+safe(time)+(m&&m.localOnly?' • локально':'')+'</div></div></div>';
+    }).join('') : '<div class="order-empty">Обсуждение по этой заявке пока пустое. Напишите первое сообщение — оно останется в истории заявки.</div>';
+    box.innerHTML='<div class="order-discussion-wrap"><div class="order-discussion-head"><div><div class="order-discussion-title">💬 Обсуждение заявки №'+safe(r.num||'б/н')+'</div><div class="order-discussion-sub">Отдельный чат именно по этой заявке</div></div><span class="badge bgr">'+msgs.length+' сообщ.</span></div><div class="order-discussion-messages" id="order-discussion-messages">'+html+'</div><div class="order-discussion-input"><textarea id="order-discussion-input" placeholder="Напишите сообщение по заявке..." onkeydown="if(event.key===\'Enter\'&&!event.shiftKey){event.preventDefault();return sendOrderDiscussion(\''+safe(key)+'\');}"></textarea><button type="button" class="btn btn-p" onclick="return sendOrderDiscussion(\''+safe(key)+'\')">➤ Отправить</button></div></div>';
+    var wrap=document.getElementById('order-discussion-messages'); if(wrap) wrap.scrollTop=wrap.scrollHeight;
+    setTimeout(function(){restoreListState(snap);},0);
+    setTimeout(function(){restoreListState(snap);},100);
+    return false;
+  };
+  try{ renderOrderDiscussion = window.renderOrderDiscussion; }catch(e){}
+
+  window.sendOrderDiscussion=function(key){
+    var snap=snapshotListState();
+    key=String(key||currentOrderKey()||'');
+    var input=document.getElementById('order-discussion-input');
+    var text=(input && input.value ? input.value : '').trim();
+    if(!text){ restoreListState(snap); return false; }
+    var user=(typeof CU!=='undefined' && CU) ? CU : null;
+    var msg={type:'user',login:user?(user.login||''):'',user:user?displayUser(user.login):'Пользователь',text:text,ts:Date.now(),localOnly:true};
+    if(typeof ORDER_DISCUSSIONS==='undefined') window.ORDER_DISCUSSIONS={};
+    try{ if(!ORDER_DISCUSSIONS[key]) ORDER_DISCUSSIONS[key]=[]; ORDER_DISCUSSIONS[key].push(msg); }catch(e){}
+    if(input) input.value='';
+    window.renderOrderDiscussion(key,{noSnap:true});
+    restoreListState(snap);
+    try{
+      if(typeof db!=='undefined' && db && db.ref && user){
+        db.ref('orderDiscussions/'+key).push({type:'user',login:user.login||'',user:displayUser(user.login),text:text,ts:msg.ts}).catch(function(err){
+          msg.localOnly=true; saveLocalMsg(key,msg); console.warn('discussion send fallback',err);
+        });
+      }else{
+        saveLocalMsg(key,msg);
+      }
+    }catch(err){ saveLocalMsg(key,msg); console.warn('discussion send error',err); }
+    setTimeout(function(){restoreListState(snap);},0);
+    setTimeout(function(){restoreListState(snap);},120);
+    return false;
+  };
+  try{ sendOrderDiscussion = window.sendOrderDiscussion; }catch(e){}
+
+  window.switchOrderTab=function(tab,ev){
+    if(ev){ ev.preventDefault(); ev.stopPropagation(); if(ev.stopImmediatePropagation) ev.stopImmediatePropagation(); }
+    var snap=snapshotListState();
+    var content=orderContent(); if(!content){ restoreListState(snap); return false; }
+    tab=String(tab||'info');
+    content.querySelectorAll('.order-tab').forEach(function(b){ b.classList.toggle('active', String(b.dataset.orderTab||'')===tab); });
+    content.querySelectorAll('.order-pane').forEach(function(p){ p.classList.remove('active'); });
+    var pane=content.querySelector('#order-pane-'+tab); if(pane) pane.classList.add('active');
+    if(tab==='discussion') window.renderOrderDiscussion(currentOrderKey(), {noSnap:true});
+    setTimeout(function(){restoreListState(snap);},0);
+    setTimeout(function(){restoreListState(snap);},100);
+    setTimeout(function(){restoreListState(snap);},300);
+    return false;
+  };
+  try{ switchOrderTab = window.switchOrderTab; }catch(e){}
+
+  window.openOrderDiscussionTab=function(key,ev){
+    if(ev){ ev.preventDefault(); ev.stopPropagation(); if(ev.stopImmediatePropagation) ev.stopImmediatePropagation(); }
+    var m=orderModal(); if(m && m.dataset && key) m.dataset.orderKey=String(key);
+    return window.switchOrderTab('discussion', ev);
+  };
+  try{ openOrderDiscussionTab = window.openOrderDiscussionTab; }catch(e){}
+
+  window.__MTO_SAFE_REFRESH_ORDER_DISCUSSION__=function(){
+    if(discussionIsOpen()) window.renderOrderDiscussion(currentOrderKey());
+  };
+})();
+</script>
+
+
+<script>
+/* MTO DISCUSSION SEND FIX v13
+   Жестко чинит отправку сообщений обсуждения: кнопка/Enter работают через делегирование,
+   сообщение сразу сохраняется локально и параллельно отправляется в Firebase. */
+(function(){
+  if(window.__MTO_DISCUSSION_SEND_FIX_V13__) return;
+  window.__MTO_DISCUSSION_SEND_FIX_V13__ = true;
+
+  function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  function modal(){return document.getElementById('mo-order');}
+  function content(){return document.getElementById('order-detail-content');}
+  function activeKey(){var m=modal(); return m&&m.dataset?String(m.dataset.orderKey||''):'';}
+  function list(){try{return Array.isArray(DATA)?DATA:[]}catch(e){return []}}
+  function orderByKey(key){key=String(key||'');return list().find(function(x){return String((x&&x._k)||'')===key;})||list().find(function(x){return String((x&&(x.key||x.id||x.num))||'')===key;})||{};}
+  function username(login){try{if(typeof displayNameFor==='function') return displayNameFor(login);}catch(e){} return login||'Пользователь';}
+  function localKey(key){return 'mto_order_discussion_'+String(key||'');}
+  function readLocal(key){try{return JSON.parse(localStorage.getItem(localKey(key))||'[]')||[]}catch(e){return []}}
+  function writeLocal(key, arr){try{localStorage.setItem(localKey(key), JSON.stringify((arr||[]).slice(-500)));}catch(e){}}
+  function addLocal(key,msg){var arr=readLocal(key); if(!arr.some(function(m){return m&&msg&&(m.clientId&&m.clientId===msg.clientId)})){arr.push(msg); writeLocal(key,arr);} }
+  function removeLocalByClientId(key,cid){if(!cid)return; var arr=readLocal(key).filter(function(m){return !m || m.clientId!==cid;}); writeLocal(key,arr);}
+  function remoteMsgs(key){try{return ORDER_DISCUSSIONS&&Array.isArray(ORDER_DISCUSSIONS[key])?ORDER_DISCUSSIONS[key]:[]}catch(e){return []}}
+  function mergedMsgs(key){
+    var seen={};
+    return remoteMsgs(key).concat(readLocal(key)).filter(function(m){
+      if(!m) return false;
+      var id=String(m.clientId||m._k||((m.ts||'')+'|'+(m.login||'')+'|'+(m.text||'')));
+      if(seen[id]) return false; seen[id]=true; return true;
+    }).sort(function(a,b){return (a.ts||0)-(b.ts||0)});
+  }
+  function snap(){
+    var tables={}; ['atb','mtb','dtb','etb'].forEach(function(id){var el=document.getElementById(id); if(el) tables[id]=el.innerHTML||'';});
+    var input=document.getElementById('all-search-input')||document.querySelector('#page-all input[placeholder*="Поиск"]');
+    return {tables:tables,search:input?input.value:'',aSr:(typeof aSr!=='undefined'?aSr:''),fc:(document.getElementById('filter-count')||{}).textContent||''};
+  }
+  function restore(s){
+    if(!s)return;
+    try{if(typeof aSr!=='undefined')aSr=s.aSr||'';}catch(e){}
+    var input=document.getElementById('all-search-input')||document.querySelector('#page-all input[placeholder*="Поиск"]'); if(input)input.value=s.search||'';
+    var fc=document.getElementById('filter-count'); if(fc&&s.fc)fc.textContent=s.fc;
+    Object.keys(s.tables||{}).forEach(function(id){var el=document.getElementById(id); if(!el)return; var now=el.innerHTML||'', old=s.tables[id]||''; if(!now.trim()||now.indexOf('Нет данных')!==-1||now.length<Math.max(40,old.length*.35))el.innerHTML=old;});
+  }
+  function discussionActive(){var p=document.getElementById('order-pane-discussion');var m=modal();return !!(m&&m.classList.contains('active')&&p&&p.classList.contains('active'));}
+
+  window.renderOrderDiscussion=function(key,opts){
+    var s=opts&&opts.noSnap?null:snap();
+    key=String(key||activeKey()||'');
+    var box=document.getElementById('order-discussion-box'); if(!box){restore(s);return false;}
+    var r=orderByKey(key), msgs=mergedMsgs(key);
+    var html=msgs.length?msgs.map(function(m){
+      var sys=m.type==='system'; var me=!sys&&typeof CU!=='undefined'&&CU&&m.login===CU.login;
+      var time=m.ts?new Date(m.ts).toLocaleString('ru-RU',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}):'';
+      return '<div class="order-msg '+(sys?'system':(me?'me':'other'))+'"><div><div class="order-msg-bubble">'+esc(m.text||'')+'</div><div class="order-msg-meta">'+esc(sys?'🤖 Система':(m.user||username(m.login)))+' • '+esc(time)+(m.localOnly?' • локально':'')+'</div></div></div>';
+    }).join(''):'<div class="order-empty">Обсуждение по этой заявке пока пустое. Напишите первое сообщение — оно останется в истории заявки.</div>';
+    box.innerHTML='<div class="order-discussion-wrap"><div class="order-discussion-head"><div><div class="order-discussion-title">💬 Обсуждение заявки №'+esc(r.num||'б/н')+'</div><div class="order-discussion-sub">Отдельный чат именно по этой заявке</div></div><span class="badge bgr">'+msgs.length+' сообщ.</span></div><div class="order-discussion-messages" id="order-discussion-messages">'+html+'</div><div class="order-discussion-input"><textarea id="order-discussion-input" placeholder="Напишите сообщение по заявке..."></textarea><button type="button" class="btn btn-p" data-order-discussion-send="1">➤ Отправить</button></div></div>';
+    var wrap=document.getElementById('order-discussion-messages'); if(wrap)wrap.scrollTop=wrap.scrollHeight;
+    setTimeout(function(){restore(s);},0); setTimeout(function(){restore(s);},120);
+    return false;
+  };
+  try{renderOrderDiscussion=window.renderOrderDiscussion;}catch(e){}
+
+  window.sendOrderDiscussion=function(key){
+    var s=snap();
+    key=String(key||activeKey()||'');
+    if(!key){restore(s);return false;}
+    var ta=document.getElementById('order-discussion-input');
+    var text=(ta&&ta.value?ta.value:'').trim();
+    if(!text){restore(s);return false;}
+    var user=(typeof CU!=='undefined'&&CU)?CU:{};
+    var cid='d_'+Date.now()+'_'+Math.random().toString(36).slice(2);
+    var msg={clientId:cid,type:'user',login:user.login||'',user:username(user.login),text:text,ts:Date.now(),localOnly:true};
+    if(ta)ta.value='';
+    addLocal(key,msg);
+    try{if(typeof ORDER_DISCUSSIONS==='undefined')window.ORDER_DISCUSSIONS={}; if(!ORDER_DISCUSSIONS[key])ORDER_DISCUSSIONS[key]=[]; ORDER_DISCUSSIONS[key].push(msg);}catch(e){}
+    window.renderOrderDiscussion(key,{noSnap:true});
+    restore(s);
+    try{
+      if(typeof db!=='undefined'&&db&&db.ref){
+        db.ref('orderDiscussions/'+key).push({clientId:cid,type:'user',login:user.login||'',user:username(user.login),text:text,ts:msg.ts}).then(function(){removeLocalByClientId(key,cid);}).catch(function(err){console.warn('discussion firebase send failed',err);});
+      }
+    }catch(err){console.warn('discussion send exception',err);}
+    setTimeout(function(){if(discussionActive())window.renderOrderDiscussion(key,{noSnap:true}); restore(s);},250);
+    return false;
+  };
+  try{sendOrderDiscussion=window.sendOrderDiscussion;}catch(e){}
+
+  window.switchOrderTab=function(tab,ev){
+    if(ev){ev.preventDefault();ev.stopPropagation(); if(ev.stopImmediatePropagation)ev.stopImmediatePropagation();}
+    var s=snap(); var c=content(); if(!c){restore(s);return false;} tab=String(tab||'info');
+    c.querySelectorAll('.order-tab').forEach(function(b){b.classList.toggle('active',String(b.dataset.orderTab||'')===tab);});
+    c.querySelectorAll('.order-pane').forEach(function(p){p.classList.remove('active');});
+    var pane=c.querySelector('#order-pane-'+tab); if(pane)pane.classList.add('active');
+    if(tab==='discussion')window.renderOrderDiscussion(activeKey(),{noSnap:true});
+    setTimeout(function(){restore(s);},0);setTimeout(function(){restore(s);},150);
+    return false;
+  };
+  try{switchOrderTab=window.switchOrderTab;}catch(e){}
+
+  window.openOrderDiscussionTab=function(key,ev){
+    if(ev){ev.preventDefault();ev.stopPropagation(); if(ev.stopImmediatePropagation)ev.stopImmediatePropagation();}
+    var m=modal(); if(m&&m.dataset&&key)m.dataset.orderKey=String(key);
+    return window.switchOrderTab('discussion',ev);
+  };
+  try{openOrderDiscussionTab=window.openOrderDiscussionTab;}catch(e){}
+
+  document.addEventListener('click',function(e){
+    var btn=e.target&&e.target.closest?e.target.closest('[data-order-discussion-send]'):null;
+    if(!btn)return;
+    e.preventDefault();e.stopPropagation(); if(e.stopImmediatePropagation)e.stopImmediatePropagation();
+    return window.sendOrderDiscussion(activeKey());
+  },true);
+  document.addEventListener('keydown',function(e){
+    if(e.target&&e.target.id==='order-discussion-input'&&e.key==='Enter'&&!e.shiftKey){
+      e.preventDefault();e.stopPropagation(); if(e.stopImmediatePropagation)e.stopImmediatePropagation();
+      return window.sendOrderDiscussion(activeKey());
+    }
+  },true);
+  window.__MTO_SAFE_REFRESH_ORDER_DISCUSSION__=function(){if(discussionActive())window.renderOrderDiscussion(activeKey(),{noSnap:true});};
+})();
+</script>
+
+
+
+<style>
+/* MTO DISCUSSION SCROLL FIX v14 */
+#order-pane-discussion.active{
+  display:flex!important;
+  flex-direction:column;
+  min-height:min(560px,calc(100vh - 190px));
+}
+#order-pane-discussion.active #order-discussion-box{
+  display:flex;
+  flex-direction:column;
+  flex:1 1 auto;
+  min-height:0;
+}
+#order-pane-discussion.active .order-discussion-wrap{
+  display:flex;
+  flex-direction:column;
+  flex:1 1 auto;
+  min-height:0;
+  max-height:calc(100vh - 190px);
+}
+#order-pane-discussion.active .order-discussion-messages{
+  flex:1 1 auto;
+  min-height:260px;
+  max-height:none!important;
+  overflow-y:auto!important;
+  scroll-behavior:smooth;
+}
+#order-pane-discussion.active .order-discussion-input{
+  flex:0 0 auto;
+}
+@media(max-width:768px){
+  #order-pane-discussion.active{min-height:calc(100vh - 245px)}
+  #order-pane-discussion.active .order-discussion-wrap{max-height:calc(100vh - 245px)}
+  #order-pane-discussion.active .order-discussion-messages{min-height:220px}
+}
+</style>
+<script>
+/* MTO DISCUSSION AUTO-SCROLL FIX v14 */
+(function(){
+  if(window.__MTO_DISCUSSION_SCROLL_FIX_V14__) return;
+  window.__MTO_DISCUSSION_SCROLL_FIX_V14__=true;
+  function forceDiscussionScroll(){
+    var wrap=document.getElementById('order-discussion-messages');
+    if(!wrap) return;
+    wrap.scrollTop=wrap.scrollHeight;
+    var last=wrap.lastElementChild;
+    if(last&&last.scrollIntoView){try{last.scrollIntoView({block:'end',inline:'nearest'});}catch(e){last.scrollIntoView(false);}}
+    wrap.scrollTop=wrap.scrollHeight;
+  }
+  var oldRender=window.renderOrderDiscussion;
+  if(typeof oldRender==='function'){
+    window.renderOrderDiscussion=function(){
+      var res=oldRender.apply(this,arguments);
+      setTimeout(forceDiscussionScroll,0);
+      setTimeout(forceDiscussionScroll,80);
+      setTimeout(forceDiscussionScroll,250);
+      return res;
+    };
+    try{renderOrderDiscussion=window.renderOrderDiscussion;}catch(e){}
+  }
+  var oldSend=window.sendOrderDiscussion;
+  if(typeof oldSend==='function'){
+    window.sendOrderDiscussion=function(){
+      var res=oldSend.apply(this,arguments);
+      setTimeout(forceDiscussionScroll,0);
+      setTimeout(forceDiscussionScroll,120);
+      setTimeout(forceDiscussionScroll,350);
+      return res;
+    };
+    try{sendOrderDiscussion=window.sendOrderDiscussion;}catch(e){}
+  }
+})();
+</script>
+
+
+
+<script>
+/* MTO DISCUSSION STABLE DISPLAY FIX v15
+   Причина мерцания: локальное сообщение удалялось после успешного push, а Firebase value мог
+   на мгновение вернуть старый список. Теперь локальная копия НЕ удаляется, а рендер всегда
+   объединяет Firebase + локальный буфер с дедупликацией по clientId. */
+(function(){
+  if(window.__MTO_DISCUSSION_STABLE_V15__) return;
+  window.__MTO_DISCUSSION_STABLE_V15__=true;
+
+  function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  function modal(){return document.getElementById('mo-order');}
+  function content(){return document.getElementById('order-detail-content');}
+  function activeKey(){
+    var m=modal();
+    var k=m&&m.dataset?String(m.dataset.orderKey||''):'';
+    if(k) return k;
+    var box=document.getElementById('order-discussion-box');
+    if(box&&box.dataset&&box.dataset.orderKey) return String(box.dataset.orderKey);
+    var ta=document.getElementById('order-discussion-input');
+    if(ta&&ta.dataset&&ta.dataset.orderKey) return String(ta.dataset.orderKey);
+    return '';
+  }
+  function dataList(){try{return Array.isArray(DATA)?DATA:[]}catch(e){return []}}
+  function orderByKey(key){key=String(key||'');return dataList().find(function(x){return String((x&&x._k)||'')===key;})||dataList().find(function(x){return String((x&&(x.key||x.id||x.num))||'')===key;})||{};}
+  function username(login){try{if(typeof displayNameFor==='function')return displayNameFor(login);}catch(e){} return login||'Пользователь';}
+  function localKey(key){return 'mto_order_discussion_'+String(key||'');}
+  function readLocal(key){try{var a=JSON.parse(localStorage.getItem(localKey(key))||'[]');return Array.isArray(a)?a:[]}catch(e){return []}}
+  function writeLocal(key,arr){try{localStorage.setItem(localKey(key),JSON.stringify((arr||[]).slice(-500)));}catch(e){}}
+  function addLocal(key,msg){
+    var arr=readLocal(key);
+    var id=String(msg.clientId||'');
+    if(id && arr.some(function(m){return m&&m.clientId===id;})) return;
+    arr.push(msg); writeLocal(key,arr);
+  }
+  function remoteMsgs(key){try{return ORDER_DISCUSSIONS&&Array.isArray(ORDER_DISCUSSIONS[key])?ORDER_DISCUSSIONS[key]:[]}catch(e){return []}}
+  function mergedMsgs(key){
+    var seen={};
+    return remoteMsgs(key).concat(readLocal(key)).filter(function(m){
+      if(!m) return false;
+      var id=String(m.clientId||m._k||((m.ts||'')+'|'+(m.login||'')+'|'+(m.text||'')));
+      if(seen[id]) return false;
+      seen[id]=true;
+      return true;
+    }).sort(function(a,b){return (a.ts||0)-(b.ts||0)});
+  }
+  function discussionActive(){var p=document.getElementById('order-pane-discussion');var m=modal();return !!(m&&m.classList.contains('active')&&p&&p.classList.contains('active'));}
+  function scrollBottom(){
+    var wrap=document.getElementById('order-discussion-messages');
+    if(!wrap) return;
+    wrap.scrollTop=wrap.scrollHeight;
+    var last=wrap.lastElementChild;
+    if(last&&last.scrollIntoView){try{last.scrollIntoView({block:'end',inline:'nearest'});}catch(e){last.scrollIntoView(false);}}
+    wrap.scrollTop=wrap.scrollHeight;
+  }
+
+  window.renderOrderDiscussion=function(key,opts){
+    key=String(key||activeKey()||'');
+    var box=document.getElementById('order-discussion-box'); if(!box)return false;
+    if(box.dataset) box.dataset.orderKey=key;
+    var oldTa=document.getElementById('order-discussion-input');
+    var draft=(oldTa&&document.activeElement===oldTa)?oldTa.value:'';
+    var r=orderByKey(key), msgs=mergedMsgs(key);
+    var html=msgs.length?msgs.map(function(m){
+      var sys=m.type==='system';
+      var me=!sys&&typeof CU!=='undefined'&&CU&&m.login===CU.login;
+      var time=m.ts?new Date(m.ts).toLocaleString('ru-RU',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}):'';
+      var meta=esc(sys?'🤖 Система':(m.user||username(m.login)))+' • '+esc(time)+(m.localOnly?' • отправляется':'');
+      return '<div class="order-msg '+(sys?'system':(me?'me':'other'))+'"><div><div class="order-msg-bubble">'+esc(m.text||'')+'</div><div class="order-msg-meta">'+meta+'</div></div></div>';
+    }).join(''):'<div class="order-empty">Обсуждение по этой заявке пока пустое. Напишите первое сообщение — оно останется в истории заявки.</div>';
+    box.innerHTML='<div class="order-discussion-wrap"><div class="order-discussion-head"><div><div class="order-discussion-title">💬 Обсуждение заявки №'+esc(r.num||'б/н')+'</div><div class="order-discussion-sub">Отдельный чат именно по этой заявке</div></div><span class="badge bgr">'+msgs.length+' сообщ.</span></div><div class="order-discussion-messages" id="order-discussion-messages">'+html+'</div><div class="order-discussion-input"><textarea id="order-discussion-input" data-order-key="'+esc(key)+'" placeholder="Напишите сообщение по заявке..."></textarea><button type="button" class="btn btn-p" data-order-discussion-send="1">➤ Отправить</button></div></div>';
+    var ta=document.getElementById('order-discussion-input');
+    if(ta&&draft) ta.value=draft;
+    setTimeout(scrollBottom,0);setTimeout(scrollBottom,80);setTimeout(scrollBottom,250);
+    return false;
+  };
+  try{renderOrderDiscussion=window.renderOrderDiscussion;}catch(e){}
+
+  window.sendOrderDiscussion=function(key){
+    key=String(key||activeKey()||'');
+    var ta=document.getElementById('order-discussion-input');
+    var text=(ta&&ta.value?ta.value:'').trim();
+    if(!key||!text) return false;
+    var user=(typeof CU!=='undefined'&&CU)?CU:{};
+    var cid='d_'+Date.now()+'_'+Math.random().toString(36).slice(2);
+    var msg={clientId:cid,type:'user',login:user.login||'',user:username(user.login),text:text,ts:Date.now(),localOnly:true};
+    if(ta) ta.value='';
+    addLocal(key,msg);
+    try{ if(typeof ORDER_DISCUSSIONS==='undefined') window.ORDER_DISCUSSIONS={}; if(!ORDER_DISCUSSIONS[key]) ORDER_DISCUSSIONS[key]=[]; ORDER_DISCUSSIONS[key].push(msg); }catch(e){}
+    window.renderOrderDiscussion(key,{noSnap:true});
+    try{
+      if(typeof db!=='undefined'&&db&&db.ref){
+        db.ref('orderDiscussions/'+key).push({clientId:cid,type:'user',login:user.login||'',user:username(user.login),text:text,ts:msg.ts}).catch(function(err){console.warn('discussion firebase send failed',err);});
+      }
+    }catch(err){console.warn('discussion send exception',err);}
+    setTimeout(function(){if(discussionActive())window.renderOrderDiscussion(key,{noSnap:true});},300);
+    return false;
+  };
+  try{sendOrderDiscussion=window.sendOrderDiscussion;}catch(e){}
+
+  // Перехватываем кнопку и Enter последним обработчиком, чтобы старые inline/делегированные фиксы не мешали.
+  document.addEventListener('click',function(e){
+    var btn=e.target&&e.target.closest?e.target.closest('[data-order-discussion-send]'):null;
+    if(!btn) return;
+    e.preventDefault(); e.stopPropagation(); if(e.stopImmediatePropagation)e.stopImmediatePropagation();
+    return window.sendOrderDiscussion(activeKey());
+  },true);
+  document.addEventListener('keydown',function(e){
+    if(e.target&&e.target.id==='order-discussion-input'&&e.key==='Enter'&&!e.shiftKey){
+      e.preventDefault(); e.stopPropagation(); if(e.stopImmediatePropagation)e.stopImmediatePropagation();
+      return window.sendOrderDiscussion(activeKey());
+    }
+  },true);
+  window.__MTO_SAFE_REFRESH_ORDER_DISCUSSION__=function(){if(discussionActive())window.renderOrderDiscussion(activeKey(),{noSnap:true});};
+})();
+</script>
+
+
+
+<style>
+/* MTO DISCUSSION TOOLS v16: delete, files, replies, forwards, reactions */
+.order-discussion-tools{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:6px;opacity:.82}
+.order-msg:hover .order-discussion-tools{opacity:1}
+.order-discussion-tools button{border:0;background:#eff6ff;color:#1d4ed8;border-radius:8px;padding:4px 7px;font-size:.72rem;font-weight:900;cursor:pointer}
+.order-discussion-tools button:hover{background:#dbeafe}
+.order-msg.me .order-discussion-tools{justify-content:flex-end}
+.order-msg.system .order-discussion-tools{display:none}
+.order-discussion-reactions{display:flex;gap:4px;flex-wrap:wrap;margin-top:6px}
+.order-discussion-reaction{border:1px solid var(--border);background:#fff;color:var(--text);border-radius:999px;padding:2px 7px;font-size:.72rem;font-weight:900;cursor:pointer;line-height:1.25}
+.order-discussion-reaction.active{background:#dbeafe;border-color:var(--accent);color:#1d4ed8}
+.order-discussion-picker{display:none;gap:4px;flex-wrap:wrap;margin-top:6px;padding:5px;border:1px solid var(--border);background:#fff;border-radius:10px;width:max-content;max-width:250px;box-shadow:0 8px 22px rgba(15,23,42,.12)}
+.order-discussion-picker.show{display:flex}
+.order-discussion-picker button{border:0;background:#f8fafc;border-radius:8px;padding:4px 7px;cursor:pointer;font-size:1rem}
+.order-discussion-context{display:none;align-items:center;gap:8px;background:#eff6ff;border:1px solid #dbeafe;color:#1d4ed8;border-radius:10px;padding:7px 9px;margin:0 12px 8px;font-size:.76rem;line-height:1.25}
+.order-discussion-context.show{display:flex}
+.order-discussion-context .ctx-text{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.order-discussion-context button{border:0;background:transparent;color:#1d4ed8;font-weight:950;cursor:pointer;font-size:1rem}
+.order-discussion-file-preview{display:none;align-items:center;gap:8px;background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:7px 9px;margin:0 12px 8px;font-size:.76rem;color:var(--text)}
+.order-discussion-file-preview.show{display:flex}
+.order-discussion-file-preview .fp-name{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:800;color:var(--primary)}
+.order-discussion-file-preview button{border:0;background:transparent;color:#b91c1c;font-weight:950;cursor:pointer;font-size:1rem}
+.order-discussion-input-row{display:flex;gap:8px;align-items:center;width:100%}
+.order-discussion-input-row textarea{flex:1}
+.order-discussion-attach{border:1px solid var(--border);background:#fff;border-radius:10px;min-width:42px;height:42px;cursor:pointer;font-size:1.05rem}
+.order-discussion-attach:hover{background:#eff6ff;border-color:var(--accent)}
+.order-discussion-quote{border-left:3px solid var(--accent);background:rgba(255,255,255,.68);padding:6px 8px;border-radius:8px;margin-bottom:7px;font-size:.74rem;color:#334155;line-height:1.28}
+.order-discussion-quote b{color:var(--primary)}
+.order-discussion-file-card{display:inline-flex;align-items:center;gap:7px;margin-top:7px;padding:8px 10px;border-radius:10px;background:#fff;color:var(--primary);text-decoration:none;border:1px solid var(--border);max-width:100%}
+.order-msg.me .order-discussion-file-card{background:rgba(255,255,255,.18);color:#fff;border-color:rgba(255,255,255,.28)}
+.order-discussion-file-card span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:240px;font-weight:800}
+.order-discussion-deleted{font-style:italic;opacity:.7}
+@media(max-width:768px){
+  .order-discussion-tools{opacity:1;gap:7px}
+  .order-discussion-tools button{font-size:.78rem;padding:5px 8px}
+  .order-discussion-input-row{display:grid;grid-template-columns:42px 1fr;gap:7px}
+  .order-discussion-input-row .btn{grid-column:1/-1;width:100%}
+  .order-discussion-file-card span{max-width:170px}
+}
+</style>
+<script>
+/* MTO DISCUSSION TOOLS v16
+   Добавляет к обсуждению заявки удаление сообщений, файлы, ответы, репосты и реакции.
+   Модуль работает отдельно от списка заявок и не вызывает renderOrders/rAll. */
+(function(){
+  if(window.__MTO_DISCUSSION_TOOLS_V16__) return;
+  window.__MTO_DISCUSSION_TOOLS_V16__=true;
+
+  var ctx={type:null,msg:null,file:null};
+  var emojis=['👍','🔥','✅','👀','🤝','❤️','😂','🙏'];
+
+  function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  function modal(){return document.getElementById('mo-order');}
+  function activeKey(){
+    var m=modal(); var k=m&&m.dataset?String(m.dataset.orderKey||''):'';
+    if(k) return k;
+    var box=document.getElementById('order-discussion-box'); if(box&&box.dataset&&box.dataset.orderKey)return String(box.dataset.orderKey);
+    var ta=document.getElementById('order-discussion-input'); if(ta&&ta.dataset&&ta.dataset.orderKey)return String(ta.dataset.orderKey);
+    return '';
+  }
+  function dataList(){try{return Array.isArray(DATA)?DATA:[]}catch(e){return []}}
+  function orderByKey(key){key=String(key||'');return dataList().find(function(x){return String((x&&x._k)||'')===key;})||dataList().find(function(x){return String((x&&(x.key||x.id||x.num))||'')===key;})||{};}
+  function username(login){try{if(typeof displayNameFor==='function')return displayNameFor(login);}catch(e){} return login||'Пользователь';}
+  function currentLogin(){try{return CU&&CU.login?CU.login:''}catch(e){return ''}}
+  function localKey(key){return 'mto_order_discussion_'+String(key||'');}
+  function readLocal(key){try{var a=JSON.parse(localStorage.getItem(localKey(key))||'[]');return Array.isArray(a)?a:[]}catch(e){return []}}
+  function writeLocal(key,arr){try{localStorage.setItem(localKey(key),JSON.stringify((arr||[]).slice(-500)));}catch(e){}}
+  function remoteMsgs(key){try{return ORDER_DISCUSSIONS&&Array.isArray(ORDER_DISCUSSIONS[key])?ORDER_DISCUSSIONS[key]:[]}catch(e){return []}}
+  function allMsgs(key){
+    var seen={};
+    return remoteMsgs(key).concat(readLocal(key)).filter(function(m){
+      if(!m) return false;
+      var id=String(m.clientId||m._k||((m.ts||'')+'|'+(m.login||'')+'|'+(m.text||'')+'|'+((m.file&&m.file.name)||'')));
+      if(seen[id]) return false; seen[id]=true; return true;
+    }).sort(function(a,b){return (a.ts||0)-(b.ts||0)});
+  }
+  function findMsg(key,id){
+    id=String(id||'');
+    return allMsgs(key).find(function(m){return String(m.clientId||m._k||'')===id;})||null;
+  }
+  function addLocal(key,msg){
+    var arr=readLocal(key), id=String(msg.clientId||'');
+    var i=arr.findIndex(function(m){return m&&(String(m.clientId||m._k||'')===id)});
+    if(i>=0) arr[i]=Object.assign({},arr[i],msg); else arr.push(msg);
+    writeLocal(key,arr);
+  }
+  function updateLocalMsg(key,id,patch){
+    var arr=readLocal(key), changed=false;
+    arr=arr.map(function(m){if(m&&(String(m.clientId||m._k||'')===String(id))){changed=true;return Object.assign({},m,patch);} return m;});
+    if(changed) writeLocal(key,arr);
+  }
+  function scrollBottom(){var w=document.getElementById('order-discussion-messages'); if(!w)return; w.scrollTop=w.scrollHeight; var last=w.lastElementChild; if(last&&last.scrollIntoView){try{last.scrollIntoView({block:'end',inline:'nearest'});}catch(e){last.scrollIntoView(false);}} w.scrollTop=w.scrollHeight;}
+  function makePreview(m){
+    if(!m) return '';
+    var t=m.deleted?'Сообщение удалено':(m.text||((m.file&&m.file.name)?'📎 '+m.file.name:''));
+    return String(t||'').replace(/\s+/g,' ').trim().slice(0,120);
+  }
+  function reactionsHtml(m){
+    var reactions=m.reactions||{};
+    var login=currentLogin();
+    var out='';
+    Object.keys(reactions).forEach(function(em){
+      var arr=Array.isArray(reactions[em])?reactions[em]:[];
+      if(!arr.length) return;
+      out+='<button type="button" class="order-discussion-reaction '+(arr.indexOf(login)>=0?'active':'')+'" data-od-react="'+esc(em)+'" data-od-id="'+esc(m.clientId||m._k||'')+'">'+esc(em)+' '+arr.length+'</button>';
+    });
+    return out?'<div class="order-discussion-reactions">'+out+'</div>':'';
+  }
+  function quoteHtml(label,q){
+    if(!q) return '';
+    return '<div class="order-discussion-quote"><b>'+esc(label)+':</b> '+esc(q.text||q.fileName||'Сообщение')+'</div>';
+  }
+  function fileHtml(file){
+    if(!file) return '';
+    var href=file.dataUrl||file.url||'#';
+    var dl=file.name||'файл';
+    var size=file.size?(' • '+Math.round(file.size/1024)+' КБ'):'';
+    return '<a class="order-discussion-file-card" href="'+esc(href)+'" download="'+esc(dl)+'" target="_blank" rel="noopener">📎 <span>'+esc(dl)+'</span><small>'+esc(size)+'</small></a>';
+  }
+  function contextBars(){
+    var contextText='';
+    if(ctx.type==='reply'&&ctx.msg) contextText='↩ Ответ: '+makePreview(ctx.msg);
+    if(ctx.type==='forward'&&ctx.msg) contextText='↗ Репост: '+makePreview(ctx.msg);
+    var fileText=ctx.file?('📎 '+ctx.file.name+' • '+Math.round((ctx.file.size||0)/1024)+' КБ'):'';
+    return '<div id="order-discussion-context" class="order-discussion-context '+(contextText?'show':'')+'"><span class="ctx-text">'+esc(contextText)+'</span><button type="button" data-od-clear-context="1">×</button></div>'+
+           '<div id="order-discussion-file-preview" class="order-discussion-file-preview '+(fileText?'show':'')+'"><span class="fp-name">'+esc(fileText)+'</span><button type="button" data-od-clear-file="1">×</button></div>';
+  }
+
+  window.renderOrderDiscussion=function(key,opts){
+    key=String(key||activeKey()||'');
+    var box=document.getElementById('order-discussion-box'); if(!box)return false;
+    if(box.dataset) box.dataset.orderKey=key;
+    var oldTa=document.getElementById('order-discussion-input');
+    var draft=(oldTa&&document.activeElement===oldTa)?oldTa.value:'';
+    var r=orderByKey(key), msgs=allMsgs(key);
+    var html=msgs.length?msgs.map(function(m){
+      var id=String(m.clientId||m._k||'');
+      var sys=m.type==='system';
+      var me=!sys&&currentLogin()&&m.login===currentLogin();
+      var time=m.ts?new Date(m.ts).toLocaleString('ru-RU',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}):'';
+      var meta=esc(sys?'🤖 Система':(m.user||username(m.login)))+' • '+esc(time)+(m.localOnly?' • отправляется':'')+(m.deleted?' • удалено':'');
+      var body='';
+      if(m.replyTo) body+=quoteHtml('Ответ',m.replyTo);
+      if(m.forwarded) body+=quoteHtml('Репост',m.forwarded);
+      if(m.deleted){
+        body+='<div class="order-msg-bubble order-discussion-deleted">Сообщение удалено</div>';
+      }else{
+        body+='<div class="order-msg-bubble">'+esc(m.text||'')+fileHtml(m.file)+'</div>';
+      }
+      var tools='';
+      if(!sys && !m.deleted){
+        tools='<div class="order-discussion-tools">'+
+          '<button type="button" data-od-reply="'+esc(id)+'">↩ Ответ</button>'+
+          '<button type="button" data-od-forward="'+esc(id)+'">↗ Репост</button>'+
+          '<button type="button" data-od-react-open="'+esc(id)+'">😀</button>'+
+          (me||true?'<button type="button" data-od-delete="'+esc(id)+'">🗑 Удалить</button>':'')+
+        '</div><div class="order-discussion-picker" id="od-picker-'+esc(id)+'">'+emojis.map(function(em){return '<button type="button" data-od-react="'+esc(em)+'" data-od-id="'+esc(id)+'">'+esc(em)+'</button>';}).join('')+'</div>';
+      }
+      return '<div class="order-msg '+(sys?'system':(me?'me':'other'))+'" data-od-msg="'+esc(id)+'"><div>'+body+'<div class="order-msg-meta">'+meta+'</div>'+reactionsHtml(m)+tools+'</div></div>';
+    }).join(''):'<div class="order-empty">Обсуждение по этой заявке пока пустое. Напишите первое сообщение — оно останется в истории заявки.</div>';
+    box.innerHTML='<div class="order-discussion-wrap"><div class="order-discussion-head"><div><div class="order-discussion-title">💬 Обсуждение заявки №'+esc(r.num||'б/н')+'</div><div class="order-discussion-sub">Отдельный чат именно по этой заявке</div></div><span class="badge bgr">'+msgs.length+' сообщ.</span></div><div class="order-discussion-messages" id="order-discussion-messages">'+html+'</div>'+contextBars()+'<div class="order-discussion-input"><input id="order-discussion-file" type="file" style="display:none"><div class="order-discussion-input-row"><button type="button" class="order-discussion-attach" data-od-attach="1" title="Прикрепить файл">📎</button><textarea id="order-discussion-input" data-order-key="'+esc(key)+'" placeholder="Напишите сообщение по заявке..."></textarea><button type="button" class="btn btn-p" data-order-discussion-send="1">➤ Отправить</button></div></div></div>';
+    var ta=document.getElementById('order-discussion-input'); if(ta&&draft)ta.value=draft;
+    setTimeout(scrollBottom,0);setTimeout(scrollBottom,80);setTimeout(scrollBottom,250);
+    return false;
+  };
+  try{renderOrderDiscussion=window.renderOrderDiscussion;}catch(e){}
+
+  window.sendOrderDiscussion=function(key){
+    key=String(key||activeKey()||'');
+    var ta=document.getElementById('order-discussion-input');
+    var text=(ta&&ta.value?ta.value:'').trim();
+    if(!key||(!text&&!ctx.file&&!ctx.msg)) return false;
+    var user=(typeof CU!=='undefined'&&CU)?CU:{};
+    var cid='d_'+Date.now()+'_'+Math.random().toString(36).slice(2);
+    var msg={clientId:cid,type:'user',login:user.login||'',user:username(user.login),text:text,ts:Date.now(),localOnly:true};
+    if(ctx.type==='reply'&&ctx.msg) msg.replyTo={id:ctx.msg.clientId||ctx.msg._k||'',user:ctx.msg.user||username(ctx.msg.login),text:makePreview(ctx.msg),fileName:ctx.msg.file&&ctx.msg.file.name};
+    if(ctx.type==='forward'&&ctx.msg) msg.forwarded={id:ctx.msg.clientId||ctx.msg._k||'',user:ctx.msg.user||username(ctx.msg.login),text:makePreview(ctx.msg),fileName:ctx.msg.file&&ctx.msg.file.name};
+    if(ctx.file) msg.file=ctx.file;
+    if(ta)ta.value=''; ctx={type:null,msg:null,file:null};
+    addLocal(key,msg);
+    try{if(typeof ORDER_DISCUSSIONS==='undefined')window.ORDER_DISCUSSIONS={}; if(!ORDER_DISCUSSIONS[key])ORDER_DISCUSSIONS[key]=[]; ORDER_DISCUSSIONS[key].push(msg);}catch(e){}
+    window.renderOrderDiscussion(key,{noSnap:true});
+    var payload=Object.assign({},msg); delete payload.localOnly;
+    try{if(typeof db!=='undefined'&&db&&db.ref){db.ref('orderDiscussions/'+key).push(payload).catch(function(err){console.warn('discussion firebase send failed',err);});}}catch(err){console.warn('discussion send exception',err);}
+    setTimeout(function(){window.renderOrderDiscussion(key,{noSnap:true});},300);
+    return false;
+  };
+  try{sendOrderDiscussion=window.sendOrderDiscussion;}catch(e){}
+
+  function updateRemoteOrLocal(key,msg,patch){
+    if(!msg) return;
+    var id=String(msg.clientId||msg._k||'');
+    if(msg._k&&typeof db!=='undefined'&&db&&db.ref){
+      try{db.ref('orderDiscussions/'+key+'/'+msg._k).update(patch).catch(function(){updateLocalMsg(key,id,patch); window.renderOrderDiscussion(key,{noSnap:true});});}catch(e){updateLocalMsg(key,id,patch);}
+    }else{ updateLocalMsg(key,id,patch); }
+    try{var arr=ORDER_DISCUSSIONS&&ORDER_DISCUSSIONS[key]; if(Array.isArray(arr)){arr.forEach(function(m){if(String(m.clientId||m._k||'')===id)Object.assign(m,patch);});}}catch(e){}
+    window.renderOrderDiscussion(key,{noSnap:true});
+  }
+  function toggleReaction(key,msg,emoji){
+    if(!msg||msg.deleted) return;
+    var login=currentLogin()||'unknown';
+    var reactions=Object.assign({},msg.reactions||{});
+    var arr=Array.isArray(reactions[emoji])?reactions[emoji].slice():[];
+    var idx=arr.indexOf(login); if(idx>=0) arr.splice(idx,1); else arr.push(login);
+    if(arr.length) reactions[emoji]=arr; else delete reactions[emoji];
+    updateRemoteOrLocal(key,msg,{reactions:reactions});
+  }
+  function deleteMsg(key,msg){
+    if(!msg) return;
+    if(!confirm('Удалить сообщение из обсуждения?')) return;
+    updateRemoteOrLocal(key,msg,{deleted:true,text:'',file:null,deletedBy:currentLogin(),deletedTs:Date.now()});
+  }
+  function readFile(file){
+    return new Promise(function(resolve,reject){
+      if(!file) return resolve(null);
+      if(file.size>5*1024*1024){ alert('Файл слишком большой. До 5 МБ.'); return resolve(null); }
+      var fr=new FileReader();
+      fr.onload=function(){resolve({name:file.name,type:file.type||'application/octet-stream',size:file.size,dataUrl:String(fr.result||'')});};
+      fr.onerror=reject; fr.readAsDataURL(file);
+    });
+  }
+
+  document.addEventListener('click',function(e){
+    var key=activeKey();
+    var t=e.target;
+    var send=t&&t.closest?t.closest('[data-order-discussion-send]'):null;
+    var attach=t&&t.closest?t.closest('[data-od-attach]'):null;
+    var clearCtx=t&&t.closest?t.closest('[data-od-clear-context]'):null;
+    var clearFile=t&&t.closest?t.closest('[data-od-clear-file]'):null;
+    var reply=t&&t.closest?t.closest('[data-od-reply]'):null;
+    var fwd=t&&t.closest?t.closest('[data-od-forward]'):null;
+    var del=t&&t.closest?t.closest('[data-od-delete]'):null;
+    var reactOpen=t&&t.closest?t.closest('[data-od-react-open]'):null;
+    var react=t&&t.closest?t.closest('[data-od-react]'):null;
+    if(!(send||attach||clearCtx||clearFile||reply||fwd||del||reactOpen||react)) return;
+    e.preventDefault(); e.stopPropagation(); if(e.stopImmediatePropagation)e.stopImmediatePropagation();
+    if(send) return window.sendOrderDiscussion(key);
+    if(attach){var fi=document.getElementById('order-discussion-file'); if(fi)fi.click(); return false;}
+    if(clearCtx){ctx.type=null;ctx.msg=null;window.renderOrderDiscussion(key,{noSnap:true});return false;}
+    if(clearFile){ctx.file=null;window.renderOrderDiscussion(key,{noSnap:true});return false;}
+    if(reply){ctx.type='reply';ctx.msg=findMsg(key,reply.getAttribute('data-od-reply'));window.renderOrderDiscussion(key,{noSnap:true});setTimeout(function(){var ta=document.getElementById('order-discussion-input');if(ta)ta.focus();},40);return false;}
+    if(fwd){ctx.type='forward';ctx.msg=findMsg(key,fwd.getAttribute('data-od-forward'));window.renderOrderDiscussion(key,{noSnap:true});setTimeout(function(){var ta=document.getElementById('order-discussion-input');if(ta)ta.focus();},40);return false;}
+    if(del){deleteMsg(key,findMsg(key,del.getAttribute('data-od-delete')));return false;}
+    if(reactOpen){var id=reactOpen.getAttribute('data-od-react-open');var p=document.getElementById('od-picker-'+id); if(p)p.classList.toggle('show');return false;}
+    if(react){toggleReaction(key,findMsg(key,react.getAttribute('data-od-id')),react.getAttribute('data-od-react'));return false;}
+  },true);
+  document.addEventListener('keydown',function(e){
+    if(e.target&&e.target.id==='order-discussion-input'&&e.key==='Enter'&&!e.shiftKey){
+      e.preventDefault(); e.stopPropagation(); if(e.stopImmediatePropagation)e.stopImmediatePropagation();
+      return window.sendOrderDiscussion(activeKey());
+    }
+  },true);
+  document.addEventListener('change',function(e){
+    if(!e.target||e.target.id!=='order-discussion-file') return;
+    var file=e.target.files&&e.target.files[0];
+    readFile(file).then(function(f){ctx.file=f; window.renderOrderDiscussion(activeKey(),{noSnap:true});}).catch(function(err){console.warn('file read failed',err);});
+  },true);
+})();
+</script>
+
+
+<style>
+/* DISCUSSION MENTIONS v17 */
+.order-discussion-mention-bar{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 8px;padding:7px;background:#f8fafc;border:1px solid var(--border);border-radius:10px}
+.order-discussion-mention-bar-title{font-size:.72rem;color:var(--muted);font-weight:800;margin-right:2px;display:inline-flex;align-items:center}
+.order-mention-chip{border:1px solid #dbeafe;background:#eff6ff;color:#1d4ed8;border-radius:999px;padding:4px 8px;font-size:.72rem;font-weight:800;cursor:pointer}
+.order-mention-chip:hover{background:#dbeafe}
+.order-mention-note{font-size:.72rem;color:var(--muted);padding:3px 0}
+.order-discussion-mention-text{background:#fff7ed;border:1px solid #fed7aa;color:#c2410c;border-radius:8px;padding:2px 5px;font-weight:800}
+@media(max-width:768px){
+  .order-discussion-mention-bar{gap:5px;padding:7px}
+  .order-mention-chip{font-size:.7rem;padding:5px 7px}
+}
+</style>
+<script>
+/* MTO DISCUSSION MENTIONS v17
+   Этап: упоминания сотрудников в обсуждениях заявок.
+   Пишем @Имя или жмем чип — сотруднику появляется уведомление. */
+(function(){
+  if(window.__MTO_DISCUSSION_MENTIONS_V17__) return;
+  window.__MTO_DISCUSSION_MENTIONS_V17__=true;
+
+  function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  function norm(v){return String(v||'').toLowerCase().replace(/ё/g,'е').replace(/[^\wа-я0-9@]+/g,' ').trim();}
+  function currentUser(){try{return CU||null}catch(e){return null}}
+  function display(login){try{if(typeof displayNameFor==='function')return displayNameFor(login);}catch(e){} return login||'Пользователь';}
+  function role(login){try{if(typeof roleFor==='function')return roleFor(login);}catch(e){} return '';}
+  function usersList(){
+    var us={};
+    try{us=US||{};}catch(e){}
+    return Object.keys(us).map(function(login){
+      var u=us[login]||{};
+      return {
+        login:login,
+        name:display(login)||u.name||login,
+        resp:u.resp||u.name||display(login)||login,
+        role:role(login)||u.role||''
+      };
+    }).filter(function(u){return !!u.login;});
+  }
+  function mentionAliases(u){
+    var arr=[u.login,u.name,u.resp];
+    if(u.name){
+      var parts=String(u.name).split(/\s+/).filter(Boolean);
+      if(parts[0])arr.push(parts[0]);
+    }
+    return arr.filter(Boolean).map(function(x){return norm('@'+x);});
+  }
+  function mentionedLogins(text){
+    var src=' '+norm(String(text||''))+' ';
+    if(src.indexOf('@')<0) return [];
+    var found={};
+    usersList().forEach(function(u){
+      if(currentUser()&&u.login===currentUser().login) return;
+      mentionAliases(u).forEach(function(a){
+        if(!a) return;
+        if(src.indexOf(' '+a+' ')>=0 || src.indexOf(a+' ')>=0 || src.indexOf(' '+a)>=0) found[u.login]=true;
+      });
+    });
+    return Object.keys(found);
+  }
+  function orderKey(){
+    var m=document.getElementById('mo-order');
+    if(m&&m.dataset&&m.dataset.orderKey)return String(m.dataset.orderKey);
+    var ta=document.getElementById('order-discussion-input');
+    if(ta&&ta.dataset&&ta.dataset.orderKey)return String(ta.dataset.orderKey);
+    return '';
+  }
+  function orderByKey(key){
+    try{return (DATA||[]).find(function(x){return String(x._k||'')===String(key);})||{};}catch(e){return {};}
+  }
+  function notificationId(orderKey,ts,login){
+    return ('mention_'+orderKey+'_'+ts+'_'+login).replace(/[^a-zA-Z0-9А-Яа-я_-]/g,'_');
+  }
+  function pushMentionNotifications(key,text,clientTs){
+    var cu=currentUser();
+    if(!cu||!key||!text||typeof db==='undefined'||!db||!db.ref) return;
+    var logins=mentionedLogins(text);
+    if(!logins.length) return;
+    var r=orderByKey(key);
+    var ts=clientTs||Date.now();
+    logins.forEach(function(login){
+      var id=notificationId(key,ts,login);
+      var preview=String(text||'').replace(/\s+/g,' ').trim().slice(0,180);
+      var payload={
+        key:id,
+        type:'orderMention',
+        read:false,
+        orderKey:key,
+        orderNum:r.num||'б/н',
+        orderTitle:r.name||r.material||'без названия',
+        fromLogin:cu.login||'',
+        fromName:display(cu.login),
+        text:preview,
+        ts:ts
+      };
+      try{db.ref('userProfiles/'+login+'/mentionNotifications/'+id).set(payload).catch(function(e){console.warn('mention notification failed',e);});}catch(e){console.warn('mention notification error',e);}
+    });
+  }
+
+  var baseSend=window.sendOrderDiscussion;
+  window.sendOrderDiscussion=function(key){
+    key=String(key||orderKey()||'');
+    var ta=document.getElementById('order-discussion-input');
+    var text=(ta&&ta.value?ta.value:'').trim();
+    var ts=Date.now();
+    var res=false;
+    if(typeof baseSend==='function') res=baseSend.apply(this,arguments);
+    else res=false;
+    if(text) setTimeout(function(){pushMentionNotifications(key,text,ts);},50);
+    return res;
+  };
+  try{sendOrderDiscussion=window.sendOrderDiscussion;}catch(e){}
+
+  function addMentionBar(){
+    var wrap=document.querySelector('.order-discussion-input');
+    var ta=document.getElementById('order-discussion-input');
+    if(!wrap||!ta||document.getElementById('order-discussion-mention-bar')) return;
+    var people=usersList().filter(function(u){return !currentUser()||u.login!==currentUser().login;}).slice(0,8);
+    if(!people.length) return;
+    var bar=document.createElement('div');
+    bar.id='order-discussion-mention-bar';
+    bar.className='order-discussion-mention-bar';
+    bar.innerHTML='<span class="order-discussion-mention-bar-title">@ Упомянуть:</span>'+people.map(function(u){
+      return '<button type="button" class="order-mention-chip" data-od-mention-login="'+esc(u.login)+'">@'+esc(u.name)+'</button>';
+    }).join('')+'<span class="order-mention-note">или напишите @Имя в сообщении</span>';
+    wrap.insertBefore(bar, wrap.firstChild);
+  }
+
+  var baseRender=window.renderOrderDiscussion;
+  window.renderOrderDiscussion=function(key,opts){
+    var ret=(typeof baseRender==='function')?baseRender.apply(this,arguments):false;
+    setTimeout(addMentionBar,0);
+    return ret;
+  };
+  try{renderOrderDiscussion=window.renderOrderDiscussion;}catch(e){}
+
+  document.addEventListener('click',function(e){
+    var btn=e.target&&e.target.closest?e.target.closest('[data-od-mention-login]'):null;
+    if(!btn) return;
+    e.preventDefault(); e.stopPropagation(); if(e.stopImmediatePropagation)e.stopImmediatePropagation();
+    var login=btn.getAttribute('data-od-mention-login')||'';
+    var name=display(login);
+    var ta=document.getElementById('order-discussion-input');
+    if(!ta)return false;
+    var insert='@'+name+' ';
+    var start=ta.selectionStart||ta.value.length;
+    var end=ta.selectionEnd||ta.value.length;
+    var before=ta.value.slice(0,start), after=ta.value.slice(end);
+    if(before && !/\s$/.test(before)) insert=' '+insert;
+    ta.value=before+insert+after;
+    ta.focus();
+    var pos=(before+insert).length;
+    try{ta.setSelectionRange(pos,pos);}catch(err){}
+    return false;
+  },true);
+
+  var baseNotificationItems=window.notificationItems;
+  window.notificationItems=function(){
+    var arr=[];
+    try{arr=typeof baseNotificationItems==='function'?baseNotificationItems():[];}catch(e){arr=[];}
+    var cu=currentUser();
+    if(!cu) return arr;
+    var p={};
+    try{p=(PROFILES&&PROFILES[cu.login])||{};}catch(e){}
+    var mentions=p.mentionNotifications||{};
+    Object.keys(mentions).forEach(function(k){
+      var n=mentions[k]||{};
+      if(n.read) return;
+      arr.push({
+        key:n.key||k,
+        type:'orderMention',
+        id:n.orderKey||'',
+        level:'info',
+        title:'Вас упомянули в заявке №'+(n.orderNum||'б/н'),
+        text:(n.fromName||'Пользователь')+': '+(n.text||''),
+        ts:n.ts||Date.now(),
+        read:false
+      });
+    });
+    return arr.sort(function(a,b){return (a.read-b.read)||((b.ts||0)-(a.ts||0));});
+  };
+  try{notificationItems=window.notificationItems;}catch(e){}
+
+  var baseNotificationOpen=window.notificationOpen;
+  window.notificationOpen=function(n){
+    if(n&&n.type==='orderMention'){
+      try{
+        if(currentUser()&&n.key&&typeof db!=='undefined'&&db&&db.ref){
+          db.ref('userProfiles/'+currentUser().login+'/mentionNotifications/'+n.key+'/read').set(true);
+        }
+      }catch(e){}
+      try{ if(typeof openOrderView==='function') openOrderView(n.id); }catch(e){}
+      return;
+    }
+    if(typeof baseNotificationOpen==='function') return baseNotificationOpen.apply(this,arguments);
+  };
+  try{notificationOpen=window.notificationOpen;}catch(e){}
+
+  var baseMarkAll=window.markAllNotificationsRead;
+  window.markAllNotificationsRead=async function(){
+    var res;
+    if(typeof baseMarkAll==='function') res=await baseMarkAll.apply(this,arguments);
+    try{
+      var cu=currentUser();
+      var p=(PROFILES&&PROFILES[cu.login])||{};
+      var mentions=p.mentionNotifications||{};
+      var updates={};
+      Object.keys(mentions).forEach(function(k){updates[k+'/read']=true;});
+      if(cu&&Object.keys(updates).length&&typeof db!=='undefined'&&db&&db.ref) await db.ref('userProfiles/'+cu.login+'/mentionNotifications').update(updates);
+    }catch(e){}
+    try{ if(typeof rNotifications==='function')rNotifications(); if(typeof renderTopCenter==='function')renderTopCenter(); }catch(e){}
+    return res;
+  };
+})();
+</script>
+
+
+
+<style>
+/* MTO v18 — системные сообщения в обсуждениях заявок */
+.order-msg.system{align-self:center!important;max-width:92%!important;width:auto!important;align-items:center!important;text-align:left!important}
+.order-msg.system .order-msg-bubble{background:#f8fafc!important;color:#334155!important;border:1px solid #dbe3ef!important;border-left:4px solid var(--accent)!important;border-radius:14px!important;box-shadow:0 3px 12px rgba(15,23,42,.06)!important;white-space:pre-line!important}
+.order-msg.system .order-msg-meta{text-align:center!important;color:#64748b!important;font-weight:800!important}
+.order-system-kind{display:inline-flex;align-items:center;gap:5px;font-size:.68rem;font-weight:950;text-transform:uppercase;letter-spacing:.35px;border-radius:999px;padding:2px 8px;margin-bottom:6px;background:#e0f2fe;color:#0369a1;border:1px solid #bae6fd}
+.order-system-kind.status{background:#eef2ff;color:#3730a3;border-color:#c7d2fe}.order-system-kind.payment{background:#dcfce7;color:#15803d;border-color:#bbf7d0}.order-system-kind.docs{background:#fff7ed;color:#c2410c;border-color:#fed7aa}.order-system-kind.delivery{background:#f0fdf4;color:#166534;border-color:#bbf7d0}.order-system-kind.create{background:#fef9c3;color:#92400e;border-color:#fde68a}.order-system-kind.delete{background:#fee2e2;color:#b91c1c;border-color:#fecaca}
+.order-system-text{white-space:pre-line;line-height:1.42}
+</style>
+<script>
+/* MTO v18 — автоматические системные сообщения.
+   Работает поверх текущего модуля обсуждений и не трогает списки заявок. */
+(function(){
+  if(window.__MTO_SYSTEM_MESSAGES_V18__) return;
+  window.__MTO_SYSTEM_MESSAGES_V18__=true;
+
+  function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  function displayUser(){try{return (CU&&(typeof displayNameFor==='function'?displayNameFor(CU.login):CU.login))||'Пользователь';}catch(e){return 'Пользователь';}}
+  function same(a,b){return String(a==null?'':a)===String(b==null?'':b)}
+  function val(v){v=(v==null||v==='')?'—':v; return String(v)}
+  function countArr(v){return Array.isArray(v)?v.length:0}
+  function selectedKpName(row){try{var a=(row&&Array.isArray(row.kp)?row.kp:[]).filter(function(x){return x&&x.selected;}).map(function(x){return x.supplier||x.name||'';}).filter(Boolean);return a.join(', ');}catch(e){return ''}}
+  function sysPayload(kind,title,body){return '<span class="order-system-kind '+esc(kind||'info')+'">🤖 '+esc(title||'Система')+'</span>\n<span class="order-system-text">'+esc(body||'')+'</span>';}
+  function plain(kind,title,body){return '[sys:'+String(kind||'info')+'] '+String(title||'Система')+'\n'+String(body||'');}
+
+  var oldPush=window.pushOrderDiscussion;
+  window.pushOrderDiscussion=async function(key,text,type){
+    if(!key||!text) return;
+    var t=String(text);
+    var kind='info', title='Система', body=t;
+    var m=t.match(/^\[sys:([^\]]+)\]\s*([^\n]*)\n?([\s\S]*)$/);
+    if(m){kind=m[1]||'info'; title=m[2]||'Система'; body=m[3]||''; t=sysPayload(kind,title,body);}
+    try{
+      if(typeof db!=='undefined'&&db&&db.ref){
+        await db.ref('orderDiscussions/'+key).push({type:type||'system',kind:kind,login:'system',user:'Система',text:t,rawText:body,ts:Date.now(),system:true});
+        return;
+      }
+    }catch(e){console.warn('system discussion push failed',e);}
+    if(typeof oldPush==='function') return oldPush(key,t,type||'system');
+  };
+  try{pushOrderDiscussion=window.pushOrderDiscussion;}catch(e){}
+
+  window.orderSystemMessagesFromChanges=function(oldR,row){
+    var out=[];
+    if(!oldR||!row) return out;
+    var u=displayUser();
+    function add(kind,title,label,a,b){ if(!same(a,b)) out.push(plain(kind,title,u+' изменил '+label+'.\n'+val(a)+' → '+val(b))); }
+    add('status','Статус','статус заявки',oldR.status,row.status);
+    add('payment','Оплата','статус оплаты',oldR.payment,row.payment);
+    add('delivery','Поставка','срок/статус поставки',oldR.delivery,row.delivery);
+    add('docs','Документы','УПД / ТТН / Акт',oldR.upd,row.upd);
+    add('docs','Документы','документы качества',oldR.docs,row.docs);
+    add('docs','Договор','договор',oldR.selectedContractName||oldR.contract,row.selectedContractName||row.contract);
+    add('info','Поставщик','поставщика / контрагента',oldR.contractor,row.contractor);
+    add('info','Ответственный','основного ответственного',oldR.resp,row.resp);
+    add('info','Ответственный','дополнительного ответственного',oldR.resp2,row.resp2);
+    if(countArr(oldR.kp)!==countArr(row.kp)) out.push(plain('docs','КП',u+' изменил количество коммерческих предложений.\n'+countArr(oldR.kp)+' → '+countArr(row.kp)));
+    if(!same(selectedKpName(oldR),selectedKpName(row))) out.push(plain('docs','КП',u+' изменил выбранное коммерческое предложение.\n'+val(selectedKpName(oldR))+' → '+val(selectedKpName(row))));
+    if(countArr(oldR.invoices)!==countArr(row.invoices)) out.push(plain('payment','Счета',u+' изменил количество счетов.\n'+countArr(oldR.invoices)+' → '+countArr(row.invoices)));
+    if(!same(oldR.cost,row.cost)) out.push(plain('payment','Сумма',u+' изменил сумму заявки.\n'+val(oldR.cost)+' → '+val(row.cost)));
+    return out.slice(0,14);
+  };
+  try{orderSystemMessagesFromChanges=window.orderSystemMessagesFromChanges;}catch(e){}
+
+  // Оборачиваем анализ: при сохранении/удалении пишет событие в обсуждение заявки.
+  if(typeof window.saveAnalysis==='function'&&!window.saveAnalysis.__mtoSysV18){
+    var saveAnalysisOld=window.saveAnalysis;
+    window.saveAnalysis=async function(key){
+      var res=await saveAnalysisOld.apply(this,arguments);
+      try{ if(key) await window.pushOrderDiscussion(key, plain('docs','Анализ',displayUser()+' сохранил конъюнктурный анализ по заявке.'),'system'); }catch(e){}
+      return res;
+    };
+    window.saveAnalysis.__mtoSysV18=true;
+  }
+  if(typeof window.deleteAnalysis==='function'&&!window.deleteAnalysis.__mtoSysV18){
+    var deleteAnalysisOld=window.deleteAnalysis;
+    window.deleteAnalysis=async function(key){
+      var res=await deleteAnalysisOld.apply(this,arguments);
+      try{ if(key) await window.pushOrderDiscussion(key, plain('delete','Анализ',displayUser()+' удалил конъюнктурный анализ по заявке.'),'system'); }catch(e){}
+      return res;
+    };
+    window.deleteAnalysis.__mtoSysV18=true;
+  }
+})();
+</script>
+
+
+<script>
+/* MTO v19 — real system messages hook
+   Подключено напрямую к кнопке сохранения заявки. Не зависит от старых FIX-блоков. */
+(function(){
+  if(window.__MTO_SYSTEM_MESSAGES_V19_REAL__) return;
+  window.__MTO_SYSTEM_MESSAGES_V19_REAL__=true;
+
+  function v(x){return (x===undefined||x===null||String(x).trim()==='')?'—':String(x).trim();}
+  function same(a,b){return v(a)===v(b);}
+  function n(x){return Number(x||0)||0;}
+  function arr(x){return Array.isArray(x)?x:[];}
+  function userName(){
+    try{return (typeof CU!=='undefined'&&CU&&(typeof displayNameFor==='function'?displayNameFor(CU.login):CU.login))||'Пользователь';}
+    catch(e){return 'Пользователь';}
+  }
+  function selectedKp(row){
+    try{return arr(row&&row.kp).filter(function(x){return x&&x.selected;}).map(function(x){return x.supplier||x.name||'';}).filter(Boolean).join(', ');}catch(e){return '';}
+  }
+  function currentKey(){try{return String((typeof editKey!=='undefined'&&editKey)||'');}catch(e){return '';}}
+  function oldOrderByKey(key){
+    try{return JSON.parse(JSON.stringify((typeof DATA!=='undefined'?DATA:[]).find(function(r){return String(r._k||'')===String(key);})||{}));}
+    catch(e){return {};}
+  }
+  function formRowSnapshot(oldR){
+    function el(id){var x=document.getElementById(id);return x?x.value:'';}
+    var kp=[]; try{kp=JSON.parse(JSON.stringify(typeof kpRows!=='undefined'?kpRows:[]));}catch(e){}
+    var inv=[]; try{inv=JSON.parse(JSON.stringify(typeof invoiceRows!=='undefined'?invoiceRows:[]));}catch(e){}
+    var selectedContract=null; try{selectedContract=(typeof CONTRACTS!=='undefined'?CONTRACTS:[]).find(function(x){return x&&x._k===el('fcr');})||null;}catch(e){}
+    return {
+      num:el('fnu'), company:el('fco'), shifer:el('fsh'), name:el('fnm'), resp:el('frs'), resp2:el('frs2'),
+      status:el('fst'), material:el('fma'), contractor:el('fct'), invoice:el('fin'), contract:el('fcon'),
+      selectedContractKey:selectedContract?selectedContract._k:'',
+      selectedContractName:selectedContract?((typeof contractDisplayName==='function')?contractDisplayName(selectedContract):(selectedContract.contractNumber||selectedContract.counterparty||'')):'',
+      payment:el('fpa'), delivery:el('fdl'), driverPhone:el('fdrp'), vehicleNumber:el('fveh'), upd:el('fup'), docs:el('fdo'), note:el('fno'),
+      cost:el('fco2'), kp:kp, invoices:inv
+    };
+  }
+  function msgList(oldR,row){
+    var u=userName(), out=[];
+    function add(kind,title,label,a,b){if(!same(a,b)) out.push({kind:kind,text:'🤖 '+title+'\n'+u+' изменил '+label+'.\n'+v(a)+' → '+v(b)});}
+    add('status','Статус','статус заявки',oldR.status,row.status);
+    add('payment','Оплата','статус оплаты',oldR.payment,row.payment);
+    add('delivery','Поставка','поставку / срок поставки',oldR.delivery,row.delivery);
+    add('docs','Документы','УПД / ТТН / Акт',oldR.upd,row.upd);
+    add('docs','Документы','документы качества',oldR.docs,row.docs);
+    add('docs','Договор','договор',oldR.selectedContractName||oldR.contract,row.selectedContractName||row.contract);
+    add('info','Поставщик','поставщика',oldR.contractor,row.contractor);
+    add('info','Ответственный','основного ответственного',oldR.resp,row.resp);
+    add('info','Ответственный','дополнительного ответственного',oldR.resp2,row.resp2);
+    add('payment','Сумма','сумму заявки',oldR.cost,row.cost);
+    if(arr(oldR.kp).length!==arr(row.kp).length) out.push({kind:'docs',text:'🤖 КП\n'+u+' изменил количество коммерческих предложений.\n'+arr(oldR.kp).length+' → '+arr(row.kp).length});
+    if(!same(selectedKp(oldR),selectedKp(row))) out.push({kind:'docs',text:'🤖 КП\n'+u+' изменил выбранное коммерческое предложение.\n'+v(selectedKp(oldR))+' → '+v(selectedKp(row))});
+    if(arr(oldR.invoices).length!==arr(row.invoices).length) out.push({kind:'payment',text:'🤖 Счета\n'+u+' изменил количество счетов.\n'+arr(oldR.invoices).length+' → '+arr(row.invoices).length});
+    return out.slice(0,14);
+  }
+  async function pushSys(key,text,kind){
+    if(!key||!text) return;
+    try{
+      if(typeof db!=='undefined'&&db&&db.ref){
+        await db.ref('orderDiscussions/'+key).push({type:'system',kind:kind||'info',login:'system',user:'Система',text:String(text),rawText:String(text),ts:Date.now(),system:true});
+        if(typeof ORDER_DISCUSSIONS!=='undefined'&&ORDER_DISCUSSIONS&&ORDER_DISCUSSIONS[key]){
+          ORDER_DISCUSSIONS[key].push({type:'system',kind:kind||'info',login:'system',user:'Система',text:String(text),rawText:String(text),ts:Date.now(),system:true,localOnly:true});
+        }
+        if(typeof renderOrderDiscussion==='function') setTimeout(function(){try{renderOrderDiscussion(key,{noSnap:true});}catch(e){}},80);
+      }
+    }catch(e){console.warn('v19 system message failed',e);}
+  }
+  window.mtoTestSystemMessage=function(){
+    var key=(document.getElementById('mo-order')&&document.getElementById('mo-order').dataset&&document.getElementById('mo-order').dataset.orderKey)||currentKey();
+    if(!key){alert('Открой заявку и вкладку Обсуждение.');return false;}
+    pushSys(key,'🤖 Система\nПроверочное системное сообщение. Если вы его видите — модуль работает.','test');
+    return false;
+  };
+
+  var baseSave=window.saveZ;
+  if(typeof baseSave==='function'&&!baseSave.__mtoV19Wrapped){
+    window.saveZ=async function(){
+      var key=currentKey();
+      var oldR=key?oldOrderByKey(key):null;
+      var newR=formRowSnapshot(oldR||{});
+      var isNew=!key;
+      var oldDiffFn=window.orderSystemMessagesFromChanges;
+      try{window.orderSystemMessagesFromChanges=function(){return [];}; orderSystemMessagesFromChanges=window.orderSystemMessagesFromChanges;}catch(e){}
+      var res=await baseSave.apply(this,arguments);
+      try{window.orderSystemMessagesFromChanges=oldDiffFn; orderSystemMessagesFromChanges=oldDiffFn;}catch(e){}
+      if(isNew){
+        setTimeout(function(){
+          try{
+            var num=v(newR.num), found=(typeof DATA!=='undefined'?DATA:[]).slice().reverse().find(function(r){return v(r.num)===num&&v(r.name)===v(newR.name);});
+            var nk=found&&found._k;
+            if(nk) pushSys(nk,'🤖 Создана заявка\n'+userName()+' создал заявку №'+v(newR.num)+'.\nСтатус: '+v(newR.status)+'\nОтветственные: '+v(newR.resp)+(v(newR.resp2)!=='—'?' / '+v(newR.resp2):''),'create');
+          }catch(e){}
+        },500);
+      }else{
+        var list=msgList(oldR||{},newR||{});
+        for(var i=0;i<list.length;i++) await pushSys(key,list[i].text,list[i].kind);
+        if(!list.length) await pushSys(key,'🤖 Система\n'+userName()+' сохранил заявку без заметных изменений.','info');
+      }
+      return res;
+    };
+    window.saveZ.__mtoV19Wrapped=true;
+    try{saveZ=window.saveZ;}catch(e){}
+  }
+
+  // Добавляем кнопку проверки во вкладку обсуждения, чтобы было понятно, где смотреть системные сообщения.
+  var baseRender=window.renderOrderDiscussion;
+  if(typeof baseRender==='function'&&!baseRender.__mtoV19RenderWrapped){
+    window.renderOrderDiscussion=function(key,opts){
+      var ret=baseRender.apply(this,arguments);
+      setTimeout(function(){
+        var head=document.querySelector('#order-discussion-box .order-discussion-head');
+        if(head&&!document.getElementById('mto-system-test-btn')){
+          var b=document.createElement('button');
+          b.id='mto-system-test-btn'; b.type='button'; b.className='bsm be'; b.textContent='🤖 Проверить систему';
+          b.onclick=function(e){e.preventDefault();e.stopPropagation();return window.mtoTestSystemMessage();};
+          head.appendChild(b);
+        }
+      },0);
+      return ret;
+    };
+    window.renderOrderDiscussion.__mtoV19RenderWrapped=true;
+    try{renderOrderDiscussion=window.renderOrderDiscussion;}catch(e){}
+  }
+})();
+</script>
+
+
+
+<script>
+/* MTO v20 — защита списка "Все заявки" после сохранения.
+   Иногда после изменения статуса заявка переставала проходить скрытый фильтр статуса,
+   из-за чего таблица "Все заявки" показывала "Нет данных" до перезагрузки.
+   Этот слой не трогает обсуждения: он только восстанавливает видимость списка после saveZ. */
+(function(){
+  if(window.__MTO_SAVE_LIST_GUARD_V20__) return;
+  window.__MTO_SAVE_LIST_GUARD_V20__=true;
+
+  function isAllPageActive(){
+    var p=document.getElementById('page-all');
+    return !!(p && p.classList.contains('active'));
+  }
+  function tbody(){return document.getElementById('atb');}
+  function isEmptyAllList(){
+    var tb=tbody(); if(!tb) return false;
+    var h=tb.innerHTML||'';
+    return !h.trim() || h.indexOf('Нет данных')!==-1 || h.indexOf('У вас нет заявок')!==-1;
+  }
+  function snapAll(){
+    var tb=tbody();
+    var inp=document.getElementById('all-search-input')||document.querySelector('#page-all input[placeholder*="Поиск"]');
+    var adv=''; try{adv=(typeof advF!=='undefined')?JSON.stringify(advF):'';}catch(e){}
+    return {
+      html:tb?tb.innerHTML:'',
+      count:(document.getElementById('filter-count')||{}).textContent||'',
+      aC:(typeof aC!=='undefined'?aC:''),
+      aSh:(typeof aSh!=='undefined'?aSh:''),
+      aSt:(typeof aSt!=='undefined'?aSt:''),
+      aSr:(typeof aSr!=='undefined'?aSr:''),
+      quickFilter:(typeof quickFilter!=='undefined'?quickFilter:''),
+      advF:adv,
+      searchValue:inp?inp.value:''
+    };
+  }
+  function restoreInputs(s){
+    if(!s) return;
+    var inp=document.getElementById('all-search-input')||document.querySelector('#page-all input[placeholder*="Поиск"]');
+    if(inp) inp.value=s.searchValue||'';
+  }
+  function resetOnlyBreakingFilters(){
+    try{ if(typeof aSt!=='undefined') aSt=''; }catch(e){}
+    try{ if(typeof quickFilter!=='undefined') quickFilter=''; }catch(e){}
+    try{ document.querySelectorAll('.qf.active').forEach(function(x){x.classList.remove('active');}); }catch(e){}
+    try{
+      var sel=document.querySelector('#page-all select[onchange*="aSt"]');
+      if(sel) sel.value='';
+    }catch(e){}
+  }
+  function restoreOldHtmlIfStillEmpty(s){
+    var tb=tbody(); if(!tb||!s||!s.html) return;
+    if(isEmptyAllList()){
+      tb.innerHTML=s.html;
+      var fc=document.getElementById('filter-count'); if(fc&&s.count) fc.textContent=s.count;
+      restoreInputs(s);
+    }
+  }
+  function guardAfterSave(s){
+    if(!isAllPageActive()) return;
+    if(!isEmptyAllList()) return;
+    // Сначала пробуем честно перерисовать список, убрав только фильтр статуса/быстрый фильтр,
+    // потому что именно они могут выбросить заявку из видимости после смены статуса.
+    resetOnlyBreakingFilters();
+    try{ if(typeof rAll==='function') rAll(); }catch(e){}
+    restoreInputs(s);
+    // Если таблица все равно пустая из-за запоздалого фонового рендера — возвращаем прежний HTML,
+    // чтобы пользователь не видел пустой раздел до перезагрузки.
+    setTimeout(function(){restoreOldHtmlIfStillEmpty(s);},0);
+  }
+
+  var base=window.saveZ;
+  if(typeof base==='function'&&!base.__mtoV20Guard){
+    window.saveZ=async function(){
+      var s=snapAll();
+      var res=await base.apply(this,arguments);
+      [0,80,250,600,1200,2000].forEach(function(t){setTimeout(function(){guardAfterSave(s);},t);});
+      return res;
+    };
+    window.saveZ.__mtoV20Guard=true;
+    try{saveZ=window.saveZ;}catch(e){}
+  }
 })();
 </script>
 
