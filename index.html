@@ -103,7 +103,7 @@ tr:hover td{background:#f8fafc}
 .kpf{display:flex;gap:7px;flex:1;flex-wrap:wrap}
 .kpf input{padding:5px 9px;border:1px solid var(--border);border-radius:5px;font-size:.8rem;outline:none}
 .kpf input:focus{border-color:var(--accent)}
-.kpn{flex:2;min-width:110px}.kps{flex:1;min-width:80px}.kpu{flex:3;min-width:160px}
+.kpn{flex:2;min-width:110px}.kps{flex:1;min-width:80px}.kpt{flex:1;min-width:95px}.kpu{flex:3;min-width:160px}
 .kpd{background:#fee2e2;color:#b91c1c;border:none;border-radius:5px;padding:4px 9px;cursor:pointer;font-size:.77rem;flex-shrink:0}
 .kpsb{font-size:.68rem;background:var(--gold);color:#fff;padding:2px 6px;border-radius:9px;font-weight:700;white-space:nowrap}
 .akp{display:flex;align-items:center;gap:5px;padding:7px 12px;border:1.5px dashed var(--border);border-radius:7px;background:#fff;color:var(--muted);font-size:.8rem;cursor:pointer;font-family:inherit;margin-top:7px}
@@ -457,8 +457,10 @@ tr:hover td{background:#f8fafc}
   .an-table td:nth-child(1)::before{content:'№';}
   .an-table td:nth-child(2)::before{content:'Поставщик';}
   .an-table td:nth-child(3)::before{content:'Сумма';}
-  .an-table td:nth-child(4)::before{content:'КП';}
-  .an-table td:nth-child(5)::before{content:'Статус';}
+  .an-table td:nth-child(4)::before{content:'Срок';}
+  .an-table td:nth-child(5)::before{content:'КП';}
+  .an-table td:nth-child(6)::before{content:'Комплектность';}
+  .an-table td:nth-child(7)::before{content:'Статус';}
 
   .bsm{padding:8px 12px;font-size:.82rem;border-radius:9px;}
   td[style*="display:flex"]{justify-content:flex-end!important;flex-wrap:wrap;}
@@ -1441,13 +1443,35 @@ body.mto-dark{--bg:#0f172a;--text:#e2e8f0;--muted:#94a3b8;--border:#334155}body.
 .mto-doc-viewer-fallback{padding:24px;text-align:center;color:#1e293b;max-width:620px}.mto-doc-viewer-fallback .big{font-size:2.4rem;margin-bottom:10px}.mto-doc-viewer-fallback h3{color:#1a2f4e;margin-bottom:8px}.mto-doc-viewer-fallback p{color:#64748b;line-height:1.45;margin-bottom:14px}
 @media(max-width:768px){.mto-doc-preview-btn{margin-left:0;margin-top:4px;min-height:30px}.mto-doc-viewer-modal{padding:8px}.mto-doc-viewer-box{width:98vw;height:94vh;border-radius:14px}.mto-doc-viewer-head{padding:10px;align-items:flex-start}.mto-doc-viewer-title{font-size:.84rem;white-space:normal;line-height:1.25}.mto-doc-viewer-actions{gap:5px;flex-wrap:wrap}.mto-doc-viewer-actions a,.mto-doc-viewer-actions button{padding:7px 8px;font-size:.74rem}.mto-doc-viewer-body{align-items:stretch}.mto-doc-viewer-body iframe{min-height:100%}}
 
+
+/* MTO v64: sidebar accordion menu */
+.sidebar-accordion{display:flex;flex-direction:column;gap:5px;padding:0 8px 8px}
+.nav-group{border-radius:12px;overflow:hidden}
+.nav-group-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 10px;border:0;background:transparent;color:rgba(255,255,255,.72);cursor:pointer;font-family:inherit;font-size:.80rem;font-weight:800;text-align:left;border-radius:10px;transition:background .18s ease,color .18s ease}
+.nav-group-toggle:hover{background:rgba(255,255,255,.08);color:#fff}
+.nav-group-title{display:flex;align-items:center;gap:9px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:uppercase;letter-spacing:.45px;font-size:.72rem}
+.nav-group-arrow{flex:0 0 auto;font-size:.72rem;opacity:.75;transition:transform .18s ease}
+.nav-group.open .nav-group-arrow{transform:rotate(90deg)}
+.nav-group-items{max-height:0;overflow:hidden;transition:max-height .20s ease, opacity .18s ease;opacity:.25}
+.nav-group.open .nav-group-items{max-height:520px;opacity:1}
+.nav-group .nav-item{margin:2px 0 2px 10px;padding:9px 10px 9px 16px;border-radius:9px;border-left:3px solid transparent;font-size:.83rem}
+.nav-group .nav-item.active{background:rgba(255,255,255,.13);color:#fff;border-left-color:var(--accent)}
+.nav-group.has-active .nav-group-toggle{color:#fff;background:rgba(255,255,255,.06)}
+.nav-group.has-active .nav-group-title{color:#fff}
+@media(max-width:768px){
+  .sidebar-accordion{padding:0 10px 12px;gap:6px}
+  .nav-group-toggle{min-height:44px;padding:11px 12px;font-size:.88rem}
+  .nav-group-title{font-size:.76rem}
+  .nav-group .nav-item{min-width:0;margin-left:8px;padding:11px 12px 11px 17px;font-size:.88rem}
+}
+
 </style>
 
 <meta name="theme-color" content="#1a2f4e">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="МТО">
-<link rel="manifest" href="manifest.webmanifest?v=52">
+<link rel="manifest" href="manifest.webmanifest?v=64">
 <link rel="apple-touch-icon" href="icon-192.png">
 
 
@@ -1540,30 +1564,55 @@ body.mto-dark{--bg:#0f172a;--text:#e2e8f0;--muted:#94a3b8;--border:#334155}body.
   <div class="mobile-menu-overlay" id="mobile-menu-overlay" onclick="closeMobileMenu()"></div>
   <div class="sidebar" id="sidebar">
     <div class="sb-logo"><div class="brand">МТО</div><div class="sub">СТЕЛС / ДОРСНАБ</div></div>
-    <nav class="sb-nav">
-      <div class="nav-sec">Основное</div>
-      <div class="nav-item active" onclick="SP('dash',this)">📊 Дашборд</div>
-      <div class="nav-item" onclick="SP('all',this)">📋 Все заявки</div>
-      <div class="nav-item" onclick="SP('mine',this)">👤 Мои заявки</div>
-      <div class="nav-item" onclick="SP('notifications',this)">🔔 Уведомления <span class="nav-badge" id="nav-notify-badge"></span></div>
-      <div class="nav-item" onclick="SP('delivery-calendar',this)">📅 Календарь поставок</div>
-      <div class="nav-item" onclick="SP('object-center',this)">🏗 Центр объекта</div>
-      <div class="nav-sec">Инструменты</div>
-      <div class="nav-item" onclick="SP('analysis',this)">📈 Конъюнктурный анализ</div>
-      <div class="nav-item" onclick="SP('chat',this)">💬 Вопросы / Чат</div>
-      <div class="nav-item" onclick="SP('private',this)">✉️ Личные сообщения <span class="nav-badge" id="pm-unread-badge"></span></div>
-      <div class="nav-item" onclick="SP('contacts',this)">📞 Контакты</div>
-      <div class="nav-item" onclick="SP('supplier-check',this)">✅ Аккредитация поставщика</div>
-      <div class="nav-item" onclick="SP('contracts',this)">📄 Договоры</div>
-      <div class="nav-item" onclick="SP('docflow',this)">📁 Документооборот</div>
-      <div class="nav-item" onclick="SP('ai-helper',this)">🤖 AI-помощник</div>
-      <div class="nav-item" onclick="SP('training-center',this)">🎓 Обучение</div>
-      <div class="nav-item" onclick="SP('analytics',this)">📊 Аналитика МТО</div>
-      <div class="nav-item" onclick="SP('history',this)">🕓 История изменений</div>
-      <div class="nav-sec">Пользователь</div>
-      <div class="nav-item" onclick="SP('profile',this)">👤 Профиль</div>
-      <div class="nav-sec">Управление</div>
-      <div class="nav-item" onclick="SP('edit',this)">✏️ Редактировать</div>
+    <nav class="sb-nav sidebar-accordion" id="sidebarAccordion">
+      <div class="nav-group open" data-nav-group="main" data-pages="dash,notifications">
+        <button type="button" class="nav-group-toggle" onclick="toggleNavGroup('main')"><span class="nav-group-title">🏠 Главное</span><span class="nav-group-arrow">▶</span></button>
+        <div class="nav-group-items">
+          <div class="nav-item active" onclick="SP('dash',this)">📊 Дашборд</div>
+          <div class="nav-item" onclick="SP('notifications',this)">🔔 Уведомления <span class="nav-badge" id="nav-notify-badge"></span></div>
+        </div>
+      </div>
+
+      <div class="nav-group" data-nav-group="orders" data-pages="edit,all,mine,delivery-calendar,object-center,analysis">
+        <button type="button" class="nav-group-toggle" onclick="toggleNavGroup('orders')"><span class="nav-group-title">📋 Заявки</span><span class="nav-group-arrow">▶</span></button>
+        <div class="nav-group-items">
+          <div class="nav-item" onclick="SP('edit',this)">📝 Создать заявку</div>
+          <div class="nav-item" onclick="SP('all',this)">📂 Все заявки</div>
+          <div class="nav-item" onclick="SP('mine',this)">👤 Мои заявки</div>
+          <div class="nav-item" onclick="SP('delivery-calendar',this)">📅 Календарь поставок</div>
+          <div class="nav-item" onclick="SP('object-center',this)">🏗 Центр объекта</div>
+          <div class="nav-item" onclick="SP('analysis',this)">📈 Конъюнктурный анализ</div>
+        </div>
+      </div>
+
+      <div class="nav-group" data-nav-group="docs" data-pages="contracts,contacts,supplier-check,docflow">
+        <button type="button" class="nav-group-toggle" onclick="toggleNavGroup('docs')"><span class="nav-group-title">📑 Документы</span><span class="nav-group-arrow">▶</span></button>
+        <div class="nav-group-items">
+          <div class="nav-item" onclick="SP('contracts',this)">📄 Договоры</div>
+          <div class="nav-item" onclick="SP('contacts',this)">👥 Контакты</div>
+          <div class="nav-item" onclick="SP('supplier-check',this)">✅ Аккредитация поставщика</div>
+          <div class="nav-item" onclick="SP('docflow',this)">📁 Документооборот</div>
+        </div>
+      </div>
+
+      <div class="nav-group" data-nav-group="communication" data-pages="chat,private">
+        <button type="button" class="nav-group-toggle" onclick="toggleNavGroup('communication')"><span class="nav-group-title">💬 Общение</span><span class="nav-group-arrow">▶</span></button>
+        <div class="nav-group-items">
+          <div class="nav-item" onclick="SP('chat',this)">💬 Вопросы / Чат</div>
+          <div class="nav-item" onclick="SP('private',this)">✉️ Личные сообщения <span class="nav-badge" id="pm-unread-badge"></span></div>
+        </div>
+      </div>
+
+      <div class="nav-group" data-nav-group="system" data-pages="profile,analytics,ai-helper,training-center,history">
+        <button type="button" class="nav-group-toggle" onclick="toggleNavGroup('system')"><span class="nav-group-title">⚙️ Система</span><span class="nav-group-arrow">▶</span></button>
+        <div class="nav-group-items">
+          <div class="nav-item" onclick="SP('profile',this)">👤 Профиль</div>
+          <div class="nav-item" onclick="SP('analytics',this)">📊 Аналитика МТО</div>
+          <div class="nav-item" onclick="SP('ai-helper',this)">🤖 AI-помощник</div>
+          <div class="nav-item" onclick="SP('training-center',this)">🎓 Обучение</div>
+          <div class="nav-item" onclick="SP('history',this)">🕓 История изменений</div>
+        </div>
+      </div>
     </nav>
     <div class="sb-user">
       <div class="uav" id="uav">М</div>
@@ -3186,6 +3235,48 @@ window.closeMobileMenu=function(){
   if(ov)ov.classList.remove('active');
 };
 
+
+// MTO v64: sidebar accordion menu
+const NAV_GROUP_STORAGE_KEY='mto_nav_groups_open_v64';
+function getNavGroupState(){try{return JSON.parse(localStorage.getItem(NAV_GROUP_STORAGE_KEY)||'{}')||{};}catch(e){return {};}}
+function saveNavGroupState(){
+  const st={};
+  document.querySelectorAll('.nav-group').forEach(g=>{st[g.dataset.navGroup]=g.classList.contains('open');});
+  localStorage.setItem(NAV_GROUP_STORAGE_KEY,JSON.stringify(st));
+}
+function setNavGroupOpen(name,open,save=true){
+  const g=document.querySelector(`.nav-group[data-nav-group="${name}"]`);
+  if(!g)return;
+  g.classList.toggle('open',!!open);
+  const btn=g.querySelector('.nav-group-toggle');
+  if(btn)btn.setAttribute('aria-expanded',open?'true':'false');
+  if(save)saveNavGroupState();
+}
+function toggleNavGroup(name){
+  const g=document.querySelector(`.nav-group[data-nav-group="${name}"]`);
+  if(!g)return;
+  setNavGroupOpen(name,!g.classList.contains('open'),true);
+}
+function openGroupForPage(page){
+  document.querySelectorAll('.nav-group').forEach(g=>{
+    const pages=(g.dataset.pages||'').split(',').map(x=>x.trim()).filter(Boolean);
+    const has=pages.includes(page);
+    g.classList.toggle('has-active',has);
+    if(has)setNavGroupOpen(g.dataset.navGroup,true,true);
+  });
+}
+function initSidebarAccordion(){
+  const st=getNavGroupState();
+  document.querySelectorAll('.nav-group').forEach(g=>{
+    const name=g.dataset.navGroup;
+    const shouldOpen=Object.prototype.hasOwnProperty.call(st,name)?!!st[name]:g.classList.contains('open');
+    setNavGroupOpen(name,shouldOpen,false);
+  });
+  const last=localStorage.getItem('mto_last_page')||'dash';
+  openGroupForPage(last);
+}
+setTimeout(initSidebarAccordion,0);
+
 // NAV
 window.SP=function(n,el){
   closeMobileMenu();
@@ -3199,6 +3290,7 @@ window.SP=function(n,el){
   document.querySelectorAll('.nav-item').forEach(x=>x.classList.remove('active'));
   const pageEl=document.getElementById('page-'+n); if(pageEl)pageEl.classList.add('active');
   if(el)el.classList.add('active');
+  try{openGroupForPage(n);}catch(e){}
   if(n==='dash')rDash();
   if(n==='all')rAll();
   if(n==='mine')rMine();
@@ -3728,7 +3820,7 @@ function updateOrderAutoCostFromKP(){
 }
 
 // KP
-window.addKP=function(kp){if(kpRows.length>=10)return;kpRows.push(kp||{supplier:'',sum:'',url:'',missing:'',selected:false});rKP();};
+window.addKP=function(kp){if(kpRows.length>=10)return;kpRows.push(kp||{supplier:'',sum:'',delivery:'',url:'',missing:'',selected:false});rKP();};
 function rKP(){
   document.getElementById('akpb').style.display=kpRows.length>=10?'none':'flex';
   document.getElementById('kpl').innerHTML=kpRows.map((k,i)=>`
@@ -3738,6 +3830,7 @@ function rKP(){
       <div class="kpf">
         <input class="kpn" list="contacts-list" placeholder="Поставщик из контактов или вручную" value="${esc(k.supplier||'')}" oninput="kpRows[${i}].supplier=this.value" onblur="kpRows[${i}].supplier=this.value;applySupplierMetaToRow(kpRows[${i}]);rKP()" onchange="kpRows[${i}].supplier=this.value;applySupplierMetaToRow(kpRows[${i}]);rKP()"/>
         <input class="kps" placeholder="Сумма ₽" type="number" value="${k.sum||''}" oninput="kpRows[${i}].sum=Number(this.value);updateOrderAutoCostFromKP()"/>
+        <input class="kpt" placeholder="Срок поставки" value="${esc(k.delivery||'')}" oninput="kpRows[${i}].delivery=this.value"/>
         <input class="kpu" placeholder="Ссылка Google Drive" value="${esc(k.url||'')}" oninput="kpRows[${i}].url=this.value"/>
         <input class="kpm" placeholder="Что отсутствует (если КП неполное)" value="${esc(k.missing||'')}" oninput="kpRows[${i}].missing=this.value"/>
       </div>
@@ -4115,6 +4208,24 @@ function findBestCombo(valid){
   }
   return best;
 }
+
+function parseDeliveryDays(v){
+  const s=String(v||'').toLowerCase().trim();
+  if(!s)return null;
+  if(/в\s*налич|склад|сегодня|готов/.test(s))return 0;
+  if(/завтра/.test(s))return 1;
+  const nums=(s.match(/\d+/g)||[]).map(Number);
+  if(!nums.length)return null;
+  const n=Math.max(...nums);
+  if(/недел/.test(s))return n*7;
+  if(/месяц|мес/.test(s))return n*30;
+  return n;
+}
+function deliveryRankLabel(k){
+  if(k.deliveryDays===null||k.deliveryDays===undefined)return '';
+  return k.deliveryDays===0?'В наличии':(k.deliveryDays+' дн.');
+}
+
 function makeAnalysis(r){
   const kp=(r.kp||[]).map(k=>{
     const missing=String(k.missing||'').trim();
@@ -4123,6 +4234,8 @@ function makeAnalysis(r){
       supplier:k.supplier||'',
       sum:Number(k.sum)||0,
       url:k.url||'',
+      delivery:k.delivery||'',
+      deliveryDays:parseDeliveryDays(k.delivery),
       missing,
       missingItems,
       complete:missingItems.length===0,
@@ -4139,11 +4252,15 @@ function makeAnalysis(r){
   const selectedSupplier=selected.supplier||'';
   const selectedSum=Number(selected.sum)||0;
   const selectedComplete=selectedSupplier?!!selected.complete:false;
+  const withDelivery=valid.filter(k=>k.deliveryDays!==null&&k.deliveryDays!==undefined);
+  const bestDeliveryDays=withDelivery.length?Math.min(...withDelivery.map(k=>k.deliveryDays)):null;
+  const bestDeliverySupplier=(withDelivery.find(k=>k.deliveryDays===bestDeliveryDays)||{}).supplier||'';
   const isSelectedMin=selectedSupplier&&selectedSum===minVal&&(!complete.length||selected.complete);
   const combo=findBestCombo(valid);
   let recommendation='';
   if(complete.length){
     recommendation=`Рекомендуется ${minSupplier||'—'} — ${Number(minVal).toLocaleString('ru-RU')}₽. Причина: полная комплектность и минимальная цена среди полных КП.`;
+    if(bestDeliverySupplier) recommendation+=` Лучший срок поставки: ${bestDeliverySupplier} — ${bestDeliveryDays===0?'в наличии':bestDeliveryDays+' дн.'}.`;
     if(combo&&combo.sum<minVal){
       recommendation+=` Альтернатива несколькими поставщиками: ${combo.items.map(x=>x.supplier).join(' + ')} — ориентировочно ${Number(combo.sum).toLocaleString('ru-RU')}₽.`;
     }
@@ -4160,12 +4277,14 @@ function makeAnalysis(r){
     company:r.company||'',
     name:r.name||r.material||'',
     resp:r.resp||'',
-    kp:kp.map(k=>({...k,isMin:k.sum===minVal&&k.sum>0&&(!complete.length||k.complete)})),
+    kp:kp.map(k=>({...k,isMin:k.sum===minVal&&k.sum>0&&(!complete.length||k.complete),isBestDelivery:bestDeliveryDays!==null&&k.deliveryDays===bestDeliveryDays})),
     completeCount:complete.length,
     minVal,
     maxVal,
     spread:maxVal&&minVal?maxVal-minVal:0,
     minSupplier,
+    bestDeliverySupplier,
+    bestDeliveryDays,
     selectedSupplier,
     selectedSum,
     selectedComplete,
@@ -4183,9 +4302,10 @@ function analysisHtml(r,an,preview=false){
     <td>${i+1}</td>
     <td>${k.supplier||'—'}</td>
     <td>${k.sum?Number(k.sum).toLocaleString('ru-RU')+'₽':'—'}</td>
+    <td>${k.delivery?esc(k.delivery):'<span class="nf">—</span>'}${k.isBestDelivery?'<div class="nf">лучший срок</div>':''}</td>
     <td>${k.url?`<a class="fl" href="${k.url}" target="_blank">📄 КП</a>`:'<span class="nf">—</span>'}</td>
     <td>${k.complete?'<span class="badge comp-ok">Полная</span>':`<span class="badge comp-part">Частичная</span><div class="nf">Нет: ${esc(displayMissing(k.missing)||'не указано')}</div>`}</td>
-    <td>${k.selected?'<span class="badge bgold">✓ Выбран МТО</span>':k.isMin?'<span class="badge bg">Лучшее полное КП</span>':''}</td>
+    <td>${k.selected?'<span class="badge bgold">✓ Выбран МТО</span>':k.isMin?'<span class="badge bg">Лучшее полное КП</span>':k.isBestDelivery?'<span class="badge bb">Лучший срок</span>':''}</td>
   </tr>`).join('');
   const saved=an.createdAt?new Date(an.createdAt).toLocaleString('ru-RU'):'не сохранён';
   const combo=an.combo?`<div style="margin-top:8px"><strong>Вариант несколькими поставщиками:</strong> ${esc((an.combo.suppliers||[]).join(' + '))} — ${Number(an.combo.sum||0).toLocaleString('ru-RU')}₽</div>`:'';
@@ -4195,7 +4315,7 @@ function analysisHtml(r,an,preview=false){
       <div style="margin-bottom:12px;font-size:.85rem;color:var(--muted)">📦 ${r.name||r.material||'—'} | Ответственный: ${r.resp||'—'} | ${preview?'ещё не сохранён':'сохранён: '+saved+' • '+(an.createdBy||'—')}</div>
       <div class="analysis-reco"><strong>Рекомендация:</strong> ${esc(an.recommendation||an.conclusion||'—')}${combo}</div>
       <table class="an-table">
-        <thead><tr><th>№</th><th>Поставщик</th><th>Сумма, руб.</th><th>КП</th><th>Комплектность</th><th>Статус</th></tr></thead>
+        <thead><tr><th>№</th><th>Поставщик</th><th>Сумма, руб.</th><th>Срок поставки</th><th>КП</th><th>Комплектность</th><th>Статус</th></tr></thead>
         <tbody>${rows}</tbody>
       </table>
       <div class="an-total">
@@ -4203,6 +4323,7 @@ function analysisHtml(r,an,preview=false){
           <div><span style="color:var(--muted)">Полных КП:</span> <strong>${an.completeCount||0}</strong></div>
           <div><span style="color:var(--muted)">Лучшая полная цена:</span> <strong>${an.minVal?Number(an.minVal).toLocaleString('ru-RU')+'₽':'—'}</strong></div>
           <div><span style="color:var(--muted)">Лучший поставщик:</span> <strong>${an.minSupplier||'—'}</strong></div>
+          <div><span style="color:var(--muted)">Лучший срок:</span> <strong>${an.bestDeliverySupplier?esc(an.bestDeliverySupplier)+' — '+(an.bestDeliveryDays===0?'в наличии':an.bestDeliveryDays+' дн.'):'—'}</strong></div>
           <div><span style="color:var(--muted)">Выбран МТО:</span> <strong>${an.selectedSupplier||'—'}</strong></div>
           <div><span style="color:var(--muted)">Разница мин/макс:</span> <strong>${an.spread?Number(an.spread).toLocaleString('ru-RU')+'₽':'—'}</strong></div>
         </div>
@@ -8360,17 +8481,114 @@ window.rTrainingCenter=rTrainingCenter;window.helpSetActive=helpSetActive;window
   window.rPayments85=render;
   window.pay85Reload=()=>load();
 
-  window.pay85ExportExcel=function(){
-    const rows=P85.slice(); if(!rows.length){alert('Нет записей для выгрузки');return;}
+  window.pay85ExportExcel=async function(){
+    function cleanText(v){return String(v==null?'':v).replace(/\s+/g,' ').trim();}
+    function num(v){
+      if(typeof v==='number')return isFinite(v)?v:0;
+      const s=String(v||'').replace(/₽/g,'').replace(/\s/g,'').replace(',', '.');
+      const n=parseFloat(s); return isFinite(n)?n:0;
+    }
+    function dateFile(){return new Date().toISOString().slice(0,10);}
+    function getVisibleRows(){
+      const tb=document.getElementById('pay85-tb');
+      if(!tb)return [];
+      return Array.from(tb.querySelectorAll('tr')).map(tr=>{
+        const tds=Array.from(tr.children);
+        if(tds.length<10 || (tr.textContent||'').includes('Нет записей'))return null;
+        const link=tds[12]?.querySelector('a[href]');
+        const obj={
+          no:cleanText(tds[0]?.innerText),
+          shifr:cleanText(tds[1]?.innerText),
+          orderNo:cleanText(tds[2]?.innerText).replace(/^#/,'').replace('—',''),
+          mto:cleanText(tds[3]?.innerText).replace('—',''),
+          supplier:cleanText(tds[4]?.innerText).replace('—',''),
+          amount:num(tds[5]?.innerText),
+          invoiceNo:cleanText(tds[6]?.innerText).replace('—',''),
+          invoiceDate:cleanText(tds[7]?.innerText).replace('—',''),
+          accountingDate:cleanText(tds[8]?.innerText).replace('—',''),
+          status:cleanText(tds[9]?.innerText),
+          payDate:cleanText(tds[10]?.innerText).replace('—',''),
+          paymentSent:cleanText(tds[11]?.innerText),
+          fileUrl: link ? link.href : '',
+          note:''
+        };
+        return obj;
+      }).filter(Boolean);
+    }
+    function getStateRows(){
+      const arr=(Array.isArray(P85)?P85:[]).slice();
+      return arr.map((r,i)=>({
+        no:cleanText(r.no||String(i+1)),
+        shifr:cleanText(r.shifr||'594-85'),
+        orderNo:cleanText(r.orderNo||''),
+        mto:cleanText(r.mto||''),
+        supplier:cleanText(r.supplier||''),
+        amount:num(r.amount),
+        invoiceNo:cleanText(r.invoiceNo||''),
+        invoiceDate:cleanText(dateRu(r.invoiceDate)).replace('—',''),
+        accountingDate:cleanText(dateRu(r.accountingDate)).replace('—',''),
+        status:cleanText(r.status||''),
+        payDate:cleanText(dateRu(r.payDate)).replace('—',''),
+        paymentSent:cleanText(r.paymentSent||''),
+        fileUrl:cleanText((r.invoiceFile&&r.invoiceFile.url)||''),
+        note:cleanText(r.note||'')
+      }));
+    }
+    let rows=getVisibleRows();
+    if(!rows.length)rows=getStateRows();
+    rows=rows.filter(r=>r && (r.supplier||r.invoiceNo||r.orderNo||r.amount));
+    if(!rows.length){alert('Нет записей для выгрузки');return;}
+
+    async function ensureXLSX(){
+      if(window.XLSX)return true;
+      await new Promise((resolve,reject)=>{
+        const s=document.createElement('script');
+        s.src='https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js';
+        s.onload=resolve; s.onerror=reject; document.head.appendChild(s);
+      }).catch(()=>null);
+      return !!window.XLSX;
+    }
     const headers=['№','Шифр','№ заявки','МТО-шник','Поставщик','Сумма','№ счёта','Дата счёта','Дата в бухт.','Статус','Дата оплаты','Платёжка отправлена','Файл счёта','Примечание'];
-    const lines=[headers].concat(rows.map((r,i)=>[r.no||String(i+1),r.shifr||'594-85',r.orderNo||'',r.mto||'',r.supplier||'',r.amount||0,r.invoiceNo||'',dateRu(r.invoiceDate),dateRu(r.accountingDate),r.status||'',dateRu(r.payDate),r.paymentSent||'',(r.invoiceFile&&r.invoiceFile.url)||'',r.note||'']));
-    const tsv=lines.map(row=>row.map(v=>String(v??'').replace(/\t/g,' ').replace(/\r?\n/g,' ')).join('\t')).join('\n');
-    const blob=new Blob(['\ufeff'+tsv],{type:'text/tab-separated-values;charset=utf-8'});
-    const a=document.createElement('a'); const dt=new Date().toISOString().slice(0,10); a.href=URL.createObjectURL(blob); a.download='Платежи_85_'+dt+'.xls'; document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},500);
+    const aoa=[['Реестр платежей 85'],['Дата выгрузки: '+new Date().toLocaleDateString('ru-RU')],headers];
+    rows.forEach(r=>aoa.push([
+      r.no,r.shifr,r.orderNo,r.mto,r.supplier,r.amount,r.invoiceNo,r.invoiceDate,r.accountingDate,r.status,r.payDate,r.paymentSent,r.fileUrl?'Открыть':'',r.note
+    ]));
+    const total=rows.reduce((a,r)=>a+num(r.amount),0);
+    const paid=rows.filter(r=>String(r.status||'').toLowerCase().includes('оплачен')).reduce((a,r)=>a+num(r.amount),0);
+    aoa.push([]);
+    aoa.push(['ИТОГО','','','','',total,'','','','','','','','Записей: '+rows.length]);
+    aoa.push(['Оплачено','','','','',paid]);
+    aoa.push(['Осталось','','','','',total-paid]);
+
+    if(await ensureXLSX()){
+      const wb=XLSX.utils.book_new();
+      const ws=XLSX.utils.aoa_to_sheet(aoa);
+      ws['!cols']=[{wch:7},{wch:13},{wch:11},{wch:18},{wch:28},{wch:16},{wch:20},{wch:14},{wch:14},{wch:26},{wch:14},{wch:18},{wch:22},{wch:32}];
+      ws['!merges']=[{s:{r:0,c:0},e:{r:0,c:13}}];
+      ws['!autofilter']={ref:'A3:N'+Math.max(3,3+rows.length)};
+      rows.forEach((r,i)=>{
+        const row=4+i;
+        const sumCell='F'+row; if(ws[sumCell]){ws[sumCell].t='n';ws[sumCell].z='# ##0.00 ₽';}
+        if(r.fileUrl){const cell='M'+row; if(ws[cell])ws[cell].l={Target:r.fileUrl,Tooltip:'Открыть файл счета'};}
+      });
+      ['F'+(rows.length+5),'F'+(rows.length+6),'F'+(rows.length+7)].forEach(c=>{if(ws[c]){ws[c].t='n';ws[c].z='# ##0.00 ₽';}});
+      XLSX.utils.book_append_sheet(wb,ws,'Платежи 85');
+      XLSX.writeFile(wb,'Платежи_85_'+dateFile()+'.xlsx');
+      return;
+    }
+
+    // Резервный вариант без CDN: Excel открывает HTML-таблицу корректно по колонкам.
+    const esc2=v=>String(v==null?'':v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    let html='<html><head><meta charset="UTF-8"></head><body><table border="1"><tr>'+headers.map(h=>'<th>'+esc2(h)+'</th>').join('')+'</tr>';
+    rows.forEach(r=>{html+='<tr>'+[r.no,r.shifr,r.orderNo,r.mto,r.supplier,r.amount,r.invoiceNo,r.invoiceDate,r.accountingDate,r.status,r.payDate,r.paymentSent,r.fileUrl,r.note].map(v=>'<td>'+esc2(v)+'</td>').join('')+'</tr>';});
+    html+='</table></body></html>';
+    const blob=new Blob(['\ufeff'+html],{type:'application/vnd.ms-excel;charset=utf-8'});
+    const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='Платежи_85_'+dateFile()+'.xls'; document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},500);
   };
-  function addExportButton(){
+
+    function addExportButton(){
     const card=qs('#profile-section-payments85 .card .ch .cf') || qs('#page-payments85 .card .ch .cf');
-    if(card&&!document.getElementById('pay85-export-btn')){ const b=document.createElement('button'); b.id='pay85-export-btn'; b.className='btn btn-s'; b.textContent='📊 Выгрузить Excel'; b.onclick=window.pay85ExportExcel; card.insertBefore(b,card.firstChild); }
+    if(card&&!document.getElementById('pay85-export-btn')){ const b=document.createElement('button'); b.id='pay85-export-btn'; b.className='btn btn-s'; b.textContent='📊 Выгрузить XLSX'; b.onclick=window.pay85ExportExcel; card.insertBefore(b,card.firstChild); }
   }
   async function load(){
     purgeLocal();
