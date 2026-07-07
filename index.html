@@ -1465,6 +1465,14 @@ body.mto-dark{--bg:#0f172a;--text:#e2e8f0;--muted:#94a3b8;--border:#334155}body.
   .nav-group .nav-item{min-width:0;margin-left:8px;padding:11px 12px 11px 17px;font-size:.88rem}
 }
 
+
+/* V70: urgent deadline dashboard */
+.dash-v64-card.urgent-overdue{border-color:#ef4444;box-shadow:0 0 0 2px rgba(239,68,68,.14),0 4px 16px rgba(239,68,68,.08)}
+.dash-v64-card.urgent-today{border-color:#f97316;box-shadow:0 0 0 2px rgba(249,115,22,.14),0 4px 16px rgba(249,115,22,.08)}
+.dash-v64-card.urgent-soon{border-color:#f59e0b;box-shadow:0 0 0 2px rgba(245,158,11,.12),0 4px 16px rgba(245,158,11,.07)}
+.urgent-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:999px;font-size:.68rem;font-weight:800;white-space:nowrap;margin-left:4px}
+.urgent-overdue-b{background:#fee2e2;color:#b91c1c}.urgent-today-b{background:#ffedd5;color:#c2410c}.urgent-soon-b{background:#fef3c7;color:#92400e}.urgent-normal-b{background:#dbeafe;color:#1d4ed8}
+.dash-v64-side-item.urgent-overdue{border-color:#fecaca;background:#fff7f7}.dash-v64-side-item.urgent-today{border-color:#fed7aa;background:#fff7ed}.dash-v64-side-item.urgent-soon{border-color:#fde68a;background:#fffbeb}
 </style>
 
 <meta name="theme-color" content="#1a2f4e">
@@ -1825,7 +1833,7 @@ body.mto-dark{--bg:#0f172a;--text:#e2e8f0;--muted:#94a3b8;--border:#334155}body.
         <button class="tab dashco" type="button" onclick="sDashC('ДОРСНАБ',this)">ДОРСНАБ</button>
         <select class="si2" id="dash-status-filter" onchange="dashStatus=this.value;rDash()">
           <option value="">Все статусы</option>
-          <option>Требует внимания</option>
+          <option>Срочные заявки</option>
           <option>ЖДЕМ ДОСТАВКИ</option>
           <option>Ожидаем доставку</option>
           <option>ДОСТАВЛЕНО</option>
@@ -2187,23 +2195,24 @@ body.mto-dark{--bg:#0f172a;--text:#e2e8f0;--muted:#94a3b8;--border:#334155}body.
       <div class="card">
         <div class="ch"><div class="ct">💳 Новый платеж / запись</div><div class="cf"><button class="btn btn-s" onclick="pay85ClearForm()">Очистить</button><button class="btn btn-p" onclick="pay85Save()">💾 Сохранить</button></div></div>
         <div class="pay85-note">Можно выбрать заявку из базы через список или ввести номер вручную. Поля с # и @ принимают ручной ввод.</div>
-        <div class="pay85-form-grid">
-          <div class="fgr"><label class="fl2">№</label><input class="fi" id="pay85-no" placeholder="Авто / вручную"></div>
-          <div class="fgr"><label class="fl2">Шифр</label><input class="fi" id="pay85-shifr" value="594-85" list="pay85-shifr-list"></div>
-          <div class="fgr"><label class="fl2">№ заявки #</label><input class="fi" id="pay85-order" placeholder="#106 или свой номер" list="pay85-orders-list" oninput="pay85OrderChanged()"></div>
-          <div class="fgr"><label class="fl2">МТО-шник @</label><input class="fi" id="pay85-mto" placeholder="@Магомед С. или вручную" list="pay85-mto-list"></div>
-          <div class="fgr"><label class="fl2">Поставщик</label><input class="fi" id="pay85-supplier" placeholder="Поставщик"></div>
-          <div class="fgr"><label class="fl2">Сумма</label><input class="fi" id="pay85-amount" type="number" placeholder="0"></div>
-          <div class="fgr"><label class="fl2">Номер счёта</label><input class="fi" id="pay85-invoice-no" placeholder="№ счета"></div>
-          <div class="fgr"><label class="fl2">Дата счёта</label><input class="fi" id="pay85-invoice-date" type="date"></div>
-          <div class="fgr"><label class="fl2">Дата в бухт.</label><input class="fi" id="pay85-accounting-date" type="date"></div>
-          <div class="fgr"><label class="fl2">Статус</label><select class="fi" id="pay85-status"><option>Новый</option><option>Счет получен</option><option>Передан в бухгалтерию</option><option>На оплате</option><option>Оплачен</option><option>Проблема</option></select></div>
-          <div class="fgr"><label class="fl2">Дата оплаты</label><input class="fi" id="pay85-pay-date" type="date"></div>
-          <div class="fgr"><label class="fl2">Платёжка отправлена</label><select class="fi" id="pay85-payment-sent"><option>Нет</option><option>Да</option><option>Не требуется</option></select></div>
-          <div class="fgr"><label class="fl2">Примечание</label><input class="fi" id="pay85-note" placeholder="Комментарий"></div>
+        <div class="pay85-form-grid" autocomplete="off" data-form-type="other">
+          <div class="fgr"><label class="fl2">№</label><input class="fi" id="pay85-no" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-form-type="other" data-lpignore="true" placeholder="Авто / вручную"></div>
+          <div class="fgr"><label class="fl2">Шифр</label><input class="fi" id="pay85-shifr" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-form-type="other" data-lpignore="true" value="594-85" list="pay85-shifr-list"></div>
+          <div class="fgr"><label class="fl2">№ заявки #</label><input class="fi" id="pay85-order" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-form-type="other" data-lpignore="true" placeholder="#106 или свой номер" list="pay85-orders-list" oninput="pay85OrderChanged()"></div>
+          <div class="fgr"><label class="fl2">МТО-шник @</label><input class="fi" id="pay85-mto" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-form-type="other" data-lpignore="true" placeholder="@Магомед С. или вручную" list="pay85-mto-list"></div>
+          <div class="fgr"><label class="fl2">Поставщик</label><input class="fi" id="pay85-supplier" list="pay85-supplier-list" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-form-type="other" data-lpignore="true" placeholder="Поставщик"></div>
+          <div class="fgr"><label class="fl2">Сумма</label><input class="fi" id="pay85-amount" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-form-type="other" data-lpignore="true" type="number" placeholder="0"></div>
+          <div class="fgr"><label class="fl2">Номер счёта</label><input class="fi" id="pay85-invoice-no" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-form-type="other" data-lpignore="true" placeholder="№ счета"></div>
+          <div class="fgr"><label class="fl2">Дата счёта</label><input class="fi" id="pay85-invoice-date" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-form-type="other" data-lpignore="true" type="date"></div>
+          <div class="fgr"><label class="fl2">Дата в бухт.</label><input class="fi" id="pay85-accounting-date" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-form-type="other" data-lpignore="true" type="date"></div>
+          <div class="fgr"><label class="fl2">Статус</label><select class="fi" id="pay85-status" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-form-type="other" data-lpignore="true"><option>Новый</option><option>Счет получен</option><option>Передан в бухгалтерию</option><option>На оплате</option><option>Оплачен</option><option>Проблема</option></select></div>
+          <div class="fgr"><label class="fl2">Дата оплаты</label><input class="fi" id="pay85-pay-date" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-form-type="other" data-lpignore="true" type="date"></div>
+          <div class="fgr"><label class="fl2">Платёжка отправлена</label><select class="fi" id="pay85-payment-sent" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-form-type="other" data-lpignore="true"><option>Нет</option><option>Да</option><option>Не требуется</option></select></div>
+          <div class="fgr"><label class="fl2">Примечание</label><input class="fi" id="pay85-note" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-form-type="other" data-lpignore="true" placeholder="Комментарий"></div>
         </div>
         <datalist id="pay85-orders-list"></datalist>
         <datalist id="pay85-mto-list"></datalist>
+        <datalist id="pay85-supplier-list"></datalist>
         <datalist id="pay85-shifr-list"><option value="594-85"><option value="594-151"><option value="594-815"></datalist>
       </div>
       <div class="card">
@@ -2387,6 +2396,7 @@ body.mto-dark{--bg:#0f172a;--text:#e2e8f0;--muted:#94a3b8;--border:#334155}body.
       <div class="fgr"><label class="fl2">№ Заявки</label><input class="fi" id="fnu" placeholder="92"/></div>
       <div class="fgr"><label class="fl2">Шифр</label><select class="fi" id="fsh"><option>594-151</option><option>594-815</option><option>594-85</option></select></div>
       <div class="fgr"><label class="fl2">Дата заявки</label><input class="fi" type="date" id="fdt"/></div>
+      <div class="fgr"><label class="fl2">Срок / дата контроля <span style="font-weight:400;color:var(--muted);text-transform:none">необязательно</span></label><input class="fi" type="date" id="fdd" title="Если указать дату, заявка попадет в Срочные заявки на дашборде"/></div>
       <div class="fgr f"><label class="fl2">Наименование</label><input class="fi" id="fnm" placeholder="Инструменты и расходники"/></div>
       <div class="fgr"><label class="fl2">Ответственный</label>
         <select class="fi" id="frs"><option>Не выбран</option><option>Магомед С.</option><option>Эдуард</option><option>Шамиль</option><option>Вадим</option><option>Елена</option><option>Эмин</option><option>Даниэль</option></select></div>
@@ -2611,10 +2621,36 @@ function orderSortNum(r){
   return n?Number(n.join('').slice(-12)):0;
 }
 let orderSortMode=localStorage.getItem('mto_order_sort_mode')||'newest';
-function isAttentionOrder(r){
-  const raw=String(r?.status||r?.priority||r?.attention||r?.flag||'').toLowerCase();
-  return raw.includes('требует внимания')||raw.includes('важно')||raw.includes('срочно')||raw.includes('attention')||raw==='true';
+
+
+/* V70: Срочные заявки по дате контроля */
+function normalizeDeadlineInput(v){
+  if(!v)return '';
+  const s=String(v).trim();
+  if(/^\d{4}-\d{2}-\d{2}$/.test(s))return s;
+  const m=s.match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})$/);
+  if(m)return `${m[3]}-${m[2].padStart(2,'0')}-${m[1].padStart(2,'0')}`;
+  return '';
 }
+function orderDeadlineValue(r){return normalizeDeadlineInput(r?.deadlineDate||r?.controlDate||r?.priorityDate||r?.dueDate||'');}
+function startOfToday(){const d=new Date();d.setHours(0,0,0,0);return d;}
+function deadlineInfo(r){
+  const iso=orderDeadlineValue(r);
+  if(!iso)return null;
+  const d=new Date(iso+'T00:00:00');
+  if(isNaN(d))return null;
+  const today=startOfToday();
+  const diff=Math.round((d-today)/86400000);
+  let cls='urgent-normal', bcls='urgent-normal-b', label=`через ${diff} дн.`, icon='🔵';
+  if(diff<0){cls='urgent-overdue';bcls='urgent-overdue-b';label=`просрочено ${Math.abs(diff)} дн.`;icon='🔴';}
+  else if(diff===0){cls='urgent-today';bcls='urgent-today-b';label='срок сегодня';icon='🟠';}
+  else if(diff===1){cls='urgent-soon';bcls='urgent-soon-b';label='срок завтра';icon='🟡';}
+  else if(diff<=7){cls='urgent-soon';bcls='urgent-soon-b';label=`через ${diff} дн.`;icon='🟡';}
+  return {iso,date:d,diff,cls,bcls,label,icon,ru:iso.split('-').reverse().join('.')};
+}
+function urgentBadgeHtml(r){const x=deadlineInfo(r);return x?`<span class="urgent-badge ${x.bcls}" title="Дата контроля: ${x.ru}">${x.icon} ${esc(x.label)}</span>`:'';}
+function urgentSort(list){return [...list].sort((a,b)=>{const aa=deadlineInfo(a),bb=deadlineInfo(b); if(aa&&bb)return aa.diff-bb.diff; if(aa&&!bb)return -1; if(!aa&&bb)return 1; return 0;});}
+function isAttentionOrder(r){return !!deadlineInfo(r) && !isDeliveredStatus(r?.status);}
 function isNewOrder(r){
   const t=orderCreatedTime(r);
   return !!t && (Date.now()-t)>=0 && (Date.now()-t)<=24*60*60*1000;
@@ -3555,7 +3591,7 @@ function getDashData(){
   let list = Array.isArray(DATA) ? [...DATA] : [];
   if(dashC && dashC !== 'ALL') list = list.filter(r=>r.company===dashC);
   if(window.dashStatus){
-    if(window.dashStatus === 'Требует внимания') list = list.filter(r=>isAttentionOrder(r));
+    if(window.dashStatus === 'Срочные заявки') list = urgentSort(list.filter(r=>isAttentionOrder(r)));
     else list = list.filter(r=>String(r.status||r.payment||'')===window.dashStatus || String(r.status||'').includes(window.dashStatus));
   }
   if(window.dQ){
@@ -3570,11 +3606,12 @@ function dashCardHtml(r){
   const title=r.name||r.title||r.material||'Без наименования';
   const sub=[r.material,r.requestText,r.note].filter(Boolean).map(x=>esc(String(x)).slice(0,120)).join('<br>')||'—';
   const canEdit = (typeof canEditOrder==='function' && canEditOrder(r));
-  return `<div class="dash-v64-card ${isAttentionOrder(r)?'attention':''}">
+  const urg=deadlineInfo(r);
+  return `<div class="dash-v64-card ${urg?urg.cls:''}">
     <div class="dash-v64-card-head">
       <div>
-        <div class="dash-v64-num">№${dashSafeText(r.num,'б/н')} ${orderMarkersHtml(r)}</div>
-        <div class="dash-v64-date">${dashSafeText(r.createdAt||r.date)}</div>
+        <div class="dash-v64-num">№${dashSafeText(r.num,'б/н')} ${orderMarkersHtml(r)} ${urgentBadgeHtml(r)}</div>
+        <div class="dash-v64-date">${dashSafeText(r.createdAt||r.date)}${urg?` • дата контроля: ${urg.ru}`:''}</div>
         <div class="dash-v64-title">${dashSafeText(title)}</div>
         <div class="dash-v64-sub">${sub}</div>
       </div>
@@ -3587,6 +3624,7 @@ function dashCardHtml(r){
       <div class="dash-v64-field"><div class="dash-v64-label">Оплата</div><div class="dash-v64-value">${dashSafeText(r.payment)}</div></div>
       <div class="dash-v64-field"><div class="dash-v64-label">Поставка</div><div class="dash-v64-value">${dashSafeText(r.delivery)}${r.vehicleNumber?'<br><span class="nf">🚚 '+esc(r.vehicleNumber)+'</span>':''}</div></div>
       <div class="dash-v64-field"><div class="dash-v64-label">Дни</div><div class="dash-v64-value">${daysB(r)}</div></div>
+      <div class="dash-v64-field"><div class="dash-v64-label">Срок</div><div class="dash-v64-value">${urgentBadgeHtml(r)||'—'}</div></div>
     </div>
     <div class="dash-v64-actions">
       <button class="bsm be" onclick="window.openOrderView('${id}')">👁 Открыть</button>
@@ -3603,7 +3641,7 @@ function rDash(){
   const side=document.getElementById('dash-v64-side');
   const title=document.getElementById('dash-table-title');
   const count=document.getElementById('dash-count-label');
-  if(title)title.textContent='Активные заявки — '+(dashC==='ALL'?'Все компании':dashC);
+  if(title)title.textContent=(window.dashStatus==='Срочные заявки'?'Срочные заявки — ':'Активные заявки — ')+(dashC==='ALL'?'Все компании':dashC);
   if(count)count.textContent=`Показано: ${visible.length} из ${all.length}`;
   if(stats){
     const done=all.filter(r=>r.status==='ДОСТАВЛЕНО').length;
@@ -3612,7 +3650,7 @@ function rDash(){
     const inWork=all.filter(r=>r.status!=='ДОСТАВЛЕНО').length;
     stats.innerHTML=`
       <div class="sc"><div class="si b">📋</div><div><div class="sv">${all.length}</div><div class="sl">Всего заявок</div></div></div>
-      <div class="sc"><div class="si r">📌</div><div><div class="sv">${attention}</div><div class="sl">Требуют внимания</div></div></div>
+      <div class="sc"><div class="si r">🔥</div><div><div class="sv">${attention}</div><div class="sl">Срочные заявки</div></div></div>
       <div class="sc"><div class="si y">🚚</div><div><div class="sv">${wait}</div><div class="sl">Ждём доставки</div></div></div>
       <div class="sc"><div class="si g">✅</div><div><div class="sv">${done}</div><div class="sl">Доставлено</div></div></div>`;
   }
@@ -3620,8 +3658,8 @@ function rDash(){
     list.innerHTML=visible.length?visible.map(dashCardHtml).join(''):'<div class="dash-v64-empty">Нет заявок по выбранным условиям</div>';
   }
   if(side){
-    const control=sortOrdersNewest(all.filter(r=>isAttentionOrder(r)||r.status!=='ДОСТАВЛЕНО')).slice(0,8);
-    side.innerHTML=control.length?control.map(r=>`<div class="dash-v64-side-item" onclick="window.openOrderView('${r._k||''}')"><b>№${dashSafeText(r.num,'б/н')}</b> ${sB(r.status)}<div class="nf">${dashSafeText(r.name||r.material)}</div></div>`).join(''):'<div class="dash-v64-empty">Нет активных задач</div>';
+    const control=urgentSort(all.filter(r=>isAttentionOrder(r))).slice(0,8);
+    side.innerHTML=control.length?control.map(r=>{const u=deadlineInfo(r);return `<div class="dash-v64-side-item ${u?u.cls:''}" onclick="window.openOrderView('${r._k||''}')"><b>№${dashSafeText(r.num,'б/н')}</b> ${urgentBadgeHtml(r)}<div class="nf">${dashSafeText(r.name||r.material)}</div></div>`}).join(''):'<div class="dash-v64-empty">Нет срочных заявок</div>';
   }
 }
 function rDashT(){ rDash(); }
@@ -3992,7 +4030,7 @@ window.selectOrderContract=selectOrderContract;
 window.openAdd=function(){
   editKey=null;kpRows=[];invoiceRows=[];
   document.getElementById('mzt').textContent='Новая заявка';
-  ['fco','fnu','fsh','fdt','fnm','frs','frs2','fst','fma','fco2','fct','fin','fcon','fcr','fpa','fdl','fdrp','fveh','fup','fdo','fda','fno'].forEach(id=>{
+  ['fco','fnu','fsh','fdt','fdd','fnm','frs','frs2','fst','fma','fco2','fct','fin','fcon','fcr','fpa','fdl','fdrp','fveh','fup','fdo','fda','fno'].forEach(id=>{
     const el=document.getElementById(id);if(el){if(el.tagName==='SELECT')el.selectedIndex=0;else el.value='';}
   });
   document.getElementById('fdt').value=todayInput();
@@ -4009,6 +4047,7 @@ window.openE=function(k){
   document.getElementById('fnu').value=r.num||'';
   document.getElementById('fsh').value=r.shifer||'594-151';
   document.getElementById('fdt').value=(r.createdAt||r.date)?(r.createdAt||r.date).split('.').reverse().join('-'):todayInput();
+  document.getElementById('fdd').value=normalizeDeadlineInput(r.deadlineDate||r.controlDate||r.priorityDate||r.dueDate||'');
   document.getElementById('fnm').value=r.name||'';
   document.getElementById('frs').value=r.resp||'Не выбран';
   document.getElementById('frs2').value=r.resp2||'';
@@ -4048,6 +4087,7 @@ window.saveZ=async function(){
   const row={
     company:document.getElementById('fco').value,num:document.getElementById('fnu').value,
     shifer:document.getElementById('fsh').value,date:dr?dr.split('-').reverse().join('.'):todayRu(),
+    deadlineDate:document.getElementById('fdd')?.value||'',controlDate:document.getElementById('fdd')?.value||'',priorityDate:document.getElementById('fdd')?.value||'',
     name:document.getElementById('fnm').value,resp:document.getElementById('frs').value,resp2:document.getElementById('frs2').value,
     status:document.getElementById('fst').value,material:document.getElementById('fma').value,
     cost:selectedTotal>0?selectedTotal:(invoicesTotal>0?invoicesTotal:manualCost),contractor:document.getElementById('fct').value,
@@ -8375,6 +8415,13 @@ window.rTrainingCenter=rTrainingCenter;window.helpSetActive=helpSetActive;window
       ['Магомед С.','Эдуард','Шамиль','Вадим','Елена','Эмин','Даниэль','Юнус'].forEach(x=>names.push(x));
       ml.innerHTML=[...new Set(names.filter(Boolean))].map(x=>`<option value="@${attr(x)}"></option>`).join('');
     }
+    const sl=el('pay85-supplier-list');
+    if(sl){
+      const suppliers=[];
+      try{ (window.CONTACTS||CONTACTS||[]).forEach(c=>suppliers.push(c.name||c.company||c.title||'')); }catch(e){}
+      try{ (window.DATA||[]).forEach(r=>{ if(r.contractor) suppliers.push(r.contractor); (r.kp||[]).forEach(k=>suppliers.push(k.supplier||'')); (r.invoices||[]).forEach(i=>suppliers.push(i.supplier||'')); }); }catch(e){}
+      sl.innerHTML=[...new Set(suppliers.map(x=>String(x||'').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'ru')).map(x=>`<option value="${attr(x)}"></option>`).join('');
+    }
   };
   window.pay85OrderChanged=function(){
     const o=orderByNum(val('pay85-order')); if(!o)return;
@@ -8777,6 +8824,10 @@ window.rTrainingCenter=rTrainingCenter;window.helpSetActive=helpSetActive;window
     };
     try{rInvoices=window.rInvoices;}catch(e){}
   }
+  window.mtoGetPayments85=function(){
+    try{return (Array.isArray(P85)?P85:[]).filter(x=>!isDeleted(x)).map(x=>Object.assign({},x));}
+    catch(e){return [];}
+  };
   setTimeout(()=>{try{if(typeof window.rKP==='function')window.rKP(); if(typeof window.rInvoices==='function')window.rInvoices();}catch(e){}},800);
 })();
 </script>
@@ -8866,6 +8917,13 @@ window.rTrainingCenter=rTrainingCenter;window.helpSetActive=helpSetActive;window
       try{ Object.values(safeUsers()).forEach(function(u){ names.push(u.resp||u.name||u.login||''); }); }catch(e){}
       ['Магомед С.','Эдуард','Шамиль','Вадим','Елена','Эмин','Даниэль','Юнус'].forEach(function(x){names.push(x);});
       ml.innerHTML=[...new Set(names.filter(Boolean))].map(function(x){return '<option value="@'+attr(x)+'"></option>';}).join('');
+    }
+    const sl=document.getElementById('pay85-supplier-list');
+    if(sl){
+      const suppliers=[];
+      try{ (window.CONTACTS||CONTACTS||[]).forEach(function(c){ suppliers.push(c.name||c.company||c.title||''); }); }catch(e){}
+      try{ safeData().forEach(function(r){ if(r.contractor) suppliers.push(r.contractor); (r.kp||[]).forEach(function(k){ suppliers.push(k.supplier||''); }); (r.invoices||[]).forEach(function(i){ suppliers.push(i.supplier||''); }); }); }catch(e){}
+      sl.innerHTML=[...new Set(suppliers.map(function(x){return String(x||'').trim();}).filter(Boolean))].sort(function(a,b){return a.localeCompare(b,'ru');}).map(function(x){return '<option value="'+attr(x)+'"></option>';}).join('');
     }
   }
   const oldPopulate=window.pay85PopulateLists;
@@ -8992,6 +9050,240 @@ window.rTrainingCenter=rTrainingCenter;window.helpSetActive=helpSetActive;window
   function start(){addButtons(document); try{mo.observe(document.body,{childList:true,subtree:true});}catch(e){} }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start); else start();
   setInterval(()=>addButtons(document),1500);
+})();
+</script>
+
+
+<script id="mto-v67-management-excel-report">
+(function(){
+  if(window.__MTO_V67_MANAGEMENT_EXCEL_REPORT__) return;
+  window.__MTO_V67_MANAGEMENT_EXCEL_REPORT__ = true;
+
+  function safeArr(name){try{return Array.isArray(eval(name)) ? eval(name) : [];}catch(e){return []}}
+  function clean(v){return String(v==null?'':v).replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim();}
+  function num(v){
+    if(typeof v==='number') return isFinite(v)?v:0;
+    const s=String(v||'').replace(/₽/g,'').replace(/\s/g,'').replace(',', '.').replace(/[^0-9.\-]/g,'');
+    const n=parseFloat(s); return isFinite(n)?n:0;
+  }
+  function money(v){return num(v);}
+  function dateRuAny(v){
+    if(!v) return '';
+    try{ if(typeof dateRu==='function') { const x=dateRu(v); if(x && x!=='—') return x; } }catch(e){}
+    if(typeof v==='number') return new Date(v).toLocaleDateString('ru-RU');
+    const s=String(v);
+    if(/^\d{4}-\d{2}-\d{2}/.test(s)){ const d=new Date(s); if(!isNaN(d))return d.toLocaleDateString('ru-RU'); }
+    return s;
+  }
+  function orderTotalSafe(r){try{return typeof orderTotal==='function'?orderTotal(r):money(r.cost);}catch(e){return money(r&&r.cost);}}
+  function workDaysSafe(r){try{return typeof workDays==='function'?workDays(r):'';}catch(e){return ''}}
+  function contractLifeSafe(c){try{return typeof contractLife==='function'?contractLife(c).label:'';}catch(e){return ''}}
+  function isDelivered(r){return String(r&&r.status||'').toUpperCase().includes('ДОСТАВ');}
+  function firstSelected(arr){return (Array.isArray(arr)?arr:[]).find(x=>x&&x.selected)||null;}
+  function firstInvoice(r){const a=Array.isArray(r.invoices)?r.invoices:[];return a[0]||null;}
+  function uniqContacts(arr){try{return typeof uniqueContacts==='function'?uniqueContacts(arr):arr;}catch(e){return arr||[];}}
+  function getPayments(){
+    try{ if(typeof window.mtoGetPayments85==='function') return window.mtoGetPayments85(); }catch(e){}
+    try{ const raw=localStorage.getItem('mto_payments85_clean_v50'); const arr=JSON.parse(raw||'[]'); return Array.isArray(arr)?arr:[]; }catch(e){return []}
+  }
+  function linkObj(label,url){ return url ? {v:label||'Открыть', l:{Target:url,Tooltip:'Открыть документ'}} : (label||''); }
+  function hasUrl(v){return !!(v && typeof v==='object' && v.l && v.l.Target);}
+
+  const C={navy:'1A2F4E',blue:'3B82F6',line:'D8DEE9',light:'F8FAFC',lighter:'FBFDFF',text:'0F172A',muted:'64748B',green:'DCFCE7',greenText:'166534',yellow:'FEF3C7',yellowText:'92400E',red:'FEE2E2',redText:'991B1B',gray:'F1F5F9',white:'FFFFFF'};
+  const thin={style:'thin',color:{rgb:C.line}};
+  const baseBorder={top:thin,bottom:thin,left:thin,right:thin};
+  const S={
+    title:{font:{bold:true,sz:22,color:{rgb:C.white}},fill:{fgColor:{rgb:C.navy}},alignment:{horizontal:'center',vertical:'center'},border:baseBorder},
+    subtitle:{font:{bold:true,sz:11,color:{rgb:C.text}},fill:{fgColor:{rgb:C.gray}},alignment:{vertical:'center'},border:baseBorder},
+    header:{font:{bold:true,sz:10,color:{rgb:C.white}},fill:{fgColor:{rgb:C.navy}},alignment:{horizontal:'center',vertical:'center'},border:baseBorder},
+    cell:{font:{sz:10,color:{rgb:C.text}},alignment:{vertical:'center'},border:baseBorder},
+    alt:{fill:{fgColor:{rgb:C.light}}},
+    money:{font:{sz:10,color:{rgb:C.text}},numFmt:'# ##0.00 ₽',alignment:{vertical:'center',horizontal:'right'},border:baseBorder},
+    int:{font:{sz:10,color:{rgb:C.text}},numFmt:'0',alignment:{vertical:'center',horizontal:'center'},border:baseBorder},
+    link:{font:{sz:10,color:{rgb:'2563EB'},underline:true},alignment:{vertical:'center'},border:baseBorder},
+    good:{font:{bold:true,sz:10,color:{rgb:C.greenText}},fill:{fgColor:{rgb:C.green}},alignment:{vertical:'center'},border:baseBorder},
+    warn:{font:{bold:true,sz:10,color:{rgb:C.yellowText}},fill:{fgColor:{rgb:C.yellow}},alignment:{vertical:'center'},border:baseBorder},
+    bad:{font:{bold:true,sz:10,color:{rgb:C.redText}},fill:{fgColor:{rgb:C.red}},alignment:{vertical:'center'},border:baseBorder},
+    muted:{font:{sz:10,color:{rgb:C.muted}},alignment:{vertical:'center'},border:baseBorder},
+    kpiLabel:{font:{bold:true,sz:10,color:{rgb:C.muted}},fill:{fgColor:{rgb:C.light}},alignment:{horizontal:'center',vertical:'center'},border:baseBorder},
+    kpiValue:{font:{bold:true,sz:17,color:{rgb:C.navy}},fill:{fgColor:{rgb:C.white}},alignment:{horizontal:'center',vertical:'center'},border:baseBorder},
+    section:{font:{bold:true,sz:12,color:{rgb:C.white}},fill:{fgColor:{rgb:C.navy}},alignment:{horizontal:'left',vertical:'center'},border:baseBorder},
+  };
+  function mergeStyle(a,b){
+    if(!b) return a||{};
+    return Object.assign({},a||{},b||{}, {font:Object.assign({},(a||{}).font||{},(b||{}).font||{}), fill:Object.assign({},(a||{}).fill||{},(b||{}).fill||{}), alignment:Object.assign({},(a||{}).alignment||{},(b||{}).alignment||{}), border:Object.assign({},(a||{}).border||{},(b||{}).border||{})});
+  }
+  function styleCell(ws,r,c,st){const addr=XLSX.utils.encode_cell({r,c}); if(ws[addr]) ws[addr].s=mergeStyle(ws[addr].s,st);}
+  function styleRange(ws,r1,c1,r2,c2,st){for(let r=r1;r<=r2;r++) for(let c=c1;c<=c2;c++) styleCell(ws,r,c,st);}
+  function statusStyle(v){
+    const s=String(v||'').toLowerCase(); if(!s)return null;
+    if(s.includes('достав')||s.includes('оплачен')||s==='да'||s.includes('действ'))return S.good;
+    if(s.includes('жд')||s.includes('ожида')||s.includes('сбор')||s.includes('соглас')||s.includes('бух')||s.includes('част')||s.includes('дольше'))return S.warn;
+    if(s.includes('нет')||s.includes('не оплачен')||s.includes('проср')||s.includes('отказ'))return S.bad;
+    return null;
+  }
+  function addSheet(wb,name,aoa,widths,opts){
+    opts=opts||{};
+    const ws=XLSX.utils.aoa_to_sheet(aoa);
+    const cols=Math.max(1,...aoa.map(r=>(r||[]).length));
+    ws['!cols']=(widths||[]).map(w=>({wch:w}));
+    ws['!rows']=aoa.map((r,i)=>({hpt:(opts.rowHeights&&opts.rowHeights[i])||20}));
+    if(opts.freeze) ws['!views']=[{state:'frozen',ySplit:opts.freeze,xSplit:0}];
+    if(opts.filterRow){
+      const h=(aoa[opts.filterRow-1]||[]).length;
+      if(h) ws['!autofilter']={ref:XLSX.utils.encode_range({s:{r:opts.filterRow-1,c:0},e:{r:Math.max(opts.filterRow,aoa.length)-1,c:h-1}})};
+    }
+    for(let r=0;r<aoa.length;r++){
+      if(opts.noStyleRows && opts.noStyleRows.includes(r)) continue;
+      const row=aoa[r]||[];
+      for(let c=0;c<cols;c++){
+        const val=row[c];
+        let st=mergeStyle(S.cell,(r%2&&r>=((opts.filterRow||1))?S.alt:null));
+        if(typeof val==='number') st=Number.isInteger(val)?S.int:S.money;
+        if(hasUrl(val)) st=S.link;
+        const ss=statusStyle(val&&val.v!==undefined?val.v:val); if(ss) st=ss;
+        styleCell(ws,r,c,st);
+      }
+    }
+    (opts.headerRows||[]).forEach(r=>{styleRange(ws,r,0,r,cols-1,S.header); ws['!rows'][r]={hpt:24};});
+    (opts.sectionRows||[]).forEach(r=>{styleRange(ws,r,0,r,cols-1,S.section); ws['!rows'][r]={hpt:24};});
+    if(opts.wrapCols){
+      (opts.wrapCols||[]).forEach(c=>{for(let r=(opts.filterRow||1);r<aoa.length;r++) styleCell(ws,r,c,{alignment:{vertical:'top',wrapText:true}});});
+      for(let r=(opts.filterRow||1);r<aoa.length;r++) ws['!rows'][r]={hpt:Math.min(42, (ws['!rows'][r]&&ws['!rows'][r].hpt)||22)};
+    }
+    XLSX.utils.book_append_sheet(wb,ws,name.substring(0,31));
+    return ws;
+  }
+  async function ensureXLSX(){
+    if(window.__MTO_XLSX_STYLE_READY__ && window.XLSX) return true;
+    await new Promise((resolve,reject)=>{const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js';s.onload=()=>{window.__MTO_XLSX_STYLE_READY__=true;resolve();};s.onerror=reject;document.head.appendChild(s);}).catch(()=>null);
+    if(window.XLSX) return true;
+    await new Promise((resolve,reject)=>{const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js';s.onload=resolve;s.onerror=reject;document.head.appendChild(s);}).catch(()=>null);
+    return !!window.XLSX;
+  }
+  function buildRows(){
+    const orders=safeArr('DATA').slice();
+    const contacts=uniqContacts(safeArr('CONTACTS').slice());
+    const contracts=safeArr('CONTRACTS').slice();
+    const payments=getPayments().slice();
+    const orderRows=orders.map(r=>{const sel=firstSelected(r.kp); const inv=firstInvoice(r); return [
+      r.num||'',r.company||'',r.shifer||'',dateRuAny(r.date||r.createdAt),r.name||'',r.material||'',r.resp||'',r.status||'',r.payment||'',orderTotalSafe(r),sel?(sel.supplier||''):(r.contractor||''),inv?(inv.invoiceNo||inv.no||''):'',r.contract||r.selectedContractNumber||'',r.upd||'',r.docs||'',workDaysSafe(r)
+    ];});
+    const supplierRows=[];
+    orders.forEach(r=>{
+      (Array.isArray(r.kp)?r.kp:[]).forEach((k,i)=>supplierRows.push([r.num||'',r.shifer||'',r.name||r.material||'',r.resp||'',k.supplier||'',money(k.sum),k.deliveryTerm||k.term||k.delivery||'',k.selected?'Да':'Нет',linkObj(k.url?'Открыть КП':'',k.url),k.phone||k.contact||'',k.email||'',k.note||'']));
+      if((!Array.isArray(r.kp)||!r.kp.length) && firstInvoice(r)){const inv=firstInvoice(r);supplierRows.push([r.num||'',r.shifer||'',r.name||r.material||'',r.resp||'',inv.supplier||r.contractor||'',money(inv.sum||r.cost),'','Да',linkObj(inv.url?'Открыть счет':'',inv.url),'','','из счета']);}
+    });
+    const contractRows=contracts.map(c=>[c.counterparty||'',c.inn||'',c.kpp||'',c.contractNumber||'',c.contractDate||'',c.dateTo||'',c.type||'',money(c.amount),c.subject||'',contractLifeSafe(c),linkObj(c.fileUrl||c.url?'Открыть':'',c.fileUrl||c.url)]);
+    const contactRows=contacts.map(c=>{let st={orders:'',contracts:'',delivered:'',delayed:'',total:''}; try{if(typeof supplierWorkStats==='function') st=supplierWorkStats(c)||st;}catch(e){} return [c.name||'',c.inn||'',c.kpp||'',c.activity||'',c.phone||'',c.email||'',c.region||'',c.city||'',c.spec||'',c.supplierRating||'',c.supplierScore||'',st.orders||0,st.delivered||0,money(st.total||0),c.supplierPreferred?'Да':'',c.supplierWarning||''];});
+    const paymentRows=payments.map((p,i)=>[p.no||String(i+1),p.shifr||'594-85',p.orderNo||'',p.mto||'',p.supplier||'',money(p.amount),p.invoiceNo||'',dateRuAny(p.invoiceDate),dateRuAny(p.accountingDate),p.status||'',dateRuAny(p.payDate),p.paymentSent||'',linkObj((p.invoiceFile&&p.invoiceFile.url)?'Открыть счет':'',(p.invoiceFile&&p.invoiceFile.url)||''),p.note||'']);
+    const docRows=[];
+    orders.forEach(r=>{(Array.isArray(r.kp)?r.kp:[]).forEach(k=>{if(k.url)docRows.push([r.num||'',r.shifer||'','КП',k.supplier||'',linkObj('Открыть КП',k.url),k.fileName||'',r.resp||'']);});(Array.isArray(r.invoices)?r.invoices:[]).forEach(x=>{if(x.url)docRows.push([r.num||'',r.shifer||'','Счет',x.supplier||'',linkObj('Открыть счет',x.url),x.fileName||x.invoiceNo||'',r.resp||'']);}); if(r.selectedContractUrl)docRows.push([r.num||'',r.shifer||'','Договор',r.selectedContractName||r.contractor||'',linkObj('Открыть договор',r.selectedContractUrl),r.selectedContractNumber||'',r.resp||'']);});
+    contracts.forEach(c=>{if(c.fileUrl||c.url)docRows.push(['','','Договор',c.counterparty||'',linkObj('Открыть договор',c.fileUrl||c.url),c.fileName||c.contractNumber||'',c.uploadedBy||'']);});
+    payments.forEach(p=>{if(p.invoiceFile&&p.invoiceFile.url)docRows.push([p.orderNo||'',p.shifr||'594-85','Счет оплаты 85',p.supplier||'',linkObj('Открыть счет',p.invoiceFile.url),p.invoiceFile.name||p.invoiceNo||'',p.mto||'']);});
+    return {orders,contacts,contracts,payments,orderRows,supplierRows,contractRows,contactRows,paymentRows,docRows};
+  }
+  function summaryData(data){
+    const total=data.orders.length, delivered=data.orders.filter(isDelivered).length, inWork=total-delivered;
+    const totalSum=data.orders.reduce((a,r)=>a+orderTotalSafe(r),0);
+    const paySum=data.payments.reduce((a,r)=>a+money(r.amount),0);
+    const paidSum=data.payments.filter(r=>String(r.status||'').toLowerCase().includes('оплачен')).reduce((a,r)=>a+money(r.amount),0);
+    const noUpd=data.orders.filter(r=>!r.upd||r.upd==='Нет'||String(r.upd).toLowerCase().includes('нет')).length;
+    const byResp={}; data.orders.forEach(r=>{const k=r.resp||'Без ответственного'; if(!byResp[k])byResp[k]={n:0,sum:0,done:0}; byResp[k].n++; byResp[k].sum+=orderTotalSafe(r); if(isDelivered(r))byResp[k].done++;});
+    const bySh={}; data.orders.forEach(r=>{const k=r.shifer||'Без шифра'; if(!bySh[k])bySh[k]={n:0,sum:0,done:0}; bySh[k].n++; bySh[k].sum+=orderTotalSafe(r); if(isDelivered(r))bySh[k].done++;});
+    return {total,delivered,inWork,totalSum,paySum,paidSum,noUpd,byResp,bySh};
+  }
+  function addSummarySheet(wb,data){
+    const sm=summaryData(data);
+    const aoa=[
+      ['MTO','Управленческий отчет','','','',''],
+      ['Дата формирования',new Date().toLocaleString('ru-RU'),'','','',''],
+      [],
+      ['Всего заявок',sm.total,'Общая сумма',sm.totalSum,'Доставлено',sm.delivered],
+      ['В работе',sm.inWork,'Договоров',data.contracts.length,'Контактов',data.contacts.length],
+      ['Реестр оплат 85',data.payments.length,'Оплачено по 85',sm.paidSum,'Без УПД/ТТН',sm.noUpd],
+      [],
+      ['По ответственным','','',''],['Ответственный','Заявок','Доставлено','Сумма']
+    ];
+    Object.entries(sm.byResp).sort((a,b)=>b[1].n-a[1].n).forEach(([k,v])=>aoa.push([k,v.n,v.done,v.sum]));
+    aoa.push([],['По шифрам','','',''],['Шифр','Заявок','Доставлено','Сумма']);
+    Object.entries(sm.bySh).sort((a,b)=>b[1].n-a[1].n).forEach(([k,v])=>aoa.push([k,v.n,v.done,v.sum]));
+    const ws=addSheet(wb,'Управленческий отчет',aoa,[24,14,18,18,18,14],{freeze:9,sectionRows:[7,aoa.findIndex(r=>r[0]==='По шифрам')],headerRows:[8,aoa.findIndex(r=>r[0]==='Шифр')],noStyleRows:[2,6]});
+    ws['!merges']=[{s:{r:0,c:0},e:{r:0,c:5}}];
+    styleRange(ws,0,0,0,5,S.title); ws['!rows'][0]={hpt:32};
+    styleRange(ws,1,0,1,5,S.subtitle);
+    [[3,0],[3,2],[3,4],[4,0],[4,2],[4,4],[5,0],[5,2],[5,4]].forEach(([r,c])=>{styleCell(ws,r,c,S.kpiLabel); styleCell(ws,r,c+1,S.kpiValue);});
+    [3,4,5].forEach(r=>ws['!rows'][r]={hpt:36});
+    return ws;
+  }
+  function setSheetLinks(ws){
+    Object.keys(ws).forEach(a=>{if(a[0]==='!')return; const cell=ws[a]; if(hasUrl(cell)){cell.s=mergeStyle(cell.s,S.link);}});
+  }
+  window.mtoExportFullExcel=async function(){
+    const data=buildRows();
+    if(!data.orders.length&&!data.contacts.length&&!data.contracts.length&&!data.payments.length){alert('Нет данных для выгрузки');return;}
+    if(!(await ensureXLSX())){alert('Не удалось загрузить модуль XLSX. Проверьте интернет и попробуйте еще раз.');return;}
+    const wb=XLSX.utils.book_new();
+    wb.Props={Title:'Управленческий отчет МТО',Subject:'Сводный отчет МТО',Author:(window.CU&&CU.name)||'MTO',CreatedDate:new Date()};
+    addSummarySheet(wb,data);
+    const wsOrders=addSheet(wb,'Заявки',[['№ заявки','Компания','Шифр','Дата','Наименование закупки','Материал','Ответственный','Статус заявки','Статус оплаты','Стоимость','Контрагент','Счет','Договор','УПД/ТТН','Документы качества','Дней']].concat(data.orderRows),[10,14,12,12,30,28,18,18,16,15,24,18,18,12,18,10],{filterRow:1,freeze:1,headerRows:[0],wrapCols:[4,5]});
+    const wsSup=addSheet(wb,'КП и поставщики',[['№ заявки','Шифр','Заявка','Ответственный','Поставщик','Стоимость','Срок поставки','Выбран','КП / файл','Телефон','Email','Примечание']].concat(data.supplierRows),[10,12,30,18,26,15,16,10,16,18,24,28],{filterRow:1,freeze:1,headerRows:[0],wrapCols:[2,11]});
+    const wsCon=addSheet(wb,'Договоры',[['Контрагент','ИНН','КПП','№ договора','Дата','Срок до','Тип','Сумма','Предмет','Статус','Файл']].concat(data.contractRows),[30,14,12,18,12,12,14,15,34,16,14],{filterRow:1,freeze:1,headerRows:[0],wrapCols:[8]});
+    const wsPay=addSheet(wb,'Реестр оплат 85',[['№','Шифр','№ заявки','МТО-шник','Поставщик','Сумма','№ счета','Дата счета','Дата в бухт.','Статус','Дата оплаты','Платежка','Файл','Примечание']].concat(data.paymentRows),[8,12,12,18,24,15,18,12,12,20,12,12,14,28],{filterRow:1,freeze:1,headerRows:[0],wrapCols:[13]});
+    const wsContacts=addSheet(wb,'Контакты',[['Организация','ИНН','КПП','Вид деятельности','Телефон','Email','Регион','Город','Спецсчет','Аккредитация','Балл','Заявок','Поставок','Сумма','Рекомендуемый','Предупреждение']].concat(data.contactRows),[30,14,12,26,18,26,18,18,12,20,10,10,10,15,14,28],{filterRow:1,freeze:1,headerRows:[0],wrapCols:[3,15]});
+    const wsDocs=addSheet(wb,'Документы',[['№ заявки','Шифр','Тип','Контрагент / поставщик','Ссылка','Имя файла / номер','Ответственный']].concat(data.docRows),[10,12,16,28,16,32,18],{filterRow:1,freeze:1,headerRows:[0],wrapCols:[5]});
+    // Листы по ответственным — без цветовой каши, компактно.
+    const byResp={}; data.orders.forEach(r=>{const k=(r.resp||'Без ответственного').substring(0,31); if(!byResp[k])byResp[k]=[]; byResp[k].push(r);});
+    Object.entries(byResp).forEach(([resp,orders])=>{
+      const rows=[['Ответственный: '+resp],[],['№ заявки','Шифр','Заявка','Статус','Сумма','Поставщик','КП сумма','Срок','Выбран','КП / счет','Примечание']];
+      orders.forEach(r=>{const kps=Array.isArray(r.kp)&&r.kp.length?r.kp:[firstInvoice(r)].filter(Boolean); if(kps.length){kps.forEach(k=>rows.push([r.num||'',r.shifer||'',r.name||r.material||'',r.status||'',orderTotalSafe(r),k.supplier||r.contractor||'',money(k.sum),k.deliveryTerm||k.term||k.delivery||'',k.selected?'Да':'Нет',linkObj(k.url?'Открыть':'',k.url),k.note||'']));} else rows.push([r.num||'',r.shifer||'',r.name||r.material||'',r.status||'',orderTotalSafe(r),'','','','','',r.note||'']);});
+      const ws=addSheet(wb,resp,rows,[10,12,30,18,15,24,15,14,10,14,28],{headerRows:[2],sectionRows:[0],freeze:3,filterRow:3,wrapCols:[2,10],noStyleRows:[1]});
+      ws['!merges']=[{s:{r:0,c:0},e:{r:0,c:10}}];
+      setSheetLinks(ws);
+    });
+    [wsOrders,wsSup,wsCon,wsPay,wsContacts,wsDocs].forEach(setSheetLinks);
+    const fn='МТО_управленческий_отчет_'+new Date().toISOString().slice(0,10)+'.xlsx';
+    XLSX.writeFile(wb,fn);
+  };
+  function addReportButton(){
+    const dash=document.querySelector('#page-dash .dash-v64-controls');
+    if(dash && !document.getElementById('mto-full-xlsx-btn')){const b=document.createElement('button');b.id='mto-full-xlsx-btn';b.type='button';b.className='btn btn-p';b.style.marginLeft='auto';b.textContent='📊 Сводный отчет МТО';b.onclick=window.mtoExportFullExcel;dash.appendChild(b);}
+    const profile=document.querySelector('#page-profile .ph');
+    if(profile && !document.getElementById('mto-full-xlsx-profile-btn')){const b=document.createElement('button');b.id='mto-full-xlsx-profile-btn';b.type='button';b.className='btn btn-s';b.style.marginTop='10px';b.textContent='📊 Сводный отчет МТО';b.onclick=window.mtoExportFullExcel;profile.appendChild(b);}
+  }
+  setTimeout(addReportButton,400); setTimeout(addReportButton,1400);
+})();
+</script>
+
+
+<script id="mto-v68-pay85-autofill-fix">
+(function(){
+  if(window.__MTO_V68_PAY85_AUTOFILL_FIX__) return;
+  window.__MTO_V68_PAY85_AUTOFILL_FIX__=true;
+  const ids=['pay85-no','pay85-shifr','pay85-order','pay85-mto','pay85-supplier','pay85-amount','pay85-invoice-no','pay85-invoice-date','pay85-accounting-date','pay85-pay-date','pay85-note'];
+  function isSuspiciousAutofill(){
+    const no=document.getElementById('pay85-no')?.value||'';
+    const sh=document.getElementById('pay85-shifr')?.value||'';
+    const ord=document.getElementById('pay85-order')?.value||'';
+    const mto=document.getElementById('pay85-mto')?.value||'';
+    const sup=document.getElementById('pay85-supplier')?.value||'';
+    // Browser/profile autofill часто раскладывает: имя -> шифр, должность -> № заявки, телефон -> МТО.
+    return (/^#?\d+$/.test(no.trim()) && /[А-Яа-яA-Za-z]/.test(sh) && /MTO|МТО|специалист/i.test(ord) && /\+?\d{7,}/.test(mto.replace(/\s/g,''))) ||
+           (/^#?\d+$/.test(no.trim()) && /Магомед|Magomed/i.test(sh) && /\+?\d{7,}/.test(mto.replace(/\s/g,''))) ||
+           (/^#?\d+$/.test(no.trim()) && /^MTO$/i.test(sup.trim()));
+  }
+  function clearAutofillIfNeeded(){
+    const section=document.getElementById('profile-section-payments85')||document.getElementById('page-payments85');
+    if(!section) return;
+    section.querySelectorAll('input,select,textarea').forEach(el=>{
+      try{el.setAttribute('autocomplete','off');el.setAttribute('autocorrect','off');el.setAttribute('autocapitalize','off');el.setAttribute('spellcheck','false');el.setAttribute('data-form-type','other');el.setAttribute('data-lpignore','true');}catch(e){}
+    });
+    if(isSuspiciousAutofill() && typeof window.pay85ClearForm==='function') window.pay85ClearForm();
+  }
+  ['DOMContentLoaded','pageshow'].forEach(ev=>window.addEventListener(ev,()=>setTimeout(clearAutofillIfNeeded,350)));
+  setTimeout(clearAutofillIfNeeded,600); setTimeout(clearAutofillIfNeeded,1600);
+  const old=window.profileTab;
+  if(typeof old==='function') window.profileTab=function(t){const r=old.apply(this,arguments); if(t==='payments85') setTimeout(clearAutofillIfNeeded,250); return r;};
 })();
 </script>
 
