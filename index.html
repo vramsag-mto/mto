@@ -127,6 +127,7 @@ tr:hover td{background:#f8fafc}
 .an-table th{background:var(--primary);color:#fff;padding:8px 11px;text-align:left;font-size:.72rem}
 .an-table td{padding:8px 11px;border-top:1px solid var(--border)}
 .an-table tr.an-min td{background:#dcfce7;font-weight:700}
+.an-table tr.an-selected td{background:#dcfce7;font-weight:700}
 .an-total{margin-top:12px;padding:12px;background:#f8fafc;border-radius:8px;font-size:.85rem}
 /* CHAT */
 .chat-wrap{display:flex;flex-direction:column;gap:10px;padding:16px;max-height:400px;overflow-y:auto}
@@ -1834,9 +1835,8 @@ body.mto-dark{--bg:#0f172a;--text:#e2e8f0;--muted:#94a3b8;--border:#334155}body.
         <select class="si2" id="dash-status-filter" onchange="dashStatus=this.value;rDash()">
           <option value="">Все статусы</option>
           <option>Срочные заявки</option>
-          <option>ЖДЕМ ДОСТАВКИ</option>
           <option>Ожидаем доставку</option>
-          <option>ДОСТАВЛЕНО</option>
+          <option>Доставлено</option>
           <option>На оплате</option>
         </select>
         <input class="si2" id="dash-search" placeholder="🔍 Поиск по дашборду..." oninput="dQ=this.value;rDash()" style="min-width:240px;flex:1">
@@ -1884,7 +1884,7 @@ body.mto-dark{--bg:#0f172a;--text:#e2e8f0;--muted:#94a3b8;--border:#334155}body.
         <div id="adv-filters" style="display:none">
           <div class="filter-grid">
             <div class="fgr"><label class="fl2">Ответственный</label><select class="fi" id="ff-resp" onchange="readAdvFilters()"><option value="">Все</option><option>Магомед С.</option><option>Эдуард</option><option>Шамиль</option><option>Вадим</option><option>Елена</option><option>Эмин</option><option>Даниэль</option></select></div>
-            <div class="fgr"><label class="fl2">Оплата</label><select class="fi" id="ff-payment" onchange="readAdvFilters()"><option value="">Все</option><option>Оплачен</option><option>Оплачено</option><option>На оплате</option><option>Не оплачен</option></select></div>
+            <div class="fgr"><label class="fl2">Оплата</label><select class="fi" id="ff-payment" onchange="readAdvFilters()"><option value="">Все</option><option>Оплачено</option><option>На оплате</option><option>Не оплачено</option></select></div>
             <div class="fgr"><label class="fl2">УПД</label><select class="fi" id="ff-upd" onchange="readAdvFilters()"><option value="">Все</option><option>Есть</option><option>Нет</option><option>Нет/запросил</option></select></div>
             <div class="fgr"><label class="fl2">Сертификаты</label><select class="fi" id="ff-docs" onchange="readAdvFilters()"><option value="">Все</option><option>Есть</option><option>Нет</option><option>Нет/запросил</option></select></div>
             <div class="fgr"><label class="fl2">Сумма от</label><input class="fi" type="number" id="ff-sum-from" oninput="readAdvFilters()" placeholder="0"></div>
@@ -1908,8 +1908,8 @@ body.mto-dark{--bg:#0f172a;--text:#e2e8f0;--muted:#94a3b8;--border:#334155}body.
           <div class="cf">
             <select class="si2" onchange="aSt=this.value;rAll()" style="width:170px">
               <option value="">Все статусы</option>
-              <option>ДОСТАВЛЕНО</option><option>ЖДЕМ ДОСТАВКИ</option><option>Ожидаем доставку</option>
-              <option>ЧАСТИЧНО ДОСТАВЛЕНО</option><option>На оплате</option><option>Идет сбор КП</option><option>Приостановлена</option>
+              <option>Доставлено</option><option>Ожидаем доставку</option>
+              <option>Частично доставлено</option><option>На оплате</option><option>Идет сбор КП</option><option>Приостановлена</option>
             </select>
             <input class="si2" id="all-search-input" placeholder="🔍 Поиск..." oninput="aSr=this.value;rAll()" style="width:170px"/>
           </div>
@@ -2205,7 +2205,7 @@ body.mto-dark{--bg:#0f172a;--text:#e2e8f0;--muted:#94a3b8;--border:#334155}body.
           <div class="fgr"><label class="fl2">Номер счёта</label><input class="fi" id="pay85-invoice-no" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-form-type="other" data-lpignore="true" placeholder="№ счета"></div>
           <div class="fgr"><label class="fl2">Дата счёта</label><input class="fi" id="pay85-invoice-date" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-form-type="other" data-lpignore="true" type="date"></div>
           <div class="fgr"><label class="fl2">Дата в бухт.</label><input class="fi" id="pay85-accounting-date" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-form-type="other" data-lpignore="true" type="date"></div>
-          <div class="fgr"><label class="fl2">Статус</label><select class="fi" id="pay85-status" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-form-type="other" data-lpignore="true"><option>Новый</option><option>Счет получен</option><option>Передан в бухгалтерию</option><option>На оплате</option><option>Оплачен</option><option>Проблема</option></select></div>
+          <div class="fgr"><label class="fl2">Статус</label><select class="fi" id="pay85-status" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-form-type="other" data-lpignore="true"><option>Новый</option><option>Счет получен</option><option>Передан в бухгалтерию</option><option>На оплате</option><option>Оплачено</option><option>Проблема</option></select></div>
           <div class="fgr"><label class="fl2">Дата оплаты</label><input class="fi" id="pay85-pay-date" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-form-type="other" data-lpignore="true" type="date"></div>
           <div class="fgr"><label class="fl2">Платёжка отправлена</label><select class="fi" id="pay85-payment-sent" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-form-type="other" data-lpignore="true"><option>Нет</option><option>Да</option><option>Не требуется</option></select></div>
           <div class="fgr"><label class="fl2">Примечание</label><input class="fi" id="pay85-note" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-form-type="other" data-lpignore="true" placeholder="Комментарий"></div>
@@ -2216,7 +2216,7 @@ body.mto-dark{--bg:#0f172a;--text:#e2e8f0;--muted:#94a3b8;--border:#334155}body.
         <datalist id="pay85-shifr-list"><option value="594-85"><option value="594-151"><option value="594-815"></datalist>
       </div>
       <div class="card">
-        <div class="ch"><div class="ct">📊 Сводка платежей</div><div class="cf"><input class="si2" id="pay85-search" placeholder="🔍 Поиск..." oninput="rPayments85()" style="width:220px"><select class="si2" id="pay85-filter" onchange="rPayments85()"><option value="">Все статусы</option><option>Новый</option><option>Счет получен</option><option>Передан в бухгалтерию</option><option>На оплате</option><option>Оплачен</option><option>Проблема</option></select></div></div>
+        <div class="ch"><div class="ct">📊 Сводка платежей</div><div class="cf"><input class="si2" id="pay85-search" placeholder="🔍 Поиск..." oninput="rPayments85()" style="width:220px"><select class="si2" id="pay85-filter" onchange="rPayments85()"><option value="">Все статусы</option><option>Новый</option><option>Счет получен</option><option>Передан в бухгалтерию</option><option>На оплате</option><option>Оплачено</option><option>Проблема</option></select></div></div>
         <div class="pay85-stats" id="pay85-stats"></div>
         <div class="pay85-table-wrap"><table><thead><tr><th>№</th><th>Шифр</th><th>№ заявки</th><th>МТО-шник</th><th>Поставщик</th><th>Сумма</th><th>№ счёта</th><th>Дата счёта</th><th>Дата в бухт.</th><th>Статус</th><th>Дата оплаты</th><th>Платёжка</th><th>Файл счёта</th><th>Действия</th></tr></thead><tbody id="pay85-tb"></tbody></table></div>
       </div>
@@ -2397,27 +2397,33 @@ body.mto-dark{--bg:#0f172a;--text:#e2e8f0;--muted:#94a3b8;--border:#334155}body.
       <div class="fgr"><label class="fl2">Шифр</label><select class="fi" id="fsh"><option>594-151</option><option>594-815</option><option>594-85</option></select></div>
       <div class="fgr"><label class="fl2">Дата заявки</label><input class="fi" type="date" id="fdt"/></div>
       <div class="fgr"><label class="fl2">Срок / дата контроля <span style="font-weight:400;color:var(--muted);text-transform:none">необязательно</span></label><input class="fi" type="date" id="fdd" title="Если указать дату, заявка попадет в Срочные заявки на дашборде"/></div>
+      <div class="fgr"><label class="fl2">Приоритет закупки</label><select class="fi" id="fpri" title="Влияет на подсказки конъюнктурного анализа"><option value="balance">⚖️ Баланс цена / срок</option><option value="price">💰 Минимальная стоимость</option><option value="speed">⚡ Срочная поставка</option></select></div>
       <div class="fgr f"><label class="fl2">Наименование</label><input class="fi" id="fnm" placeholder="Инструменты и расходники"/></div>
       <div class="fgr"><label class="fl2">Ответственный</label>
         <select class="fi" id="frs"><option>Не выбран</option><option>Магомед С.</option><option>Эдуард</option><option>Шамиль</option><option>Вадим</option><option>Елена</option><option>Эмин</option><option>Даниэль</option></select></div>
       <div class="fgr"><label class="fl2">Второй ответственный</label>
         <select class="fi" id="frs2"><option></option><option>Магомед С.</option><option>Эдуард</option><option>Шамиль</option><option>Вадим</option><option>Елена</option><option>Эмин</option><option>Даниэль</option></select></div>
       <div class="fgr"><label class="fl2">Статус заявки</label>
-        <select class="fi" id="fst"><option>Идет сбор КП</option><option>На оплате</option><option>ЖДЕМ ДОСТАВКИ</option><option>Ожидаем доставку</option><option>ЧАСТИЧНО ДОСТАВЛЕНО</option><option>ДОСТАВЛЕНО</option><option>Приостановлена</option></select></div>
+        <select class="fi" id="fst"><option>Идет сбор КП</option><option>На оплате</option><option>Ожидаем доставку</option><option>Частично доставлено</option><option>Доставлено</option><option>Приостановлена</option></select></div>
       <div class="fgr f"><label class="fl2">Материал поставки</label><input class="fi" id="fma" placeholder="Перечислите материалы"/></div>
       <div class="fgr"><label class="fl2">Стоимость, руб.</label><input class="fi" type="number" id="fco2" placeholder="0"/></div>
       <div class="fgr"><label class="fl2">Поставщик / контрагент</label><input class="fi" id="fct" list="contacts-list" placeholder="Выберите из контактов или впишите нового" oninput="refreshContractChoice()" onchange="refreshContractChoice()"/><datalist id="contacts-list"></datalist></div>
       <div class="fgr f"><label class="fl2">Основной счёт / ссылка (если один поставщик)</label><input class="fi" id="fin" placeholder="https://drive.google.com/..."/></div>
       <div class="fgr"><label class="fl2">Договор / Тип счёта</label><select class="fi" id="fcon"><option></option><option>Счет-договор</option><option>Договор поставки</option><option>Счёт</option></select></div>
       <div class="fgr f"><label class="fl2">Договор из реестра</label><select class="fi" id="fcr" onchange="selectOrderContract()"><option value="">— Договор не выбран —</option></select><div class="nf" id="fcr-info" style="margin-top:5px">Выберите поставщика выше, чтобы быстрее найти договор.</div></div>
-      <div class="fgr"><label class="fl2">Статус оплаты</label><select class="fi" id="fpa"><option></option><option>Оплачен</option><option>Оплачено</option><option>На оплате</option><option>Не оплачен</option></select></div>
+      <div class="fgr"><label class="fl2">Статус оплаты</label><select class="fi" id="fpa"><option></option><option>Оплачено</option><option>На оплате</option><option>Не оплачено</option></select></div>
       <div class="fgr"><label class="fl2">Дата поставки</label><input class="fi" id="fdl" placeholder="26.06.2026"/></div>
+      <div class="fgr"><label class="fl2">Транспортная компания</label><input class="fi" id="fdc" placeholder="ООО РЕММАЗ / ТК / самовывоз"/></div>
+      <div class="fgr"><label class="fl2">Ф.И.О. водителя</label><input class="fi" id="fdrv" placeholder="Иванов Сергей"/></div>
       <div class="fgr"><label class="fl2">Телефон водителя</label><input class="fi" id="fdrp" placeholder="8 900 000-00-00"/></div>
-      <div class="fgr"><label class="fl2">Машина / госномер</label><input class="fi" id="fveh" placeholder="А123АА 35"/></div>
+      <div class="fgr"><label class="fl2">Марка автомобиля</label><input class="fi" id="fvbr" placeholder="MAN / Газель / КамАЗ"/></div>
+      <div class="fgr"><label class="fl2">Госномер автомобиля</label><input class="fi" id="fveh" placeholder="А123АА 35"/></div>
+      <div class="fgr"><label class="fl2">Госномер прицепа</label><input class="fi" id="ftrl" placeholder="Если есть"/></div>
       <div class="fgr"><label class="fl2">УПД, ТТН, Акт</label><select class="fi" id="fup"><option></option><option>Есть</option><option>Нет</option><option>Нет/запросил</option></select></div>
       <div class="fgr"><label class="fl2">Документы качества</label><select class="fi" id="fdo"><option></option><option>Есть</option><option>Нет</option><option>Нет/запросил</option></select></div>
       <div class="fgr"><label class="fl2">Рабочих дней в работе</label><input class="fi" type="number" id="fda" placeholder="Авто" readonly title="Считается автоматически по дате создания заявки"/></div>
       <div class="fgr f"><label class="fl2">Примечание</label><input class="fi" id="fno" placeholder="Примечания..."/></div>
+      <div class="fgr f"><label class="fl2">Обоснование выбора / разделения закупки</label><textarea class="fi" id="frea" rows="3" placeholder="Например: муфты берем у Русский Свет из-за срока 1–2 дня, кабель у СаранскКабель из-за цены и срока 10 дней"></textarea></div>
     </div>
     <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border)">
       <div style="font-weight:700;color:var(--primary);margin-bottom:10px">📁 Коммерческие предложения <span style="font-size:.73rem;color:var(--muted);font-weight:400">• Отметьте ✓ выбранное</span></div>
@@ -2687,7 +2693,7 @@ function sortToggleHtml(){
 // FIREBASE LISTENERS
 db.ref('orders').on('value',s=>{
   DATA=[];
-  if(s.exists())s.forEach(c=>{ DATA.push({_k:c.key,...c.val()}); });
+  if(s.exists())s.forEach(c=>{ DATA.push(normalizeOrderRecordStatuses({_k:c.key,...c.val()})); });
   DATA=sortOrdersNewest(DATA);
   document.getElementById('loading').style.display='none';
   if(!CU && !autoLoginTried){
@@ -2778,13 +2784,41 @@ db.ref('userProfiles').on('value',s=>{
 });
 
 // HELPERS
-function sB(s){if(!s)return'';const m={'ДОСТАВЛЕНО':'bg','ЖДЕМ ДОСТАВКИ':'by','Ожидаем доставку':'by','ЧАСТИЧНО ДОСТАВЛЕНО':'bo','На оплате':'bb','Идет сбор КП':'bp','Приостановлена':'br','Доставляем партиями':'bo'};return`<span class="badge ${m[s]||'bgr'}">${s}</span>`;}
+function sB(s){s=normalizeOrderStatusValue(s);if(!s)return'';const m={'Доставлено':'bg','ДОСТАВЛЕНО':'bg','Ожидаем доставку':'by','ЖДЕМ ДОСТАВКИ':'by','ЖДЁМ ДОСТАВКИ':'by','Частично доставлено':'bo','ЧАСТИЧНО ДОСТАВЛЕНО':'bo','На оплате':'bb','Идет сбор КП':'bp','Идёт сбор КП':'bp','Приостановлена':'br','Доставляем партиями':'bo'};return`<span class="badge ${m[s]||'bgr'}">${s}</span>`;}
 function shB(s){const m={'594-151':'bp','594-815':'bb','594-85':'bg'};return s?`<span class="badge ${m[s]||'bgr'}">${s}</span>`:'—';}
 function fI(u,l){return u?`<a class="fl" href="${u}" target="_blank">📄 ${l||'Открыть'}</a>`:'<span class="nf">—</span>';}
 function mn(v){if(!v&&v!==0)return'<span class="nf">—</span>';if(!v)return'<span class="nf">—</span>';return`<span class="mn">${Number(v).toLocaleString('ru-RU',{maximumFractionDigits:0})} ₽</span>`;}
 function dc(d){if(d===''||d===null||d===undefined)return'<span class="nf">—</span>';const n=parseInt(d);if(isNaN(n))return`<span class="dow">${d}</span>`;if(n<=0)return`<span class="dob">${d}д</span>`;if(n<=7)return`<span class="dok">${d}д</span>`;if(n<=14)return`<span class="dow">${d}д</span>`;return`<span class="dob">${d}д</span>`;}
 function todayRu(){const d=new Date();return `${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')}.${d.getFullYear()}`;}
 function todayInput(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;}
+function normalizeOrderStatusValue(v){
+  const s=String(v||'').trim();
+  const u=s.toUpperCase();
+  if(!s)return '';
+  if(u==='ЖДЕМ ДОСТАВКИ'||u==='ЖДЁМ ДОСТАВКИ'||s==='Ожидаем доставку')return 'Ожидаем доставку';
+  if(u==='ДОСТАВЛЕНО')return 'Доставлено';
+  if(u==='ЧАСТИЧНО ДОСТАВЛЕНО')return 'Частично доставлено';
+  if(s==='Идет сбор КП'||s==='Идёт сбор КП')return 'Идет сбор КП';
+  if(s==='На оплате')return 'На оплате';
+  if(s==='Приостановлена')return 'Приостановлена';
+  return s;
+}
+function normalizePaymentStatusValue(v){
+  const s=String(v||'').trim();
+  if(!s)return '';
+  const l=s.toLowerCase();
+  if(l==='оплачен'||l==='оплачено')return 'Оплачено';
+  if(l==='не оплачен'||l==='не оплачено')return 'Не оплачено';
+  if(l==='на оплате')return 'На оплате';
+  return s;
+}
+function normalizeOrderRecordStatuses(r){
+  if(!r||typeof r!=='object')return r;
+  r.status=normalizeOrderStatusValue(r.status);
+  r.payment=normalizePaymentStatusValue(r.payment);
+  return r;
+}
+
 function businessDaysBetween(fromDate,toDate=new Date()){
   if(!fromDate)return '';
   const start=new Date(fromDate.getFullYear(),fromDate.getMonth(),fromDate.getDate());
@@ -2797,7 +2831,7 @@ function businessDaysBetween(fromDate,toDate=new Date()){
   return count;
 }
 function isPaidStatus(v){return ['оплачен','оплачено'].includes(String(v||'').trim().toLowerCase());}
-function isDeliveredStatus(v){return String(v||'').trim().toUpperCase()==='ДОСТАВЛЕНО';}
+function isDeliveredStatus(v){return normalizeOrderStatusValue(v)==='Доставлено';}
 function isClosedOrder(r){return isDeliveredStatus(r?.status)&&isPaidStatus(r?.payment);}
 function workDays(r){
   const start=parseRuDate(r?.createdAt||r?.date);
@@ -2844,7 +2878,7 @@ function esc(v){return String(v??'').replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt
 function briefOrder(r){return `№${r?.num||'б/н'} • ${r?.company||'—'} • ${r?.name||r?.material||'—'}`;}
 function diffFields(oldR,row){
   if(!oldR)return [];
-  const names={company:'Компания',num:'№',shifer:'Шифр',date:'Дата',name:'Наименование',resp:'Ответственный',resp2:'Второй ответственный',status:'Статус',material:'Материал',cost:'Сумма',contractor:'Контрагент',payment:'Оплата',delivery:'Поставка',driverPhone:'Телефон водителя',vehicleNumber:'Машина',upd:'УПД',docs:'Документы',createdAt:'Дата создания',days:'Рабочие дни',note:'Примечание'};
+  const names={company:'Компания',num:'№',shifer:'Шифр',date:'Дата',name:'Наименование',resp:'Ответственный',resp2:'Второй ответственный',status:'Статус',material:'Материал',cost:'Сумма',contractor:'Контрагент',payment:'Оплата',delivery:'Поставка',deliveryCompany:'Транспортная компания',transportCompany:'Транспортная компания',driverName:'Ф.И.О. водителя',driverPhone:'Телефон водителя',vehicleBrand:'Марка автомобиля',vehicleNumber:'Госномер автомобиля',trailerNumber:'Госномер прицепа',upd:'УПД',docs:'Документы',createdAt:'Дата создания',days:'Рабочие дни',note:'Примечание'};
   const out=[];
   for(const k of Object.keys(names)){
     const a=oldR[k]??''; const b=row[k]??'';
@@ -3439,7 +3473,14 @@ window.openOrderView=function(key){
 
 function orderDetailHtml(r){
   const kp=r.kp||[]; const an=r.analysis;
-  const logisticsExtra=[r.driverPhone?`Телефон водителя: ${esc(r.driverPhone)}`:'',r.vehicleNumber?`Машина: ${esc(r.vehicleNumber)}`:''].filter(Boolean).join('<br>')||'—';
+  const logisticsExtra=[
+    (r.deliveryCompany||r.transportCompany)?`Компания: ${esc(r.deliveryCompany||r.transportCompany)}`:'',
+    r.driverName?`Водитель: ${esc(r.driverName)}`:'',
+    r.driverPhone?`Телефон водителя: ${esc(r.driverPhone)}`:'',
+    r.vehicleBrand?`Марка автомобиля: ${esc(r.vehicleBrand)}`:'',
+    r.vehicleNumber?`Госномер автомобиля: ${esc(r.vehicleNumber)}`:'',
+    r.trailerNumber?`Госномер прицепа: ${esc(r.trailerNumber)}`:''
+  ].filter(Boolean).join('<br>')||'—';
   const key=r._k;
   return `
     <div class="order-detail-head">
@@ -3480,7 +3521,7 @@ function orderDetailHtml(r){
       ${invoiceList(r).length?`<table class="kt"><thead><tr><th>Поставщик</th><th>Сумма</th><th>Счёт / КП</th><th>Примечание</th></tr></thead><tbody>${invoiceList(r).map(x=>`<tr><td>${esc(x.supplier||'—')}</td><td>${x.sum?Number(x.sum).toLocaleString('ru-RU')+'₽':'—'}</td><td>${x.url?`<a class="fl" href="${esc(x.url)}" target="_blank">📄 Открыть</a>`:'<span class="nf">—</span>'}</td><td>${esc(x.note||'—')}</td></tr>`).join('')}</tbody></table>`:'<div class="order-empty">Счета не добавлены</div>'}
     </div>
     <div class="order-pane" id="order-pane-delivery">
-      <div class="info-grid"><div class="info-card"><div class="info-label">Дата поставки</div><div class="info-value">${esc(r.delivery||'—')}</div></div><div class="info-card"><div class="info-label">Телефон водителя</div><div class="info-value">${esc(r.driverPhone||'—')}</div></div><div class="info-card"><div class="info-label">Машина / госномер</div><div class="info-value">${esc(r.vehicleNumber||'—')}</div></div></div>
+      <div class="info-grid"><div class="info-card"><div class="info-label">Дата поставки</div><div class="info-value">${esc(r.delivery||'—')}</div></div><div class="info-card"><div class="info-label">Транспортная компания</div><div class="info-value">${esc(r.deliveryCompany||r.transportCompany||'—')}</div></div><div class="info-card"><div class="info-label">Ф.И.О. водителя</div><div class="info-value">${esc(r.driverName||'—')}</div></div><div class="info-card"><div class="info-label">Телефон водителя</div><div class="info-value">${esc(r.driverPhone||'—')}</div></div><div class="info-card"><div class="info-label">Марка автомобиля</div><div class="info-value">${esc(r.vehicleBrand||'—')}</div></div><div class="info-card"><div class="info-label">Госномер автомобиля</div><div class="info-value">${esc(r.vehicleNumber||'—')}</div></div><div class="info-card"><div class="info-label">Госномер прицепа</div><div class="info-value">${esc(r.trailerNumber||'—')}</div></div></div>
       <div class="order-section-title">🚚 Логистика</div><div class="info-card"><div class="info-value">${esc(r.delivery||'—')}<br>${logisticsExtra}</div></div>
     </div>
     <div class="order-pane" id="order-pane-discussion"><div id="order-discussion-box"></div></div>
@@ -3558,7 +3599,7 @@ function orderListRowHtml(r,type){
     <td>${esc(r.num||'—')}${orderMarkersHtml(r)}</td><td>${shB(r.shifer)}</td><td><strong>${esc(r.name||r.title||'—')}</strong><div class="nf">${esc(r.material||r.requestText||'')}</div></td><td>${sB(r.status)}</td><td>${kp.length} КП ${kpCell(r)}</td><td>${sel.length?sel.map(k=>`<span class="badge bgold">✓ ${esc(k.supplier||'Поставщик')}</span>`).join(' '):'<span class="nf">—</span>'}</td><td>${mn(sel.reduce((a,k)=>a+(Number(k.sum)||0),0)||orderTotal(r))}</td><td>${esc(r.delivery||'—')}</td><td>${uB(r.upd)}</td><td>${daysB(r)}</td>
   </tr>`;}
   return `<tr>
-    <td>${esc(r.num||'—')}${orderMarkersHtml(r)}</td><td>${esc(r.createdAt||r.date||'—')}</td><td>${esc(r.company||'—')}</td><td>${shB(r.shifer)}</td><td><strong>${esc(r.name||r.title||'—')}</strong><div class="nf">${esc(r.material||r.requestText||r.note||'')}</div></td><td>${userChipsForOrder(r)}</td><td>${sB(r.status)}</td><td>${mn(orderTotal(r))}</td><td><span class="badge ${r.payment==='Оплачен'||r.payment==='Оплачено'?'bg':'by'}">${esc(r.payment||'—')}</span></td><td>${esc(r.delivery||'—')}</td><td>${kpCell(r)}${anB(r)}</td><td>${invoiceCell(r)}</td><td>${contractCell(r)}</td><td>${docBadges(r)}</td><td><div class="order-actions compact-actions">${allOrderActionsHtml(r)}</div></td>
+    <td>${esc(r.num||'—')}${orderMarkersHtml(r)}</td><td>${esc(r.createdAt||r.date||'—')}</td><td>${esc(r.company||'—')}</td><td>${shB(r.shifer)}</td><td><strong>${esc(r.name||r.title||'—')}</strong><div class="nf">${esc(r.material||r.requestText||r.note||'')}</div></td><td>${userChipsForOrder(r)}</td><td>${sB(r.status)}</td><td>${mn(orderTotal(r))}</td><td><span class="badge ${normalizePaymentStatusValue(r.payment)==='Оплачено'?'bg':'by'}">${esc(r.payment||'—')}</span></td><td>${esc(r.delivery||'—')}</td><td>${kpCell(r)}${anB(r)}</td><td>${invoiceCell(r)}</td><td>${contractCell(r)}</td><td>${docBadges(r)}</td><td><div class="order-actions compact-actions">${allOrderActionsHtml(r)}</div></td>
   </tr>`;
 }
 function orderCardHtml(r,type){
@@ -3566,7 +3607,7 @@ function orderCardHtml(r,type){
   const supplierText=supplierTextForOrder(r);
   if(type==='mine')return `<div class="mto-order-card ${isAttentionOrder(r)?'order-attention':''}"><div class="mto-card-top"><div><div class="mto-card-no">№${esc(r.num||'б/н')}${orderMarkersHtml(r)}</div><div class="mto-card-date">${esc(r.createdAt||r.date||'—')}</div><div class="mto-card-title">${esc(r.name||r.title||'Без наименования')}</div><div class="mto-card-sub">${esc(r.requestText||r.material||'')}</div></div><div class="mto-card-tags">${shB(r.shifer)}${sB(r.status)}</div></div><div class="mto-card-body"><div class="mto-card-field"><div class="mto-card-label">КП</div><div class="mto-card-value"><span class="badge bgr">${kp.length} КП</span> ${kpCell(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Выбранный</div><div class="mto-card-value">${sel.length?sel.map(k=>`<span class="badge bgold">✓ ${esc(k.supplier||'Поставщик')}</span>`).join(' '):'<span class="nf">—</span>'}</div></div><div class="mto-card-field"><div class="mto-card-label">Сумма</div><div class="mto-card-value">${mn(sel.reduce((a,k)=>a+(Number(k.sum)||0),0)||orderTotal(r))}</div></div><div class="mto-card-field"><div class="mto-card-label">Поставка</div><div class="mto-card-value">${esc(r.delivery||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">УПД</div><div class="mto-card-value">${uB(r.upd)}</div></div><div class="mto-card-field"><div class="mto-card-label">Дни</div><div class="mto-card-value">${daysB(r)}</div></div></div><div class="mto-card-actions">${orderActionsCompactHtml(r)}</div></div>`;
   if(type==='dash')return `<div class="mto-order-card ${isAttentionOrder(r)?'order-attention':''}"><div class="mto-card-top"><div><div class="mto-card-no">№${esc(r.num||'б/н')}${orderMarkersHtml(r)}</div><div class="mto-card-date">${esc(r.createdAt||r.date||'—')}</div><div class="mto-card-title">${esc(r.name||r.title||'Без наименования')}</div><div class="mto-card-sub">${esc(r.requestText||r.material||'')}</div></div><div class="mto-card-tags"><span class="badge bgr">${esc(r.company||'—')}</span>${shB(r.shifer)}${sB(r.status)}</div></div><div class="mto-card-body"><div class="mto-card-field"><div class="mto-card-label">Ответственные</div><div class="mto-card-value">${userChipsForOrder(r)}${respButtons(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Контрагент</div><div class="mto-card-value">${esc(r.contractor||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">Сумма</div><div class="mto-card-value">${mn(orderTotal(r))}</div></div><div class="mto-card-field"><div class="mto-card-label">Поставка</div><div class="mto-card-value">${esc(r.delivery||'—')}</div></div><div class="mto-card-field"><div class="mto-card-label">УПД</div><div class="mto-card-value">${uB(r.upd)}</div></div><div class="mto-card-field"><div class="mto-card-label">Дни</div><div class="mto-card-value">${daysB(r)}</div></div></div><div class="mto-card-actions">${orderActionsCompactHtml(r)}</div></div>`;
-  return `<div class="mto-order-card all-order-card ${isAttentionOrder(r)?'order-attention':''}"><div class="mto-card-top"><div><div class="mto-card-no">№${esc(r.num||'б/н')}${orderMarkersHtml(r)}</div><div class="mto-card-date">${esc(r.createdAt||r.date||'—')}</div><div class="mto-card-title">${esc(r.name||r.title||'Без наименования')}</div><div class="mto-card-sub">${esc(r.requestText||r.material||r.note||'')}</div></div><div class="mto-card-tags"><span class="badge bgr">${esc(r.company||'—')}</span>${shB(r.shifer)}${sB(r.status)}</div></div><div class="mto-card-body"><div class="mto-card-field"><div class="mto-card-label">Ответственные</div><div class="mto-card-value">${userChipsForOrder(r)}${respButtons(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Поставщик</div><div class="mto-card-value">${esc(supplierText)}</div></div><div class="mto-card-field"><div class="mto-card-label">Сумма</div><div class="mto-card-value">${mn(orderTotal(r))}</div></div><div class="mto-card-field"><div class="mto-card-label">Оплата</div><div class="mto-card-value"><span class="badge ${r.payment==='Оплачен'||r.payment==='Оплачено'?'bg':'by'}">${esc(r.payment||'—')}</span></div></div><div class="mto-card-field"><div class="mto-card-label">Поставка</div><div class="mto-card-value">${esc(r.delivery||'—')}${r.vehicleNumber?'<br><span class="nf">🚚 '+esc(r.vehicleNumber)+'</span>':''}</div></div><div class="mto-card-field"><div class="mto-card-label">Дни</div><div class="mto-card-value">${daysB(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">КП</div><div class="mto-card-value">${kpCell(r)}${anB(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Счёт</div><div class="mto-card-value">${invoiceCell(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Договор</div><div class="mto-card-value">${contractCell(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Документы</div><div class="mto-card-value">${docBadges(r)}</div></div><div class="mto-card-field mto-card-wide"><div class="mto-card-label">Примечание</div><div class="mto-card-value">${esc(r.note||'—')}</div></div></div><div class="mto-card-actions">${allOrderActionsHtml(r)}</div></div>`;
+  return `<div class="mto-order-card all-order-card ${isAttentionOrder(r)?'order-attention':''}"><div class="mto-card-top"><div><div class="mto-card-no">№${esc(r.num||'б/н')}${orderMarkersHtml(r)}</div><div class="mto-card-date">${esc(r.createdAt||r.date||'—')}</div><div class="mto-card-title">${esc(r.name||r.title||'Без наименования')}</div><div class="mto-card-sub">${esc(r.requestText||r.material||r.note||'')}</div></div><div class="mto-card-tags"><span class="badge bgr">${esc(r.company||'—')}</span>${shB(r.shifer)}${sB(r.status)}</div></div><div class="mto-card-body"><div class="mto-card-field"><div class="mto-card-label">Ответственные</div><div class="mto-card-value">${userChipsForOrder(r)}${respButtons(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Поставщик</div><div class="mto-card-value">${esc(supplierText)}</div></div><div class="mto-card-field"><div class="mto-card-label">Сумма</div><div class="mto-card-value">${mn(orderTotal(r))}</div></div><div class="mto-card-field"><div class="mto-card-label">Оплата</div><div class="mto-card-value"><span class="badge ${normalizePaymentStatusValue(r.payment)==='Оплачено'?'bg':'by'}">${esc(r.payment||'—')}</span></div></div><div class="mto-card-field"><div class="mto-card-label">Поставка</div><div class="mto-card-value">${esc(r.delivery||'—')}${r.vehicleNumber?'<br><span class="nf">🚚 '+esc(r.vehicleNumber)+'</span>':''}</div></div><div class="mto-card-field"><div class="mto-card-label">Дни</div><div class="mto-card-value">${daysB(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">КП</div><div class="mto-card-value">${kpCell(r)}${anB(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Счёт</div><div class="mto-card-value">${invoiceCell(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Договор</div><div class="mto-card-value">${contractCell(r)}</div></div><div class="mto-card-field"><div class="mto-card-label">Документы</div><div class="mto-card-value">${docBadges(r)}</div></div><div class="mto-card-field mto-card-wide"><div class="mto-card-label">Примечание</div><div class="mto-card-value">${esc(r.note||'—')}</div></div></div><div class="mto-card-actions">${allOrderActionsHtml(r)}</div></div>`;
 }
 function contractListRowHtml(c){
   const life=contractLife(c); const files=c.fileUrl?`<a class="fl" href="${esc(c.fileUrl)}" target="_blank">📄</a>`:'<span class="nf">—</span>';
@@ -3644,10 +3685,10 @@ function rDash(){
   if(title)title.textContent=(window.dashStatus==='Срочные заявки'?'Срочные заявки — ':'Активные заявки — ')+(dashC==='ALL'?'Все компании':dashC);
   if(count)count.textContent=`Показано: ${visible.length} из ${all.length}`;
   if(stats){
-    const done=all.filter(r=>r.status==='ДОСТАВЛЕНО').length;
-    const wait=all.filter(r=>['ЖДЕМ ДОСТАВКИ','Ожидаем доставку'].includes(r.status)).length;
+    const done=all.filter(r=>isDeliveredStatus(r.status)).length;
+    const wait=all.filter(r=>normalizeOrderStatusValue(r.status)==='Ожидаем доставку').length;
     const attention=all.filter(r=>isAttentionOrder(r)).length;
-    const inWork=all.filter(r=>r.status!=='ДОСТАВЛЕНО').length;
+    const inWork=all.filter(r=>!isDeliveredStatus(r.status)).length;
     stats.innerHTML=`
       <div class="sc"><div class="si b">📋</div><div><div class="sv">${all.length}</div><div class="sl">Всего заявок</div></div></div>
       <div class="sc"><div class="si r">🔥</div><div><div class="sv">${attention}</div><div class="sl">Срочные заявки</div></div></div>
@@ -3712,7 +3753,7 @@ function setQuickFilter(v,el){
 window.setQuickFilter=setQuickFilter;
 function applyAllFilters(list){
   let d=[...list];
-  if(quickFilter==='notDelivered')d=d.filter(r=>r.status!=='ДОСТАВЛЕНО');
+  if(quickFilter==='notDelivered')d=d.filter(r=>!isDeliveredStatus(r.status));
   if(quickFilter==='payment')d=d.filter(r=>(r.payment||r.status||'').toLowerCase().includes('оплат'));
   if(quickFilter==='noUpd')d=d.filter(r=>!r.upd||r.upd==='Нет'||String(r.upd).toLowerCase().includes('нет'));
   if(quickFilter==='noDocs')d=d.filter(r=>!r.docs||r.docs==='Нет'||String(r.docs).toLowerCase().includes('нет'));
@@ -3782,8 +3823,8 @@ function rAnalytics(){
   if(!canSeeControl()){return;}
   const box=document.getElementById('analytics-stats'); if(!box)return;
   const total=DATA.length;
-  const done=DATA.filter(r=>r.status==='ДОСТАВЛЕНО').length;
-  const inWork=DATA.filter(r=>r.status!=='ДОСТАВЛЕНО').length;
+  const done=DATA.filter(r=>isDeliveredStatus(r.status)).length;
+  const inWork=DATA.filter(r=>!isDeliveredStatus(r.status)).length;
   const analyses=DATA.filter(r=>r.analysis).length;
   const saved=DATA.reduce((a,r)=>a+((r.analysis&&r.analysis.selectedSum&&r.analysis.minVal)?Math.max(0,r.analysis.selectedSum-r.analysis.minVal):0),0);
   box.innerHTML=`
@@ -3795,7 +3836,7 @@ function rAnalytics(){
   DATA.forEach(r=>{
     const p=r.resp||'Без ответственного';
     if(!people[p])people[p]={n:0,done:0,sum:0,kp:0,an:0,spread:0};
-    people[p].n++; if(r.status==='ДОСТАВЛЕНО')people[p].done++;
+    people[p].n++; if(isDeliveredStatus(r.status))people[p].done++;
     people[p].sum+=orderTotal(r); people[p].kp+=(r.kp||[]).length;
     if(r.analysis){people[p].an++; people[p].spread+=Number(r.analysis.spread)||0;}
   });
@@ -4030,7 +4071,7 @@ window.selectOrderContract=selectOrderContract;
 window.openAdd=function(){
   editKey=null;kpRows=[];invoiceRows=[];
   document.getElementById('mzt').textContent='Новая заявка';
-  ['fco','fnu','fsh','fdt','fdd','fnm','frs','frs2','fst','fma','fco2','fct','fin','fcon','fcr','fpa','fdl','fdrp','fveh','fup','fdo','fda','fno'].forEach(id=>{
+  ['fco','fnu','fsh','fdt','fdd','fpri','fnm','frs','frs2','fst','fma','fco2','fct','fin','fcon','fcr','fpa','fdl','fdc','fdrv','fdrp','fvbr','fveh','ftrl','fup','fdo','fda','fno','frea'].forEach(id=>{
     const el=document.getElementById(id);if(el){if(el.tagName==='SELECT')el.selectedIndex=0;else el.value='';}
   });
   document.getElementById('fdt').value=todayInput();
@@ -4048,10 +4089,11 @@ window.openE=function(k){
   document.getElementById('fsh').value=r.shifer||'594-151';
   document.getElementById('fdt').value=(r.createdAt||r.date)?(r.createdAt||r.date).split('.').reverse().join('-'):todayInput();
   document.getElementById('fdd').value=normalizeDeadlineInput(r.deadlineDate||r.controlDate||r.priorityDate||r.dueDate||'');
+  document.getElementById('fpri').value=r.purchasePriority||r.buyPriority||r.procurementPriority||'balance';
   document.getElementById('fnm').value=r.name||'';
   document.getElementById('frs').value=r.resp||'Не выбран';
   document.getElementById('frs2').value=r.resp2||'';
-  document.getElementById('fst').value=r.status||'Идет сбор КП';
+  document.getElementById('fst').value=normalizeOrderStatusValue(r.status)||'Идет сбор КП';
   document.getElementById('fma').value=r.material||'';
   document.getElementById('fco2').value=r.cost||'';
   document.getElementById('fct').value=r.contractor||'';
@@ -4062,14 +4104,19 @@ window.openE=function(k){
   populateOrderRefs();
   document.getElementById('fcr').value=r.selectedContractKey||'';
   selectOrderContract();
-  document.getElementById('fpa').value=r.payment||'';
+  document.getElementById('fpa').value=normalizePaymentStatusValue(r.payment)||'';
   document.getElementById('fdl').value=r.delivery||'';
+  document.getElementById('fdc').value=r.deliveryCompany||r.transportCompany||'';
+  document.getElementById('fdrv').value=r.driverName||'';
   document.getElementById('fdrp').value=r.driverPhone||'';
+  document.getElementById('fvbr').value=r.vehicleBrand||'';
   document.getElementById('fveh').value=r.vehicleNumber||'';
+  document.getElementById('ftrl').value=r.trailerNumber||'';
   document.getElementById('fup').value=r.upd||'';
   document.getElementById('fdo').value=r.docs||'';
   document.getElementById('fda').value=workDays(r);
   document.getElementById('fno').value=r.note||'';
+  document.getElementById('frea').value=r.selectionReason||r.analysisReason||r.choiceReason||'';
   kpRows=JSON.parse(JSON.stringify(r.kp||[]));
   kpRows.forEach(x=>applySupplierMetaToRow(x));invoiceRows.forEach(x=>applySupplierMetaToRow(x));
   rKP();rInvoices();updateOrderAutoCostFromKP();OM('mo-z');
@@ -4088,8 +4135,9 @@ window.saveZ=async function(){
     company:document.getElementById('fco').value,num:document.getElementById('fnu').value,
     shifer:document.getElementById('fsh').value,date:dr?dr.split('-').reverse().join('.'):todayRu(),
     deadlineDate:document.getElementById('fdd')?.value||'',controlDate:document.getElementById('fdd')?.value||'',priorityDate:document.getElementById('fdd')?.value||'',
+    purchasePriority:document.getElementById('fpri')?.value||'balance',buyPriority:document.getElementById('fpri')?.value||'balance',procurementPriority:document.getElementById('fpri')?.value||'balance',
     name:document.getElementById('fnm').value,resp:document.getElementById('frs').value,resp2:document.getElementById('frs2').value,
-    status:document.getElementById('fst').value,material:document.getElementById('fma').value,
+    status:normalizeOrderStatusValue(document.getElementById('fst').value),material:document.getElementById('fma').value,
     cost:selectedTotal>0?selectedTotal:(invoicesTotal>0?invoicesTotal:manualCost),contractor:document.getElementById('fct').value,
     contractorContactKey:(findContactForSupplierName(document.getElementById('fct').value)||{})._k||'',
     contractorInn:(findContactForSupplierName(document.getElementById('fct').value)||{}).inn||'',
@@ -4102,12 +4150,16 @@ window.saveZ=async function(){
     selectedContractNumber:selectedContract?(selectedContract.contractNumber||''):'',
     selectedContractUrl:selectedContract?getContractFileUrl(selectedContract):'',
     selectedContractCounterparty:selectedContract?(selectedContract.counterparty||''):'',
-    payment:document.getElementById('fpa').value,delivery:document.getElementById('fdl').value,
-    driverPhone:document.getElementById('fdrp').value,vehicleNumber:document.getElementById('fveh').value,
+    payment:normalizePaymentStatusValue(document.getElementById('fpa').value),delivery:document.getElementById('fdl').value,
+    deliveryCompany:document.getElementById('fdc')?.value||'',transportCompany:document.getElementById('fdc')?.value||'',
+    driverName:document.getElementById('fdrv')?.value||'',driverPhone:document.getElementById('fdrp').value,
+    vehicleBrand:document.getElementById('fvbr')?.value||'',vehicleNumber:document.getElementById('fveh').value,
+    trailerNumber:document.getElementById('ftrl')?.value||'',
     upd:document.getElementById('fup').value,docs:document.getElementById('fdo').value,
     createdAt:(oldR&&oldR.createdAt)?oldR.createdAt:(dr?dr.split('-').reverse().join('.'):todayRu()),
     closedAt:(isDeliveredStatus(document.getElementById('fst').value)&&isPaidStatus(document.getElementById('fpa').value))?((oldR&&oldR.closedAt)?oldR.closedAt:todayRu()):null,
     days:businessDaysBetween(parseRuDate((oldR&&oldR.createdAt)?oldR.createdAt:(dr?dr.split('-').reverse().join('.'):todayRu())),(isDeliveredStatus(document.getElementById('fst').value)&&isPaidStatus(document.getElementById('fpa').value))?parseRuDate(((oldR&&oldR.closedAt)?oldR.closedAt:todayRu())):new Date()),note:document.getElementById('fno').value,
+    selectionReason:document.getElementById('frea')?.value||'',analysisReason:document.getElementById('frea')?.value||'',choiceReason:document.getElementById('frea')?.value||'',
     kp:JSON.parse(JSON.stringify(kpRows.map(x=>applySupplierMetaToRow(x)))),
   };
   if(editKey){
@@ -4143,7 +4195,7 @@ window.openUserProfile=function(login){
   const email=p.email||p.mail||'';
   const department=p.department||p.company||p.object||'';
   const d=personOrdersByName(US[login]?.resp||US[login]?.name||realName,realName);
-  const done=d.filter(r=>r.status==='ДОСТАВЛЕНО').length;
+  const done=d.filter(r=>isDeliveredStatus(r.status)).length;
   const total=d.reduce((a,r)=>a+orderTotal(r),0);
   const av=avatarFor(login);
   const pm=login&&CU&&login!==CU.login?`<button class="btn btn-p" onclick="CM('mo-p');openPrivateWith('${login}')">✉️ Написать в личку</button>`:'';
@@ -4197,7 +4249,7 @@ window.openP=function(name){
   const realName=name;
   const role='Специалист МТО';
   const d=personOrdersByName(name,realName);
-  const done=d.filter(r=>r.status==='ДОСТАВЛЕНО').length;
+  const done=d.filter(r=>isDeliveredStatus(r.status)).length;
   const total=d.reduce((a,r)=>a+orderTotal(r),0);
   document.getElementById('ph2').innerHTML=`
     <div class="pav">${esc((realName||'П')[0])}</div>
@@ -4288,26 +4340,53 @@ function makeAnalysis(r){
   const minVal=base.length?Math.min(...base.map(k=>k.sum)):0;
   const maxVal=valid.length?Math.max(...valid.map(k=>k.sum)):0;
   const minSupplier=(base.find(k=>k.sum===minVal&&k.sum>0)||{}).supplier||'';
-  const selected=kp.find(k=>k.selected)||{};
-  const selectedSupplier=selected.supplier||'';
-  const selectedSum=Number(selected.sum)||0;
-  const selectedComplete=selectedSupplier?!!selected.complete:false;
+  const selectedList=kp.filter(k=>k.selected);
+  const selectedCount=selectedList.length;
+  const selectedTotal=selectedList.reduce((a,k)=>a+(Number(k.sum)||0),0);
+  const selectedSuppliers=selectedList.map(k=>k.supplier).filter(Boolean);
+  const selectedSupplier=selectedCount===1?(selectedList[0].supplier||''):(selectedSuppliers.join(' + ')||'');
+  const selected=selectedList[0]||{};
+  const selectedSum=selectedCount>1?selectedTotal:(Number(selected.sum)||0);
+  const selectedComplete=selectedCount===1?!!selected.complete:false;
   const withDelivery=valid.filter(k=>k.deliveryDays!==null&&k.deliveryDays!==undefined);
   const bestDeliveryDays=withDelivery.length?Math.min(...withDelivery.map(k=>k.deliveryDays)):null;
   const bestDeliverySupplier=(withDelivery.find(k=>k.deliveryDays===bestDeliveryDays)||{}).supplier||'';
-  const isSelectedMin=selectedSupplier&&selectedSum===minVal&&(!complete.length||selected.complete);
+  const isSelectedMin=selectedCount===1&&selectedSupplier&&selectedSum===minVal&&(!complete.length||selected.complete);
   const combo=findBestCombo(valid);
+  const purchasePriority=r.purchasePriority||r.buyPriority||r.procurementPriority||'balance';
+  const selectionReason=String(r.selectionReason||r.analysisReason||r.choiceReason||'').trim();
+  const priorityLabel=purchasePriority==='price'?'Минимальная стоимость':(purchasePriority==='speed'?'Срочная поставка':'Баланс цена / срок');
+  const comboText=combo?`${combo.items.map(x=>x.supplier).join(' + ')} — ориентировочно ${Number(combo.sum).toLocaleString('ru-RU')}₽`:'';
   let recommendation='';
-  if(complete.length){
+  if(selectedCount>1){
+    recommendation=`Решение МТО: комбинированная закупка у ${selectedSuppliers.join(' + ')} — итого ${Number(selectedTotal).toLocaleString('ru-RU')}₽.`;
+    if(selectionReason) recommendation+=` Обоснование: ${selectionReason}`;
+  }else if(selectedCount===1){
+    recommendation=`Решение МТО: выбран ${selectedSupplier||'—'} — ${Number(selectedSum||0).toLocaleString('ru-RU')}₽.`;
+    if(selectionReason) recommendation+=` Обоснование: ${selectionReason}`;
+  }else if(combo && purchasePriority!=='price' && (!complete.length || combo.sum<minVal || purchasePriority==='speed')){
+    recommendation=`Рекомендуется рассмотреть комбинированную закупку: ${comboText}. Причина: приоритет «${priorityLabel}», можно закрыть заявку несколькими поставщиками с учетом цены и сроков.`;
+  }else if(complete.length){
     recommendation=`Рекомендуется ${minSupplier||'—'} — ${Number(minVal).toLocaleString('ru-RU')}₽. Причина: полная комплектность и минимальная цена среди полных КП.`;
     if(bestDeliverySupplier) recommendation+=` Лучший срок поставки: ${bestDeliverySupplier} — ${bestDeliveryDays===0?'в наличии':bestDeliveryDays+' дн.'}.`;
     if(combo&&combo.sum<minVal){
-      recommendation+=` Альтернатива несколькими поставщиками: ${combo.items.map(x=>x.supplier).join(' + ')} — ориентировочно ${Number(combo.sum).toLocaleString('ru-RU')}₽.`;
+      recommendation+=` Альтернатива несколькими поставщиками: ${comboText}.`;
     }
   }else if(combo){
-    recommendation=`Полных КП нет. Возможная связка: ${combo.items.map(x=>x.supplier).join(' + ')} — ориентировочно ${Number(combo.sum).toLocaleString('ru-RU')}₽. Проверьте, что отсутствующие позиции действительно закрываются друг другом.`;
+    recommendation=`Полных КП нет. Возможная связка: ${comboText}. Проверьте, что отсутствующие позиции действительно закрываются друг другом.`;
   }else{
     recommendation='Полных КП нет. Частичные КП не закрывают отсутствующие позиции друг друга — нужно запросить недостающие товары или новое КП.';
+  }
+  let conclusion='';
+  if(selectedCount>1){
+    conclusion=`Заявка разделена между поставщиками: ${selectedSuppliers.join(' + ')}. Общая сумма выбранных КП: ${Number(selectedTotal).toLocaleString('ru-RU')}₽.`;
+    if(selectionReason) conclusion+=` Обоснование: ${selectionReason}`;
+  }else if(selectedCount===1){
+    conclusion=!selectedComplete?'Выбран поставщик с неполной комплектностью — нужно проверить недостающие позиции.'
+      : (isSelectedMin?'Выбран поставщик с полной комплектностью и минимальной ценой.':'Выбран полный поставщик, но не с минимальной ценой среди полных КП — нужно проверить основание выбора.');
+    if(selectionReason) conclusion+=` Обоснование: ${selectionReason}`;
+  }else{
+    conclusion=recommendation;
   }
   return {
     createdAt:Date.now(),
@@ -4317,6 +4396,9 @@ function makeAnalysis(r){
     company:r.company||'',
     name:r.name||r.material||'',
     resp:r.resp||'',
+    purchasePriority,
+    priorityLabel,
+    selectionReason,
     kp:kp.map(k=>({...k,isMin:k.sum===minVal&&k.sum>0&&(!complete.length||k.complete),isBestDelivery:bestDeliveryDays!==null&&k.deliveryDays===bestDeliveryDays})),
     completeCount:complete.length,
     minVal,
@@ -4325,27 +4407,27 @@ function makeAnalysis(r){
     minSupplier,
     bestDeliverySupplier,
     bestDeliveryDays,
+    selectedCount,
+    selectedSuppliers,
     selectedSupplier,
     selectedSum,
+    selectedTotal,
     selectedComplete,
     isSelectedMin,
     combo:combo?{suppliers:combo.items.map(x=>x.supplier),sum:combo.sum}:null,
     recommendation,
-    conclusion:selectedSupplier
-      ? (!selectedComplete?'Выбран поставщик с неполной комплектностью — нужно проверить недостающие позиции.'
-        : (isSelectedMin?'Выбран поставщик с полной комплектностью и минимальной ценой.':'Выбран полный поставщик, но не с минимальной ценой среди полных КП — нужно проверить основание выбора.'))
-      : recommendation
+    conclusion
   };
 }
 function analysisHtml(r,an,preview=false){
-  const rows=(an.kp||[]).map((k,i)=>`<tr class="${k.isMin?'an-min':''}">
+  const rows=(an.kp||[]).map((k,i)=>`<tr class="${k.selected?'an-selected':((!an.selectedCount&&k.isMin)?'an-min':'')}">
     <td>${i+1}</td>
     <td>${k.supplier||'—'}</td>
     <td>${k.sum?Number(k.sum).toLocaleString('ru-RU')+'₽':'—'}</td>
     <td>${k.delivery?esc(k.delivery):'<span class="nf">—</span>'}${k.isBestDelivery?'<div class="nf">лучший срок</div>':''}</td>
     <td>${k.url?`<a class="fl" href="${k.url}" target="_blank">📄 КП</a>`:'<span class="nf">—</span>'}</td>
     <td>${k.complete?'<span class="badge comp-ok">Полная</span>':`<span class="badge comp-part">Частичная</span><div class="nf">Нет: ${esc(displayMissing(k.missing)||'не указано')}</div>`}</td>
-    <td>${k.selected?'<span class="badge bgold">✓ Выбран МТО</span>':k.isMin?'<span class="badge bg">Лучшее полное КП</span>':k.isBestDelivery?'<span class="badge bb">Лучший срок</span>':''}</td>
+    <td>${k.selected?'<span class="badge bgold">✓ Выбран МТО</span>':k.isMin?'<span class="badge bgr">Лучшее полное КП</span>':k.isBestDelivery?'<span class="badge bb">Лучший срок</span>':''}</td>
   </tr>`).join('');
   const saved=an.createdAt?new Date(an.createdAt).toLocaleString('ru-RU'):'не сохранён';
   const combo=an.combo?`<div style="margin-top:8px"><strong>Вариант несколькими поставщиками:</strong> ${esc((an.combo.suppliers||[]).join(' + '))} — ${Number(an.combo.sum||0).toLocaleString('ru-RU')}₽</div>`:'';
@@ -4364,19 +4446,98 @@ function analysisHtml(r,an,preview=false){
           <div><span style="color:var(--muted)">Лучшая полная цена:</span> <strong>${an.minVal?Number(an.minVal).toLocaleString('ru-RU')+'₽':'—'}</strong></div>
           <div><span style="color:var(--muted)">Лучший поставщик:</span> <strong>${an.minSupplier||'—'}</strong></div>
           <div><span style="color:var(--muted)">Лучший срок:</span> <strong>${an.bestDeliverySupplier?esc(an.bestDeliverySupplier)+' — '+(an.bestDeliveryDays===0?'в наличии':an.bestDeliveryDays+' дн.'):'—'}</strong></div>
-          <div><span style="color:var(--muted)">Выбран МТО:</span> <strong>${an.selectedSupplier||'—'}</strong></div>
+          <div><span style="color:var(--muted)">Выбран МТО:</span> <strong>${an.selectedCount>1?esc((an.selectedSuppliers||[]).join(' + ')):(an.selectedSupplier||'—')}</strong></div>
+          ${an.selectedCount>1?`<div><span style="color:var(--muted)">Итого выбранных:</span> <strong>${Number(an.selectedTotal||0).toLocaleString('ru-RU')}₽</strong></div>`:''}
           <div><span style="color:var(--muted)">Разница мин/макс:</span> <strong>${an.spread?Number(an.spread).toLocaleString('ru-RU')+'₽':'—'}</strong></div>
         </div>
         <div style="margin-top:10px"><strong>Вывод:</strong> ${esc(an.conclusion||'—')}</div>
+        ${an.selectionReason?`<div style="margin-top:8px"><strong>Обоснование МТО:</strong> ${esc(an.selectionReason)}</div>`:''}
       </div>
       <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
         <button class="btn btn-p" onclick="saveAnalysis('${r._k}')">💾 ${preview?'Сохранить анализ в базе':'Обновить анализ'}</button>
+        <button class="btn btn-s" onclick="printAnalysisPDF('${r._k}')">📄 Конъюнктурный анализ PDF</button>
         <button class="btn btn-s" style="color:#b91c1c;border-color:#fecaca" onclick="deleteAnalysis('${r._k}')">🗑 Удалить анализ</button>
         ${an.createdAt?`<span class="badge bg" style="align-self:center">Видно всем пользователям</span>`:''}
       </div>
     </div>
   </div>`;
 }
+
+function analysisPrintVal(v){return (v===null||v===undefined||v==='')?'—':String(v);}
+function analysisMoney(v){return Number(v)?Number(v).toLocaleString('ru-RU')+' ₽':'—';}
+window.printAnalysisPDF=function(key){
+  const r=DATA.find(d=>d._k===key);
+  if(!r){alert('Заявка не найдена');return;}
+  if(!r.kp||r.kp.length<2){alert('Для конъюнктурного анализа нужно минимум 2 КП');return;}
+  const an=makeAnalysis(r);
+  const selectedList=(an.kp||[]).filter(k=>k.selected);
+  const selected=selectedList[0] || {};
+  const docNo='КА-'+(new Date().getFullYear())+'-'+String(r.num||'бн').replace(/[^0-9A-Za-zА-Яа-я_-]/g,'');
+  const today=new Date().toLocaleDateString('ru-RU');
+  const orderHashId=String(r._k||key||r.num||'').trim();
+  const orderUrl=(location.href||'').split('#')[0].split('?')[0]+'#order='+encodeURIComponent(orderHashId);
+  const qrUrl='https://api.qrserver.com/v1/create-qr-code/?size=118x118&margin=1&data='+encodeURIComponent(orderUrl);
+  const rows=(an.kp||[]).map((k,i)=>{
+    const isSel=!!k.selected;
+    const comp=k.complete?'Полная':'Частичная'+(k.missing?' (нет: '+displayMissing(k.missing)+')':'');
+    const status=isSel?'Выбран МТО':(k.isMin?'Лучшее полное КП':(k.isBestDelivery?'Лучший срок':''));
+    const url=k.url?`<a href="${esc(k.url)}">КП</a>`:'—';
+    return `<tr class="${isSel?'selected':''}"><td>${i+1}</td><td>${esc(k.supplier||'—')}</td><td class="num">${analysisMoney(k.sum)}</td><td>${esc(k.delivery||'—')}</td><td>${esc(comp)}</td><td>${status||'—'}</td><td>${url}</td></tr>`;
+  }).join('');
+  const apps=(an.kp||[]).filter(k=>k.url).map((k,i)=>`<li>КП ${esc(k.supplier||('№'+(i+1)))} — <a href="${esc(k.url)}">открыть файл</a></li>`).join('') || '<li>Файлы КП не указаны</li>';
+  const decision=selectedList.length>1
+    ? `По результатам рассмотрения коммерческих предложений принято решение разделить закупку между поставщиками:<br>${selectedList.map((k,i)=>`${i+1}. <b>${esc(k.supplier||'—')}</b> — ${analysisMoney(k.sum)}${k.delivery?`, срок: ${esc(k.delivery)}`:''}`).join('<br>')}<br><br><b>Итого:</b> ${analysisMoney(selectedList.reduce((a,k)=>a+(Number(k.sum)||0),0))}.`
+    : (selected.supplier
+      ? `По результатам рассмотрения коммерческих предложений принято решение выбрать поставщика <b>${esc(selected.supplier)}</b> с предложением на сумму <b>${analysisMoney(selected.sum)}</b>.`
+      : `По результатам анализа требуется вручную отметить выбранного поставщика в заявке.`);
+  const html=`<!doctype html><html><head><meta charset="utf-8"><title>Конъюнктурный анализ ${esc(r.num||'')}</title>
+  <style>
+    @page{size:A4;margin:14mm}
+    *{box-sizing:border-box} body{font-family:Arial,'Segoe UI',sans-serif;color:#111827;font-size:12px;line-height:1.35;margin:0;background:#fff}
+    .top{display:flex;justify-content:space-between;gap:20px;border-bottom:2px solid #1a2f4e;padding-bottom:12px;margin-bottom:16px}
+    .brand{font-size:20px;font-weight:800;color:#1a2f4e;letter-spacing:.5px}.docno{font-size:12px;color:#475569;text-align:right}.head-right{display:flex;align-items:flex-start;gap:12px}.qrbox{text-align:center;color:#64748b;font-size:9px;line-height:1.2}.qrbox img{width:72px;height:72px;border:1px solid #dbe3ef;padding:3px;background:#fff;border-radius:6px;display:block;margin-left:auto;margin-bottom:3px}
+    h1{font-size:18px;text-align:center;margin:10px 0 18px;color:#1a2f4e;text-transform:uppercase;letter-spacing:.4px}
+    h2{font-size:13px;margin:18px 0 8px;color:#1a2f4e;border-bottom:1px solid #dbe3ef;padding-bottom:5px}
+    .grid{display:grid;grid-template-columns:150px 1fr 140px 1fr;gap:6px 10px;margin-bottom:12px}
+    .lbl{color:#64748b}.val{font-weight:700}.box{border:1px solid #dbe3ef;border-radius:8px;padding:10px;background:#f8fafc;margin:10px 0}
+    table{width:100%;border-collapse:collapse;margin-top:8px;font-size:11px} th{background:#1a2f4e;color:#fff;text-align:left;padding:7px;border:1px solid #1a2f4e} td{padding:7px;border:1px solid #dbe3ef;vertical-align:top} tr.selected td{background:#dcfce7;font-weight:700}.num{text-align:right;white-space:nowrap}.muted{color:#64748b}.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}.card{border:1px solid #dbe3ef;border-radius:8px;padding:9px;background:#fff}.card b{display:block;font-size:13px;color:#1a2f4e}.sign{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:30px}.line{border-bottom:1px solid #111827;height:28px}.print-note{margin-top:14px;color:#64748b;font-size:10px}@media print{.noprint{display:none}}
+  </style></head><body>
+    <div class="top"><div><div class="brand">MTO</div><div class="muted">Система управления заявками</div></div><div class="head-right"><div class="docno"><b>${esc(docNo)}</b><br>Дата формирования: ${today}</div><div class="qrbox"><img src="${qrUrl}" alt="QR"><div>Открыть заявку<br>в MTO</div></div></div></div>
+    <h1>Конъюнктурный анализ</h1>
+    <div class="grid">
+      <div class="lbl">№ заявки</div><div class="val">${esc(r.num||'б/н')}</div>
+      <div class="lbl">Шифр</div><div class="val">${esc(r.shifer||'—')}</div>
+      <div class="lbl">Компания</div><div class="val">${esc(r.company||'—')}</div>
+      <div class="lbl">Ответственный</div><div class="val">${esc(r.resp||'—')}</div>
+      <div class="lbl">Дата заявки</div><div class="val">${esc(r.date||r.createdDate||'—')}</div>
+      <div class="lbl">Дата создания</div><div class="val">${esc(r.createdDate||'—')}</div>
+      <div class="lbl">Приоритет закупки</div><div class="val">${esc(an.priorityLabel||'Баланс цена / срок')}</div>
+      <div></div><div></div>
+    </div>
+    <h2>Предмет закупки</h2>
+    <div class="box"><b>${esc(r.name||r.material||'—')}</b>${r.material?`<div class="muted">${esc(r.material)}</div>`:''}</div>
+    <h2>Рассмотренные коммерческие предложения</h2>
+    <table><thead><tr><th>№</th><th>Поставщик</th><th>Стоимость</th><th>Срок поставки</th><th>Комплектность</th><th>Статус</th><th>КП</th></tr></thead><tbody>${rows}</tbody></table>
+    <h2>Итоги анализа</h2>
+    <div class="summary">
+      <div class="card"><span class="muted">Полных КП</span><b>${an.completeCount||0}</b></div>
+      <div class="card"><span class="muted">Лучшая цена</span><b>${analysisMoney(an.minVal)}</b></div>
+      <div class="card"><span class="muted">Макс. цена</span><b>${analysisMoney(an.maxVal)}</b></div>
+      <div class="card"><span class="muted">Разница</span><b>${analysisMoney(an.spread)}</b></div>
+    </div>
+    <h2>Решение специалиста МТО</h2>
+    <div class="box">${decision}<br><br>${an.selectionReason?`<span class="muted">Обоснование МТО:</span> ${esc(an.selectionReason)}<br><br>`:''}<span class="muted">Вывод:</span> ${esc(an.conclusion||'—')}</div>
+    <h2>Приложения</h2>
+    <ol>${apps}</ol>
+    <div class="sign"><div><div class="muted">Специалист МТО</div><div class="line"></div><div>${esc(r.resp||an.createdBy||'')}</div></div><div><div class="muted">Дата</div><div class="line"></div><div>${today}</div></div></div>
+    <div class="print-note">Документ сформирован автоматически на основании данных заявки в МТО. QR-код ведет к карточке заявки.</div>
+    <script>setTimeout(function(){window.print();},900);<\/script>
+  </body></html>`;
+  const w=window.open('','_blank');
+  if(!w){alert('Браузер заблокировал открытие окна. Разрешите всплывающие окна для сайта.');return;}
+  w.document.open(); w.document.write(html); w.document.close();
+};
+
 window.runAnalysis=function(key){
   if(!key){document.getElementById('an-result').innerHTML='';return;}
   const r=DATA.find(d=>d._k===key);
@@ -4390,7 +4551,7 @@ window.saveAnalysis=async function(key){
   if(!r||!r.kp||r.kp.length<2){alert('Для анализа нужно минимум 2 КП');return;}
   const an=makeAnalysis(r);
   await db.ref(`orders/${key}/analysis`).set(an);
-  await logAction('Сохранение анализа',briefOrder(r),`Выбран: ${an.selectedSupplier||'—'}; лучшее полное КП: ${an.minSupplier||'—'}; полных КП: ${an.completeCount||0}; разница мин/макс: ${an.spread?Number(an.spread).toLocaleString('ru-RU')+'₽':'—'}`,key);
+  await logAction('Сохранение анализа',briefOrder(r),`Выбран: ${an.selectedCount>1?(an.selectedSuppliers||[]).join(' + '):(an.selectedSupplier||'—')}; итого выбранных: ${an.selectedTotal?Number(an.selectedTotal).toLocaleString('ru-RU')+'₽':'—'}; лучшее полное КП: ${an.minSupplier||'—'}; полных КП: ${an.completeCount||0}; разница мин/макс: ${an.spread?Number(an.spread).toLocaleString('ru-RU')+'₽':'—'}`,key);
   alert('Конъюнктурный анализ сохранён в базе');
 };
 window.deleteAnalysis=async function(key){
@@ -7871,10 +8032,10 @@ window.rTrainingCenter=rTrainingCenter;window.helpSetActive=helpSetActive;window
     var selectedContract=null; try{selectedContract=(typeof CONTRACTS!=='undefined'?CONTRACTS:[]).find(function(x){return x&&x._k===el('fcr');})||null;}catch(e){}
     return {
       num:el('fnu'), company:el('fco'), shifer:el('fsh'), name:el('fnm'), resp:el('frs'), resp2:el('frs2'),
-      status:el('fst'), material:el('fma'), contractor:el('fct'), invoice:el('fin'), contract:el('fcon'),
+      status:normalizeOrderStatusValue(el('fst')), material:el('fma'), contractor:el('fct'), invoice:el('fin'), contract:el('fcon'),
       selectedContractKey:selectedContract?selectedContract._k:'',
       selectedContractName:selectedContract?((typeof contractDisplayName==='function')?contractDisplayName(selectedContract):(selectedContract.contractNumber||selectedContract.counterparty||'')):'',
-      payment:el('fpa'), delivery:el('fdl'), driverPhone:el('fdrp'), vehicleNumber:el('fveh'), upd:el('fup'), docs:el('fdo'), note:el('fno'),
+      payment:normalizePaymentStatusValue(el('fpa')), delivery:el('fdl'), driverPhone:el('fdrp'), vehicleNumber:el('fveh'), upd:el('fup'), docs:el('fdo'), note:el('fno'),
       cost:el('fco2'), kp:kp, invoices:inv
     };
   }
@@ -8366,7 +8527,7 @@ window.rTrainingCenter=rTrainingCenter;window.helpSetActive=helpSetActive;window
     r.invoiceNo = r.invoiceNo || r.invoiceNumber || r.billNo || '';
     r.invoiceDate = r.invoiceDate || r.billDate || '';
     r.accountingDate = r.accountingDate || r.buhDate || '';
-    r.status = r.status || 'Новый';
+    r.status = normalizePaymentStatusValue(r.status) || 'Новый';
     r.payDate = r.payDate || r.paymentDate || '';
     r.paymentSent = r.paymentSent || 'Нет';
     r.note = r.note || '';
@@ -9284,6 +9445,39 @@ window.rTrainingCenter=rTrainingCenter;window.helpSetActive=helpSetActive;window
   setTimeout(clearAutofillIfNeeded,600); setTimeout(clearAutofillIfNeeded,1600);
   const old=window.profileTab;
   if(typeof old==='function') window.profileTab=function(t){const r=old.apply(this,arguments); if(t==='payments85') setTimeout(clearAutofillIfNeeded,250); return r;};
+})();
+</script>
+
+
+<script id="mto-v72-qr-open-order">
+(function(){
+  if(window.__MTO_V72_QR_OPEN_ORDER__) return;
+  window.__MTO_V72_QR_OPEN_ORDER__=true;
+  function getOrderHash(){
+    const h=String(location.hash||'');
+    const m=h.match(/^#order=(.+)$/);
+    return m?decodeURIComponent(m[1]||''):'';
+  }
+  function tryOpenOrderFromHash(){
+    const id=getOrderHash();
+    if(!id) return true;
+    try{
+      if(typeof DATA==='undefined'||!Array.isArray(DATA)||!DATA.length||typeof window.openOrderView!=='function') return false;
+      const exists=DATA.find(r=>String(r._k||r.key||r.id||r.num||'')===id)||DATA.find(r=>String(r.num||'')===id);
+      if(exists){
+        window.openOrderView(String(exists._k||exists.key||exists.id));
+        try{history.replaceState(null,'',location.pathname+location.search);}catch(e){}
+        return true;
+      }
+    }catch(e){}
+    return false;
+  }
+  function boot(){
+    let n=0;
+    const timer=setInterval(function(){n++; if(tryOpenOrderFromHash()||n>40) clearInterval(timer);},500);
+  }
+  window.addEventListener('load',boot);
+  setTimeout(boot,600);
 })();
 </script>
 
